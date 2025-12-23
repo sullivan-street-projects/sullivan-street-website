@@ -261,8 +261,14 @@ export default function App() {
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.id)}
-                className="px-4 md:px-5 py-2 rounded-full font-sans text-[8.5px] md:text-[10px] uppercase tracking-[0.12em] text-[#1a1a1a]/60 hover:text-[#1a1a1a] hover:bg-white/50 transition-all font-bold whitespace-nowrap active:scale-95"
+                className="px-4 md:px-5 py-2 rounded-full font-sans text-[8.5px] md:text-[10px] uppercase tracking-[0.12em] text-[#1a1a1a]/60 hover:text-[#1a1a1a] hover:bg-white/50 transition-all font-bold whitespace-nowrap active:scale-95 flex items-center gap-2"
               >
+                {item.id === 'contact' && (
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ADE80] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#4ADE80]"></span>
+                  </span>
+                )}
                 {item.label}
               </button>
             ))}
@@ -276,7 +282,7 @@ export default function App() {
         <header className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-48 pb-32 lg:pt-72 lg:pb-64">
           <div className="max-w-[1000px]">
             <FocusText noBlur={true}>
-              <h1 className="font-serif text-4xl md:text-6xl lg:text-[76px] leading-[1.05] tracking-tight mb-12">
+              <h1 className="font-serif text-4xl md:text-6xl lg:text-[76px] leading-[1.26] tracking-tight mb-12">
                 Marketing for Tomorrow’s <br className="hidden md:block" />
                 <TypewriterText text="Billion-Dollar Brands" />
               </h1>
@@ -367,7 +373,7 @@ export default function App() {
           <div className="mb-24">
             <FocusText>
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl italic mb-12 text-[#1a1a1a]">
-                Stop Guessing. Start Growing.
+                A tailor-made approach to growth marketing.
               </h2>
               <p className="font-sans text-[17px] md:text-[19px] leading-relaxed max-w-[800px] text-[#555] font-light">
                 We’re a fractional growth consultancy delivering enterprise-grade advisory, strategy, and marketing operations. We bring in the right specialists to execute and scale—under our direction.
@@ -535,7 +541,7 @@ export default function App() {
               <div className="lg:col-span-5">
                 <span className="font-serif text-2xl font-bold block mb-6 text-[#1a1a1a]">Sullivan Street Projects</span>
                 <p className="font-sans text-[14px] text-[#888] leading-relaxed max-w-[400px]">
-                  Growth marketing partners to mission-driven founders and business leaders. Tailor-made, data-driven strategies for real, long-term growth.
+                  Stop guessing. Start growing.
                 </p>
               </div>
               <div className="lg:col-span-3">
