@@ -289,7 +289,7 @@ export default function App() {
             </FocusText>
             <FocusText noBlur={true}>
               <p className="font-sans text-[17px] md:text-[19px] text-[#555] leading-relaxed max-w-[650px] mb-14 font-light">
-                AI-enabled strategy, media, and execution growth consultancy—unlock revenue faster, with more focus and greater profit.
+                AI-powered strategy, media, and execution—unlock revenue faster, with more focus and greater profit.
               </p>
             </FocusText>
             <FocusText noBlur={true}>
