@@ -109,22 +109,22 @@ const TypewriterText = ({ text }) => {
   useEffect(() => {
     if (!active) return;
     if (index < text.length) {
-      const timeout = setTimeout(() => setIndex(prev => prev + 1), 100);
+      const timeout = setTimeout(() => setIndex(prev => prev + 1), 70);
       return () => clearTimeout(timeout);
     }
   }, [index, active, text]);
 
   return (
-    <span ref={containerRef} className="italic relative inline-block">
-      <span className="invisible select-none pointer-events-none">{text}</span>
-      <span className="absolute left-0 top-0 inline-flex items-baseline whitespace-nowrap">
-        <span>{text.slice(0, index)}</span>
+    <span ref={containerRef} className="italic inline">
+      <span className="relative">
+        <span className="opacity-100">{text.slice(0, index)}</span>
         <motion.span
           animate={{ opacity: [1, 0] }}
           transition={{ duration: 0.8, repeat: Infinity }}
-          className="w-[2px] h-[0.75em] bg-[#1a1a1a] ml-1 self-center"
-          style={{ visibility: active ? 'visible' : 'hidden' }}
+          className="inline-block w-[2px] h-[0.8em] bg-[#1a1a1a] ml-0.5 translate-y-[0.1em]"
+          style={{ visibility: active && index < text.length ? 'visible' : 'hidden' }}
         />
+        <span className="opacity-0 select-none pointer-events-none">{text.slice(index)}</span>
       </span>
     </span>
   );
