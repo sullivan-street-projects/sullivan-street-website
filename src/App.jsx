@@ -117,12 +117,11 @@ const TypewriterText = ({ text }) => {
   return (
     <span ref={containerRef} className="italic relative inline-block">
       <span className="invisible select-none pointer-events-none">{text}</span>
-      <span className="absolute left-0 top-0 inline-flex items-baseline whitespace-nowrap">
-        <span>{text.slice(0, index)}</span>
-        <motion.span
+      <span className="absolute left-0 top-0">
+        <span>{text.slice(0, index)}</span><motion.span
           animate={{ opacity: [1, 0] }}
           transition={{ duration: 0.8, repeat: Infinity }}
-          className="w-[2px] h-[0.75em] bg-[#1a1a1a] ml-1 self-center"
+          className="inline-block w-[2px] h-[0.75em] bg-[#1a1a1a] align-baseline"
           style={{ visibility: active ? 'visible' : 'hidden' }}
         />
       </span>
@@ -273,7 +272,7 @@ export default function App() {
       <div className="relative z-[2]">
         
         {/* 1. Hero */}
-        <header className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-48 pb-32 lg:pt-72 lg:pb-64">
+        <header className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-48 pb-0 lg:pt-72 lg:pb-0">
           <div className="max-w-[1000px]">
             <FocusText noBlur={true}>
               <h1 className="font-serif text-4xl md:text-6xl lg:text-[76px] leading-[1.05] tracking-tight mb-12">
@@ -308,7 +307,7 @@ export default function App() {
         {/* 2. Credentials */}
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pb-16">
           <div className="border-t border-[#e5e5e5]" />
-          <section className="py-24">
+          <section className="py-8">
             <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-baseline">
               <div className="lg:w-1/4 shrink-0">
                 <FocusText>
