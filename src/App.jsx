@@ -117,11 +117,12 @@ const TypewriterText = ({ text }) => {
   return (
     <span ref={containerRef} className="italic relative inline-block">
       <span className="invisible select-none pointer-events-none">{text}</span>
-      <span className="absolute left-0 top-0">
-        <span>{text.slice(0, index)}</span><motion.span
+      <span className="absolute left-0 top-0 inline-flex items-baseline whitespace-nowrap">
+        <span>{text.slice(0, index)}</span>
+        <motion.span
           animate={{ opacity: [1, 0] }}
           transition={{ duration: 0.8, repeat: Infinity }}
-          className="inline-block w-[2px] h-[0.75em] bg-[#1a1a1a] align-baseline"
+          className="w-[2px] h-[0.75em] bg-[#1a1a1a] ml-1 self-center"
           style={{ visibility: active ? 'visible' : 'hidden' }}
         />
       </span>
@@ -159,14 +160,14 @@ const FocusText = ({ children, className = "", noBlur = false }) => {
 /**
  * Refactored Section component:
  * - Label sits above the title on all screens.
- * - Increased vertical padding.
+ * - Increased vertical padding for better breathing room.
  */
-const Section = ({ id, label, children, className = "", divider = true }) => (
+const Section = ({ id, label, children, className = "", divider = true, padding = "py-32 lg:py-64" }) => (
   <div className={`max-w-[1200px] mx-auto px-6 lg:px-8 ${className}`}>
     {divider && <div className="border-t border-[#e5e5e5]" />}
-    <section id={id} className="py-24 lg:py-48">
+    <section id={id} className={padding}>
       {label && (
-        <div className="mb-12">
+        <div className="mb-16">
           <FocusText>
             <span className="font-sans text-[10px] text-[#999] uppercase tracking-[0.3em] font-bold">
               {label}
@@ -182,17 +183,17 @@ const Section = ({ id, label, children, className = "", divider = true }) => (
 );
 
 const ServiceRow = ({ service }) => (
-  <div className="py-16 border-t border-[#e5e5e5]">
+  <div className="py-24 border-t border-[#e5e5e5] first:border-t-0">
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
       <div className="lg:col-span-4">
         <FocusText>
-          <h3 className="font-serif text-xl md:text-2xl mb-3">{service.title}</h3>
+          <h3 className="font-serif text-2xl md:text-3xl mb-4">{service.title}</h3>
           <p className="font-sans text-[11px] text-[#999] tracking-wider uppercase font-semibold">{service.target}</p>
         </FocusText>
       </div>
       <div className="lg:col-span-5">
-        <FocusText className="space-y-8">
-          <p className="font-sans text-[16px] md:text-[17px] text-[#555] leading-relaxed font-light italic">
+        <FocusText className="space-y-10">
+          <p className="font-sans text-[17px] md:text-[18px] text-[#555] leading-relaxed font-light italic">
             {service.qualifier}
           </p>
           <p className="font-sans text-[13px] text-[#aaa] italic leading-relaxed opacity-80">
@@ -202,7 +203,7 @@ const ServiceRow = ({ service }) => (
       </div>
       <div className="lg:col-span-3">
         <FocusText>
-          <ul className="font-sans text-[13px] text-[#888] space-y-5">
+          <ul className="font-sans text-[13px] text-[#888] space-y-6">
             <li className="font-bold text-[#1a1a1a] uppercase text-[9px] tracking-widest mb-2">Includes:</li>
             {service.features.map((feature) => (
               <li key={feature} className="flex gap-4 items-start">
@@ -272,7 +273,7 @@ export default function App() {
       <div className="relative z-[2]">
         
         {/* 1. Hero */}
-        <header className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-48 pb-0 lg:pt-72 lg:pb-0">
+        <header className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-48 pb-32 lg:pt-72 lg:pb-64">
           <div className="max-w-[1000px]">
             <FocusText noBlur={true}>
               <h1 className="font-serif text-4xl md:text-6xl lg:text-[76px] leading-[1.05] tracking-tight mb-12">
@@ -307,7 +308,7 @@ export default function App() {
         {/* 2. Credentials */}
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pb-16">
           <div className="border-t border-[#e5e5e5]" />
-          <section className="py-8">
+          <section className="py-24">
             <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-baseline">
               <div className="lg:w-1/4 shrink-0">
                 <FocusText>
