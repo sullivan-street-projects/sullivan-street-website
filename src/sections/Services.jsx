@@ -9,9 +9,9 @@ const Services = () => {
     <Section id="services" label="Services">
       <div className="mb-20 md:mb-24">
         <FocusText>
-          <h2 className="font-serif text-4xl lg:text-5xl mb-8 italic text-[#1a1a1a]">From Blueprint to Build</h2>
+          <h2 className="font-serif text-4xl lg:text-5xl mb-8 italic text-[#1a1a1a]">Your marketing investment. Managed.</h2>
           <p className="font-sans text-[17px] md:text-[19px] leading-relaxed max-w-[800px] text-[#404040] font-light">
-            SSP manages your marketing investment so every dollar drives growth. One voice. One point of contact. The right team for the job.
+            Three ways to work together. One point of contact. The right team for the job.
           </p>
         </FocusText>
       </div>

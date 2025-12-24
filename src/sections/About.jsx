@@ -10,15 +10,25 @@ const About = () => {
           <FocusText>
             <h2 className="font-serif text-3xl md:text-5xl italic text-[#1a1a1a]">Building Tomorrow’s Billion-Dollar Brands</h2>
           </FocusText>
-          <div className="font-sans text-[17px] text-[#404040] leading-relaxed space-y-8 md:space-y-10 font-light tracking-wide">
+          <div className="font-sans text-[17px] text-[#404040] leading-relaxed space-y-8 font-light tracking-wide">
             <FocusText>
               <p>
-                After managing $2 billion in media for Apple, American Express, Comcast, and other global brands, Brett Wohl saw the same story repeat: growth stalling under slow-moving agencies and one-size-fits-all tech. He founded Sullivan Street Projects to give ambitious companies Fortune 500 expertise on demand—enterprise-grade strategy, practical AI leverage, and a hand-picked network of specialists.
+                After managing $2 billion in media for Apple, American Express, Comcast, and other global brands, Brett Wohl saw the same story repeat: growth stalling under slow-moving agencies and one-size-fits-all tech.
               </p>
             </FocusText>
             <FocusText>
               <p>
-                Our mission is simple: help growth-stage companies become the next generation of market leaders. We bridge brand and performance to drive one outcome—profitable, compounding growth.
+                He founded Sullivan Street Projects to give ambitious companies Fortune 500 expertise on demand—enterprise-grade strategy, practical AI leverage, and a hand-picked network of specialists.
+              </p>
+            </FocusText>
+            <FocusText>
+              <p>
+                Our mission is simple: help growth-stage companies become the next generation of market leaders.
+              </p>
+            </FocusText>
+            <FocusText>
+              <p>
+                We bridge brand and performance to drive one outcome—profitable, compounding growth.
               </p>
             </FocusText>
           </div>
@@ -26,9 +36,9 @@ const About = () => {
 
         {/* Founder Bio */}
         <div className="pt-16 lg:pt-24 border-t border-[#e5e5e5]">
-          <FocusText>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-              <div className="lg:col-span-4 flex lg:flex-col items-center lg:items-start gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <div className="lg:col-span-4">
+              <FocusText className="flex lg:flex-col items-center lg:items-start gap-6">
                 <div className="w-20 h-20 shrink-0 overflow-hidden rounded-full">
                   <img 
                     src="image.webp" 
@@ -41,14 +51,31 @@ const About = () => {
                   <h4 className="font-serif text-xl leading-none mb-3 text-[#1a1a1a]">Brett Wohl</h4>
                   <p className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Founder, Managing Partner</p>
                 </div>
-              </div>
-              <div className="lg:col-span-8">
-                <p className="font-sans text-[16px] md:text-[17px] text-[#525252] leading-relaxed font-light">
-                  Brett is an executive growth strategist with 10+ years of experience across startups and global brands. He previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and others while at Google and Publicis Groupe. He brings deep expertise in omnichannel strategy, programmatic media, and marketing analytics to every engagement. Brett holds a dual B.S. in Advertising and Marketing with a minor in Economics from Syracuse University.
-                </p>
-              </div>
+              </FocusText>
             </div>
-          </FocusText>
+            <div className="lg:col-span-8 space-y-8">
+              <FocusText>
+                <p className="font-sans text-[14px] md:text-[15px] text-[#525252] leading-relaxed font-light">
+                  Brett is an executive growth strategist with 10+ years of experience across startups and global brands.
+                </p>
+              </FocusText>
+              <FocusText>
+                <p className="font-sans text-[14px] md:text-[15px] text-[#525252] leading-relaxed font-light">
+                  He previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and others while at Google and Publicis Groupe.
+                </p>
+              </FocusText>
+              <FocusText>
+                <p className="font-sans text-[14px] md:text-[15px] text-[#525252] leading-relaxed font-light">
+                  He brings deep expertise in omnichannel strategy, programmatic media, and marketing analytics to every engagement.
+                </p>
+              </FocusText>
+              <FocusText>
+                <p className="font-sans text-[14px] md:text-[15px] text-[#525252] leading-relaxed font-light">
+                  Brett holds a dual B.S. in Advertising and Marketing with a minor in Economics from Syracuse University.
+                </p>
+              </FocusText>
+            </div>
+          </div>
         </div>
       </div>
     </Section>

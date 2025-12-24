@@ -1,12 +1,18 @@
 export const BRANDS = [
   'Apple',
-  'American Express',
+  'Google',
   'JPMorgan Chase',
   'Samsung',
-  'Navan',
+  'American Express',
+  'Citigroup',
   'Comcast',
-  'Google',
+  'Rocket Mortgage',
+  'Expedia',
   'Publicis',
+  'Wayfair',
+  'Navan',
+  'Peloton',
+  'Hertz',
 ];
 
 export const NAV_ITEMS = [
