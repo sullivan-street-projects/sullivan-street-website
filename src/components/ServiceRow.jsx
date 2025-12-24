@@ -6,8 +6,8 @@ const ServiceRow = ({ service }) => (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-24">
       <div className="lg:col-span-4">
         <FocusText>
-          <h3 className="font-serif text-2xl md:text-3xl mb-4 text-[#1a1a1a]">{service.title}</h3>
-          <p className="font-sans text-[11px] text-[#737373] tracking-wider uppercase font-bold">{service.target}</p>
+          <h3 className="font-serif text-xl md:text-2xl mb-4 text-[#1a1a1a]">{service.title}</h3>
+          <p className="font-sans text-[12px] md:text-[13px] text-[#737373] tracking-wider uppercase font-bold">{service.target}</p>
         </FocusText>
       </div>
       <div className="lg:col-span-5">

@@ -19,7 +19,7 @@ export const NAV_ITEMS = [
   { label: 'Capabilities', id: 'capabilities' },
   { label: 'Services', id: 'services' },
   { label: 'About', id: 'about' },
-  { label: 'Contact', id: 'contact' }
+  { label: 'Call', id: 'contact' }
 ];
 
 export const VALUE_PROPS = [

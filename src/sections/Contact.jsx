@@ -7,7 +7,7 @@ import TypewriterText from '../components/TypewriterText';
 const Contact = () => {
   return (
     <div className="bg-[#f0f0ee]">
-      <Section id="contact" label="Contact" divider={false}>
+      <Section id="contact" label="Call" divider={false}>
         <div className="max-w-[1000px] py-16 md:py-20">
           <FocusText className="space-y-16 md:space-y-20">
             <h2 className="font-serif text-4xl md:text-5xl lg:text-[70px] leading-[1.1] text-[#1a1a1a] tracking-tight">

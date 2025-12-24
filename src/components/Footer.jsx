@@ -6,10 +6,13 @@ const Footer = () => {
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
           <div className="lg:col-span-5">
-            <span className="font-serif text-2xl font-bold block mb-6 text-[#1a1a1a]">Sullivan Street Projects</span>
-            <p className="font-sans text-[14px] text-[#737373] leading-relaxed max-w-[400px]">
-              Stop guessing. Start growing.
-            </p>
+            <span className="font-serif text-2xl font-bold block mb-8 text-[#1a1a1a]">Sullivan Street Projects</span>
+            <div className="flex flex-col gap-1">
+              <p className="font-serif text-[15px] italic text-[#525252]">Growth Marketing Partners</p>
+              <p className="font-sans text-[13px] text-[#737373] tracking-wide">
+                Stop guessing. Start growing.
+              </p>
+            </div>
           </div>
           <div className="lg:col-span-3">
             <p className="font-sans text-[10px] font-bold uppercase tracking-[0.25em] mb-6 text-[#737373]">Location</p>
