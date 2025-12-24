@@ -23,7 +23,7 @@ export const VALUE_PROPS = [
   },
   {
     title: 'Marketing General Contractor',
-    description: 'We bring in hand-picked specialists for media, creative, analytics, and automation—and manage the build so you don’t have to.'
+    description: 'We bring in hand-picked specialists for media, creative, analytics, and operations—and manage the build so you don’t have to.'
   },
   {
     title: 'AI-Enabled, Outcome-Obsessed',
@@ -42,7 +42,7 @@ export const CAPABILITIES = [
   },
   {
     title: 'Media Activation',
-    description: 'We run the channels that drive your growth—Meta, Google, Microsoft, email, and beyond.',
+    description: 'We unlock the channels and technologies that drive your growth—Meta, Google, Microsoft, Email, and beyond.',
   },
   {
     title: 'Campaign Execution',
@@ -52,11 +52,11 @@ export const CAPABILITIES = [
 
 export const SERVICES = [
   {
-    title: 'Advisory',
-    target: 'For founders who need a thought leader.',
-    qualifier: 'You’re making decisions daily—hiring, channels, vendors, positioning. Advisory gives you a senior strategist in your corner: regular calls, async access, and honest guidance on what’s working and what isn’t.',
-    ifText: 'You have a team executing but need strategic clarity at the top.',
-    features: ['Growth strategy consultation', 'Marketing leadership coaching', 'Vendor evaluation and selection'],
+    title: 'Management',
+    target: 'For operators who want execution handled.',
+    qualifier: 'We become your growth department. We build and lead your marketing team, manage agencies and vendors, and take full ownership of performance. You get leverage without the overhead.',
+    ifText: 'You’re past strategy and need someone to run it—yesterday.',
+    features: ['Campaign implementation', 'Ongoing optimization and reporting', 'Specialist recruitment and oversight'],
   },
   {
     title: 'Strategy',
@@ -66,10 +66,10 @@ export const SERVICES = [
     features: ['Marketing audit and strategy', 'Investment modeling', 'Channel prioritization and roadmaps'],
   },
   {
-    title: 'Management',
-    target: 'For operators who want execution handled.',
-    qualifier: 'We become your growth department. We build and lead your marketing team, manage agencies and vendors, and take full ownership of performance. You get leverage without the overhead.',
-    ifText: 'You’re past strategy and need someone to run it—yesterday.',
-    features: ['Campaign implementation', 'Ongoing optimization and reporting', 'Specialist recruitment and oversight'],
+    title: 'Advisory',
+    target: 'For founders who need a thought leader.',
+    qualifier: 'You’re making decisions daily—hiring, channels, vendors, positioning. Advisory gives you a senior strategist in your corner: regular calls, async access, and honest guidance on what’s working and what isn’t.',
+    ifText: 'You have a team executing but need strategic clarity at the top.',
+    features: ['Growth strategy consultation', 'Marketing leadership coaching', 'Vendor evaluation and selection'],
   },
 ];

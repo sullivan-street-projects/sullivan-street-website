@@ -10,7 +10,7 @@ const Hero = () => {
       <div className="max-w-[1000px]">
         <FocusText noBlur={true}>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-[76px] leading-[1.26] tracking-tight mb-8 md:mb-12 text-[#1a1a1a]">
-            Marketing for Tomorrow’s <br className="hidden md:block" />
+            Marketing for Tomorrow’s <br />
             <TypewriterText text="Billion-Dollar Brands" />
           </h1>
         </FocusText>
