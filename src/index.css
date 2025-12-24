@@ -1,1 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=block');
 @import "tailwindcss";
+
+html { 
+  scroll-behavior: smooth; 
+}
+
+.font-serif { 
+  font-family: 'Libre Baskerville', Georgia, serif; 
+}
+
+.font-sans { 
+  font-family: 'Inter', system-ui, sans-serif; 
+}
