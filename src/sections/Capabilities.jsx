@@ -13,7 +13,7 @@ const Capabilities = () => {
             A tailor-made approach to growth marketing.
           </h2>
           <p className="font-sans text-[17px] md:text-[19px] leading-relaxed max-w-[800px] text-[#404040] font-light">
-            We’re a fractional growth consultancy delivering enterprise-grade advisory, strategy, and marketing leadership. We start with your business objectives, build the strategy to hit them, activate the right channels, and execute the campaigns that convert.           
+            We’re a fractional consultancy delivering enterprise-grade advisory, strategy, and marketing leadership. We start with your business objectives, build the strategy to hit them, activate the right channels, and execute the campaigns that convert.           
           </p>
         </FocusText>
       </div>
