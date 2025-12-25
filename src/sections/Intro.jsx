@@ -9,7 +9,7 @@ const Intro = () => {
       <div className="mb-20 md:mb-24">
         <FocusText>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight italic text-[#1a1a1a] mb-8 md:mb-12">
-            It’s Time to Make Marketing Work The Way You Work
+            Make Marketing Work The Way You Work
           </h2>
         </FocusText>
         <FocusText>
