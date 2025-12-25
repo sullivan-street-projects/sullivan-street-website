@@ -33,7 +33,7 @@ export const VALUE_PROPS = [
   },
   {
     title: 'AI-Enabled, Outcome-Obsessed',
-    description: 'We use AI to compress timelines, reduce overhead, and maximize the return on your marketing investment.'
+    description: 'AI powers our strategy, research, and reporting—so you get sharper insights, faster deliverables, and more leverage from every dollar spent.'
   }
 ];
 
