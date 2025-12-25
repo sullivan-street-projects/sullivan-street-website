@@ -27,7 +27,6 @@ const Footer = () => {
               <a href="#" className="hover:text-[#1a1a1a] transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-[#1a1a1a] transition-colors">Terms & Conditions</a>
               <p className="mt-8 text-[#999]">© {new Date().getFullYear()} Sullivan Street Projects LLC. All Rights Reserved.</p>
-              <p className="mt-2 text-[#a3a3a3] text-[11px]">Built in NYC with Google Gemini.</p>
             </div>
           </div>
         </div>
