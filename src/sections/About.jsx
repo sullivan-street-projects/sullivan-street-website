@@ -13,22 +13,22 @@ const About = () => {
           <div className="font-sans text-[17px] text-[#404040] leading-relaxed space-y-8 font-light tracking-wide">
             <FocusText>
               <p>
-                After managing $2 billion in media for Apple, American Express, Comcast, and other global brands, Brett Wohl saw the same story repeat: growth stalling under slow-moving agencies and one-size-fits-all tech.
+                Yesterday’s agencies aren’t built for tomorrow’s brands.
               </p>
             </FocusText>
             <FocusText>
               <p>
-                He founded Sullivan Street Projects to give ambitious companies Fortune 500 expertise on demand—enterprise-grade strategy, practical AI leverage, and a hand-picked network of specialists.
+                They were designed for a world where humans did the heavy lifting. That world is fading. From media buying to content generation, AI is now embedded across the marketing value chain. The work that drives meaningful growth has shifted to orchestration—managing systems, aligning teams, and making decisions that tie back to your P&L.
               </p>
             </FocusText>
             <FocusText>
               <p>
-                Our mission is simple: help growth-stage companies become the next generation of market leaders.
+                Sullivan Street Projects is the growth partner businesses call when they need more than point solutions and disconnected vendors. We look across your entire business, translate goals into a clear growth plan, and turn marketing from an expense into a managed investment tied to what you’re actually trying to achieve.
               </p>
             </FocusText>
             <FocusText>
               <p>
-                We bridge brand and performance to drive one outcome—profitable, compounding growth.
+                Whether you need advisory, strategy, or management—we meet you where you are. The marketing consultancy purpose built for tomorrow.
               </p>
             </FocusText>
           </div>
