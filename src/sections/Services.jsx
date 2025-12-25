@@ -11,7 +11,7 @@ const Services = () => {
         <FocusText>
           <h2 className="font-serif text-4xl lg:text-5xl mb-8 italic text-[#1a1a1a]">Your marketing investment. Managed.</h2>
           <p className="font-sans text-[17px] md:text-[19px] leading-relaxed max-w-[800px] text-[#404040] font-light">
-            Three ways to work together. One point of contact. The right team for the job.
+            Three ways to work together. One point of contact. The right team for the job. We bring in best-in-class specialists to execute and scale—under our direction.
           </p>
         </FocusText>
       </div>
