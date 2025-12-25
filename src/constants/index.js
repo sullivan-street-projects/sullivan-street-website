@@ -33,7 +33,7 @@ export const VALUE_PROPS = [
   },
   {
     title: 'AI-Enabled, Outcome-Obsessed',
-    description: 'AI powers our strategy, research, reporting, and delivery—so you get sharper insights, faster deliverables, and more leverage from every dollar spent.'
+    description: 'AI powers our strategy, research, and reporting—so you get sharper insights, faster deliverables, and more leverage from every dollar spent.'
   }
 ];
 
