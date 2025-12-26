@@ -56,7 +56,7 @@ const About = () => {
             <div className="lg:col-span-8">
               <FocusText>
                 <p className="font-sans text-[13px] text-[#525252] leading-relaxed font-light italic">
-                  Brett is an executive growth strategist with 10+ years of experience across startups and global brands. He previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and others while at Google and Publicis Groupe. He brings deep expertise in omnichannel strategy, programmatic media, and marketing analytics to every engagement. Brett holds a dual B.S. in Advertising and Marketing with a minor in Economics from Syracuse University.
+                  Brett is an executive growth strategist with 10+ years of experience across startups and global brands. He previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and others while at Google and Publicis Groupe.
                 </p>
               </FocusText>
             </div>
