@@ -25,7 +25,7 @@ export const NAV_ITEMS = [
 export const VALUE_PROPS = [
   {
     title: 'Fractional Growth Executive',
-    description: 'Head of Growth, VP, or Director-level leadership—embedded with your team from planning through execution. Enterprise experience, startup speed.'
+    description: 'CMO, VP, or Director-level leadership—embedded with your team from planning through execution. Enterprise experience, startup speed.'
   },
   {
     title: 'Marketing General Contractor',
