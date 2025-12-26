@@ -25,15 +25,15 @@ export const NAV_ITEMS = [
 export const VALUE_PROPS = [
   {
     title: 'Fractional Growth Executive',
-    description: 'CMO, VP, or Director-level leadership—embedded with your team from business planning through execution. Enterprise experience, startup speed.'
+    description: 'Head of Growth, VP, or Director-level leadership—embedded with your team from planning through execution. Enterprise experience, startup speed.'
   },
   {
     title: 'Marketing General Contractor',
-    description: 'We bring in hand-picked specialists for media, creative, analytics, and operations—and manage the build so you don’t have to.'
+    description: 'Hand-selected specialists for media, creative, analytics, and operations. We manage the build so you don’t have to.'
   },
   {
     title: 'AI-Enabled, Outcome-Obsessed',
-    description: 'AI powers our strategy, research, and reporting—so you get sharper insights, faster deliverables, and more leverage from every dollar spent.'
+    description: 'AI powers our research, strategy, and reporting so you get sharper insights, faster deliverables, and more leverage from every dollar invested.'
   }
 ];
 
