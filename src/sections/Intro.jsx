@@ -14,7 +14,7 @@ const Intro = () => {
         </FocusText>
         <FocusText>
           <p className="font-sans text-[17px] md:text-[19px] text-[#404040] leading-relaxed font-light tracking-wide max-w-[800px]">
-            Modern marketing is a mess. Too many platforms, vendors, and agencies. Too much noise, not enough signal. We cut through the chaos and focus on the only metric that matters—profitable growth.
+            Modern marketing is a mess. Too many platforms, vendors, and agencies. Too much noise, not enough signal. We cut through the chaos and focus on the only metric that matters—growth.
           </p>
         </FocusText>
       </div>
