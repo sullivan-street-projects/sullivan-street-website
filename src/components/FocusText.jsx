@@ -5,7 +5,7 @@ const FocusText = ({ children, className = "", noBlur = false }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 98%", "center 50%", "top 80px"]
+    offset: ["start 98%", "center 50%", "top -100px"]
   });
 
   const blurValue = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [noBlur ? 0 : 3.5, 0, 0, 40]);

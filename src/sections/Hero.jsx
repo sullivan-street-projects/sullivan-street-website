@@ -2,9 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import TypewriterText from '../components/TypewriterText';
 import FocusText from '../components/FocusText';
-import { scrollToSection } from '../utils/scroll';
+import { useLenis } from '../components/SmoothScroll';
 
 const Hero = () => {
+  const lenis = useLenis();
+
   return (
     <header className="max-w-[1200px] w-full mx-auto px-6 lg:px-8 pt-40 pb-32 md:pt-48 lg:pt-64 lg:pb-48">
       <div className="max-w-[1000px]">
@@ -22,7 +24,7 @@ const Hero = () => {
         <FocusText noBlur={true}>
           <div className="group relative inline-block">
             <button
-              onClick={() => scrollToSection('contact')}
+              onClick={() => lenis?.scrollTo('#contact', { offset: -80, duration: 1.5 })}
               className="font-sans text-[12px] font-bold uppercase tracking-[0.25em] inline-flex items-center gap-4 hover:opacity-70 transition-all text-[#1a1a1a]"
             >
               Schedule a call
