@@ -118,8 +118,7 @@ outcomes:
 ## About
 headline: Yesterday's agencies aren't built for tomorrow's brands.
 paragraph-1: They were designed for a world where teams of people did the heavy lifting. That world is changing. From media buying to content generation, from analysis to optimization, AI now touches everything across the marketing value chain. So the work that matters has shifted. The advantage is orchestration—managing systems, aligning teams, and making decisions that connect back to your P&L.
-paragraph-2: Sullivan Street Projects is the growth partner businesses call when they need more than point solutions and disconnected vendors. We look across the business, translate goals into a clear plan, and manage marketing like the investment it is.
-paragraph-3: Advisory, strategy, or management. The growth partner for tomorrow's billion-dollar brands.
+paragraph-2: Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We look across the business, translate goals into a clear plan, and manage marketing like the investment it is.
 
 ### Founder
 name: Brett Wohl
