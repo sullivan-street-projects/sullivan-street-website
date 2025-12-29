@@ -66,7 +66,7 @@ export const CAPABILITIES = [
 export const PARTNER_OUTCOMES = [
   {
     id: 1,
-    metric: "95% year-over-year revenue growth via paid media and lifecycle optimization.",
+    metric: "From flat to 30%+ growth in two quarters through paid media and lifecycle optimization.",
     client: "Exclusive Beauty Club"
   },
   {

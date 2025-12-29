@@ -108,7 +108,7 @@ features:
 
 ## Partner Outcomes
 outcomes:
-  - metric: 95% year-over-year revenue growth via paid media and lifecycle optimization.
+  - metric: From flat to 30%+ growth in two quarters through paid media and lifecycle optimization.
     client: Exclusive Beauty Club
   - metric: Zero to market in eight weeks via discovery, growth modeling, and go-to-market strategy.
     client: Cloud Club
