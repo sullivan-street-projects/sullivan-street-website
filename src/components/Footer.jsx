@@ -24,8 +24,8 @@ const Footer = () => {
           <div className="lg:col-span-4">
             <p className="font-sans text-[10px] font-bold uppercase tracking-[0.25em] mb-6 text-[#737373]">Legal</p>
             <div className="flex flex-col gap-4 font-sans text-[13px] text-[#404040]">
-              <a href="#" className="hover:text-[#1a1a1a] transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-[#1a1a1a] transition-colors">Terms & Conditions</a>
+              <a href="/privacy" className="hover:text-[#1a1a1a] transition-colors">Privacy Policy</a>
+              <a href="/terms" className="hover:text-[#1a1a1a] transition-colors">Terms & Conditions</a>
               <p className="mt-8 text-[#999]">© {new Date().getFullYear()} Sullivan Street Projects LLC. All Rights Reserved.</p>
             </div>
           </div>

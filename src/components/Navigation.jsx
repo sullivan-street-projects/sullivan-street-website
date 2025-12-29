@@ -1,5 +1,5 @@
 import React from 'react';
-import { NAV_ITEMS } from '../constants';
+import { NAV_ITEMS, ANIMATION } from '../constants';
 import { useLenis } from './SmoothScroll';
 
 const Navigation = () => {
@@ -7,19 +7,27 @@ const Navigation = () => {
 
   const handleScroll = (id) => {
     if (lenis) {
-      lenis.scrollTo(`#${id}`, { offset: -80, duration: 1.5 });
+      lenis.scrollTo(`#${id}`, {
+        offset: ANIMATION.SCROLL_OFFSET,
+        duration: ANIMATION.SCROLL_DURATION
+      });
     }
   };
 
   return (
-    <nav className="fixed bottom-6 md:bottom-10 left-0 w-full z-[100] pointer-events-none pb-[env(safe-area-inset-bottom)]">
+    <nav
+      className="fixed bottom-6 md:bottom-10 left-0 w-full z-[100] pointer-events-none pb-[env(safe-area-inset-bottom)]"
+      aria-label="Main navigation"
+    >
       <div className="flex justify-center pointer-events-auto">
-        <div className="bg-[#1a1a1a]/5 backdrop-blur-xl border border-[#1a1a1a]/10 rounded-full p-1 flex items-center gap-1 shadow-2xl overflow-hidden">
+        <div className="bg-[#1a1a1a]/5 backdrop-blur-xl border border-[#1a1a1a]/10 rounded-full p-1 flex items-center gap-1 shadow-2xl overflow-hidden" role="menubar">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.label}
               onClick={() => handleScroll(item.id)}
               className="px-3 py-3 md:px-5 md:py-2 rounded-full font-sans text-[10px] uppercase tracking-[0.12em] text-[#1a1a1a]/70 hover:text-[#1a1a1a] hover:bg-white/60 transition-all font-bold whitespace-nowrap active:scale-95 flex items-center gap-2"
+              role="menuitem"
+              aria-label={`Navigate to ${item.label} section`}
             >
               {item.id === 'contact' && (
                 <span className="relative flex h-1.5 w-1.5">

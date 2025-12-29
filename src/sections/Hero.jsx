@@ -1,8 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import TypewriterText from '../components/TypewriterText';
 import FocusText from '../components/FocusText';
+import AnimatedArrow from '../components/AnimatedArrow';
 import { useLenis } from '../components/SmoothScroll';
+import { ANIMATION } from '../constants';
 
 const Hero = () => {
   const lenis = useLenis();
@@ -12,7 +13,7 @@ const Hero = () => {
       <div className="max-w-[1000px]">
         <FocusText noBlur={true}>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-[76px] leading-[1.26] tracking-tight mb-8 md:mb-12 text-[#1a1a1a]">
-            Marketing for Tomorrow’s <br />
+            Marketing for Tomorrow's <br />
             <TypewriterText text="Billion-Dollar Brands" />
           </h1>
         </FocusText>
@@ -24,15 +25,14 @@ const Hero = () => {
         <FocusText noBlur={true}>
           <div className="group relative inline-block">
             <button
-              onClick={() => lenis?.scrollTo('#contact', { offset: -80, duration: 1.5 })}
+              onClick={() => lenis?.scrollTo('#contact', {
+                offset: ANIMATION.SCROLL_OFFSET,
+                duration: ANIMATION.SCROLL_DURATION
+              })}
               className="font-sans text-[12px] font-bold uppercase tracking-[0.25em] inline-flex items-center gap-4 hover:opacity-70 transition-all text-[#1a1a1a]"
             >
               Schedule a call
-              <motion.span 
-                animate={{ x: [0, 4, 0] }} 
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} 
-                className="text-lg"
-              >→</motion.span>
+              <AnimatedArrow size="sm" />
             </button>
             <div className="absolute -bottom-2 left-0 w-full h-[1.5px] bg-[#1a1a1a] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
           </div>

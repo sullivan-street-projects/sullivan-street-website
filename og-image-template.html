@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OG Image Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Set exact OG image dimensions */
+    html, body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 1200px;
+      height: 630px;
+      background-color: #FAFAF8;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 100px;
+      position: relative;
+    }
+
+    /* Subtle grain overlay */
+    .container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    h1 {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 72px;
+      line-height: 1.2;
+      color: #1a1a1a;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    p {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 24px;
+      line-height: 1.6;
+      color: #404040;
+      font-weight: 300;
+      max-width: 700px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      position: absolute;
+      bottom: 60px;
+      left: 100px;
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Marketing for Tomorrow's<br>Billion-Dollar Brands</h1>
+    <p>AI-powered strategy, media, and execution. Faster growth, sharper focus, higher profit.</p>
+    <div class="logo">Sullivan Street Projects</div>
+  </div>
+</body>
+</html>

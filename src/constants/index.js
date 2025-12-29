@@ -1,3 +1,10 @@
+// Animation constants
+export const ANIMATION = {
+  SCROLL_OFFSET: -80,
+  SCROLL_DURATION: 1.5,
+  ARROW_DURATION: 3,
+};
+
 export const BRANDS = [
   'Apple',
   'Google',
@@ -33,7 +40,7 @@ export const VALUE_PROPS = [
   },
   {
     title: 'AI-Enabled, Outcome-Obsessed',
-    description: 'AI powers our research, strategy, and reporting so you get sharper insights, faster deliverables, and more leverage from every dollar invested.'
+    description: 'AI powers our research, strategy, and reporting so you get sharper insights, faster deliverables, and more from every dollar invested.'
   }
 ];
 

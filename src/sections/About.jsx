@@ -23,7 +23,7 @@ const About = () => {
             </FocusText>
             <FocusText>
               <p>
-                Whether you need advisory, strategy, or management—we meet you where you are. The marketing consultancy purpose built for tomorrow.
+                Advisory, strategy, or management. The growth partner for tomorrow's billion-dollar brands.
               </p>
             </FocusText>
           </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import ErrorBoundary from './components/ErrorBoundary';
 import { SmoothScroll } from './components/SmoothScroll';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
@@ -14,6 +15,7 @@ import Contact from './sections/Contact';
 
 export default function App() {
   return (
+    <ErrorBoundary>
     <SmoothScroll>
       <div className="min-h-screen bg-[#FAFAF8] text-[#1a1a1a] selection:bg-[#1a1a1a] selection:text-[#FAFAF8] relative overflow-x-hidden font-sans">
         
@@ -37,5 +39,6 @@ export default function App() {
         </div>
       </div>
     </SmoothScroll>
+    </ErrorBoundary>
   );
 }
