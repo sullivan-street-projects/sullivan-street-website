@@ -105,8 +105,11 @@ features:
 ---
 
 ## Partner Outcomes
-metric: 95% year-over-year revenue growth via paid media and lifecycle optimization.
-client: Exclusive Beauty Club
+outcomes:
+  - metric: 95% year-over-year revenue growth via paid media and lifecycle optimization.
+    client: Exclusive Beauty Club
+  - metric: Zero to $1M ARR in 12 months via paid acquisition.
+    client: Cloud Club
 
 ---
 
