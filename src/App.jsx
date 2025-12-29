@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Hero from './sections/Hero';
 import Credentials from './sections/Credentials';
 import Intro from './sections/Intro';
-import Capabilities from './sections/Capabilities';
+import Approach from './sections/Approach';
 import Services from './sections/Services';
 import PartnerOutcomes from './sections/PartnerOutcomes';
 import About from './sections/About';
@@ -26,7 +26,7 @@ export default function App() {
         <Hero />
         <Credentials />
         <Intro />
-        <Capabilities />
+        <Approach />
         <Services />
         <PartnerOutcomes />
         <About />

@@ -16,7 +16,7 @@ export const BRANDS = [
 ];
 
 export const NAV_ITEMS = [
-  { label: 'Capabilities', id: 'capabilities' },
+  { label: 'Approach', id: 'approach' },
   { label: 'Services', id: 'services' },
   { label: 'About', id: 'about' },
   { label: 'Call', id: 'contact' }

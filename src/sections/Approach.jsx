@@ -4,13 +4,13 @@ import Section from '../components/Section';
 import FocusText from '../components/FocusText';
 import { CAPABILITIES } from '../constants';
 
-const Capabilities = () => {
+const Approach = () => {
   return (
-    <Section id="capabilities" label="Capabilities">
+    <Section id="approach" label="Approach">
       <div className="mb-20 md:mb-24">
         <FocusText>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl italic mb-8 md:mb-12 text-[#1a1a1a]">
-            A tailor-made approach to growth marketing.
+            Tailor-made growth marketing.
           </h2>
           <p className="font-sans text-[17px] md:text-[19px] leading-relaxed max-w-[800px] text-[#404040] font-light">
             We’re a fractional consultancy delivering enterprise-grade advisory, strategy, and marketing leadership. We start with your business objectives, build the strategy to hit them, activate the right channels, and execute the campaigns that convert.           
@@ -35,4 +35,4 @@ const Capabilities = () => {
   );
 };
 
-export default Capabilities;
+export default Approach;
