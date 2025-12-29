@@ -1,5 +1,7 @@
 # Sullivan Street Projects — Site Content
 
+<!-- NOTE: When updating this file, please also check if public/llms.txt needs to be updated for AI crawlers. -->
+
 This is your single source of truth for all website text. Edit this file, then ask Claude to "update the site from CONTENT.md".
 
 ---
