@@ -40,7 +40,7 @@ brands:
 ---
 
 ## Intro
-headline: It's Time To Make Marketing Work The Way You Work
+headline: Make marketing work. The way you work.
 body: Modern marketing is a mess. Too many platforms, vendors, and agencies. Too much noise, not enough signal. We cut through the chaos and focus on the only metric that matters—growth.
 
 ### Value Props
