@@ -11,7 +11,7 @@ const Credentials = () => {
           <div className="lg:w-1/4 shrink-0">
             <FocusText>
               <span className="font-sans text-[11px] text-[#737373] tracking-[0.25em] uppercase font-bold">
-                Our team has managed $2B+ in media for
+                Our team has managed $2B+ for
               </span>
             </FocusText>
           </div>

@@ -20,7 +20,7 @@ cta-button: Schedule a call
 ---
 
 ## Credentials
-intro-text: Our team has managed $2B+ in media for
+intro-text: Our team has managed $2B+ for
 brands:
   - Apple
   - Google
