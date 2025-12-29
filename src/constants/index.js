@@ -63,6 +63,19 @@ export const CAPABILITIES = [
   },
 ];
 
+export const PARTNER_OUTCOMES = [
+  {
+    id: 1,
+    metric: "95% year-over-year revenue growth via paid media and lifecycle optimization.",
+    client: "Exclusive Beauty Club"
+  },
+  {
+    id: 2,
+    metric: "Zero to $1M ARR in 12 months via paid acquisition.",
+    client: "Cloud Club"
+  }
+];
+
 export const SERVICES = [
   {
     title: 'Management',
