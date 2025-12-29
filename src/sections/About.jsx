@@ -18,12 +18,7 @@ const About = () => {
             </FocusText>
             <FocusText>
               <p>
-                Sullivan Street Projects is the growth partner businesses call when they need more than point solutions and disconnected vendors. We look across the business, translate goals into a clear plan, and manage marketing like the investment it is.
-              </p>
-            </FocusText>
-            <FocusText>
-              <p>
-                Advisory, strategy, or management. The growth partner for tomorrow's billion-dollar brands.
+                Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We look across the business, translate goals into a clear plan, and manage marketing like the investment it is.
               </p>
             </FocusText>
           </div>
