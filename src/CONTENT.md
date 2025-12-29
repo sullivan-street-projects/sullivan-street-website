@@ -1,8 +1,9 @@
 # Sullivan Street Projects — Site Content
 
 <!-- NOTE: When updating this file, please also check if public/llms.txt needs to be updated for AI crawlers. -->
+<!-- IMPORTANT: After editing CONTENT.md, the corresponding JSX component in src/sections/ must also be updated to reflect the changes. CONTENT.md is the source of truth, but the site renders from the JSX files. -->
 
-This is your single source of truth for all website text. Edit this file, then ask Claude to "update the site from CONTENT.md".
+This is your single source of truth for all website text. Edit this file, then ask Claude to "update the site from CONTENT.md" — this includes syncing the corresponding section component in `src/sections/`.
 
 ---
 
