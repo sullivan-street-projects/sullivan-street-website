@@ -88,7 +88,7 @@ features:
 
 ### Strategy
 target: For teams ready to build the playbook.
-description: You know you need a plan—but the right one, not a generic framework. We audit what you have, model the investment required, and deliver a roadmap your team can execute with confidence.
+description: We audit what you have, model the investment required, and deliver a roadmap your team can execute with confidence.
 features:
   - Marketing audit and strategy
   - Investment modeling
