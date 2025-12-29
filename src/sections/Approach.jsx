@@ -8,7 +8,7 @@ const Approach = () => {
     <Section id="approach" label="Approach">
       <div className="mb-20 md:mb-24">
         <FocusText>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8 md:mb-12 text-[#1a1a1a]">
+          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl mb-8 md:mb-12 text-[#1a1a1a]">
             Tailor-made<br /><span className="italic">growth marketing.</span>
           </h2>
           <p className="font-sans text-[17px] md:text-[19px] leading-relaxed max-w-[800px] text-[#404040] font-light">

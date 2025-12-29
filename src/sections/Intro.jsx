@@ -8,7 +8,7 @@ const Intro = () => {
     <Section label="Opportunity">
       <div className="mb-20 md:mb-24">
         <FocusText>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight text-[#1a1a1a] mb-8 md:mb-12">
+          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-tight text-[#1a1a1a] mb-8 md:mb-12">
             Make marketing work.<br /><span className="italic">The way you work.</span>
           </h2>
         </FocusText>
