@@ -71,7 +71,7 @@ export const PARTNER_OUTCOMES = [
   },
   {
     id: 2,
-    metric: "Zero to $1M ARR in 12 months via paid acquisition.",
+    metric: "Zero to market in eight weeks via discovery, growth modeling, and go-to-market strategy.",
     client: "Cloud Club"
   }
 ];
