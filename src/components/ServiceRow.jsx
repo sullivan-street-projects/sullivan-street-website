@@ -11,12 +11,9 @@ const ServiceRow = ({ service }) => (
         </FocusText>
       </div>
       <div className="lg:col-span-5">
-        <FocusText className="space-y-8 md:space-y-10">
+        <FocusText>
           <p className="font-sans text-[17px] md:text-[18px] text-[#404040] leading-relaxed font-light italic">
             {service.qualifier}
-          </p>
-          <p className="font-sans text-[13px] text-[#737373] italic leading-relaxed opacity-90">
-            {service.ifText}
           </p>
         </FocusText>
       </div>

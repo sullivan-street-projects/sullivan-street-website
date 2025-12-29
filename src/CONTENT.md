@@ -64,24 +64,23 @@ body: We're a fractional consultancy delivering enterprise-grade advisory, strat
 Every engagement starts with your commercial objectives, market realities, and unit economics. We keep marketing in lockstep with your P&L.
 
 #### Marketing Strategy
-We distill brand, audience, and lifecycle into a clear roadmap: who to reach, what to say, and why it moves the needle.
+We distill brand, audience, and lifecycle into a clear roadmap: who to reach, what to say, and why it converts.
 
 #### Media Activation
-We unlock the channels and technologies that drive your growth—Meta, Google, Microsoft, Email, and beyond.
+We activate the channels that drive your growth—Meta, Google, Microsoft, Email, and beyond.
 
 #### Campaign Execution
-Scroll-stopping creative and content that converts attention into revenue while reinforcing brand equity.
+Creative and content that converts attention into revenue while reinforcing brand equity.
 
 ---
 
 ## Services
-headline: Your marketing investment. Managed.
+headline: Your marketing investment, managed.
 subheadline: Three ways to work together. One point of contact. The right team for the job.
 
 ### Management
 target: For operators who want execution handled.
-description: We become your growth department. We build and lead your marketing team, manage agencies and vendors, and take full ownership of performance. You get leverage without the overhead.
-best-if: You're past strategy and need someone to run it—yesterday.
+description: We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.
 features:
   - Campaign implementation
   - Ongoing optimization and reporting
@@ -90,7 +89,6 @@ features:
 ### Strategy
 target: For teams ready to build the playbook.
 description: You know you need a plan—but the right one, not a generic framework. We audit what you have, model the investment required, and deliver a roadmap your team can execute with confidence.
-best-if: You're preparing to scale and need a blueprint before you hire or spend more.
 features:
   - Marketing audit and strategy
   - Investment modeling
@@ -98,8 +96,7 @@ features:
 
 ### Advisory
 target: For founders who need a thought leader.
-description: You're making decisions daily—hiring, channels, vendors, positioning. Advisory gives you a senior strategist in your corner: regular calls, async access, and honest guidance on what's working and what isn't.
-best-if: You have a team executing but need strategic clarity at the top.
+description: You get a senior partner in your corner for decisions on hiring, channels, vendors, and positioning, and honest guidance on what's working and what isn't. 
 features:
   - Growth strategy consultation
   - Marketing leadership coaching
@@ -114,11 +111,10 @@ client: Exclusive Beauty Club
 ---
 
 ## About
-headline: Building Tomorrow's Billion-Dollar Brands
-paragraph-1: Yesterday's agencies aren't built for tomorrow's brands.
-paragraph-2: They were designed for a world where humans did the heavy lifting. That world is fading. From media buying to content generation, AI is now embedded across the marketing value chain. The work that drives meaningful growth has shifted to orchestration—managing systems, aligning teams, and making decisions that tie back to your P&L.
-paragraph-3: Sullivan Street Projects is the growth partner businesses call when they need more than point solutions and disconnected vendors. We look across your entire business, translate goals into a clear growth plan, and turn marketing from an expense into a managed investment tied to what you're actually trying to achieve.
-paragraph-4: Whether you need advisory, strategy, or management—we meet you where you are. The marketing consultancy purpose built for tomorrow.
+headline: Yesterday's agencies aren't built for tomorrow's brands.
+paragraph-1: They were designed for a world where teams of people did the heavy lifting. That world is changing. From media buying to content generation, from analysis to optimization, AI now touches everything across the marketing value chain. So the work that matters has shifted. The advantage is orchestration—managing systems, aligning teams, and making decisions that connect back to your P&L.
+paragraph-2: Sullivan Street Projects is the growth partner businesses call when they need more than point solutions and disconnected vendors. We look across the business, translate goals into a clear plan, and manage marketing like the investment it is.
+paragraph-3: Whether you need advisory, strategy, or management—we meet you where you are. The marketing consultancy purpose built for tomorrow.
 
 ### Founder
 name: Brett Wohl

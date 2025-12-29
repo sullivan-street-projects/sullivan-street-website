@@ -8,22 +8,17 @@ const About = () => {
       <div className="max-w-[850px] space-y-20 md:space-y-24">
         <div className="space-y-10 md:space-y-12">
           <FocusText>
-            <h2 className="font-serif text-3xl md:text-5xl italic text-[#1a1a1a]">Building Tomorrow’s Billion-Dollar Brands</h2>
+            <h2 className="font-serif text-3xl md:text-5xl italic text-[#1a1a1a]">Yesterday's agencies aren't built for tomorrow's brands.</h2>
           </FocusText>
           <div className="font-sans text-[17px] text-[#404040] leading-relaxed space-y-8 font-light tracking-wide">
             <FocusText>
               <p>
-                Yesterday’s agencies aren’t built for tomorrow’s brands.
+                They were designed for a world where teams of people did the heavy lifting. That world is changing. From media buying to content generation, from analysis to optimization, AI now touches everything across the marketing value chain. So the work that matters has shifted. The advantage is orchestration—managing systems, aligning teams, and making decisions that connect back to your P&L.
               </p>
             </FocusText>
             <FocusText>
               <p>
-                They were designed for a world where humans did the heavy lifting. That world is fading. From media buying to content generation, AI is now embedded across the marketing value chain. The work that drives meaningful growth has shifted to orchestration—managing systems, aligning teams, and making decisions that tie back to your P&L.
-              </p>
-            </FocusText>
-            <FocusText>
-              <p>
-                Sullivan Street Projects is the growth partner businesses call when they need more than point solutions and disconnected vendors. We look across your entire business, translate goals into a clear growth plan, and turn marketing from an expense into a managed investment tied to what you’re actually trying to achieve.
+                Sullivan Street Projects is the growth partner businesses call when they need more than point solutions and disconnected vendors. We look across the business, translate goals into a clear plan, and manage marketing like the investment it is.
               </p>
             </FocusText>
             <FocusText>
