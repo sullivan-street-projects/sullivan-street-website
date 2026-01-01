@@ -66,7 +66,7 @@ export const CAPABILITIES = [
 export const PARTNER_OUTCOMES = [
   {
     id: 1,
-    metric: "From flat to +30% in 90 days. Omnichannel growth strategy for a mature beauty brand.",
+    metric: "From flat to consistent +30% growth in 90 days. Omni-channel management delivered for a luxury beauty and skincare retailer.",
     client: "Exclusive Beauty Club"
   },
   {
@@ -104,23 +104,9 @@ export const COMPARISON_DATA = [
       { 
         name: 'Strategic Coaching', 
         description: 'Strategy calls to review progress, troubleshoot issues, and align on priorities.',
-        advisory: 'Monthly', 
+        advisory: 'Bi-weekly', 
         strategy: 'Weekly', 
         management: 'Daily' 
-      },
-      { 
-        name: 'Growth Model', 
-        description: 'Forecasting, budget modeling, and unit economics.',
-        advisory: false, 
-        strategy: true, 
-        management: true 
-      },
-      { 
-        name: 'Quarterly Business Reviews', 
-        description: 'Data-driven analysis with strategic recommendations.',
-        advisory: false, 
-        strategy: true, 
-        management: true 
       },
       { 
         name: 'Vendor Guidance', 
@@ -136,13 +122,27 @@ export const COMPARISON_DATA = [
         strategy: true, 
         management: true 
       },
+      { 
+        name: 'Growth Model', 
+        description: 'Forecasting, budget modeling, and unit economics.',
+        advisory: false, 
+        strategy: true, 
+        management: true 
+      },
+      { 
+        name: 'Quarterly Business Reviews', 
+        description: 'Data-driven analysis with strategic recommendations.',
+        advisory: false, 
+        strategy: true, 
+        management: true 
+      },
     ]
   },
   {
     category: 'Playbooks',
     features: [
       { 
-        name: 'Growth Roadmap', 
+        name: 'Project Roadmap', 
         description: '30/60/90-day action plans with milestone tracking.',
         advisory: false, 
         strategy: true, 
@@ -150,7 +150,7 @@ export const COMPARISON_DATA = [
       },
       { 
         name: 'Go-to-Market Plan', 
-        description: 'Positioning, channel selection, and launch sequencing.',
+        description: 'Strategy for positioning and channel selection. Includes a GTM audit to identify gaps and growth opportunities.',
         advisory: false, 
         strategy: true, 
         management: true 

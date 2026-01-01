@@ -95,16 +95,15 @@ subtitle: Growth Leadership
 description: For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.
 
 ### Comparison Categories
-- **Partner Services**
-  - Guidance
-    - Strategic Coaching: Strategy calls to review progress, troubleshoot issues, and align on priorities.
-  - Growth Model: Forecasting, budget modeling, and unit economics.
-  - Quarterly Business Reviews: Data-driven analysis with strategic recommendations.
+- **Guidance**
+  - Strategic Coaching: Strategy calls to review progress, troubleshoot issues, and align on priorities. (Bi-weekly for Advisory)
   - Vendor Guidance: Recommendations on agency/contractor selection, negotiation, and management.
   - Tool Recommendations: Guidance on martech stack, analytics tools, and operational software.
+  - Growth Model: Forecasting, budget modeling, and unit economics.
+  - Quarterly Business Reviews: Data-driven analysis with strategic recommendations.
 - **Playbooks**
-  - Growth Roadmap: 30/60/90-day action plans with milestone tracking.
-  - Go-to-Market Plan: Positioning, channel selection, and launch sequencing.
+  - Project Roadmap: 30/60/90-day action plans with milestone tracking.
+  - Go-to-Market Plan: Strategy for positioning and channel selection. Includes a GTM audit to identify gaps and growth opportunities.
   - Marketing SOPs: Repeatable processes for marketing ops and campaigns.
   - Creative & Campaign Briefs: Strategic direction and success metrics for designers and copywriters.
 - **Execution**
@@ -118,7 +117,7 @@ description: For leaders who need ownership. We become your growth department. W
 
 ## Partner Outcomes
 outcomes:
-  - metric: From flat to +30% in 90 days. Omnichannel growth strategy for a mature beauty brand.
+  - metric: From flat to consistent +30% growth in 90 days. Omni-channel management delivered for a luxury beauty and skincare retailer.
     client: Exclusive Beauty Club
   - metric: Zero to market in eight weeks. Introducing the first AI-driven marketplace for verified Salesforce talent.
     client: Cloud Club
