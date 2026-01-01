@@ -18,11 +18,15 @@ const Services = () => {
       </div>
 
       {/* Tiers Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-32">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-32 relative">
+        {/* Vertical Dividers (Desktop only) */}
+        <div className="hidden md:block absolute left-1/3 top-0 bottom-0 w-px bg-[#e5e5e5] -ml-[calc(gap/2)]" style={{ left: 'calc(33.333% - 1px)' }} />
+        <div className="hidden md:block absolute left-2/3 top-0 bottom-0 w-px bg-[#e5e5e5] -ml-[calc(gap/2)]" style={{ left: 'calc(66.666% - 1px)' }} />
+
         {TIERS.map((tier) => (
-          <div key={tier.id} className="flex flex-col h-full">
+          <div key={tier.id} className="flex flex-col h-full relative">
             <FocusText className="h-full">
-              <div className="border-t border-[#1a1a1a] pt-8 flex flex-col h-full">
+              <div className="border-t border-b border-[#1a1a1a] py-8 flex flex-col h-full bg-[#FAFAF8] z-10">
                 <h3 className="font-serif text-2xl md:text-3xl text-[#1a1a1a] mb-3">{tier.title}</h3>
                 <p className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] mb-8">{tier.subtitle}</p>
                 
