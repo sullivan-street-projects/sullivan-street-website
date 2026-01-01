@@ -51,7 +51,7 @@ const Services = () => {
                 <div className="min-w-[650px] lg:min-w-full lg:w-full">
                   
                   {/* Section Column Header - Sticky Top & Left */}
-                  <div className="flex border-b border-[#1a1a1a] pb-4 mb-4 sticky top-20 z-30 bg-[#FAFAF8] pt-4 transition-shadow duration-300">
+                  <div className="flex border-b border-[#1a1a1a] pb-4 mb-8 sticky top-20 z-30 bg-[#FAFAF8] pt-4 transition-shadow duration-300">
                      <div className="w-[140px] flex-none sticky left-0 z-40 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none flex items-end">
                        <FocusText>
                          <h4 className="font-serif text-lg md:text-xl text-[#1a1a1a] leading-none">{section.category}</h4>
