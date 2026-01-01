@@ -64,9 +64,9 @@ const Services = () => {
                     <div className="space-y-0">
                       {section.features.map((feature) => (
                         <div key={feature.name} className="grid grid-cols-12 gap-6 py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
-                          <div className="col-span-6 pr-12 sticky left-0 z-10 bg-[#FAFAF8] shadow-[10px_0_15px_-15px_rgba(0,0,0,0.1)]">
-                            <p className="font-sans text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
-                            <p className="font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
+                          <div className="col-span-6 pr-4 md:pr-12 sticky left-0 z-10 bg-[#FAFAF8] shadow-[10px_0_15px_-15px_rgba(0,0,0,0.1)]">
+                            <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-0 md:mb-1.5">{feature.name}</p>
+                            <p className="hidden md:block font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
                           </div>
                           
                           {/* Advisory Cell */}
