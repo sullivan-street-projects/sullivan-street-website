@@ -19,24 +19,39 @@ const PartnerOutcomes = () => {
     return () => clearInterval(timer);
   }, [isInView]);
 
+  const handleDragEnd = (event, info) => {
+    const swipeThreshold = 50;
+    if (info.offset.x < -swipeThreshold) {
+      // Swipe Left -> Next
+      setCurrentIndex((prev) => (prev + 1) % PARTNER_OUTCOMES.length);
+    } else if (info.offset.x > swipeThreshold) {
+      // Swipe Right -> Prev
+      setCurrentIndex((prev) => (prev - 1 + PARTNER_OUTCOMES.length) % PARTNER_OUTCOMES.length);
+    }
+  };
+
   return (
     <div ref={containerRef}>
       <Section label="Partner Outcomes" divider={true}>
         <div className="max-w-[800px] mx-auto min-h-[300px] flex flex-col justify-between">
-          <div className="relative">
+          <div className="relative cursor-grab active:cursor-grabbing">
             <FocusText>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={handleDragEnd}
                 >
                   <p className="font-serif text-2xl md:text-3xl lg:text-[38px] leading-[1.4] text-[#404040] font-light antialiased min-h-[140px]">
                     {PARTNER_OUTCOMES[currentIndex].metric}
                   </p>
-                  <div className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-[#737373] mt-6">
+                  <div className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-[#737373] mt-6 select-none">
                     {PARTNER_OUTCOMES[currentIndex].client}
                   </div>
                 </motion.div>

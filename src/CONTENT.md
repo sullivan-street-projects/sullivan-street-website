@@ -103,9 +103,9 @@ description: For leaders who need ownership. We become your growth department. W
 
 ## Partner Outcomes
 outcomes:
-  - metric: From flat to 30%+ growth in two quarters through paid media and lifecycle optimization.
+  - metric: From flat to +30% growth in 90 days. Fractional leadership delivered omnichannel strategy to capture mature beauty market.
     client: Exclusive Beauty Club
-  - metric: Zero to market in eight weeks via discovery, growth modeling, and go-to-market strategy.
+  - metric: Zero to market in eight weeks. Launched the first AI-driven marketplace for verified Salesforce talent.
     client: Cloud Club
 
 ---
