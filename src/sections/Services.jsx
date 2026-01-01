@@ -45,25 +45,19 @@ const Services = () => {
           {/* Comparison Sections */}
           {COMPARISON_DATA.map((section) => (
             <div key={section.category} className="mb-20 last:mb-0">
-              {/* Category Header - Static */}
-              <div className="mb-8">
-                <FocusText>
-                  <h4 className="font-serif text-xl text-[#1a1a1a]">{section.category}</h4>
-                </FocusText>
-              </div>
-
+              
               {/* Scrollable Table for this Category */}
               <div className="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0 pb-4 pt-4">
                 <div className="min-w-[650px] lg:min-w-full lg:w-full">
                   
-                  {/* Section Column Header - Sticky Left */}
-                  <div className="flex border-b border-[#e5e5e5] pb-4 mb-4">
-                     <div className="w-[140px] flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none">
+                  {/* Section Column Header - Sticky Top & Left */}
+                  <div className="flex border-b border-[#1a1a1a] pb-4 mb-4 sticky top-20 z-30 bg-[#FAFAF8] pt-4 transition-shadow duration-300">
+                     <div className="w-[140px] flex-none sticky left-0 z-40 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none flex items-end">
                        <FocusText>
-                         <span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Service</span>
+                         <h4 className="font-serif text-lg md:text-xl text-[#1a1a1a] leading-none">{section.category}</h4>
                        </FocusText>
                      </div>
-                     <div className="flex-1 grid grid-cols-3 min-w-[300px] md:min-w-0">
+                     <div className="flex-1 grid grid-cols-3 min-w-[300px] md:min-w-0 items-end">
                        <div className="flex justify-center"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>
                        <div className="flex justify-center"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Strategy</span></FocusText></div>
                        <div className="flex justify-center"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>
