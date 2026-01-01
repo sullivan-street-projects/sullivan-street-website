@@ -26,7 +26,7 @@ const Services = () => {
         {TIERS.map((tier) => (
           <div key={tier.id} className="flex flex-col h-full relative">
             <FocusText className="h-full">
-              <div className="border-t border-b border-[#1a1a1a] py-8 flex flex-col h-full bg-[#FAFAF8] z-10">
+              <div className="border-b border-[#1a1a1a] py-8 flex flex-col h-full bg-[#FAFAF8] z-10">
                 <h3 className="font-serif text-2xl md:text-3xl text-[#1a1a1a] mb-3">{tier.title}</h3>
                 <p className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] mb-8">{tier.subtitle}</p>
                 
