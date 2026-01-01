@@ -45,48 +45,52 @@ const Services = () => {
           {/* Comparison Sections */}
           {COMPARISON_DATA.map((section) => (
             <div key={section.category} className="mb-20 last:mb-0">
-              {/* Category Header */}
-              <div className="mb-8">
+              {/* Category Header - Sticky Folding */}
+              <div className="sticky top-20 z-30 bg-[#FAFAF8] py-4 border-b border-[#1a1a1a] mb-0 transition-shadow duration-300">
                 <FocusText>
                   <h4 className="font-serif text-xl text-[#1a1a1a]">{section.category}</h4>
                 </FocusText>
               </div>
 
               {/* Scrollable Table for this Category */}
-              <div className="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0 pb-4">
+              <div className="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0 pb-4 pt-4">
                 <div className="min-w-[650px] lg:min-w-full lg:w-full">
                   
-                  {/* Section Column Header */}
+                  {/* Section Column Header - Sticky Left */}
                   <div className="flex border-b border-[#e5e5e5] pb-4 mb-4">
                      <div className="w-[140px] flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none">
-                       <span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Service</span>
+                       <FocusText>
+                         <span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Service</span>
+                       </FocusText>
                      </div>
                      <div className="flex-1 grid grid-cols-3 min-w-[300px] md:min-w-0">
-                       <div className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
-                       <div className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
-                       <div className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
+                       <div className="flex justify-center"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>
+                       <div className="flex justify-center"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Strategy</span></FocusText></div>
+                       <div className="flex justify-center"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>
                      </div>
                   </div>
                   
                   <div className="space-y-0">
                     {section.features.map((feature) => (
                       <div key={feature.name} className="flex py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
-                        {/* Service Name: Sticky Mobile, Fluid Desktop */}
+                        {/* Service Name: Sticky Mobile */}
                         <div className="w-[140px] flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none group-hover:bg-[#fafafa]">
-                          <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
-                          <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
+                          <FocusText>
+                            <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
+                            <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
+                          </FocusText>
                         </div>
                         
                         {/* Tiers Container */}
                         <div className="flex-1 grid grid-cols-3 min-w-[300px] md:min-w-0">
                           <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
-                            {renderCell(feature.advisory)}
+                            <FocusText>{renderCell(feature.advisory)}</FocusText>
                           </div>
                           <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
-                            {renderCell(feature.strategy)}
+                            <FocusText>{renderCell(feature.strategy)}</FocusText>
                           </div>
                           <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
-                            {renderCell(feature.management)}
+                            <FocusText>{renderCell(feature.management)}</FocusText>
                           </div>
                         </div>
                       </div>
