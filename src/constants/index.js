@@ -71,7 +71,7 @@ export const PARTNER_OUTCOMES = [
   },
   {
     id: 2,
-    metric: "Zero to market in eight weeks. Launched the first AI-driven marketplace for verified Salesforce talent.",
+    metric: "Zero to market in eight weeks. Introducing the first AI-driven marketplace for verified Salesforce talent.",
     client: "Cloud Club"
   }
 ];

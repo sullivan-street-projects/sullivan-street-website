@@ -95,9 +95,23 @@ subtitle: Growth Leadership
 description: For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.
 
 ### Comparison Categories
-- Guidance (Coaching, Growth Model, QBRs, Vendor Guidance, Tool Recs)
-- Playbooks (Roadmap, GTM Plan, SOPs, Briefs)
-- Execution (Vendor Oversight, Talent Sourcing, Team Orchestration, Campaign Oversight, Performance Monitoring)
+- **Guidance**
+  - Strategic Coaching: Strategy calls to review progress, troubleshoot issues, and align on priorities.
+  - Growth Model: Forecasting, budget modeling, and unit economics.
+  - Quarterly Business Reviews: Data-driven analysis with strategic recommendations.
+  - Vendor Guidance: Recommendations on agency/contractor selection, negotiation, and management.
+  - Tool Recommendations: Guidance on martech stack, analytics tools, and operational software.
+- **Playbooks**
+  - Growth Roadmap: 30/60/90-day action plans with milestone tracking.
+  - Go-to-Market Plan: Positioning, channel selection, and launch sequencing.
+  - Marketing SOPs: Repeatable processes for marketing ops and campaigns.
+  - Creative & Campaign Briefs: Strategic direction and success metrics for designers and copywriters.
+- **Execution**
+  - Vendor Oversight: Managing vendor relationships and deliverable reviews.
+  - Talent Sourcing: Recruiting and onboarding contractors, agencies, and freelancers.
+  - Team Orchestration: Coordinating internal and external teams on deliverables.
+  - Execution Oversight: Day-to-day management of campaigns and quality control.
+  - Performance Monitoring: KPI tracking, metrics review, and performance reporting.
 
 ---
 
@@ -105,7 +119,7 @@ description: For leaders who need ownership. We become your growth department. W
 outcomes:
   - metric: From flat to +30% growth in 90 days. Fractional leadership delivered omnichannel strategy to capture mature beauty market.
     client: Exclusive Beauty Club
-  - metric: Zero to market in eight weeks. Launched the first AI-driven marketplace for verified Salesforce talent.
+  - metric: Zero to market in eight weeks. Introducing the first AI-driven marketplace for verified Salesforce talent.
     client: Cloud Club
 
 ---

@@ -42,12 +42,12 @@ const Services = () => {
             <h3 className="font-serif text-2xl mb-16 text-[#1a1a1a]">Compare Services</h3>
           </FocusText>
 
-          <div className="overflow-x-auto">
-            <div className="min-w-[768px]">
+          <div className="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0">
+            <div className="min-w-[800px] lg:min-w-full">
               {/* Table Header */}
               <FocusText>
                 <div className="grid grid-cols-12 gap-6 mb-8 border-b border-[#e5e5e5] pb-6">
-                  <div className="col-span-6 font-sans text-xs uppercase tracking-widest font-bold text-[#737373]">Service</div>
+                  <div className="col-span-6 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] sticky left-0 z-10 bg-[#FAFAF8]">Service</div>
                   <div className="col-span-2 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
                   <div className="col-span-2 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
                   <div className="col-span-2 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
@@ -57,14 +57,14 @@ const Services = () => {
               {COMPARISON_DATA.map((section) => (
                 <div key={section.category} className="mb-20 last:mb-0">
                   <FocusText>
-                    <div className="mb-8">
+                    <div className="mb-8 sticky left-0 z-10 bg-[#FAFAF8]">
                       <h4 className="font-serif text-xl text-[#1a1a1a]">{section.category}</h4>
                     </div>
                     
                     <div className="space-y-0">
                       {section.features.map((feature) => (
-                        <div key={feature.name} className="grid grid-cols-12 gap-6 py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300 -mx-4 px-4">
-                          <div className="col-span-6 pr-12">
+                        <div key={feature.name} className="grid grid-cols-12 gap-6 py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
+                          <div className="col-span-6 pr-12 sticky left-0 z-10 bg-[#FAFAF8] shadow-[10px_0_15px_-15px_rgba(0,0,0,0.1)]">
                             <p className="font-sans text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
                             <p className="font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
                           </div>
