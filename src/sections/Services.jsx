@@ -42,42 +42,46 @@ const Services = () => {
             <h3 className="font-serif text-2xl mb-16 text-[#1a1a1a]">Partner Services</h3>
           </FocusText>
 
-          <div className="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0">
-            <div className="min-w-max lg:min-w-full">
-              {/* Table Header */}
-              <div className="flex mb-8 border-b border-[#e5e5e5] pb-6">
-                <div className="min-w-[150px] md:w-[50%] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] sticky left-0 z-10 bg-[#FAFAF8] pr-4 shadow-[10px_0_15px_-15px_rgba(0,0,0,0.1)]">Service</div>
-                <div className="flex-1 min-w-[110px] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
-                <div className="flex-1 min-w-[110px] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
-                <div className="flex-1 min-w-[110px] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
+          {/* Mobile/Desktop Unified Scroll Container */}
+          <div className="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0 scrollbar-hide">
+            <div className="min-w-max">
+              
+              {/* Table Header - Strict Grid */}
+              <div className="grid grid-cols-[150px_110px_110px_110px] md:grid-cols-[2fr_1fr_1fr_1fr] gap-4 mb-8 border-b border-[#e5e5e5] pb-6">
+                <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] pr-4">Service</div>
+                <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
+                <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
+                <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
               </div>
 
               {COMPARISON_DATA.map((section) => (
                 <div key={section.category} className="mb-20 last:mb-0">
-                  <div className="mb-8 sticky left-0 z-10 bg-[#FAFAF8]">
+                  {/* Category Header - Sticky only relative to section flow if needed, but keeping static for stability */}
+                  <div className="mb-8">
                     <h4 className="font-serif text-xl text-[#1a1a1a]">{section.category}</h4>
                   </div>
                   
                   <div className="space-y-0">
                     {section.features.map((feature) => (
-                      <div key={feature.name} className="flex py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
-                        <div className="min-w-[150px] md:w-[50%] pr-4 md:pr-12 sticky left-0 z-10 bg-[#FAFAF8] shadow-[10px_0_15px_-15px_rgba(0,0,0,0.1)]">
-                          <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-0 md:mb-1.5">{feature.name}</p>
-                          <p className="hidden md:block font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
+                      <div key={feature.name} className="grid grid-cols-[150px_110px_110px_110px] md:grid-cols-[2fr_1fr_1fr_1fr] gap-4 py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
+                        {/* Service Name Column */}
+                        <div className="pr-4">
+                          <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
+                          <p className="font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
                         </div>
                         
                         {/* Advisory Cell */}
-                        <div className="flex-1 min-w-[110px] flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
+                        <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
                           {renderCell(feature.advisory)}
                         </div>
 
                         {/* Strategy Cell */}
-                        <div className="flex-1 min-w-[110px] flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
+                        <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
                           {renderCell(feature.strategy)}
                         </div>
 
                         {/* Management Cell */}
-                        <div className="flex-1 min-w-[110px] flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
+                        <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
                           {renderCell(feature.management)}
                         </div>
                       </div>
