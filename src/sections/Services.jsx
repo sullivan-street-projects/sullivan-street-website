@@ -42,47 +42,52 @@ const Services = () => {
             <h3 className="font-serif text-2xl mb-16 text-[#1a1a1a]">Partner Services</h3>
           </FocusText>
 
-          {/* Mobile/Desktop Unified Scroll Container */}
-          <div className="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0 scrollbar-hide">
-            <div className="min-w-max">
+          {/* Table Container */}
+          <div className="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0 pb-4">
+            <div className="min-w-[700px] lg:min-w-full lg:w-full">
               
-              {/* Table Header - Strict Grid */}
-              <div className="grid grid-cols-[150px_110px_110px_110px] md:grid-cols-[2fr_1fr_1fr_1fr] gap-4 mb-8 border-b border-[#e5e5e5] pb-6">
-                <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] pr-4">Service</div>
-                <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
-                <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
-                <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
+              {/* Table Header */}
+              <div className="flex border-b border-[#e5e5e5] pb-6 mb-8">
+                {/* Sticky Service Col (Mobile) / Fluid (Desktop) */}
+                <div className="w-[160px] flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 shadow-[5px_0_10px_-5px_rgba(0,0,0,0.1)] lg:shadow-none">
+                  <span className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373]">Service</span>
+                </div>
+                
+                {/* Scrollable Tier Cols */}
+                <div className="flex-1 grid grid-cols-3 min-w-[330px] md:min-w-0">
+                  <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
+                  <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
+                  <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
+                </div>
               </div>
 
               {COMPARISON_DATA.map((section) => (
                 <div key={section.category} className="mb-20 last:mb-0">
-                  {/* Category Header - Sticky only relative to section flow if needed, but keeping static for stability */}
-                  <div className="mb-8">
+                  {/* Category Header */}
+                  <div className="mb-8 sticky left-0 z-10 bg-[#FAFAF8] lg:static lg:bg-transparent">
                     <h4 className="font-serif text-xl text-[#1a1a1a]">{section.category}</h4>
                   </div>
                   
                   <div className="space-y-0">
                     {section.features.map((feature) => (
-                      <div key={feature.name} className="grid grid-cols-[150px_110px_110px_110px] md:grid-cols-[2fr_1fr_1fr_1fr] gap-4 py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
-                        {/* Service Name Column */}
-                        <div className="pr-4">
+                      <div key={feature.name} className="flex py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
+                        {/* Service Name: Sticky Mobile, Fluid Desktop */}
+                        <div className="w-[160px] flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 shadow-[5px_0_10px_-5px_rgba(0,0,0,0.1)] lg:shadow-none group-hover:bg-[#fafafa]">
                           <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
                           <p className="font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
                         </div>
                         
-                        {/* Advisory Cell */}
-                        <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
-                          {renderCell(feature.advisory)}
-                        </div>
-
-                        {/* Strategy Cell */}
-                        <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
-                          {renderCell(feature.strategy)}
-                        </div>
-
-                        {/* Management Cell */}
-                        <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
-                          {renderCell(feature.management)}
+                        {/* Tiers Container */}
+                        <div className="flex-1 grid grid-cols-3 min-w-[330px] md:min-w-0">
+                          <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
+                            {renderCell(feature.advisory)}
+                          </div>
+                          <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
+                            {renderCell(feature.strategy)}
+                          </div>
+                          <div className="flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
+                            {renderCell(feature.management)}
+                          </div>
                         </div>
                       </div>
                     ))}
