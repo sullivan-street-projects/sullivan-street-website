@@ -39,7 +39,7 @@ export const VALUE_PROPS = [
     description: 'Hand-selected specialists for media, creative, analytics, and operations. We manage the build so you don’t have to.'
   },
   {
-    title: 'AI-Enabled, Outcome-Obsessed',
+    title: 'Outcome-Obsessed, AI-Enabled',
     description: 'AI powers our research, strategy, and reporting so you get sharper insights, faster deliverables, and more from every dollar invested.'
   }
 ];
@@ -76,23 +76,141 @@ export const PARTNER_OUTCOMES = [
   }
 ];
 
-export const SERVICES = [
+export const TIERS = [
   {
-    title: 'Management',
-    target: 'For operators who want execution handled.',
-    qualifier: 'We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
-    features: ['Campaign implementation', 'Ongoing optimization and reporting', 'Specialist recruitment and oversight'],
-  },
-  {
-    title: 'Strategy',
-    target: 'For teams ready to build the playbook.',
-    qualifier: 'We audit what you have, model the investment required, and deliver a roadmap your team can execute with confidence.',
-    features: ['Marketing audit and strategy', 'Investment modeling', 'Channel prioritization and roadmaps'],
-  },
-  {
+    id: 'advisory',
     title: 'Advisory',
-    target: 'For founders who need a thought leader.',
-    qualifier: "You get a senior partner in your corner for decisions on hiring, channels, vendors, and positioning, and honest guidance on what's working and what isn't.",
-    features: ['Growth strategy consultation', 'Marketing leadership coaching', 'Vendor evaluation and selection'],
+    subtitle: 'Strategic Guidance',
+    description: "For founders who need an executive thought partner. We help you make the right decisions on hiring, vendors, and positioning. With honest guidance on what's working and what isn't.",
+  },
+  {
+    id: 'strategy',
+    title: 'Strategy',
+    subtitle: 'Go-to-Market Design',
+    description: 'For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence. We deliver the strategic intellectual property that becomes your brand’s operating system.',
+  },
+  {
+    id: 'management',
+    title: 'Management',
+    subtitle: 'Growth Leadership',
+    description: 'For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
   },
 ];
+
+export const COMPARISON_DATA = [
+  {
+    category: 'Guidance',
+    features: [
+      { 
+        name: 'Strategic Coaching', 
+        description: 'Strategy calls to review progress, troubleshoot issues, and align on priorities.',
+        advisory: 'Monthly', 
+        strategy: 'Weekly', 
+        management: 'Daily' 
+      },
+      { 
+        name: 'Growth Model', 
+        description: 'Forecasting, budget modeling, and unit economics.',
+        advisory: false, 
+        strategy: true, 
+        management: true 
+      },
+      { 
+        name: 'Quarterly Business Reviews', 
+        description: 'Data-driven analysis with strategic recommendations.',
+        advisory: false, 
+        strategy: true, 
+        management: true 
+      },
+      { 
+        name: 'Vendor Guidance', 
+        description: 'Recommendations on agency/contractor selection, negotiation, and management.',
+        advisory: true, 
+        strategy: true, 
+        management: true 
+      },
+      { 
+        name: 'Tool Recommendations', 
+        description: 'Guidance on martech stack, analytics tools, and operational software.',
+        advisory: true, 
+        strategy: true, 
+        management: true 
+      },
+    ]
+  },
+  {
+    category: 'Playbooks',
+    features: [
+      { 
+        name: 'Growth Roadmap', 
+        description: '30/60/90-day action plans with milestone tracking.',
+        advisory: false, 
+        strategy: true, 
+        management: true 
+      },
+      { 
+        name: 'Go-to-Market Plan', 
+        description: 'Positioning, channel selection, and launch sequencing.',
+        advisory: false, 
+        strategy: true, 
+        management: true 
+      },
+      { 
+        name: 'Marketing SOPs', 
+        description: 'Repeatable processes for marketing ops and campaigns.',
+        advisory: false, 
+        strategy: true, 
+        management: true 
+      },
+      { 
+        name: 'Creative & Campaign Briefs', 
+        description: 'Strategic direction and success metrics for designers and copywriters.',
+        advisory: false, 
+        strategy: false, 
+        management: true 
+      },
+    ]
+  },
+  {
+    category: 'Execution',
+    features: [
+      { 
+        name: 'Vendor Oversight', 
+        description: 'Managing vendor relationships and deliverable reviews.',
+        advisory: false, 
+        strategy: false, 
+        management: true 
+      },
+      { 
+        name: 'Talent Sourcing', 
+        description: 'Recruiting and onboarding contractors, agencies, and freelancers.',
+        advisory: false, 
+        strategy: false, 
+        management: true 
+      },
+      { 
+        name: 'Team Orchestration', 
+        description: 'Coordinating internal and external teams on deliverables.',
+        advisory: false, 
+        strategy: false, 
+        management: true 
+      },
+      { 
+        name: 'Execution Oversight', 
+        description: 'Day-to-day management of campaigns and quality control.',
+        advisory: false, 
+        strategy: false, 
+        management: true 
+      },
+      { 
+        name: 'Performance Monitoring', 
+        description: 'KPI tracking, metrics review, and performance reporting.',
+        advisory: false, 
+        strategy: false, 
+        management: true 
+      },
+    ]
+  }
+];
+
+// End of file

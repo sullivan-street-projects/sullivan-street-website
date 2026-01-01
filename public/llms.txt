@@ -9,9 +9,9 @@ Sullivan Street Projects is a fractional growth consultancy based in New York. W
 - **Outcome-Obsessed:** AI-enabled strategy focused on revenue growth and unit economics.
 
 ## Services
-1.  **Management:** Full-service growth department. We build teams, manage vendors, and own performance.
-2.  **Strategy:** Audits, investment modeling, and roadmaps for internal teams to execute.
-3.  **Advisory:** High-level guidance for founders on hiring, positioning, and vendor selection.
+1.  **Advisory (Strategic Guidance):** For founders who need a thought partner. We provide decision support on hiring, vendors, and positioning.
+2.  **Strategy (Go-to-Market Design):** For teams ready to build the playbook. We audit capabilities, model unit economics, and deliver an execution roadmap.
+3.  **Management (Growth Leadership):** For leaders who need outcome ownership. We build the team, manage the vendors, and own the P&L targets.
 
 ## Founder
 **Brett Wohl** (Founder, Managing Partner)

@@ -15,7 +15,7 @@ company-name: Sullivan Street Projects
 ## Hero
 headline: Marketing for Tomorrow's
 headline-highlight: Billion-Dollar Brands
-subheadline: AI-powered strategy, media, and execution. Faster growth, sharper focus, higher profit.
+subheadline: AI-powered strategy, media, and execution. Faster growth. Sharper focus. Higher profit.
 cta-button: Schedule a call
 
 ---
@@ -52,7 +52,7 @@ CMO, VP, or Director-level leadership—embedded with your team from planning th
 #### Marketing General Contractor
 Hand-selected specialists for media, creative, analytics, and operations. We manage the build so you don't have to.
 
-#### AI-Enabled, Outcome-Obsessed
+#### Outcome-Obsessed, AI-Enabled
 AI powers our research, strategy, and reporting so you get sharper insights, faster deliverables, and more from every dollar invested.
 
 ---
@@ -79,31 +79,25 @@ Creative and content that converts attention into revenue while reinforcing bran
 
 ## Services
 headline: Your marketing investment, managed.
-subheadline: Three ways to work together. One point of contact. The right team for the job.
+subheadline: Three ways to engage. One point of contact. The right team for the job.
 
-### Management
-target: For operators who want execution handled.
-description: We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.
-features:
-  - Campaign implementation
-  - Ongoing optimization and reporting
-  - Specialist recruitment and oversight
+### Tiers
+#### Advisory
+subtitle: Strategic Guidance
+description: For founders who need an executive thought partner. We help you make the right decisions on hiring, vendors, and positioning. With honest guidance on what's working and what isn't.
 
-### Strategy
-target: For teams ready to build the playbook.
-description: We audit what you have, model the investment required, and deliver a roadmap your team can execute with confidence.
-features:
-  - Marketing audit and strategy
-  - Investment modeling
-  - Channel prioritization and roadmaps
+#### Strategy
+subtitle: Go-to-Market Design
+description: For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence. We deliver the strategic intellectual property that becomes your brand’s operating system.
 
-### Advisory
-target: For founders who need a thought leader.
-description: You get a senior partner in your corner for decisions on hiring, channels, vendors, and positioning, and honest guidance on what's working and what isn't. 
-features:
-  - Growth strategy consultation
-  - Marketing leadership coaching
-  - Vendor evaluation and selection
+#### Management
+subtitle: Growth Leadership
+description: For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.
+
+### Comparison Categories
+- Guidance (Coaching, Growth Model, QBRs, Vendor Guidance, Tool Recs)
+- Playbooks (Roadmap, GTM Plan, SOPs, Briefs)
+- Execution (Vendor Oversight, Talent Sourcing, Team Orchestration, Campaign Oversight, Performance Monitoring)
 
 ---
 
