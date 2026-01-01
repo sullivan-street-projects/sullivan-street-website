@@ -14,7 +14,7 @@ const PartnerOutcomes = () => {
 
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % PARTNER_OUTCOMES.length);
-    }, 5000);
+    }, 8000);
 
     return () => clearInterval(timer);
   }, [isInView]);
@@ -75,7 +75,7 @@ const PartnerOutcomes = () => {
                     className="absolute top-0 left-0 h-full w-full bg-[#1a1a1a]"
                     initial={{ width: "0%" }}
                     animate={{ width: "100%" }}
-                    transition={{ duration: 5, ease: "linear" }}
+                    transition={{ duration: 8, ease: "linear" }}
                   />
                 )}
                 {idx === currentIndex && !isInView && (
