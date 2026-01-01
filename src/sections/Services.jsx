@@ -45,15 +45,15 @@ const Services = () => {
           {/* Comparison Sections */}
           {COMPARISON_DATA.map((section) => (
             <div key={section.category} className="mb-20 last:mb-0">
-              {/* Category Header - Outside Scroll Container */}
-              <FocusText>
-                <div className="mb-8 border-b border-[#1a1a1a] pb-2">
+              {/* Category Header - Sticky at Top (below nav) */}
+              <div className="sticky top-20 z-30 bg-[#FAFAF8] py-4 border-b border-[#1a1a1a] mb-0">
+                <FocusText>
                   <h4 className="font-serif text-xl text-[#1a1a1a]">{section.category}</h4>
-                </div>
-              </FocusText>
+                </FocusText>
+              </div>
 
               {/* Scrollable Table for this Category */}
-              <div className="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0 pb-4">
+              <div className="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0 pb-4 pt-4">
                 <div className="min-w-[650px] lg:min-w-full lg:w-full">
                   
                   {/* Section Column Header */}
