@@ -33,7 +33,7 @@ const PartnerOutcomes = () => {
   return (
     <div ref={containerRef}>
       <Section label="Partner Outcomes" divider={true}>
-        <div className="max-w-[800px] mx-auto min-h-[300px] flex flex-col justify-between">
+        <div className="max-w-[800px] min-h-[300px] flex flex-col justify-between">
           <div className="relative cursor-grab active:cursor-grabbing">
             <FocusText>
               <AnimatePresence mode="wait">
@@ -48,7 +48,7 @@ const PartnerOutcomes = () => {
                   dragElastic={0.2}
                   onDragEnd={handleDragEnd}
                 >
-                  <div className="h-[160px] md:h-[180px] flex items-center">
+                  <div className="h-[200px] md:h-[180px] flex items-center pr-6 md:pr-0">
                     <p className="font-serif text-2xl md:text-3xl lg:text-[38px] leading-[1.4] text-[#404040] font-light antialiased">
                       {PARTNER_OUTCOMES[currentIndex].metric}
                     </p>
