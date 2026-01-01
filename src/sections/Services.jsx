@@ -45,48 +45,44 @@ const Services = () => {
           <div className="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0">
             <div className="min-w-max lg:min-w-full">
               {/* Table Header */}
-              <FocusText>
-                <div className="flex mb-8 border-b border-[#e5e5e5] pb-6">
-                  <div className="min-w-[140px] md:w-[50%] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] sticky left-0 z-10 bg-[#FAFAF8]">Service</div>
-                  <div className="flex-1 min-w-[100px] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
-                  <div className="flex-1 min-w-[100px] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
-                  <div className="flex-1 min-w-[100px] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
-                </div>
-              </FocusText>
+              <div className="flex mb-8 border-b border-[#e5e5e5] pb-6">
+                <div className="min-w-[150px] md:w-[50%] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] sticky left-0 z-10 bg-[#FAFAF8] pr-4 shadow-[10px_0_15px_-15px_rgba(0,0,0,0.1)]">Service</div>
+                <div className="flex-1 min-w-[110px] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
+                <div className="flex-1 min-w-[110px] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
+                <div className="flex-1 min-w-[110px] font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
+              </div>
 
               {COMPARISON_DATA.map((section) => (
                 <div key={section.category} className="mb-20 last:mb-0">
-                  <FocusText>
-                    <div className="mb-8 sticky left-0 z-10 bg-[#FAFAF8]">
-                      <h4 className="font-serif text-xl text-[#1a1a1a]">{section.category}</h4>
-                    </div>
-                    
-                    <div className="space-y-0">
-                      {section.features.map((feature) => (
-                        <div key={feature.name} className="flex py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
-                          <div className="min-w-[140px] md:w-[50%] pr-4 md:pr-12 sticky left-0 z-10 bg-[#FAFAF8] shadow-[10px_0_15px_-15px_rgba(0,0,0,0.1)]">
-                            <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-0 md:mb-1.5">{feature.name}</p>
-                            <p className="hidden md:block font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
-                          </div>
-                          
-                          {/* Advisory Cell */}
-                          <div className="flex-1 min-w-[100px] flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
-                            {renderCell(feature.advisory)}
-                          </div>
-
-                          {/* Strategy Cell */}
-                          <div className="flex-1 min-w-[100px] flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
-                            {renderCell(feature.strategy)}
-                          </div>
-
-                          {/* Management Cell */}
-                          <div className="flex-1 min-w-[100px] flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
-                            {renderCell(feature.management)}
-                          </div>
+                  <div className="mb-8 sticky left-0 z-10 bg-[#FAFAF8]">
+                    <h4 className="font-serif text-xl text-[#1a1a1a]">{section.category}</h4>
+                  </div>
+                  
+                  <div className="space-y-0">
+                    {section.features.map((feature) => (
+                      <div key={feature.name} className="flex py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
+                        <div className="min-w-[150px] md:w-[50%] pr-4 md:pr-12 sticky left-0 z-10 bg-[#FAFAF8] shadow-[10px_0_15px_-15px_rgba(0,0,0,0.1)]">
+                          <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-0 md:mb-1.5">{feature.name}</p>
+                          <p className="hidden md:block font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
                         </div>
-                      ))}
-                    </div>
-                  </FocusText>
+                        
+                        {/* Advisory Cell */}
+                        <div className="flex-1 min-w-[110px] flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
+                          {renderCell(feature.advisory)}
+                        </div>
+
+                        {/* Strategy Cell */}
+                        <div className="flex-1 min-w-[110px] flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
+                          {renderCell(feature.strategy)}
+                        </div>
+
+                        {/* Management Cell */}
+                        <div className="flex-1 min-w-[110px] flex justify-center pt-1 font-sans text-[13px] text-[#737373]">
+                          {renderCell(feature.management)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
