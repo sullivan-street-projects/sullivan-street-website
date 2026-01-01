@@ -95,8 +95,9 @@ subtitle: Growth Leadership
 description: For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.
 
 ### Comparison Categories
-- **Guidance**
-  - Strategic Coaching: Strategy calls to review progress, troubleshoot issues, and align on priorities.
+- **Partner Services**
+  - Guidance
+    - Strategic Coaching: Strategy calls to review progress, troubleshoot issues, and align on priorities.
   - Growth Model: Forecasting, budget modeling, and unit economics.
   - Quarterly Business Reviews: Data-driven analysis with strategic recommendations.
   - Vendor Guidance: Recommendations on agency/contractor selection, negotiation, and management.
