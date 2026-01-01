@@ -52,7 +52,7 @@ const Services = () => {
                   
                   {/* Section Column Header - Static Top, Sticky Left */}
                   <div className="flex border-b border-[#1a1a1a] pb-4 mb-0 pt-4">
-                     <div className="w-[140px] flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none flex items-end">
+                     <div className="w-[140px] flex-none sticky left-0 z-30 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5] md:border-none flex items-end">
                        <FocusText>
                          <h4 className="font-serif text-lg md:text-xl text-[#1a1a1a] leading-none">{section.category}</h4>
                        </FocusText>
@@ -68,7 +68,7 @@ const Services = () => {
                     {section.features.map((feature) => (
                       <div key={feature.name} className="flex py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
                         {/* Service Name: Sticky Mobile */}
-                        <div className="w-[140px] flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none group-hover:bg-[#fafafa]">
+                        <div className="w-[140px] flex-none sticky left-0 z-30 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5] md:border-none group-hover:bg-[#fafafa]">
                           <FocusText>
                             <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
                             <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
