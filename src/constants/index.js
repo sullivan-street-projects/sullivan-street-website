@@ -66,7 +66,7 @@ export const CAPABILITIES = [
 export const PARTNER_OUTCOMES = [
   {
     id: 1,
-    metric: "From flat to +30% growth in 90 days. Fractional leadership delivered omnichannel strategy to capture mature beauty market.",
+    metric: "From flat to +30% in 90 days. Omnichannel growth strategy for a mature beauty brand.",
     client: "Exclusive Beauty Club"
   },
   {
