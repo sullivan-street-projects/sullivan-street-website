@@ -48,9 +48,11 @@ const PartnerOutcomes = () => {
                   dragElastic={0.2}
                   onDragEnd={handleDragEnd}
                 >
-                  <p className="font-serif text-2xl md:text-3xl lg:text-[38px] leading-[1.4] text-[#404040] font-light antialiased min-h-[140px]">
-                    {PARTNER_OUTCOMES[currentIndex].metric}
-                  </p>
+                  <div className="h-[160px] md:h-[180px] flex items-center">
+                    <p className="font-serif text-2xl md:text-3xl lg:text-[38px] leading-[1.4] text-[#404040] font-light antialiased">
+                      {PARTNER_OUTCOMES[currentIndex].metric}
+                    </p>
+                  </div>
                   <div className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-[#737373] mt-6 select-none">
                     {PARTNER_OUTCOMES[currentIndex].client}
                   </div>
