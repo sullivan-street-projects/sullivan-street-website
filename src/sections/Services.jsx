@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Section from '../components/Section';
 import FocusText from '../components/FocusText';
-import { TIERS, FEATURES } from '../constants';
+import AnimatedArrow from '../components/AnimatedArrow';
+import { ANIMATION, TIERS, FEATURES, MOBILE_TIERS } from '../constants';
+import { useLenis } from '../components/SmoothScroll';
 
 const Services = () => {
   const scrollRef = useRef(null);
   const [showScrollHint, setShowScrollHint] = useState(true);
+  const [expandedTier, setExpandedTier] = useState('management');
+  const lenis = useLenis();
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -21,6 +26,16 @@ const Services = () => {
     return () => el.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToContact = () => {
+    const target = document.getElementById('contact');
+    if (target && lenis) {
+      lenis.scrollTo(target, {
+        offset: ANIMATION.SCROLL_OFFSET,
+        duration: ANIMATION.SCROLL_DURATION
+      });
+    }
+  };
+
   return (
     <Section id="services" label="Services" padding="py-16 md:py-24 lg:py-32">
       <div className="mb-12 md:mb-16">
@@ -34,8 +49,94 @@ const Services = () => {
         </FocusText>
       </div>
 
-      {/* Services Table - Single scrollable container */}
-      <div className="relative">
+      {/* Mobile View - Accordion */}
+      <div className="block md:hidden">
+        <div className="space-y-0">
+          {MOBILE_TIERS.map((tier) => {
+            const isExpanded = expandedTier === tier.id;
+            return (
+              <FocusText key={tier.id}>
+                <div className="border-b border-[#e5e5e5]">
+                  {/* Accordion Header */}
+                  <button
+                    onClick={() => setExpandedTier(isExpanded ? null : tier.id)}
+                    className="w-full py-6 flex items-start justify-between text-left"
+                  >
+                    <div>
+                      <h3 className="font-serif text-xl text-[#1a1a1a] mb-1">{tier.title}</h3>
+                      <p className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373]">{tier.subtitle}</p>
+                    </div>
+                    <motion.svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#737373"
+                      strokeWidth="2"
+                      className="mt-1 flex-shrink-0"
+                      animate={{ rotate: isExpanded ? 90 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <path d="M9 18l6-6-6-6" />
+                    </motion.svg>
+                  </button>
+
+                  {/* Accordion Content */}
+                  <AnimatePresence initial={false}>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pb-8">
+                          <p className="font-sans text-[15px] text-[#525252] leading-relaxed font-light mb-6">
+                            {tier.description}
+                          </p>
+
+                          <p className="font-sans text-[13px] italic text-[#737373] mb-5">
+                            {tier.includesText}
+                          </p>
+
+                          <ul className="space-y-3">
+                            {tier.features.map((feature) => (
+                              <li key={feature} className="font-sans text-[15px] text-[#525252] font-light flex items-start">
+                                <span className="text-[#1a1a1a] mr-3 text-sm">●</span>
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </FocusText>
+            );
+          })}
+        </div>
+
+        {/* CTA - matches Hero style */}
+        <div className="mt-10">
+          <FocusText>
+            <div className="group relative inline-block">
+              <button
+                onClick={scrollToContact}
+                className="font-sans text-[12px] font-bold uppercase tracking-[0.25em] inline-flex items-center gap-4 hover:opacity-70 transition-all text-[#1a1a1a]"
+              >
+                Schedule a call
+                <AnimatedArrow size="sm" />
+              </button>
+              <div className="absolute -bottom-2 left-0 w-full h-[1.5px] bg-[#1a1a1a] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
+            </div>
+          </FocusText>
+        </div>
+      </div>
+
+      {/* Desktop Table - Hidden on mobile */}
+      <div className="hidden md:block relative">
         {/* Scroll hint - mobile only */}
         <div
           className={`absolute right-0 top-0 bottom-0 w-12 pointer-events-none z-20 lg:hidden transition-opacity duration-500 ${showScrollHint ? 'opacity-100' : 'opacity-0'}`}

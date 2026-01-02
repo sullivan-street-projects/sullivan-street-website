@@ -32,15 +32,15 @@ export const NAV_ITEMS = [
 export const VALUE_PROPS = [
   {
     title: 'Fractional Growth Executive',
-    description: 'CMO, VP, or Director-level leadership—embedded with your team from planning through execution. Enterprise experience, startup speed.'
+    description: 'CMO, VP, or Director-level leadership, embedded with your team. From strategy to execution. Enterprise experience. Startup speed.'
   },
   {
     title: 'Marketing General Contractor',
-    description: 'Hand-selected specialists for media, creative, analytics, and operations. We manage the build so you don’t have to.'
+    description: 'Best-in-class specialists across media, creative, analytics, and operations. We manage the work. You get the results.'
   },
   {
     title: 'Outcome Obsessed, AI Enabled',
-    description: 'AI powers our research, strategy, and reporting so you get sharper insights, faster deliverables, and more from every dollar invested.'
+    description: 'AI drives our research, strategy, and reporting. Sharper insights. Faster delivery. Better ROI.'
   }
 ];
 
@@ -215,5 +215,50 @@ export const COMPARISON_DATA = [
 
 // Flattened features list (no category groupings)
 export const FEATURES = COMPARISON_DATA.flatMap(section => section.features);
+
+// Mobile-specific tier data — unique features only (no repetition)
+export const MOBILE_TIERS = [
+  {
+    id: 'management',
+    title: 'Management',
+    subtitle: 'Growth Leadership',
+    description: 'For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
+    includesText: 'Everything in Strategy, plus:',
+    features: [
+      'Creative & Campaign Briefs',
+      'Vendor Oversight',
+      'Talent Sourcing',
+      'Team Orchestration',
+      'Execution Oversight',
+      'Performance Monitoring',
+    ],
+  },
+  {
+    id: 'strategy',
+    title: 'Strategy',
+    subtitle: 'Go-to-Market Design',
+    description: 'For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence.',
+    includesText: 'Everything in Advisory, plus:',
+    features: [
+      'Growth Modeling',
+      'Quarterly Business Reviews',
+      'Project Roadmap',
+      'Go-to-Market Plan',
+      'Marketing SOPs',
+    ],
+  },
+  {
+    id: 'advisory',
+    title: 'Advisory',
+    subtitle: 'Strategic Guidance',
+    description: "For founders who need an executive thought partner. We help you make the right decisions on hiring, vendors, and positioning. With honest guidance on what's working and what isn't.",
+    includesText: 'Includes:',
+    features: [
+      'Strategic Coaching',
+      'Vendor Guidance',
+      'Tool Recommendations',
+    ],
+  },
+];
 
 // End of file

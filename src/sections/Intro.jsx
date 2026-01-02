@@ -9,12 +9,12 @@ const Intro = () => {
       <div className="mb-20 md:mb-24">
         <FocusText>
           <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-tight text-[#1a1a1a] mb-8 md:mb-12">
-            Make marketing work.<br /><span className="italic">The way you work.</span>
+            Make Marketing Work<br /><span className="italic">For Your Business.</span>
           </h2>
         </FocusText>
         <FocusText>
           <p className="font-sans text-[17px] md:text-[19px] text-[#404040] leading-relaxed font-light tracking-wide max-w-[800px]">
-            Modern marketing is a mess. Too many platforms, vendors, and agencies. Too much noise, not enough signal. We cut through the chaos and focus on the only metric that matters—growth.
+            Everything in marketing is changing. The platforms, the tools, the talent model. <span className="whitespace-nowrap">All of it.</span> The brands that master the shift will grow faster, with more focus, and greater profit. We're the partner helping them get there.
           </p>
         </FocusText>
       </div>

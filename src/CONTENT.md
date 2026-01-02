@@ -41,19 +41,19 @@ brands:
 ---
 
 ## Intro
-headline: Make marketing work. The way you work.
-body: Modern marketing is a mess. Too many platforms, vendors, and agencies. Too much noise, not enough signal. We cut through the chaos and focus on the only metric that matters—growth.
+headline: Make Marketing Work. For Your Business.
+body: Everything in marketing is changing. The platforms, the tools, the talent model. All of it. The brands that master the shift will grow faster, with more focus, and greater profit. We're the partner helping them get there.
 
 ### Value Props
 
 #### Fractional Growth Executive
-CMO, VP, or Director-level leadership—embedded with your team from planning through execution. Enterprise experience, startup speed.
+CMO, VP, or Director-level leadership, embedded with your team. From strategy to execution. Enterprise experience. Startup speed.
 
 #### Marketing General Contractor
-Hand-selected specialists for media, creative, analytics, and operations. We manage the build so you don't have to.
+Best-in-class specialists across media, creative, analytics, and operations. We manage the work. You get the results.
 
 #### Outcome Obsessed, AI Enabled
-AI powers our research, strategy, and reporting so you get sharper insights, faster deliverables, and more from every dollar invested.
+AI drives our research, strategy, and reporting. Sharper insights. Faster delivery. Better ROI.
 
 ---
 

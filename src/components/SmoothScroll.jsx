@@ -21,14 +21,15 @@ export const SmoothScroll = ({ children }) => {
 
     setLenis(lenisInstance);
 
+    let rafId;
     function raf(time) {
       lenisInstance.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
-
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       lenisInstance.destroy();
     };
   }, []);
