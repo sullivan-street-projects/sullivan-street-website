@@ -6,22 +6,21 @@ import { TIERS, FEATURES } from '../constants';
 const Services = () => {
   const headerScrollRef = useRef(null);
   const bodyScrollRef = useRef(null);
-  const fixedHeaderScrollRef = useRef(null);
   const sectionRef = useRef(null);
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
   const [headerOffset, setHeaderOffset] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
-  // Sync horizontal scroll between all header instances and body
+  // Sync horizontal scroll between header and body
   const syncScroll = (sourceRef) => {
-    const scrollLeft = sourceRef.current?.scrollLeft || 0;
-    if (headerScrollRef.current) headerScrollRef.current.scrollLeft = scrollLeft;
-    if (bodyScrollRef.current) bodyScrollRef.current.scrollLeft = scrollLeft;
-    if (fixedHeaderScrollRef.current) fixedHeaderScrollRef.current.scrollLeft = scrollLeft;
+    const left = sourceRef.current?.scrollLeft || 0;
+    setScrollLeft(left);
+    if (headerScrollRef.current) headerScrollRef.current.scrollLeft = left;
+    if (bodyScrollRef.current) bodyScrollRef.current.scrollLeft = left;
   };
 
   const handleHeaderScroll = () => syncScroll(headerScrollRef);
   const handleBodyScroll = () => syncScroll(bodyScrollRef);
-  const handleFixedHeaderScroll = () => syncScroll(fixedHeaderScrollRef);
 
   // Handle fixed header based on scroll position
   useEffect(() => {
@@ -35,11 +34,6 @@ const Services = () => {
 
       // Show header when section top is above main header
       const shouldFix = sectionRect.top <= mainHeaderHeight && sectionRect.bottom > mainHeaderHeight + tableHeaderHeight;
-
-      // Sync scroll position when header becomes fixed
-      if (shouldFix && !isHeaderFixed && bodyScrollRef.current && fixedHeaderScrollRef.current) {
-        fixedHeaderScrollRef.current.scrollLeft = bodyScrollRef.current.scrollLeft;
-      }
 
       setIsHeaderFixed(shouldFix);
 
@@ -62,27 +56,21 @@ const Services = () => {
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHeaderFixed]);
+  }, []);
 
-  const HeaderContent = ({ scrollRef, onScroll }) => (
-    <div
-      ref={scrollRef}
-      onScroll={onScroll}
-      className="overflow-x-auto scrollbar-hide"
-    >
-      <div className="min-w-[700px] grid grid-cols-[200px_1fr_1fr_1fr] gap-4 py-4">
-        <div>
-          <span className="font-serif text-lg text-[#1a1a1a]">Service</span>
-        </div>
-        <div className="text-center">
-          <span className="font-serif text-lg text-[#1a1a1a]">Advisory</span>
-        </div>
-        <div className="text-center">
-          <span className="font-serif text-lg text-[#1a1a1a]">Strategy</span>
-        </div>
-        <div className="text-center">
-          <span className="font-serif text-lg text-[#1a1a1a]">Management</span>
-        </div>
+  const HeaderRow = () => (
+    <div className="min-w-[700px] grid grid-cols-[200px_1fr_1fr_1fr] gap-4 py-4">
+      <div>
+        <span className="font-serif text-lg text-[#1a1a1a]">Service</span>
+      </div>
+      <div className="text-center">
+        <span className="font-serif text-lg text-[#1a1a1a]">Advisory</span>
+      </div>
+      <div className="text-center">
+        <span className="font-serif text-lg text-[#1a1a1a]">Strategy</span>
+      </div>
+      <div className="text-center">
+        <span className="font-serif text-lg text-[#1a1a1a]">Management</span>
       </div>
     </div>
   );
@@ -102,7 +90,7 @@ const Services = () => {
 
       {/* Fixed Header - Glass effect, slides under main nav on scroll */}
       <div
-        className={`fixed top-20 left-0 right-0 z-[60] bg-[#FAFAF8]/80 backdrop-blur-md border-b border-[#e5e5e5]/50 ${
+        className={`fixed top-20 left-0 right-0 z-[60] bg-[#FAFAF8]/80 backdrop-blur-md border-b border-[#e5e5e5]/50 overflow-hidden ${
           !isHeaderFixed ? 'pointer-events-none' : ''
         }`}
         style={{
@@ -111,7 +99,9 @@ const Services = () => {
         }}
       >
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <HeaderContent scrollRef={fixedHeaderScrollRef} onScroll={handleFixedHeaderScroll} />
+          <div style={{ transform: `translateX(-${scrollLeft}px)` }}>
+            <HeaderRow />
+          </div>
         </div>
       </div>
 
@@ -119,7 +109,13 @@ const Services = () => {
       <div ref={sectionRef}>
         {/* Row 1: Header - Static version */}
         <div className="bg-[#FAFAF8] border-b border-[#d4d4d4]">
-          <HeaderContent scrollRef={headerScrollRef} onScroll={handleHeaderScroll} />
+          <div
+            ref={headerScrollRef}
+            onScroll={handleHeaderScroll}
+            className="overflow-x-auto scrollbar-hide"
+          >
+            <HeaderRow />
+          </div>
         </div>
 
         {/* Table Body */}
