@@ -5,7 +5,7 @@
 
 *   **Core Promise:** AI-powered strategy, media, and execution. Faster growth, sharper focus, higher profit.
 *   **Differentiation:** We are not a traditional agency. We are a "General Contractor" for marketing—embedding leadership, managing specialists, and owning outcomes.
-*   **Personality:** Authoritative, Modern, Direct, Outcome-Obsessed.
+*   **Personality:** Authoritative, Modern, Direct, Outcome Obsessed.
 
 ## 2. Voice & Tone
 Our voice is that of a seasoned executive: confident, concise, and focused on the bottom line.
