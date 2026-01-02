@@ -18,7 +18,7 @@ const Services = () => {
       </div>
 
       {/* Tiers Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 md:divide-x md:divide-[#e5e5e5] mb-32">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 mb-20">
         {TIERS.map((tier) => (
           <div key={tier.id} className="flex flex-col h-full px-0 md:px-8 lg:px-12 first:pl-0 last:pr-0">
             <FocusText className="h-full">
@@ -37,12 +37,8 @@ const Services = () => {
 
       {/* Comparison Table */}
       <div className="border-t border-[#e5e5e5]">
-        <div className="py-20">
-          <FocusText>
-            <h3 className="font-serif text-2xl mb-16 text-[#1a1a1a]">Partner Services</h3>
-          </FocusText>
-
-          {/* Unified Comparison Sections */}
+        <div className="py-12">
+          {/* Comparison Sections */}
           {COMPARISON_DATA.map((section) => (
             <div key={section.category} className="mb-20 last:mb-0">
               
