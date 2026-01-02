@@ -66,12 +66,12 @@ export const CAPABILITIES = [
 export const PARTNER_OUTCOMES = [
   {
     id: 1,
-    metric: "From flat to consistent +30% growth in 90 days. Omni-channel management delivered for a luxury beauty and skincare retailer.",
+    metric: "From flat to +30% in 90 days. Omni-channel management delivered consistent growth for a luxury beauty and skincare retailer.",
     client: "Exclusive Beauty Club"
   },
   {
     id: 2,
-    metric: "Zero to market in eight weeks. Introducing the first AI-driven marketplace for verified Salesforce talent.",
+    metric: "Zero to market in eight weeks. Introducing the first AI-powered marketplace for Salesforce talent.",
     client: "Cloud Club"
   }
 ];
