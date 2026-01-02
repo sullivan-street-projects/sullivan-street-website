@@ -117,7 +117,7 @@ description: For leaders who need ownership. We become your growth department. W
 
 ## Partner Outcomes
 outcomes:
-  - metric: From flat to consistent +30% in 90 days. Multi-channel optimization and execution management delivers consistent growth for a luxury beauty and skincare retailer.
+  - metric: From flat to +30% in 90 days. Multi-channel execution delivered consistent growth for a luxury beauty retailer.
     client: Exclusive Beauty Club
   - metric: Zero to market in eight weeks. Introducing the first AI-powered marketplace for Salesforce talent.
     client: Cloud Club

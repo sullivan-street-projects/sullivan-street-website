@@ -79,7 +79,7 @@ const PartnerOutcomes = () => {
                   />
                 )}
                 {idx === currentIndex && !isInView && (
-                   <div className="absolute top-0 left-0 h-full w-full bg-[#1a1a1a] w-0" />
+                   <div className="absolute top-0 left-0 h-full w-0 bg-[#1a1a1a]" />
                 )}
               </button>
             ))}

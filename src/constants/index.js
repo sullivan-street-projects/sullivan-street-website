@@ -66,7 +66,7 @@ export const CAPABILITIES = [
 export const PARTNER_OUTCOMES = [
   {
     id: 1,
-    metric: "From flat to consistent +30% in 90 days. Multi-channel optimization and execution management delivers consistent growth for a luxury beauty and skincare retailer.",
+    metric: "From flat to +30% in 90 days. Multi-channel execution delivered consistent growth for a luxury beauty retailer.",
     client: "Exclusive Beauty Club"
   },
   {
