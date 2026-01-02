@@ -79,7 +79,7 @@ Creative and content that converts attention into revenue while reinforcing bran
 
 ## Services
 headline: Your marketing investment, managed.
-subheadline: Three ways to engage. One point of contact. The right team for the job.
+subheadline: Three ways to work together. One point of contact. The right team for the job.
 
 ### Tiers
 #### Advisory
@@ -97,7 +97,7 @@ description: For leaders who need ownership. We become your growth department. W
 ### Comparison Categories
 - **Guidance**
   - Strategic Coaching: Strategy calls to review progress, troubleshoot issues, and align on priorities. (Bi-weekly for Advisory)
-  - Vendor Guidance: Recommendations on agency/contractor selection, negotiation, and management.
+  - Vendor Guidance: Recommendations on vendor selection, negotiation, and management.
   - Tool Recommendations: Guidance on martech stack, analytics tools, and operational software.
   - Growth Model: Forecasting, budget modeling, and unit economics.
   - Quarterly Business Reviews: Data-driven analysis with strategic recommendations.

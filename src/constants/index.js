@@ -110,7 +110,7 @@ export const COMPARISON_DATA = [
       },
       { 
         name: 'Vendor Guidance', 
-        description: 'Recommendations on agency/contractor selection, negotiation, and management.',
+        description: 'Recommendations on vendor selection, negotiation, and management.',
         advisory: true, 
         strategy: true, 
         management: true 

@@ -12,7 +12,7 @@ const Services = () => {
             Your marketing investment,<br /><span className="italic">managed.</span>
           </h2>
           <p className="font-sans text-[17px] md:text-[19px] leading-relaxed max-w-[800px] text-[#404040] font-light">
-            Three ways to engage. One point of contact. The right team for the job.
+            Three ways to work together. One point of contact. The right team for the job.
           </p>
         </FocusText>
       </div>
@@ -77,21 +77,53 @@ const Services = () => {
                      <div className="flex-1 min-w-[120px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>
                   </div>
                   
-                  <div className="space-y-0">                    {section.features.map((feature) => (                      <div key={feature.name} className="flex py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">                        {/* Service Name: Sticky Mobile */}                        <div className="w-[180px] pl-6 lg:pl-0 flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none group-hover:bg-[#fafafa]">                          <FocusText>                            <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>                            <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>                          </FocusText>                        </div>
-                        
-                        {/* Tiers Container */}
-                        <div className="flex-1 min-w-[120px] snap-start flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
-                          <FocusText>{renderCell(feature.advisory)}</FocusText>
-                        </div>
-                        <div className="flex-1 min-w-[120px] snap-start flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
-                          <FocusText>{renderCell(feature.strategy)}</FocusText>
-                        </div>
-                        <div className="flex-1 min-w-[120px] snap-start flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
-                          <FocusText>{renderCell(feature.management)}</FocusText>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                                    <div className="space-y-0">
+                  
+                                      {section.features.map((feature) => (
+                  
+                                        <div key={feature.name} className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
+                  
+                                          {/* Service Name: Sticky Mobile, Static Grid Desktop */}
+                  
+                                          <div className="w-[180px] lg:w-auto pl-6 lg:pl-0 flex-none sticky lg:static left-0 z-20 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 border-r border-[#e5e5e5]/40 lg:border-none group-hover:bg-[#fafafa]">
+                  
+                                            <FocusText>
+                  
+                                              <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
+                  
+                                              <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
+                  
+                                            </FocusText>
+                  
+                                          </div>
+                  
+                                          
+                  
+                                          {/* Tiers Container */}
+                  
+                                          <div className="flex-1 min-w-[120px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
+                  
+                                            <FocusText>{renderCell(feature.advisory)}</FocusText>
+                  
+                                          </div>
+                  
+                                          <div className="flex-1 min-w-[120px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
+                  
+                                            <FocusText>{renderCell(feature.strategy)}</FocusText>
+                  
+                                          </div>
+                  
+                                          <div className="flex-1 min-w-[120px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
+                  
+                                            <FocusText>{renderCell(feature.management)}</FocusText>
+                  
+                                          </div>
+                  
+                                        </div>
+                  
+                                      ))}
+                  
+                                    </div>
                 </div>
               </div>
             </div>
