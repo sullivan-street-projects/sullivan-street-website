@@ -82,17 +82,17 @@ headline: Your marketing investment, managed.
 subheadline: Three ways to work together. One point of contact. The right team for the job.
 
 ### Tiers
-#### Advisory
-subtitle: Strategic Guidance
-description: For founders who need an executive thought partner. We help you make the right decisions on hiring, vendors, and positioning. With honest guidance on what's working and what isn't.
+#### Management
+subtitle: Growth Leadership
+description: For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.
 
 #### Strategy
 subtitle: Go-to-Market Design
 description: For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence.
 
-#### Management
-subtitle: Growth Leadership
-description: For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.
+#### Advisory
+subtitle: Strategic Guidance
+description: For founders who need an executive thought partner. We help you make the right decisions on hiring, vendors, and positioning. With honest guidance on what's working and what isn't.
 
 ### Comparison Categories
 - **Guidance**

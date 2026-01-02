@@ -78,10 +78,10 @@ export const PARTNER_OUTCOMES = [
 
 export const TIERS = [
   {
-    id: 'advisory',
-    title: 'Advisory',
-    subtitle: 'Strategic Guidance',
-    description: "For founders who need an executive thought partner. We help you make the right decisions on hiring, vendors, and positioning. With honest guidance on what's working and what isn't.",
+    id: 'management',
+    title: 'Management',
+    subtitle: 'Growth Leadership',
+    description: 'For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
   },
   {
     id: 'strategy',
@@ -90,10 +90,10 @@ export const TIERS = [
     description: 'For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence.',
   },
   {
-    id: 'management',
-    title: 'Management',
-    subtitle: 'Growth Leadership',
-    description: 'For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
+    id: 'advisory',
+    title: 'Advisory',
+    subtitle: 'Strategic Guidance',
+    description: "For founders who need an executive thought partner. We help you make the right decisions on hiring, vendors, and positioning. With honest guidance on what's working and what isn't.",
   },
 ];
 

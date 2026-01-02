@@ -57,13 +57,13 @@ const Services = () => {
                 <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Service</span></FocusText>
               </div>
               <div className="text-center services-snap-target">
-                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Advisory</span></FocusText>
+                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Management</span></FocusText>
               </div>
               <div className="text-center services-snap-target">
                 <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Strategy</span></FocusText>
               </div>
               <div className="text-center services-snap-target">
-                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Management</span></FocusText>
+                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Advisory</span></FocusText>
               </div>
             </div>
           </div>
@@ -96,13 +96,13 @@ const Services = () => {
                 </FocusText>
               </div>
               <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
-                <FocusText>{renderCell(feature.advisory)}</FocusText>
+                <FocusText>{renderCell(feature.management)}</FocusText>
               </div>
               <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
                 <FocusText>{renderCell(feature.strategy)}</FocusText>
               </div>
               <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
-                <FocusText>{renderCell(feature.management)}</FocusText>
+                <FocusText>{renderCell(feature.advisory)}</FocusText>
               </div>
             </div>
           ))}
