@@ -35,6 +35,12 @@ const Services = () => {
 
       // Show header when section top is above main header
       const shouldFix = sectionRect.top <= mainHeaderHeight && sectionRect.bottom > mainHeaderHeight + tableHeaderHeight;
+
+      // Sync scroll position when header becomes fixed
+      if (shouldFix && !isHeaderFixed && bodyScrollRef.current && fixedHeaderScrollRef.current) {
+        fixedHeaderScrollRef.current.scrollLeft = bodyScrollRef.current.scrollLeft;
+      }
+
       setIsHeaderFixed(shouldFix);
 
       // Calculate slide-up offset as we approach section end
@@ -56,7 +62,7 @@ const Services = () => {
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHeaderFixed]);
 
   const HeaderContent = ({ scrollRef, onScroll }) => (
     <div
