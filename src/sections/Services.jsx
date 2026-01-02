@@ -64,7 +64,7 @@ const Services = () => {
       onScroll={onScroll}
       className="overflow-x-auto scrollbar-hide"
     >
-      <div className="min-w-[580px] md:min-w-[700px] grid grid-cols-[140px_1fr_1fr_1fr] md:grid-cols-[200px_1fr_1fr_1fr] gap-4 py-4">
+      <div className="min-w-[700px] grid grid-cols-[200px_1fr_1fr_1fr] gap-4 py-4">
         <div>
           <span className="font-serif text-lg text-[#1a1a1a]">Service</span>
         </div>
@@ -122,9 +122,9 @@ const Services = () => {
           onScroll={handleBodyScroll}
           className="overflow-x-auto"
         >
-          <div className="min-w-[580px] md:min-w-[700px]">
-            {/* Row 2: Tier Descriptions - Hidden on mobile */}
-            <div className="hidden md:grid grid-cols-[200px_1fr_1fr_1fr] gap-4 py-8 border-b border-[#d4d4d4]">
+          <div className="min-w-[700px]">
+            {/* Row 2: Tier Descriptions */}
+            <div className="grid grid-cols-[200px_1fr_1fr_1fr] gap-4 py-8 border-b border-[#d4d4d4]">
               <div className="sticky left-0 bg-[#FAFAF8] z-10"></div>
               {TIERS.map((tier) => (
                 <div key={tier.id} className="text-center">
@@ -140,7 +140,7 @@ const Services = () => {
             {FEATURES.map((feature, index) => (
               <div
                 key={feature.name}
-                className={`grid grid-cols-[140px_1fr_1fr_1fr] md:grid-cols-[200px_1fr_1fr_1fr] gap-4 py-6 items-start group hover:bg-[#fafafa] transition-colors duration-300 ${
+                className={`grid grid-cols-[200px_1fr_1fr_1fr] gap-4 py-6 items-start group hover:bg-[#fafafa] transition-colors duration-300 ${
                   index < FEATURES.length - 1 ? 'border-b border-[#d4d4d4]' : ''
                 }`}
               >
