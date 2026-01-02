@@ -22,7 +22,7 @@ const Services = () => {
         {TIERS.map((tier) => (
           <div key={tier.id} className="flex flex-col h-full px-0 md:px-8 lg:px-12 first:pl-0 last:pr-0">
             <FocusText className="h-full">
-              <div className="border-b border-[#1a1a1a] py-8 flex flex-col h-full bg-[#FAFAF8] z-10">
+              <div className="py-8 flex flex-col h-full bg-[#FAFAF8] z-10">
                 <h3 className="font-serif text-2xl md:text-3xl text-[#1a1a1a] mb-3">{tier.title}</h3>
                 <p className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] mb-8">{tier.subtitle}</p>
                 
@@ -47,12 +47,12 @@ const Services = () => {
             <div key={section.category} className="mb-20 last:mb-0">
               
               {/* Scrollable Table for this Category */}
-              <div className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 pt-4 snap-x snap-mandatory scroll-smooth scroll-pl-[140px]">
+              <div className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 pt-4 snap-x snap-mandatory scroll-smooth scroll-pl-[160px]">
                 <div className="min-w-[650px] lg:min-w-full lg:w-full">
                   
                   {/* Section Column Header - Static Top, Sticky Left */}
                   <div className="flex border-b border-[#1a1a1a] pb-4 mb-0 pt-4">
-                     <div className="w-[140px] pl-6 lg:pl-0 flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none flex items-end">
+                     <div className="w-[160px] pl-6 lg:pl-0 flex-none sticky left-0 z-30 bg-[#FAFAF8] pr-4 border-r border-[#e5e5e5]/40 md:border-none flex items-end">
                        <FocusText>
                          <h4 className="font-serif text-lg md:text-xl text-[#1a1a1a] leading-none">{section.category}</h4>
                        </FocusText>
@@ -66,7 +66,7 @@ const Services = () => {
                     {section.features.map((feature) => (
                       <div key={feature.name} className="flex py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
                         {/* Service Name: Sticky Mobile */}
-                        <div className="w-[140px] pl-6 lg:pl-0 flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none group-hover:bg-[#fafafa]">
+                        <div className="w-[160px] pl-6 lg:pl-0 flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none group-hover:bg-[#fafafa]">
                           <FocusText>
                             <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
                             <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
