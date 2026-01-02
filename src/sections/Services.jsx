@@ -56,7 +56,7 @@ const Services = () => {
                     
                     {/* Mobile Column Header */}
                     <div className="flex border-b border-[#d4d4d4] pb-4 mb-0 pt-4">
-                       <div className="w-[200px] pl-6 flex-none sticky left-0 z-20 bg-[#FAFAF8] pr-4 flex items-end">
+                       <div className="w-[200px] pl-6 flex-none sticky left-0 z-20 bg-[#FAFAF8] pr-4 border-r border-[#d4d4d4] flex items-end">
                          <span className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373]">{section.category}</span>
                        </div>
                        <div className="flex-1 min-w-[130px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>
@@ -68,7 +68,7 @@ const Services = () => {
                     <div className="space-y-0">
                       {section.features.map((feature) => (
                         <div key={feature.name} className="flex py-6 border-b border-[#d4d4d4] items-start group hover:bg-[#fafafa] transition-colors duration-300">
-                          <div className="w-[200px] pl-6 flex-none sticky left-0 z-20 bg-[#FAFAF8] pr-4 group-hover:bg-[#fafafa]">
+                          <div className="w-[200px] pl-6 flex-none sticky left-0 z-20 bg-[#FAFAF8] pr-4 border-r border-[#d4d4d4] group-hover:bg-[#fafafa]">
                             <FocusText>
                               <p className="font-sans text-[13px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
                               <p className="font-sans text-[12px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
