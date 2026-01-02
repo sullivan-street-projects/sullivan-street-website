@@ -42,11 +42,42 @@ const Services = () => {
             <h3 className="font-serif text-2xl mb-16 text-[#1a1a1a]">Partner Services</h3>
           </FocusText>
 
+          {/* Global Desktop Header */}
+          <div className="hidden lg:flex border-b border-[#e5e5e5] pb-6 mb-8">
+            <div className="w-[40%] font-sans text-xs uppercase tracking-widest font-bold text-[#737373]">Service</div>
+            <div className="flex-1 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
+            <div className="flex-1 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
+            <div className="flex-1 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
+          </div>
+
           {/* Comparison Sections */}
           {COMPARISON_DATA.map((section) => (
             <div key={section.category} className="mb-20 last:mb-0">
               
-                            {/* Scrollable Table for this Category */}              <div className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 pt-4 snap-x snap-mandatory scroll-smooth scroll-pl-[180px]">                <div className="min-w-[650px] lg:min-w-full lg:w-full">                  {/* Section Column Header - Static Top, Sticky Left */}                  <div className="flex border-b border-[#1a1a1a] pb-4 mb-0 pt-4">                     <div className="w-[180px] pl-6 lg:pl-0 flex-none sticky left-0 z-30 bg-[#FAFAF8] pr-4 border-r border-[#e5e5e5]/40 md:border-none flex items-end">                       <FocusText>                         <h4 className="font-serif text-lg md:text-xl text-[#1a1a1a] leading-none">{section.category}</h4>                       </FocusText>                     </div>                     <div className="flex-1 min-w-[120px] snap-start flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>                     <div className="flex-1 min-w-[120px] snap-start flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Strategy</span></FocusText></div>                     <div className="flex-1 min-w-[120px] snap-start flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>                  </div>                  <div className="space-y-0">                    {section.features.map((feature) => (                      <div key={feature.name} className="flex py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">                        {/* Service Name: Sticky Mobile */}                        <div className="w-[180px] pl-6 lg:pl-0 flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none group-hover:bg-[#fafafa]">                          <FocusText>                            <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>                            <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>                          </FocusText>                        </div>
+              {/* Desktop Category Title */}
+              <div className="hidden lg:block mb-8">
+                <FocusText>
+                  <h4 className="font-serif text-xl text-[#1a1a1a]">{section.category}</h4>
+                </FocusText>
+              </div>
+
+              {/* Scrollable Table for this Category */}
+              <div className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 pt-4 snap-x snap-mandatory scroll-smooth scroll-pl-[180px] lg:scroll-pl-0 lg:snap-none lg:overflow-visible">
+                <div className="min-w-[650px] lg:min-w-full lg:w-full">
+                  
+                  {/* Mobile Section Column Header - Sticky Top, Sticky Left */}
+                  <div className="flex lg:hidden border-b border-[#1a1a1a] pb-4 mb-0 pt-4">
+                     <div className="w-[180px] pl-6 flex-none sticky left-0 z-30 bg-[#FAFAF8] pr-4 border-r border-[#e5e5e5]/40 flex items-end">
+                       <FocusText>
+                         <h4 className="font-serif text-lg text-[#1a1a1a] leading-none">{section.category}</h4>
+                       </FocusText>
+                     </div>
+                     <div className="flex-1 min-w-[120px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>
+                     <div className="flex-1 min-w-[120px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Strategy</span></FocusText></div>
+                     <div className="flex-1 min-w-[120px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>
+                  </div>
+                  
+                  <div className="space-y-0">                    {section.features.map((feature) => (                      <div key={feature.name} className="flex py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">                        {/* Service Name: Sticky Mobile */}                        <div className="w-[180px] pl-6 lg:pl-0 flex-none sticky left-0 z-20 bg-[#FAFAF8] md:w-[40%] lg:w-[40%] lg:static lg:bg-transparent pr-4 border-r border-[#e5e5e5]/40 md:border-none group-hover:bg-[#fafafa]">                          <FocusText>                            <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>                            <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>                          </FocusText>                        </div>
                         
                         {/* Tiers Container */}
                         <div className="flex-1 min-w-[120px] snap-start flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
