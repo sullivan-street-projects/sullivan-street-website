@@ -17,7 +17,7 @@ export default function App() {
   return (
     <ErrorBoundary>
     <SmoothScroll>
-      <div className="min-h-screen bg-[#FAFAF8] text-[#1a1a1a] selection:bg-[#1a1a1a] selection:text-[#FAFAF8] relative overflow-x-hidden font-sans">
+      <div className="min-h-screen bg-[#FAFAF8] text-[#1a1a1a] selection:bg-[#1a1a1a] selection:text-[#FAFAF8] relative font-sans">
         
         {/* Subtle Grain Overlay - Dialed back for "felt not seen" effect */}
         <div className="fixed inset-0 pointer-events-none z-[50] opacity-[0.04]" 

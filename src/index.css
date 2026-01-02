@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
-html { 
-  scroll-behavior: smooth; 
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip; /* Prevents horizontal scroll without breaking CSS sticky */
 }
 
 .font-serif { 
