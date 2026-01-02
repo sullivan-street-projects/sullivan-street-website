@@ -213,4 +213,7 @@ export const COMPARISON_DATA = [
   }
 ];
 
+// Flattened features list (no category groupings)
+export const FEATURES = COMPARISON_DATA.flatMap(section => section.features);
+
 // End of file
