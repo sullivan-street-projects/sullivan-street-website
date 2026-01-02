@@ -43,13 +43,13 @@ const Services = () => {
             <div key={section.category} className="mb-20 last:mb-0">
               
               {/* Scrollable Table for this Category */}
-              <div className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 pt-4 snap-x snap-mandatory scroll-smooth scroll-pl-[180px] lg:scroll-pl-0 lg:snap-none lg:overflow-visible">
+              <div className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 pt-4 snap-x snap-mandatory scroll-smooth scroll-pl-[200px] lg:scroll-pl-0 lg:snap-none lg:overflow-visible">
                 <div className="min-w-[650px] lg:min-w-full lg:w-full">
                   
                   {/* Merged Header Row - Static Top, Sticky Left */}
                   <div className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 border-b border-[#1a1a1a] pb-4 mb-0 pt-4">
                      {/* Category Name Column */}
-                     <div className="w-[180px] pl-6 lg:pl-0 lg:w-auto flex-none sticky lg:static left-0 z-40 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 border-r border-[#d4d4d4] lg:border-none flex items-end">
+                     <div className="w-[200px] pl-6 lg:pl-0 lg:w-auto flex-none sticky lg:static left-0 z-40 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 lg:border-none flex items-end">
                        <FocusText>
                          <h4 className="font-serif text-lg md:text-xl text-[#1a1a1a] leading-none">{section.category}</h4>
                        </FocusText>
@@ -65,7 +65,7 @@ const Services = () => {
                     {section.features.map((feature) => (
                       <div key={feature.name} className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 py-6 border-b border-[#d4d4d4] items-start group hover:bg-[#fafafa] transition-colors duration-300">
                         {/* Service Name: Sticky Mobile, Static Grid Desktop */}
-                        <div className="w-[180px] lg:w-auto pl-6 lg:pl-0 flex-none sticky lg:static left-0 z-20 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 border-r border-[#d4d4d4] lg:border-none group-hover:bg-[#fafafa]">
+                        <div className="w-[200px] lg:w-auto pl-6 lg:pl-0 flex-none sticky lg:static left-0 z-20 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 lg:border-none group-hover:bg-[#fafafa]">
                           <FocusText>
                             <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
                             <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
