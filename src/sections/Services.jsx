@@ -1,7 +1,93 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Section from '../components/Section';
 import FocusText from '../components/FocusText';
 import { TIERS, COMPARISON_DATA } from '../constants';
+
+const TableSection = ({ section }) => {
+  const headerRef = useRef(null);
+  const bodyRef = useRef(null);
+
+  useEffect(() => {
+    const body = bodyRef.current;
+    const header = headerRef.current;
+
+    if (!body || !header) return;
+
+    const handleScroll = () => {
+      if (header.scrollLeft !== body.scrollLeft) {
+        header.scrollLeft = body.scrollLeft;
+      }
+    };
+
+    body.addEventListener('scroll', handleScroll);
+    return () => body.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const renderCell = (value) => {
+    if (value === true) return <span className="text-[#1a1a1a] text-lg">●</span>;
+    if (value === false) return <span className="text-[#a3a3a3] text-lg">−</span>;
+    return <span className="text-[#1a1a1a] font-medium">{value}</span>;
+  };
+
+  return (
+    <div className="mb-20 last:mb-0">
+      {/* Header Row - Sticky Vertically (Outside Scroll Container) */}
+      <div 
+        className="sticky top-20 z-30 bg-[#FAFAF8] border-b border-[#1a1a1a] overflow-hidden transition-shadow duration-300"
+      >
+        <div 
+          ref={headerRef} 
+          className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 pb-4 pt-4 min-w-[650px] lg:min-w-full overflow-hidden"
+        >
+           {/* Category Name - Sticky Left (Relative to Header Container) */}
+           <div className="w-[180px] pl-6 lg:pl-0 lg:w-auto flex-none sticky left-0 z-40 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 border-r border-[#d4d4d4] lg:border-none flex items-end">
+             <FocusText>
+               <h4 className="font-serif text-lg md:text-xl text-[#1a1a1a] leading-none">{section.category}</h4>
+             </FocusText>
+           </div>
+           
+           {/* Column Headers */}
+           <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>
+           <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Strategy</span></FocusText></div>
+           <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>
+        </div>
+      </div>
+
+      {/* Body Rows - Scrollable Container */}
+      <div 
+        ref={bodyRef}
+        className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 snap-x snap-mandatory scroll-smooth scroll-pl-[180px] lg:scroll-pl-0 lg:snap-none lg:overflow-visible no-scrollbar"
+      >
+        <div className="min-w-[650px] lg:min-w-full lg:w-full">
+          <div className="space-y-0">
+            {section.features.map((feature) => (
+              <div key={feature.name} className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 py-6 border-b border-[#d4d4d4] items-start group hover:bg-[#fafafa] transition-colors duration-300">
+                {/* Service Name: Sticky Mobile */}
+                <div className="w-[180px] pl-6 lg:pl-0 lg:w-auto flex-none sticky left-0 z-20 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 border-r border-[#d4d4d4] lg:border-none group-hover:bg-[#fafafa]">
+                  <FocusText>
+                    <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
+                    <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
+                  </FocusText>
+                </div>
+                
+                {/* Tiers Container */}
+                <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
+                  <FocusText>{renderCell(feature.advisory)}</FocusText>
+                </div>
+                <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
+                  <FocusText>{renderCell(feature.strategy)}</FocusText>
+                </div>
+                <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
+                  <FocusText>{renderCell(feature.management)}</FocusText>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Services = () => {
   return (
@@ -42,76 +128,14 @@ const Services = () => {
             <h3 className="font-serif text-2xl mb-16 text-[#1a1a1a]">Partner Services</h3>
           </FocusText>
 
-      {/* Comparison Table */}
-      <div className="border-t border-[#e5e5e5]">
-        <div className="py-20">
-          <FocusText>
-            <h3 className="font-serif text-2xl mb-16 text-[#1a1a1a]">Partner Services</h3>
-          </FocusText>
-
           {/* Unified Comparison Sections */}
           {COMPARISON_DATA.map((section) => (
-            <div key={section.category} className="mb-20 last:mb-0">
-              
-              {/* Scrollable Table for this Category */}
-              <div className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 pt-4 snap-x snap-mandatory scroll-smooth scroll-pl-[180px] lg:scroll-pl-0 lg:snap-none lg:overflow-visible">
-                <div className="min-w-[650px] lg:min-w-full lg:w-full">
-                  
-                  {/* Merged Header Row - Sticky Top & Left */}
-                  <div className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 border-b border-[#1a1a1a] pb-4 mb-0 pt-4 sticky top-20 z-30 bg-[#FAFAF8] transition-shadow duration-300">
-                     {/* Category Name Column */}
-                     <div className="w-[180px] pl-6 lg:pl-0 lg:w-auto flex-none sticky lg:static left-0 z-40 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 border-r border-[#d4d4d4] lg:border-none flex items-end">
-                       <FocusText>
-                         <h4 className="font-serif text-lg md:text-xl text-[#1a1a1a] leading-none">{section.category}</h4>
-                       </FocusText>
-                     </div>
-                     
-                     {/* Column Headers */}
-                     <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>
-                     <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Strategy</span></FocusText></div>
-                     <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>
-                  </div>
-                  
-                  <div className="space-y-0">
-                    {section.features.map((feature) => (
-                      <div key={feature.name} className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 py-6 border-b border-[#d4d4d4] items-start group hover:bg-[#fafafa] transition-colors duration-300">
-                        {/* Service Name: Sticky Mobile, Static Grid Desktop */}
-                        <div className="w-[180px] lg:w-auto pl-6 lg:pl-0 flex-none sticky lg:static left-0 z-20 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 border-r border-[#d4d4d4] lg:border-none group-hover:bg-[#fafafa]">
-                          <FocusText>
-                            <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
-                            <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
-                          </FocusText>
-                        </div>
-                        
-                        {/* Tiers Container */}
-                        <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
-                          <FocusText>{renderCell(feature.advisory)}</FocusText>
-                        </div>
-                        <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
-                          <FocusText>{renderCell(feature.strategy)}</FocusText>
-                        </div>
-                        <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
-                          <FocusText>{renderCell(feature.management)}</FocusText>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <TableSection key={section.category} section={section} />
           ))}
-        </div>
-      </div>
         </div>
       </div>
     </Section>
   );
-};
-
-const renderCell = (value) => {
-  if (value === true) return <span className="text-[#1a1a1a] text-lg">●</span>;
-  if (value === false) return <span className="text-[#a3a3a3] text-lg">−</span>;
-  return <span className="text-[#1a1a1a] font-medium">{value}</span>;
 };
 
 export default Services;
