@@ -37,7 +37,7 @@ html {
 /* Services table scroll snap - mobile only */
 @media (max-width: 767px) {
   .services-scroll {
-    scroll-snap-type: x proximity;
+    scroll-snap-type: x mandatory;
     scroll-padding-left: 166px; /* 150px sticky col + 16px gap */
     -webkit-overflow-scrolling: touch;
   }
