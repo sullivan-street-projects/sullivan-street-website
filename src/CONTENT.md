@@ -94,24 +94,45 @@ description: For teams ready to build the playbook. We audit what you have, mode
 subtitle: Strategic Guidance
 description: For founders who need an executive thought partner. We help you make the right decisions on hiring, vendors, and positioning. With honest guidance on what's working and what isn't.
 
-### Comparison Categories
-- **Guidance**
-  - Strategic Coaching: Strategy calls to review progress, troubleshoot issues, and align on priorities. (Bi-weekly for Advisory)
-  - Vendor Guidance: Recommendations on vendor selection, negotiation, and management.
-  - Tool Recommendations: Guidance on martech stack, analytics tools, and operational software.
-  - Growth Modeling: Forecasting, budget modeling, and unit economics review.
-  - Quarterly Business Reviews: Data-driven analysis with strategic recommendations.
-- **Playbooks**
-  - Project Roadmap: 30/60/90-day action plans with milestone tracking.
-  - Go-to-Market Plan: Positioning, channel selection, and GTM audit to identify gaps and opportunities.
-  - Marketing SOPs: Repeatable processes for marketing ops and campaigns.
-  - Creative & Campaign Briefs: Strategic direction and success metrics for designers and copywriters.
-- **Execution**
-  - Vendor Oversight: Managing vendor relationships, contracts, and deliverable quality.
-  - Talent Sourcing: Recruiting and onboarding contractors, agencies, and freelancers.
-  - Team Orchestration: Aligning internal and external teams on timelines and deliverables.
-  - Execution Oversight: Day-to-day campaign management and quality control.
-  - Performance Monitoring: KPI tracking, metrics review, and reporting.
+### Services by Package
+
+**Advisory:**
+- Strategic Coaching (Bi-weekly)
+- Vendor Guidance
+- Tool Recommendations
+
+**Strategy** (includes everything in Advisory, plus):
+- Strategic Coaching (Weekly)
+- Growth Modeling
+- Quarterly Business Reviews
+- Project Roadmap
+- Go-to-Market Plan
+- Marketing SOPs
+
+**Management** (includes everything in Strategy, plus):
+- Strategic Coaching (Daily)
+- Creative & Campaign Briefs
+- Vendor Oversight
+- Talent Sourcing
+- Team Orchestration
+- Execution Oversight
+- Performance Monitoring
+
+### Service Descriptions
+- Strategic Coaching: Strategy calls to review progress, troubleshoot issues, and align on priorities.
+- Vendor Guidance: Recommendations on vendor selection, negotiation, and management.
+- Tool Recommendations: Guidance on martech stack, analytics tools, and operational software.
+- Growth Modeling: Forecasting, budget modeling, and unit economics review.
+- Quarterly Business Reviews: Data-driven analysis with strategic recommendations.
+- Project Roadmap: 30/60/90-day action plans with milestone tracking.
+- Go-to-Market Plan: Positioning, channel selection, and GTM audit to identify gaps and opportunities.
+- Marketing SOPs: Repeatable processes for marketing ops and campaigns.
+- Creative & Campaign Briefs: Strategic direction and success metrics for designers and copywriters.
+- Vendor Oversight: Managing vendor relationships, contracts, and deliverable quality.
+- Talent Sourcing: Recruiting and onboarding contractors, agencies, and freelancers.
+- Team Orchestration: Aligning internal and external teams on timelines and deliverables.
+- Execution Oversight: Day-to-day campaign management and quality control.
+- Performance Monitoring: KPI tracking, metrics review, and reporting.
 
 ---
 
