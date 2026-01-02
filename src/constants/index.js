@@ -122,12 +122,12 @@ export const COMPARISON_DATA = [
         strategy: true, 
         management: true 
       },
-      { 
-        name: 'Growth Model', 
-        description: 'Forecasting, budget modeling, and unit economics.',
-        advisory: false, 
-        strategy: true, 
-        management: true 
+      {
+        name: 'Growth Modeling',
+        description: 'Forecasting, budget modeling, and unit economics review.',
+        advisory: false,
+        strategy: true,
+        management: true
       },
       { 
         name: 'Quarterly Business Reviews', 
@@ -148,12 +148,12 @@ export const COMPARISON_DATA = [
         strategy: true, 
         management: true 
       },
-      { 
-        name: 'Go-to-Market Plan', 
-        description: 'Strategy for positioning and channel selection. Includes a GTM audit to identify gaps and growth opportunities.',
-        advisory: false, 
-        strategy: true, 
-        management: true 
+      {
+        name: 'Go-to-Market Plan',
+        description: 'Positioning, channel selection, and GTM audit to identify gaps and opportunities.',
+        advisory: false,
+        strategy: true,
+        management: true
       },
       { 
         name: 'Marketing SOPs', 
@@ -174,12 +174,12 @@ export const COMPARISON_DATA = [
   {
     category: 'Execution',
     features: [
-      { 
-        name: 'Vendor Oversight', 
-        description: 'Managing vendor relationships and deliverable reviews.',
-        advisory: false, 
-        strategy: false, 
-        management: true 
+      {
+        name: 'Vendor Oversight',
+        description: 'Managing vendor relationships, contracts, and deliverable quality.',
+        advisory: false,
+        strategy: false,
+        management: true
       },
       { 
         name: 'Talent Sourcing', 
@@ -188,26 +188,26 @@ export const COMPARISON_DATA = [
         strategy: false, 
         management: true 
       },
-      { 
-        name: 'Team Orchestration', 
-        description: 'Coordinating internal and external teams on deliverables.',
-        advisory: false, 
-        strategy: false, 
-        management: true 
+      {
+        name: 'Team Orchestration',
+        description: 'Aligning internal and external teams on timelines and deliverables.',
+        advisory: false,
+        strategy: false,
+        management: true
       },
-      { 
-        name: 'Execution Oversight', 
-        description: 'Day-to-day management of campaigns and quality control.',
-        advisory: false, 
-        strategy: false, 
-        management: true 
+      {
+        name: 'Execution Oversight',
+        description: 'Day-to-day campaign management and quality control.',
+        advisory: false,
+        strategy: false,
+        management: true
       },
-      { 
-        name: 'Performance Monitoring', 
-        description: 'KPI tracking, metrics review, and performance reporting.',
-        advisory: false, 
-        strategy: false, 
-        management: true 
+      {
+        name: 'Performance Monitoring',
+        description: 'KPI tracking, metrics review, and reporting.',
+        advisory: false,
+        strategy: false,
+        management: true
       },
     ]
   }

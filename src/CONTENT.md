@@ -99,19 +99,19 @@ description: For leaders who need ownership. We become your growth department. W
   - Strategic Coaching: Strategy calls to review progress, troubleshoot issues, and align on priorities. (Bi-weekly for Advisory)
   - Vendor Guidance: Recommendations on vendor selection, negotiation, and management.
   - Tool Recommendations: Guidance on martech stack, analytics tools, and operational software.
-  - Growth Model: Forecasting, budget modeling, and unit economics.
+  - Growth Modeling: Forecasting, budget modeling, and unit economics review.
   - Quarterly Business Reviews: Data-driven analysis with strategic recommendations.
 - **Playbooks**
   - Project Roadmap: 30/60/90-day action plans with milestone tracking.
-  - Go-to-Market Plan: Strategy for positioning and channel selection. Includes a GTM audit to identify gaps and growth opportunities.
+  - Go-to-Market Plan: Positioning, channel selection, and GTM audit to identify gaps and opportunities.
   - Marketing SOPs: Repeatable processes for marketing ops and campaigns.
   - Creative & Campaign Briefs: Strategic direction and success metrics for designers and copywriters.
 - **Execution**
-  - Vendor Oversight: Managing vendor relationships and deliverable reviews.
+  - Vendor Oversight: Managing vendor relationships, contracts, and deliverable quality.
   - Talent Sourcing: Recruiting and onboarding contractors, agencies, and freelancers.
-  - Team Orchestration: Coordinating internal and external teams on deliverables.
-  - Execution Oversight: Day-to-day management of campaigns and quality control.
-  - Performance Monitoring: KPI tracking, metrics review, and performance reporting.
+  - Team Orchestration: Aligning internal and external teams on timelines and deliverables.
+  - Execution Oversight: Day-to-day campaign management and quality control.
+  - Performance Monitoring: KPI tracking, metrics review, and reporting.
 
 ---
 
