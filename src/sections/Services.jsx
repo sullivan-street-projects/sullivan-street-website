@@ -42,39 +42,28 @@ const Services = () => {
             <h3 className="font-serif text-2xl mb-16 text-[#1a1a1a]">Partner Services</h3>
           </FocusText>
 
-          {/* Global Desktop Header */}
-          <div className="hidden lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] border-b border-[#d4d4d4] pb-6 mb-8 gap-4">
-            <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373]">Service</div>
-            <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
-            <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
-            <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
-          </div>
-
-          {/* Comparison Sections */}
-          {COMPARISON_DATA.map((section) => (
-            <div key={section.category} className="mb-20 last:mb-0">
+          {/* Unified Scroll Container */}
+          <div className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 pt-4 snap-x snap-mandatory scroll-smooth scroll-pl-[180px] lg:scroll-pl-0 lg:snap-none lg:overflow-visible">
+            <div className="min-w-[650px] lg:min-w-full lg:w-full">
               
-              {/* Desktop Category Title */}
-              <div className="hidden lg:block mb-8">
-                <FocusText>
-                  <h4 className="font-serif text-xl text-[#1a1a1a]">{section.category}</h4>
-                </FocusText>
+              {/* Global Header */}
+              <div className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] border-b border-[#d4d4d4] pb-6 mb-8 gap-4">
+                <div className="w-[180px] pl-6 lg:pl-0 lg:w-auto flex-none sticky left-0 z-30 bg-[#FAFAF8] lg:static pr-4 lg:pr-0 border-r border-[#d4d4d4] lg:border-none">
+                  <span className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373]">Service</span>
+                </div>
+                <div className="flex-1 min-w-[130px] lg:min-w-0 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
+                <div className="flex-1 min-w-[130px] lg:min-w-0 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
+                <div className="flex-1 min-w-[130px] lg:min-w-0 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
               </div>
 
-              {/* Scrollable Table for this Category */}
-              <div className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 pt-4 snap-x snap-mandatory scroll-smooth scroll-pl-[180px] lg:scroll-pl-0 lg:snap-none lg:overflow-visible">
-                <div className="min-w-[650px] lg:min-w-full lg:w-full">
+              {COMPARISON_DATA.map((section) => (
+                <div key={section.category} className="mb-20 last:mb-0">
                   
-                  {/* Mobile Section Column Header - Sticky Top, Sticky Left */}
-                  <div className="flex lg:hidden border-b border-[#1a1a1a] pb-4 mb-0 pt-4">
-                     <div className="w-[180px] pl-6 flex-none sticky left-0 z-30 bg-[#FAFAF8] pr-4 border-r border-[#d4d4d4] flex items-end">
-                       <FocusText>
-                         <h4 className="font-serif text-lg text-[#1a1a1a] leading-none">{section.category}</h4>
-                       </FocusText>
-                     </div>
-                     <div className="flex-1 min-w-[130px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>
-                     <div className="flex-1 min-w-[130px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Strategy</span></FocusText></div>
-                     <div className="flex-1 min-w-[130px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>
+                  {/* Category Title - Sticky Left for horizontal scroll context */}
+                  <div className="mb-8 sticky left-0 z-10 bg-[#FAFAF8] lg:static lg:bg-transparent inline-block lg:block pr-4 lg:pr-0">
+                    <FocusText>
+                      <h4 className="font-serif text-xl text-[#1a1a1a] pl-6 lg:pl-0">{section.category}</h4>
+                    </FocusText>
                   </div>
                   
                   <div className="space-y-0">
@@ -102,9 +91,9 @@ const Services = () => {
                     ))}
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </Section>
