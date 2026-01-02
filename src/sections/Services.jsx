@@ -43,11 +43,11 @@ const Services = () => {
           </FocusText>
 
           {/* Global Desktop Header */}
-          <div className="hidden lg:flex border-b border-[#e5e5e5] pb-6 mb-8">
-            <div className="w-[40%] font-sans text-xs uppercase tracking-widest font-bold text-[#737373]">Service</div>
-            <div className="flex-1 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
-            <div className="flex-1 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
-            <div className="flex-1 font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
+          <div className="hidden lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] border-b border-[#d4d4d4] pb-6 mb-8 gap-4">
+            <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373]">Service</div>
+            <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Advisory</div>
+            <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Strategy</div>
+            <div className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] text-center">Management</div>
           </div>
 
           {/* Comparison Sections */}
@@ -67,63 +67,40 @@ const Services = () => {
                   
                   {/* Mobile Section Column Header - Sticky Top, Sticky Left */}
                   <div className="flex lg:hidden border-b border-[#1a1a1a] pb-4 mb-0 pt-4">
-                     <div className="w-[180px] pl-6 flex-none sticky left-0 z-30 bg-[#FAFAF8] pr-4 border-r border-[#e5e5e5]/40 flex items-end">
+                     <div className="w-[180px] pl-6 flex-none sticky left-0 z-30 bg-[#FAFAF8] pr-4 border-r border-[#d4d4d4] flex items-end">
                        <FocusText>
                          <h4 className="font-serif text-lg text-[#1a1a1a] leading-none">{section.category}</h4>
                        </FocusText>
                      </div>
-                     <div className="flex-1 min-w-[120px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>
-                     <div className="flex-1 min-w-[120px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Strategy</span></FocusText></div>
-                     <div className="flex-1 min-w-[120px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>
+                     <div className="flex-1 min-w-[130px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>
+                     <div className="flex-1 min-w-[130px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Strategy</span></FocusText></div>
+                     <div className="flex-1 min-w-[130px] snap-start flex justify-center items-end pr-6"><FocusText><span className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>
                   </div>
                   
-                                    <div className="space-y-0">
-                  
-                                      {section.features.map((feature) => (
-                  
-                                        <div key={feature.name} className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 py-6 border-b border-[#e5e5e5]/60 items-start group hover:bg-[#fafafa] transition-colors duration-300">
-                  
-                                          {/* Service Name: Sticky Mobile, Static Grid Desktop */}
-                  
-                                          <div className="w-[180px] lg:w-auto pl-6 lg:pl-0 flex-none sticky lg:static left-0 z-20 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 border-r border-[#e5e5e5]/40 lg:border-none group-hover:bg-[#fafafa]">
-                  
-                                            <FocusText>
-                  
-                                              <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
-                  
-                                              <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
-                  
-                                            </FocusText>
-                  
-                                          </div>
-                  
-                                          
-                  
-                                          {/* Tiers Container */}
-                  
-                                          <div className="flex-1 min-w-[120px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
-                  
-                                            <FocusText>{renderCell(feature.advisory)}</FocusText>
-                  
-                                          </div>
-                  
-                                          <div className="flex-1 min-w-[120px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
-                  
-                                            <FocusText>{renderCell(feature.strategy)}</FocusText>
-                  
-                                          </div>
-                  
-                                          <div className="flex-1 min-w-[120px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
-                  
-                                            <FocusText>{renderCell(feature.management)}</FocusText>
-                  
-                                          </div>
-                  
-                                        </div>
-                  
-                                      ))}
-                  
-                                    </div>
+                  <div className="space-y-0">
+                    {section.features.map((feature) => (
+                      <div key={feature.name} className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 py-6 border-b border-[#d4d4d4] items-start group hover:bg-[#fafafa] transition-colors duration-300">
+                        {/* Service Name: Sticky Mobile, Static Grid Desktop */}
+                        <div className="w-[180px] lg:w-auto pl-6 lg:pl-0 flex-none sticky lg:static left-0 z-20 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 border-r border-[#d4d4d4] lg:border-none group-hover:bg-[#fafafa]">
+                          <FocusText>
+                            <p className="font-sans text-[13px] md:text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
+                            <p className="font-sans text-[12px] md:text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
+                          </FocusText>
+                        </div>
+                        
+                        {/* Tiers Container */}
+                        <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
+                          <FocusText>{renderCell(feature.advisory)}</FocusText>
+                        </div>
+                        <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
+                          <FocusText>{renderCell(feature.strategy)}</FocusText>
+                        </div>
+                        <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center pt-1 font-sans text-[13px] text-[#737373] pr-6 lg:pr-0">
+                          <FocusText>{renderCell(feature.management)}</FocusText>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -136,7 +113,7 @@ const Services = () => {
 
 const renderCell = (value) => {
   if (value === true) return <span className="text-[#1a1a1a] text-lg">●</span>;
-  if (value === false) return <span className="text-[#e5e5e5] text-lg">−</span>;
+  if (value === false) return <span className="text-[#a3a3a3] text-lg">−</span>;
   return <span className="text-[#1a1a1a] font-medium">{value}</span>;
 };
 
