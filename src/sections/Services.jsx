@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Section from '../components/Section';
 import FocusText from '../components/FocusText';
 import { TIERS, FEATURES } from '../constants';
 
 const Services = () => {
+  const scrollRef = useRef(null);
+  const [showScrollHint, setShowScrollHint] = useState(true);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const handleScroll = () => {
+      if (el.scrollLeft > 20) {
+        setShowScrollHint(false);
+      }
+    };
+
+    el.addEventListener('scroll', handleScroll);
+    return () => el.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <Section id="services" label="Services" padding="py-16 md:py-24 lg:py-32">
       <div className="mb-12 md:mb-16">
@@ -18,31 +35,44 @@ const Services = () => {
       </div>
 
       {/* Services Table - Single scrollable container */}
-      <div className="overflow-x-auto">
-        <div className="min-w-[700px]">
-          {/* Header Row - CSS sticky */}
-          <div className="sticky top-20 z-20 bg-[#FAFAF8]/95 backdrop-blur-sm border-b border-[#d4d4d4]">
-            <div className="grid grid-cols-[200px_1fr_1fr_1fr] gap-4 py-4">
-              <div className="sticky left-0 bg-[#FAFAF8] z-30">
-                <span className="font-serif text-lg text-[#1a1a1a]">Service</span>
+      <div className="relative">
+        {/* Scroll hint - mobile only */}
+        <div
+          className={`absolute right-0 top-0 bottom-0 w-12 pointer-events-none z-20 lg:hidden transition-opacity duration-500 ${showScrollHint ? 'opacity-100' : 'opacity-0'}`}
+          style={{ background: 'linear-gradient(to right, transparent, #FAFAF8)' }}
+        >
+          <div className="absolute right-2 top-1/2 -translate-y-1/2 animate-pulse">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" strokeWidth="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </div>
+        </div>
+
+        <div ref={scrollRef} className="overflow-x-auto scrollbar-hide services-scroll">
+        <div className="min-w-[680px]">
+          {/* Header Row - scrolls with content, no vertical sticky */}
+          <div className="bg-[#FAFAF8] border-b border-[#d4d4d4] pr-8">
+            <div className="services-grid py-4">
+              <div className="sticky left-0 z-30 pr-6" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}>
+                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Service</span></FocusText>
               </div>
-              <div className="text-center">
-                <span className="font-serif text-lg text-[#1a1a1a]">Advisory</span>
+              <div className="text-center services-snap-target">
+                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Advisory</span></FocusText>
               </div>
-              <div className="text-center">
-                <span className="font-serif text-lg text-[#1a1a1a]">Strategy</span>
+              <div className="text-center services-snap-target">
+                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Strategy</span></FocusText>
               </div>
-              <div className="text-center">
-                <span className="font-serif text-lg text-[#1a1a1a]">Management</span>
+              <div className="text-center services-snap-target">
+                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Management</span></FocusText>
               </div>
             </div>
           </div>
 
           {/* Row 2: Tier Descriptions */}
-          <div className="grid grid-cols-[200px_1fr_1fr_1fr] gap-4 py-8 border-b border-[#d4d4d4]">
-            <div className="sticky left-0 bg-[#FAFAF8] z-10"></div>
+          <div className="services-grid py-8 border-b border-[#d4d4d4] pr-8">
+            <div className="sticky left-0 z-10 pr-6" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}></div>
             {TIERS.map((tier) => (
-              <div key={tier.id} className="text-center">
+              <div key={tier.id} className="text-center services-snap-target">
                 <FocusText>
                   <p className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] mb-4">{tier.subtitle}</p>
                   <p className="font-sans text-[13px] leading-relaxed text-[#404040] font-light">{tier.description}</p>
@@ -55,27 +85,28 @@ const Services = () => {
           {FEATURES.map((feature, index) => (
             <div
               key={feature.name}
-              className={`grid grid-cols-[200px_1fr_1fr_1fr] gap-4 py-6 items-start group hover:bg-[#fafafa] transition-colors duration-300 ${
+              className={`services-grid py-6 items-start group hover:bg-[#fafafa] transition-colors duration-300 pr-8 ${
                 index < FEATURES.length - 1 ? 'border-b border-[#d4d4d4]' : ''
               }`}
             >
-              <div className="sticky left-0 bg-[#FAFAF8] pr-4 z-10 group-hover:bg-[#fafafa] transition-colors duration-300">
+              <div className="sticky left-0 pr-6 z-10" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}>
                 <FocusText>
                   <p className="font-sans text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
                   <p className="font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
                 </FocusText>
               </div>
-              <div className="pt-1 text-center font-sans text-[13px] text-[#737373]">
+              <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
                 <FocusText>{renderCell(feature.advisory)}</FocusText>
               </div>
-              <div className="pt-1 text-center font-sans text-[13px] text-[#737373]">
+              <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
                 <FocusText>{renderCell(feature.strategy)}</FocusText>
               </div>
-              <div className="pt-1 text-center font-sans text-[13px] text-[#737373]">
+              <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
                 <FocusText>{renderCell(feature.management)}</FocusText>
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </Section>

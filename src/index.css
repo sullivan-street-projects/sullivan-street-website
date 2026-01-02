@@ -21,3 +21,27 @@ html {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Chrome, Safari, Opera */
 }
+
+/* Services table responsive grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: 150px 180px 180px 180px;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: 280px 1fr 1fr 1fr;
+  }
+}
+
+/* Services table scroll snap - mobile only */
+@media (max-width: 767px) {
+  .services-scroll {
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 166px; /* 150px sticky col + 16px gap */
+    -webkit-overflow-scrolling: touch;
+  }
+  .services-snap-target {
+    scroll-snap-align: start;
+  }
+}
