@@ -88,7 +88,7 @@ description: For founders who need an executive thought partner. We help you mak
 
 #### Strategy
 subtitle: Go-to-Market Design
-description: For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence. We deliver the strategic intellectual property that becomes your brand’s operating system.
+description: For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence.
 
 #### Management
 subtitle: Growth Leadership

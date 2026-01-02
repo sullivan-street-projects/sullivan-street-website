@@ -87,7 +87,7 @@ export const TIERS = [
     id: 'strategy',
     title: 'Strategy',
     subtitle: 'Go-to-Market Design',
-    description: 'For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence. We deliver the strategic intellectual property that becomes your brand’s operating system.',
+    description: 'For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence.',
   },
   {
     id: 'management',
