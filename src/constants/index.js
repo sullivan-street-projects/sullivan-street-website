@@ -39,7 +39,7 @@ export const VALUE_PROPS = [
     description: 'Hand-selected specialists for media, creative, analytics, and operations. We manage the build so you don’t have to.'
   },
   {
-    title: 'Outcome-Obsessed, AI-Enabled',
+    title: 'Outcome Obsessed, AI Enabled',
     description: 'AI powers our research, strategy, and reporting so you get sharper insights, faster deliverables, and more from every dollar invested.'
   }
 ];

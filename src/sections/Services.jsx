@@ -51,29 +51,29 @@ const Services = () => {
         <div ref={scrollRef} className="overflow-x-auto scrollbar-hide services-scroll">
         <div className="min-w-[680px]">
           {/* Header Row - scrolls with content, no vertical sticky */}
-          <div className="bg-[#FAFAF8] border-b border-[#d4d4d4] pr-8">
+          <div className="bg-[#FAFAF8] border-b border-[#e5e5e5] pr-8">
             <div className="services-grid py-4">
               <div className="sticky left-0 z-30 pr-6" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}>
-                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Service</span></FocusText>
+                <FocusText noBlur><span className="font-serif text-lg text-[#1a1a1a]">Service</span></FocusText>
               </div>
               <div className="text-center services-snap-target">
-                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Management</span></FocusText>
+                <FocusText noBlur><span className="font-serif text-lg text-[#1a1a1a]">Management</span></FocusText>
               </div>
               <div className="text-center services-snap-target">
-                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Strategy</span></FocusText>
+                <FocusText noBlur><span className="font-serif text-lg text-[#1a1a1a]">Strategy</span></FocusText>
               </div>
               <div className="text-center services-snap-target">
-                <FocusText><span className="font-serif text-lg text-[#1a1a1a]">Advisory</span></FocusText>
+                <FocusText noBlur><span className="font-serif text-lg text-[#1a1a1a]">Advisory</span></FocusText>
               </div>
             </div>
           </div>
 
           {/* Row 2: Tier Descriptions */}
-          <div className="services-grid py-8 border-b border-[#d4d4d4] pr-8">
+          <div className="services-grid py-8 border-b border-[#e5e5e5] pr-8">
             <div className="sticky left-0 z-10 pr-6" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}></div>
             {TIERS.map((tier) => (
               <div key={tier.id} className="text-center services-snap-target">
-                <FocusText>
+                <FocusText noBlur>
                   <p className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] mb-4">{tier.subtitle}</p>
                   <p className="font-sans text-[13px] leading-relaxed text-[#404040] font-light">{tier.description}</p>
                 </FocusText>
@@ -86,23 +86,23 @@ const Services = () => {
             <div
               key={feature.name}
               className={`services-grid py-6 items-start group hover:bg-[#fafafa] transition-colors duration-300 pr-8 ${
-                index < FEATURES.length - 1 ? 'border-b border-[#d4d4d4]' : ''
+                index < FEATURES.length - 1 ? 'border-b border-[#e5e5e5]' : ''
               }`}
             >
               <div className="sticky left-0 pr-6 z-10" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}>
-                <FocusText>
+                <FocusText noBlur>
                   <p className="font-sans text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
                   <p className="font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
                 </FocusText>
               </div>
               <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
-                <FocusText>{renderCell(feature.management)}</FocusText>
+                <FocusText noBlur>{renderCell(feature.management)}</FocusText>
               </div>
               <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
-                <FocusText>{renderCell(feature.strategy)}</FocusText>
+                <FocusText noBlur>{renderCell(feature.strategy)}</FocusText>
               </div>
               <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
-                <FocusText>{renderCell(feature.advisory)}</FocusText>
+                <FocusText noBlur>{renderCell(feature.advisory)}</FocusText>
               </div>
             </div>
           ))}

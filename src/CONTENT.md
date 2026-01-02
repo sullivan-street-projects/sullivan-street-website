@@ -52,13 +52,13 @@ CMO, VP, or Director-level leadership—embedded with your team from planning th
 #### Marketing General Contractor
 Hand-selected specialists for media, creative, analytics, and operations. We manage the build so you don't have to.
 
-#### Outcome-Obsessed, AI-Enabled
+#### Outcome Obsessed, AI Enabled
 AI powers our research, strategy, and reporting so you get sharper insights, faster deliverables, and more from every dollar invested.
 
 ---
 
 ## Approach
-headline: Tailor-made growth marketing.
+headline: Tailor made growth marketing.
 body: We're a fractional consultancy delivering enterprise-grade advisory, strategy, and marketing leadership. We start with your business objectives, build the strategy to hit them, activate the right channels, and execute the campaigns that convert.
 
 ### Capabilities
