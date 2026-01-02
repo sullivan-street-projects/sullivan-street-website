@@ -18,7 +18,7 @@ const Services = () => {
       </div>
 
       {/* Tiers Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 mb-20">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 md:divide-x md:divide-[#e5e5e5] mb-20">
         {TIERS.map((tier) => (
           <div key={tier.id} className="flex flex-col h-full px-0 md:px-8 lg:px-12 first:pl-0 last:pr-0">
             <FocusText className="h-full">
@@ -38,30 +38,44 @@ const Services = () => {
       {/* Comparison Table */}
       <div className="border-t border-[#e5e5e5]">
         <div className="py-12">
-          {/* Comparison Sections */}
-          {COMPARISON_DATA.map((section) => (
-            <div key={section.category} className="mb-20 last:mb-0">
+          
+          {/* Unified Master Table Container */}
+          <div className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 pt-4 snap-x snap-mandatory scroll-smooth scroll-pl-[200px] lg:scroll-pl-0 lg:snap-none lg:overflow-visible">
+            <div className="min-w-[650px] lg:min-w-full lg:w-full">
               
-              {/* Scrollable Table for this Category */}
-              <div className="overflow-x-auto -mx-6 lg:mx-0 lg:px-0 pb-4 pt-4 snap-x snap-mandatory scroll-smooth scroll-pl-[200px] lg:scroll-pl-0 lg:snap-none lg:overflow-visible">
-                <div className="min-w-[650px] lg:min-w-full lg:w-full">
-                  
-                  {/* Merged Header Row - Static Top, Sticky Left */}
-                  <div className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 border-b border-[#1a1a1a] pb-4 mb-0 pt-4">
-                     {/* Category Name Column */}
-                     <div className="w-[200px] pl-6 lg:pl-0 lg:w-auto flex-none sticky lg:static left-0 z-40 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 lg:border-none flex items-end">
-                       <FocusText>
-                         <h4 className="font-serif text-lg md:text-xl text-[#1a1a1a] leading-none">{section.category}</h4>
-                       </FocusText>
-                     </div>
-                     
-                     {/* Column Headers */}
-                     <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>
-                     <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Strategy</span></FocusText></div>
-                     <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>
-                  </div>
-                  
-                  <div className="space-y-0">
+              {/* Global Header Row - Sticky Top & Left */}
+              <div className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 border-b border-[#1a1a1a] pb-4 mb-0 pt-4 sticky top-20 z-30 bg-[#FAFAF8] transition-shadow duration-300">
+                 {/* Service Label Column */}
+                 <div className="w-[200px] pl-6 lg:pl-0 lg:w-auto flex-none sticky lg:static left-0 z-40 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 lg:border-none flex items-end">
+                   <FocusText>
+                     <span className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373]">Service</span>
+                   </FocusText>
+                 </div>
+                 
+                 {/* Column Headers */}
+                 <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Advisory</span></FocusText></div>
+                 <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Strategy</span></FocusText></div>
+                 <div className="flex-1 min-w-[130px] lg:min-w-0 lg:w-auto snap-start lg:snap-none flex justify-center items-end pr-6 lg:pr-0"><FocusText><span className="font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold text-[#737373]">Management</span></FocusText></div>
+              </div>
+              
+              {/* Body Content */}
+              <div className="space-y-0">
+                {COMPARISON_DATA.map((section) => (
+                  <React.Fragment key={section.category}>
+                    {/* Category Divider Row */}
+                    <div className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 py-4 border-b border-[#d4d4d4] bg-[#FAFAF8] items-center">
+                      <div className="w-[200px] pl-6 lg:pl-0 lg:w-auto flex-none sticky lg:static left-0 z-20 bg-[#FAFAF8] lg:bg-transparent pr-4 lg:pr-0 lg:border-none">
+                        <FocusText>
+                          <h4 className="font-serif text-lg text-[#1a1a1a]">{section.category}</h4>
+                        </FocusText>
+                      </div>
+                      {/* Empty cells for tiers on divider row */}
+                      <div className="flex-1 min-w-[130px] lg:min-w-0"></div>
+                      <div className="flex-1 min-w-[130px] lg:min-w-0"></div>
+                      <div className="flex-1 min-w-[130px] lg:min-w-0"></div>
+                    </div>
+
+                    {/* Features */}
                     {section.features.map((feature) => (
                       <div key={feature.name} className="flex lg:grid lg:grid-cols-[40%_1fr_1fr_1fr] lg:gap-4 py-6 border-b border-[#d4d4d4] items-start group hover:bg-[#fafafa] transition-colors duration-300">
                         {/* Service Name: Sticky Mobile, Static Grid Desktop */}
@@ -84,11 +98,11 @@ const Services = () => {
                         </div>
                       </div>
                     ))}
-                  </div>
-                </div>
+                  </React.Fragment>
+                ))}
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </Section>
