@@ -36,7 +36,7 @@ const Approach = () => {
           return (
             <div
               key={capability.title}
-              className={`py-8 px-6 first:pl-0 last:pr-0 border-[#e5e5e5]/60 ${mdBorder} ${lgBorder}`}
+              className={`py-8 md:px-6 md:first:pl-0 md:last:pr-0 border-[#e5e5e5]/60 ${mdBorder} ${lgBorder}`}
             >
               <FocusText>
                 <div className="mb-5">
