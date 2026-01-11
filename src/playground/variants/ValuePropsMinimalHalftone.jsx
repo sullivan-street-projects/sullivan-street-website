@@ -1,11 +1,8 @@
-import React from 'react';
-import Section from '../components/Section';
-import FocusText from '../components/FocusText';
-import { VALUE_PROPS } from '../constants';
+import { VALUE_PROPS } from '../../constants';
 
-// Halftone icons for each value prop
+// Icon-sized versions of finalized halftone patterns (w-8 h-8)
 
-// Fractional Growth Executive → Concentric Rings
+// Fractional Growth Executive → Concentric Rings (icon)
 const IconConcentricRings = () => (
   <svg viewBox="0 0 40 40" className="w-8 h-8">
     {[...Array(2)].map((_, ring) => {
@@ -28,11 +25,11 @@ const IconConcentricRings = () => (
   </svg>
 );
 
-// Marketing General Contractor → Coordinated Streams
+// Marketing General Contractor → Coordinated Streams (icon)
 const IconCoordinatedStreams = () => (
   <svg viewBox="0 0 40 40" className="w-8 h-8">
     {[...Array(4)].map((_, row) => {
-      const intensity = [0.8, 1.2, 1.2, 0.8][row];
+      const intensity = [0.8, 1.2, 1.2, 0.8][row]; // Peak in middle
       return [...Array(5)].map((_, col) => {
         const x = 6 + col * 7;
         const wave = Math.sin((x / 40) * Math.PI * 2) * 2;
@@ -51,14 +48,17 @@ const IconCoordinatedStreams = () => (
   </svg>
 );
 
-// Outcome-Obsessed AI-Enabled → Nodes
+// Outcome-Obsessed AI-Enabled → Nodes (icon)
 const IconNodes = () => (
   <svg viewBox="0 0 40 40" className="w-8 h-8">
+    {/* Central node */}
     <circle cx="20" cy="20" r="2.5" fill="#1a1a1a" opacity={0.75} />
+    {/* Corner nodes */}
     <circle cx="8" cy="10" r="1.5" fill="#1a1a1a" opacity={0.75} />
     <circle cx="32" cy="10" r="1.5" fill="#1a1a1a" opacity={0.75} />
     <circle cx="8" cy="30" r="1.5" fill="#1a1a1a" opacity={0.75} />
     <circle cx="32" cy="30" r="1.5" fill="#1a1a1a" opacity={0.75} />
+    {/* Edge nodes */}
     <circle cx="20" cy="6" r="1.2" fill="#1a1a1a" opacity={0.75} />
     <circle cx="20" cy="34" r="1.2" fill="#1a1a1a" opacity={0.75} />
   </svg>
@@ -70,36 +70,43 @@ const halftoneIcons = [
   <IconNodes key="nodes" />,
 ];
 
-const Intro = () => {
+const ValuePropsMinimalHalftone = () => {
   return (
-    <Section label="Opportunity">
-      <div className="mb-20 md:mb-24">
-        <FocusText>
-          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-tight text-[#1a1a1a] mb-8 md:mb-12">
-            Make Marketing Work<br /><span className="italic">For Your Business.</span>
-          </h2>
-        </FocusText>
-        <FocusText>
-          <p className="font-sans text-[17px] md:text-[19px] text-[#404040] leading-relaxed font-light tracking-wide max-w-[800px]">
-            Everything in marketing is changing. What works today won't work tomorrow. The brands that master the shift will grow faster, with more focus, and greater profit. We're the partner helping them get there.
-          </p>
-        </FocusText>
-      </div>
+    <div>
+      <p className="font-sans text-sm font-medium text-[#737373] mb-6">
+        O: MINIMAL HALFTONE — No cards, no borders, just content
+      </p>
 
+      {/* Clean grid, no dividers */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         {VALUE_PROPS.map((prop, idx) => (
-          <FocusText key={idx} className="py-4">
+          <div key={idx} className="py-4">
+            {/* Halftone icon accent */}
             <div className="mb-5">
               {halftoneIcons[idx]}
             </div>
-            <h3 className="font-serif text-2xl lg:text-3xl leading-tight text-[#1a1a1a] mb-3">{prop.title}</h3>
+
+            {/* Headline */}
+            <h3 className="font-serif text-[20px] leading-snug text-[#1a1a1a] mb-3">
+              {prop.title}
+            </h3>
+
+            {/* Thin rule */}
             <div className="w-8 h-px bg-[#1a1a1a]/20 mb-4" />
-            <p className="font-sans text-[16px] text-[#525252] leading-relaxed font-light">{prop.description}</p>
-          </FocusText>
+
+            {/* Description */}
+            <p className="font-sans text-[14px] text-[#737373] leading-relaxed">
+              {prop.description}
+            </p>
+          </div>
         ))}
       </div>
-    </Section>
+
+      <p className="font-sans text-[12px] text-[#a3a3a3] mt-6 italic">
+        N without borders. Pure whitespace separation.
+      </p>
+    </div>
   );
 };
 
-export default Intro;
+export default ValuePropsMinimalHalftone;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ErrorBoundary from './components/ErrorBoundary';
 import { SmoothScroll } from './components/SmoothScroll';
 import Header from './components/Header';
@@ -12,8 +12,28 @@ import Services from './sections/Services';
 import PartnerOutcomes from './sections/PartnerOutcomes';
 import About from './sections/About';
 import Contact from './sections/Contact';
+import { DesignPlayground } from './playground';
 
 export default function App() {
+  const [isPlayground, setIsPlayground] = useState(window.location.hash === '#playground');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setIsPlayground(window.location.hash === '#playground');
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Render playground if hash is #playground
+  if (isPlayground) {
+    return (
+      <ErrorBoundary>
+        <DesignPlayground />
+      </ErrorBoundary>
+    );
+  }
+
   return (
     <ErrorBoundary>
     <SmoothScroll>
