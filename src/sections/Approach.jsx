@@ -12,7 +12,7 @@ const Approach = () => {
             Tailor made<br /><span className="italic">growth marketing.</span>
           </h2>
           <p className="font-sans text-[17px] md:text-[19px] leading-relaxed max-w-[800px] text-[#404040] font-light">
-            We’re a fractional consultancy delivering enterprise-grade advisory, strategy, and marketing leadership. We start with your business objectives, build the strategy to hit them, activate the right channels, and execute the campaigns that convert.           
+            You know what's working in your business and what isn't. What you need is a strategy to grow. We build that strategy, tailored to you.           
           </p>
         </FocusText>
       </div>

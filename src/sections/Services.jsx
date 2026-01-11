@@ -135,6 +135,15 @@ const Services = () => {
         </div>
       </div>
 
+      {/* Services Footnote - Mobile */}
+      <div className="block md:hidden mt-8">
+        <FocusText>
+          <p className="font-sans text-[13px] italic text-[#737373]">
+            Diagnostic assessments available by request.
+          </p>
+        </FocusText>
+      </div>
+
       {/* Desktop Table - Hidden on mobile */}
       <div className="hidden md:block relative">
         {/* Scroll hint - mobile only */}
@@ -208,6 +217,15 @@ const Services = () => {
             </div>
           ))}
         </div>
+        </div>
+
+        {/* Services Footnote - Desktop */}
+        <div className="mt-8">
+          <FocusText>
+            <p className="font-sans text-[13px] italic text-[#737373]">
+              Diagnostic assessments available by request.
+            </p>
+          </FocusText>
         </div>
       </div>
     </Section>

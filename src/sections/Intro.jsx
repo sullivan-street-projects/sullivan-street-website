@@ -14,7 +14,7 @@ const Intro = () => {
         </FocusText>
         <FocusText>
           <p className="font-sans text-[17px] md:text-[19px] text-[#404040] leading-relaxed font-light tracking-wide max-w-[800px]">
-            Everything in marketing is changing. The platforms, the tools, the talent model. <span className="whitespace-nowrap">All of it.</span> The brands that master the shift will grow faster, with more focus, and greater profit. We're the partner helping them get there.
+            Everything in marketing is changing. What works today won't work tomorrow. The brands that master the shift will grow faster, with more focus, and greater profit. We're the partner helping them get there.
           </p>
         </FocusText>
       </div>

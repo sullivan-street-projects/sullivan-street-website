@@ -42,7 +42,7 @@ brands:
 
 ## Intro
 headline: Make Marketing Work. For Your Business.
-body: Everything in marketing is changing. The platforms, the tools, the talent model. All of it. The brands that master the shift will grow faster, with more focus, and greater profit. We're the partner helping them get there.
+body: Everything in marketing is changing. What works today won't work tomorrow. The brands that master the shift will grow faster, with more focus, and greater profit. We're the partner helping them get there.
 
 ### Value Props
 
@@ -59,7 +59,7 @@ AI drives our research, strategy, and reporting. Sharper insights. Faster delive
 
 ## Approach
 headline: Tailor made growth marketing.
-body: We're a fractional consultancy delivering enterprise-grade advisory, strategy, and marketing leadership. We start with your business objectives, build the strategy to hit them, activate the right channels, and execute the campaigns that convert.
+body: You know what's working in your business and what isn't. What you need is a strategy to grow. We build that strategy, tailored to you.
 
 ### Capabilities
 
@@ -134,6 +134,8 @@ description: For founders who need an executive thought partner. We help you mak
 - Execution Oversight: Day-to-day campaign management and quality control.
 - Performance Monitoring: KPI tracking, metrics review, and reporting.
 
+footnote: Diagnostic assessments available by request.
+
 ---
 
 ## Partner Outcomes
@@ -147,7 +149,7 @@ outcomes:
 
 ## About
 headline: Yesterday's agencies aren't built for tomorrow's brands.
-paragraph-1: They were designed for a world where teams of people did the heavy lifting. That world is changing. From media buying to content generation, from analysis to optimization, AI now touches everything across the marketing value chain. So the work that matters has shifted. The advantage is orchestration—managing systems, aligning teams, and making decisions that connect back to your P&L.
+paragraph-1: They were designed for a world where teams of people did the heavy lifting. That world is changing, from media buying to creative to content, from analysis to optimization. AI now touches everything in marketing. So the work that matters has shifted. The advantage is orchestration—managing systems, aligning teams, and making decisions that connect to your bottom line. The kind AI can't make on its own.
 paragraph-2: Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We look across the business, translate goals into a clear plan, and manage marketing like the investment it is.
 
 ### Founder
