@@ -32,6 +32,8 @@ const FocusText = ({ children, className = "", noBlur = false }) => {
   const opacityValue = useTransform(scrollYProgress, [0, 0.01, 0.98, 1], [noBlur ? 1 : 0.4, 1, 1, 0]);
   const yValue = useTransform(scrollYProgress, [0, 0.01], [noBlur ? 0 : 8, 0]);
 
+  // Padding + negative margin prevents filter clipping on italic text
+  // (italic glyphs extend beyond their bounding box on the left)
   return (
     <motion.div
       ref={ref}
@@ -41,7 +43,7 @@ const FocusText = ({ children, className = "", noBlur = false }) => {
         y: yValue,
         transform: 'translateZ(0)',
       }}
-      className={`will-change-[filter,opacity,transform] ${className}`}
+      className={`will-change-[filter,opacity,transform] -mx-1 px-1 ${className}`}
     >
       {children}
     </motion.div>
