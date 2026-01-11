@@ -10,6 +10,7 @@ const Services = () => {
   const scrollRef = useRef(null);
   const [showScrollHint, setShowScrollHint] = useState(true);
   const [expandedTier, setExpandedTier] = useState('management');
+  const [isDesktopExpanded, setIsDesktopExpanded] = useState(false);
   const lenis = useLenis();
 
   useEffect(() => {
@@ -179,7 +180,7 @@ const Services = () => {
           </div>
 
           {/* Row 2: Tier Descriptions */}
-          <div className="services-grid py-8 border-b border-[#e5e5e5] pr-8">
+          <div className="services-grid py-8 pr-8">
             <div className="sticky left-0 z-10 pr-6" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}></div>
             {TIERS.map((tier) => (
               <div key={tier.id} className="text-center services-snap-target">
@@ -191,31 +192,66 @@ const Services = () => {
             ))}
           </div>
 
-          {/* Feature Rows */}
-          {FEATURES.map((feature, index) => (
-            <div
-              key={feature.name}
-              className={`services-grid py-6 items-start group hover:bg-[#fafafa] transition-colors duration-300 pr-8 ${
-                index < FEATURES.length - 1 ? 'border-b border-[#e5e5e5]' : ''
-              }`}
+          {/* Expand/Collapse Button */}
+          <button
+            onClick={() => setIsDesktopExpanded(!isDesktopExpanded)}
+            className="w-full py-4 flex items-center justify-center gap-2 bg-[#FAFAF8] border-t border-b border-[#e5e5e5] hover:bg-[#f5f5f5] transition-colors group"
+          >
+            <span className="font-sans text-[13px] font-medium text-[#525252] group-hover:text-[#1a1a1a] transition-colors">
+              {isDesktopExpanded ? 'Hide' : 'All services'}
+            </span>
+            <motion.svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="text-[#737373] group-hover:text-[#1a1a1a] transition-colors"
+              animate={{ rotate: isDesktopExpanded ? 180 : 0 }}
+              transition={{ duration: 0.2 }}
             >
-              <div className="sticky left-0 pr-6 z-10" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}>
-                <FocusText noBlur>
-                  <p className="font-sans text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
-                  <p className="font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
-                </FocusText>
-              </div>
-              <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
-                <FocusText noBlur>{renderCell(feature.management)}</FocusText>
-              </div>
-              <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
-                <FocusText noBlur>{renderCell(feature.strategy)}</FocusText>
-              </div>
-              <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
-                <FocusText noBlur>{renderCell(feature.advisory)}</FocusText>
-              </div>
-            </div>
-          ))}
+              <path d="M6 9l6 6 6-6" />
+            </motion.svg>
+          </button>
+
+          {/* Feature Rows - Expandable */}
+          <AnimatePresence initial={false}>
+            {isDesktopExpanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="overflow-hidden"
+              >
+                {FEATURES.map((feature, index) => (
+                  <div
+                    key={feature.name}
+                    className={`services-grid py-6 items-start group hover:bg-[#fafafa] transition-colors duration-300 pr-8 ${
+                      index < FEATURES.length - 1 ? 'border-b border-[#e5e5e5]' : ''
+                    }`}
+                  >
+                    <div className="sticky left-0 pr-6 z-10" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}>
+                      <FocusText noBlur>
+                        <p className="font-sans text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
+                        <p className="font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
+                      </FocusText>
+                    </div>
+                    <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
+                      <FocusText noBlur>{renderCell(feature.management)}</FocusText>
+                    </div>
+                    <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
+                      <FocusText noBlur>{renderCell(feature.strategy)}</FocusText>
+                    </div>
+                    <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
+                      <FocusText noBlur>{renderCell(feature.advisory)}</FocusText>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         </div>
 

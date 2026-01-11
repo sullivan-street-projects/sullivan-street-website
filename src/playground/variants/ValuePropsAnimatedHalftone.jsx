@@ -1,11 +1,9 @@
+import { VALUE_PROPS } from '../../constants';
 import { motion } from 'framer-motion';
-import Section from '../components/Section';
-import FocusText from '../components/FocusText';
-import { VALUE_PROPS } from '../constants';
 
 // Animated Concentric Rings - gentle breathing effect
 const BreathingRings = () => (
-  <svg viewBox="0 0 240 200" className="w-[280px] h-[233px]" style={{ overflow: 'visible' }}>
+  <svg viewBox="0 0 240 200" className="w-full h-full" style={{ overflow: 'visible' }}>
     {[...Array(4)].map((_, ring) => {
       const baseRadius = 20 + ring * 18;
       const dotCount = 6 + ring * 4;
@@ -44,14 +42,14 @@ const BreathingRings = () => (
   </svg>
 );
 
-// Animated Coordinated Streams - gentle wave motion (centered in 240x200)
+// Animated Coordinated Streams - gentle wave motion
 const FlowingStreams = () => (
-  <svg viewBox="0 0 240 200" className="w-[280px] h-[233px]" style={{ overflow: 'visible' }}>
+  <svg viewBox="0 0 220 180" className="w-full h-full" style={{ overflow: 'visible' }}>
     {[...Array(5)].map((_, row) => {
       const intensity = [2.0, 3.0, 4.0, 3.0, 2.0][row];
       return [...Array(10)].map((_, col) => {
-        const baseX = 30 + col * 20;
-        const baseY = 35 + row * 32;
+        const baseX = 25 + col * 18;
+        const baseY = 40 + row * 26;
         return (
           <motion.circle
             key={`${row}-${col}`}
@@ -62,9 +60,9 @@ const FlowingStreams = () => (
             opacity={0.75}
             animate={{
               cy: [
-                baseY + Math.sin((baseX / 240) * Math.PI * 2) * 12,
-                baseY + Math.sin((baseX / 240) * Math.PI * 2 + Math.PI) * 12,
-                baseY + Math.sin((baseX / 240) * Math.PI * 2) * 12,
+                baseY + Math.sin((baseX / 220) * Math.PI * 2) * 12,
+                baseY + Math.sin((baseX / 220) * Math.PI * 2 + Math.PI) * 12,
+                baseY + Math.sin((baseX / 220) * Math.PI * 2) * 12,
               ],
             }}
             transition={{
@@ -82,7 +80,7 @@ const FlowingStreams = () => (
 
 // Animated Nodes - continuous breathing with flow timing (corners → center → edges)
 const FlowingNodes = () => (
-  <svg viewBox="0 0 240 200" className="w-[280px] h-[233px]" style={{ overflow: 'visible' }}>
+  <svg viewBox="0 0 240 200" className="w-full h-full" style={{ overflow: 'visible' }}>
     {/* Four corners - breathe first */}
     {[[60, 50], [180, 50], [180, 150], [60, 150]].map(([cx, cy], i) => (
       <motion.circle
@@ -130,32 +128,26 @@ const animatedGraphics = [
   <FlowingNodes key="nodes" />,
 ];
 
-const Intro = () => {
+const ValuePropsAnimatedHalftone = () => {
   return (
-    <Section label="Opportunity">
-      <div className="mb-20 md:mb-24">
-        <FocusText>
-          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-tight text-[#1a1a1a] mb-8 md:mb-12">
-            Make Marketing Work<br /><span className="italic">For Your Business.</span>
-          </h2>
-        </FocusText>
-        <FocusText>
-          <p className="font-sans text-[17px] md:text-[19px] text-[#404040] leading-relaxed font-light tracking-wide max-w-[800px]">
-            Everything in marketing is changing. What works today won't work tomorrow. The brands that master the shift grow faster, with more focus and higher profit. We're the partner helping them get there.
-          </p>
-        </FocusText>
-      </div>
+    <div>
+      <p className="font-sans text-sm font-medium text-[#737373] mb-6">
+        V: ANIMATED HALFTONE — Living, breathing patterns (editorial)
+      </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
         {VALUE_PROPS.map((prop, idx) => (
-          <FocusText key={idx}>
-            {/* Animated graphic - fixed height, centered */}
-            <div className="h-[260px] flex items-center justify-center">
+          <div
+            key={idx}
+            className="relative min-h-[420px] flex flex-col"
+          >
+            {/* Animated graphic - takes most of the space */}
+            <div className="flex-1 flex items-center justify-center bg-[#FAFAF8]">
               {animatedGraphics[idx]}
             </div>
 
-            {/* Text */}
-            <div className="px-4 pb-8 pt-2">
+            {/* Text at BOTTOM - clean, no glass */}
+            <div className="p-6 bg-[#FAFAF8]">
               <h3 className="font-serif text-[20px] leading-tight text-[#1a1a1a] mb-2">
                 {prop.title}
               </h3>
@@ -163,11 +155,15 @@ const Intro = () => {
                 {prop.description}
               </p>
             </div>
-          </FocusText>
+          </div>
         ))}
       </div>
-    </Section>
+
+      <p className="font-sans text-[12px] text-[#a3a3a3] mt-6 italic">
+        Sharp corners, no glass. Patterns breathe above, text anchors below on clean paper.
+      </p>
+    </div>
   );
 };
 
-export default Intro;
+export default ValuePropsAnimatedHalftone;

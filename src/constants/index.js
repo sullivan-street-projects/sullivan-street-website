@@ -32,7 +32,7 @@ export const NAV_ITEMS = [
 export const VALUE_PROPS = [
   {
     title: 'Fractional Growth Executive',
-    description: 'CMO, VP, or Director-level leadership, embedded with your team. From strategy to execution. Enterprise experience. Startup speed.'
+    description: 'CMO, VP, or Director-level leadership, embedded with your team—from strategy to execution. Enterprise experience. Startup speed.'
   },
   {
     title: 'Marketing General Contractor',
@@ -40,7 +40,7 @@ export const VALUE_PROPS = [
   },
   {
     title: 'Outcome Obsessed, AI Enabled',
-    description: 'AI drives our research, strategy, and reporting. Sharper insights. Faster delivery. Better ROI.'
+    description: 'AI powers our research, strategy, and reporting. Sharper insights. Faster delivery. Better ROI.'
   }
 ];
 
@@ -55,11 +55,11 @@ export const CAPABILITIES = [
   },
   {
     title: 'Media Activation',
-    description: 'We activate the channels that drive your growth—Meta, Google, Microsoft, Email, and beyond.',
+    description: 'We activate the channels that drive your growth—Meta, Google, Microsoft, email, and beyond.',
   },
   {
     title: 'Campaign Execution',
-    description: 'Creative and content that converts attention into revenue while reinforcing brand equity.',
+    description: 'Creative and content that convert attention into revenue while reinforcing brand equity.',
   },
 ];
 

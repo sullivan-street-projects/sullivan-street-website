@@ -13,12 +13,17 @@ const About = () => {
           <div className="font-sans text-[17px] text-[#404040] leading-relaxed space-y-8 font-light tracking-wide">
             <FocusText>
               <p>
-                They were designed for a world where teams of people did the heavy lifting. That world is changing, from media buying to creative to content, from analysis to optimization. AI now touches everything in marketing. So the work that matters has shifted. The advantage is orchestration—managing systems, aligning teams, and making decisions that connect to your bottom line. The kind AI can't make on its own.
+                They were designed for a world where it took teams of people to do all the work. That world is changing—from media buying to creative to content, from analysis to optimization. AI now touches everything in marketing, so the work that matters has changed too.
               </p>
             </FocusText>
             <FocusText>
               <p>
-                Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We look across the business, translate goals into a clear plan, and manage marketing like the investment it is.
+                Today's advantage is orchestration: managing systems, aligning teams, and making business decisions that connect to your bottom line—the kind of decisions AI can't make without a human in the loop.
+              </p>
+            </FocusText>
+            <FocusText>
+              <p>
+                Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We partner with you, look across your business, translate goals into a clear plan, and manage marketing like the investment it is.
               </p>
             </FocusText>
           </div>

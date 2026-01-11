@@ -12,6 +12,15 @@ import ValuePropsMinimalHalftone from './variants/ValuePropsMinimalHalftone';
 import ValuePropsEditorialText from './variants/ValuePropsEditorialText';
 import ValuePropsApproachNumbered from './variants/ValuePropsApproachNumbered';
 import ValuePropsApproachDots from './variants/ValuePropsApproachDots';
+import ServicesAccordionRows from './variants/ServicesAccordionRows';
+import ServicesAccordionTiers from './variants/ServicesAccordionTiers';
+import ServicesAccordionSummary from './variants/ServicesAccordionSummary';
+import ValuePropsAnimatedHalftone from './variants/ValuePropsAnimatedHalftone';
+import ApproachNarrative from './variants/ApproachNarrative';
+import ContactConvergence from './variants/ContactConvergence';
+import FullBleedZone from './variants/FullBleedZone';
+import GreenAccentHalftone from './variants/GreenAccentHalftone';
+import BackgroundGreenTint from './variants/BackgroundGreenTint';
 import HalftoneLibrary from './HalftoneLibrary';
 
 const variants = [
@@ -28,6 +37,15 @@ const variants = [
   { id: 'editorial-text', label: 'P: Editorial Text', component: ValuePropsEditorialText },
   { id: 'approach-numbered', label: 'Q: Numbered', component: ValuePropsApproachNumbered },
   { id: 'approach-dots', label: 'R: Minimal Dots', component: ValuePropsApproachDots },
+  { id: 'services-rows', label: 'S: Services Rows', component: ServicesAccordionRows },
+  { id: 'services-tiers', label: 'T: Services Tiers', component: ServicesAccordionTiers },
+  { id: 'services-summary', label: 'U: Services Summary', component: ServicesAccordionSummary },
+  { id: 'animated-halftone', label: 'V: Animated Halftone', component: ValuePropsAnimatedHalftone },
+  { id: 'approach-narrative', label: 'W: Narrative Density', component: ApproachNarrative },
+  { id: 'contact-convergence', label: 'X: Contact Convergence', component: ContactConvergence },
+  { id: 'full-bleed', label: 'Y: Full-Bleed Zones', component: FullBleedZone },
+  { id: 'green-accent', label: 'Z: Green Accent', component: GreenAccentHalftone },
+  { id: 'bg-green-tint', label: 'BG: Green Tint', component: BackgroundGreenTint },
 ];
 
 const DesignPlayground = () => {
@@ -41,7 +59,7 @@ const DesignPlayground = () => {
       <header className="sticky top-0 z-50 bg-[#FAFAF8]/90 backdrop-blur-md border-b border-[#e5e5e5]">
         <div className="max-w-[1200px] mx-auto px-6 py-4">
           <div className="flex items-center justify-between mb-3">
-            <h1 className="font-serif text-xl text-[#1a1a1a]">Design Playground v3</h1>
+            <h1 className="font-serif text-xl text-[#1a1a1a]">Design Playground v4</h1>
             <a
               href="/"
               onClick={(e) => {

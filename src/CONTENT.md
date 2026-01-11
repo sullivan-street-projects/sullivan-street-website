@@ -42,18 +42,18 @@ brands:
 
 ## Intro
 headline: Make Marketing Work. For Your Business.
-body: Everything in marketing is changing. What works today won't work tomorrow. The brands that master the shift will grow faster, with more focus, and greater profit. We're the partner helping them get there.
+body: Everything in marketing is changing. What works today won't work tomorrow. The brands that master the shift grow faster, with more focus and higher profit. We're the partner helping them get there.
 
 ### Value Props
 
 #### Fractional Growth Executive
-CMO, VP, or Director-level leadership, embedded with your team. From strategy to execution. Enterprise experience. Startup speed.
+CMO, VP, or Director-level leadership, embedded with your team—from strategy to execution. Enterprise experience. Startup speed.
 
 #### Marketing General Contractor
 Best-in-class specialists across media, creative, analytics, and operations. We manage the work. You get the results.
 
 #### Outcome Obsessed, AI Enabled
-AI drives our research, strategy, and reporting. Sharper insights. Faster delivery. Better ROI.
+AI powers our research, strategy, and reporting. Sharper insights. Faster delivery. Better ROI.
 
 ---
 
@@ -70,10 +70,10 @@ Every engagement starts with your commercial objectives, market realities, and u
 We distill brand, audience, and lifecycle into a clear roadmap: who to reach, what to say, and why it converts.
 
 #### Media Activation
-We activate the channels that drive your growth—Meta, Google, Microsoft, Email, and beyond.
+We activate the channels that drive your growth—Meta, Google, Microsoft, email, and beyond.
 
 #### Campaign Execution
-Creative and content that converts attention into revenue while reinforcing brand equity.
+Creative and content that convert attention into revenue while reinforcing brand equity.
 
 ---
 
@@ -149,8 +149,9 @@ outcomes:
 
 ## About
 headline: Yesterday's agencies aren't built for tomorrow's brands.
-paragraph-1: They were designed for a world where teams of people did the heavy lifting. That world is changing, from media buying to creative to content, from analysis to optimization. AI now touches everything in marketing. So the work that matters has shifted. The advantage is orchestration—managing systems, aligning teams, and making decisions that connect to your bottom line. The kind AI can't make on its own.
-paragraph-2: Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We look across the business, translate goals into a clear plan, and manage marketing like the investment it is.
+paragraph-1: They were designed for a world where it took teams of people to do all the work. That world is changing—from media buying to creative to content, from analysis to optimization. AI now touches everything in marketing, so the work that matters has changed too.
+paragraph-2: Today's advantage is orchestration: managing systems, aligning teams, and making business decisions that connect to your bottom line—the kind of decisions AI can't make without a human in the loop.
+paragraph-3: Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We partner with you, look across your business, translate goals into a clear plan, and manage marketing like the investment it is.
 
 ### Founder
 name: Brett Wohl
