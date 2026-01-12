@@ -1,211 +1,251 @@
+import React, { useState } from 'react';
 import GrainComparison from './GrainComparison';
 import HalftoneLibrary from './HalftoneLibrary';
 
-// Value Props variants
-import ValuePropsAppleCards from './variants/ValuePropsAppleCards';
-import ValuePropsWhiteCards from './variants/ValuePropsWhiteCards';
-import ValuePropsHalftone from './variants/ValuePropsHalftone';
-import ValuePropsSourced from './variants/ValuePropsSourced';
-import ValuePropsUserImages from './variants/ValuePropsUserImages';
-import ValuePropsHalftoneIcons from './variants/ValuePropsHalftoneIcons';
-import ValuePropsInverted from './variants/ValuePropsInverted';
-import ValuePropsStructured from './variants/ValuePropsStructured';
+// --- SECTIONS: VALUE PROPS ---
+import ValuePropsAnimatedHalftone from './variants/ValuePropsAnimatedHalftone'; // Shipped
 import ValuePropsEditorialHalftone from './variants/ValuePropsEditorialHalftone';
 import ValuePropsMinimalHalftone from './variants/ValuePropsMinimalHalftone';
+import ValuePropsHalftoneIcons from './variants/ValuePropsHalftoneIcons';
+import ValuePropsAppleCards from './variants/ValuePropsAppleCards';
+import ValuePropsWhiteCards from './variants/ValuePropsWhiteCards';
+import ValuePropsSourced from './variants/ValuePropsSourced';
+import ValuePropsUserImages from './variants/ValuePropsUserImages';
+import ValuePropsInverted from './variants/ValuePropsInverted';
+import ValuePropsStructured from './variants/ValuePropsStructured';
 import ValuePropsEditorialText from './variants/ValuePropsEditorialText';
-import ValuePropsAnimatedHalftone from './variants/ValuePropsAnimatedHalftone';
+import ValuePropsHalftone from './variants/ValuePropsHalftone';
 
-// Approach section variants
+// --- SECTIONS: APPROACH ---
+import ValuePropsApproachDots from './variants/ValuePropsApproachDots'; // Shipped
+import ValuePropsApproachDice from './variants/ValuePropsApproachDice';
 import ValuePropsApproachNumbered from './variants/ValuePropsApproachNumbered';
-import ValuePropsApproachDots from './variants/ValuePropsApproachDots';
 import ApproachNarrative from './variants/ApproachNarrative';
 
-// Services section variants
+// --- SECTIONS: SERVICES ---
 import ServicesAccordionRows from './variants/ServicesAccordionRows';
 import ServicesAccordionTiers from './variants/ServicesAccordionTiers';
 import ServicesAccordionSummary from './variants/ServicesAccordionSummary';
 
-// Layout & color experiments
+// --- MAIN PAGE ---
+import MainPageStatic from './variants/MainPageStatic';
+
+// --- EXPLORATIONS ---
 import ContactConvergence from './variants/ContactConvergence';
 import FullBleedZone from './variants/FullBleedZone';
 import GreenAccentHalftone from './variants/GreenAccentHalftone';
 import BackgroundGreenTint from './variants/BackgroundGreenTint';
+import SectionSeparation from './variants/SectionSeparation';
 
 // Organized variant categories
 const categories = [
   {
-    title: 'Value Props',
-    description: 'Card layouts for the three value propositions',
+    title: 'Main Page',
+    description: 'Full page layout compositions',
     variants: [
+      { id: 'main-page-static', label: 'Static (No Animation)', version: 'v1 · Jan 11', component: MainPageStatic },
+    ],
+  },
+  {
+    title: 'Value Props',
+    description: 'Core messaging layout variations',
+    variants: [
+      // LIVE
       { id: 'animated-halftone', label: 'Animated Halftone', component: ValuePropsAnimatedHalftone, shipped: true },
-      { id: 'minimal-halftone', label: 'Minimal Halftone', component: ValuePropsMinimalHalftone },
+      
+      // High Fidelity / Strong Contenders
+      { id: 'editorial-halftone', label: 'Editorial Split', component: ValuePropsEditorialHalftone },
+      { id: 'bento-cards', label: 'Bento Cards', component: ValuePropsAppleCards },
+      { id: 'minimal-halftone', label: 'Minimalist Halftone', component: ValuePropsMinimalHalftone },
+      
+      // Layout Explorations
+      { id: 'icon-grid', label: 'Icon Grid', component: ValuePropsWhiteCards },
       { id: 'halftone-icons', label: 'Halftone Icons', component: ValuePropsHalftoneIcons },
-      { id: 'editorial-halftone', label: 'Editorial + Halftone', component: ValuePropsEditorialHalftone },
-      { id: 'halftone', label: 'Full Halftone', component: ValuePropsHalftone },
-      { id: 'text-top', label: 'Text-Top Layout', component: ValuePropsAppleCards },
-      { id: 'icon-cards', label: 'Icon + Text', component: ValuePropsWhiteCards },
-      { id: 'sourced', label: 'Sourced Images', component: ValuePropsSourced },
-      { id: 'user-images', label: 'User Images', component: ValuePropsUserImages },
-      { id: 'inverted', label: 'Inverted', component: ValuePropsInverted },
-      { id: 'structured', label: 'Structured', component: ValuePropsStructured },
-      { id: 'editorial-text', label: 'Editorial Text', component: ValuePropsEditorialText },
+      { id: 'structured-list', label: 'Structured List', component: ValuePropsStructured },
+      { id: 'inverted-dark', label: 'Inverted (Dark)', component: ValuePropsInverted },
+      
+      // Image Explorations
+      { id: 'sourced-photo', label: 'Sourced Photography', component: ValuePropsSourced },
+      { id: 'user-generated', label: 'User Generated', component: ValuePropsUserImages },
+      
+      // Deprecated / Early Concepts
+      { id: 'editorial-text', label: 'Pure Text', component: ValuePropsEditorialText },
+      { id: 'full-halftone', label: 'Maximalist Halftone', component: ValuePropsHalftone },
     ],
   },
   {
     title: 'Approach',
-    description: 'Layouts for the capabilities/approach section',
+    description: 'Process and methodology visualizations',
     variants: [
       { id: 'approach-dots', label: 'Progressive Dots', component: ValuePropsApproachDots, shipped: true },
+      { id: 'approach-dice', label: 'Dice Grid', component: ValuePropsApproachDice },
       { id: 'approach-numbered', label: 'Numbered Steps', component: ValuePropsApproachNumbered },
-      { id: 'approach-narrative', label: 'Narrative Density', component: ApproachNarrative },
+      { id: 'approach-narrative', label: 'Narrative Block', component: ApproachNarrative },
     ],
   },
   {
     title: 'Services',
-    description: 'Service tier presentation options',
+    description: 'Pricing and tier presentation',
     variants: [
-      { id: 'services-rows', label: 'Accordion Rows', component: ServicesAccordionRows },
+      { id: 'services-rows', label: 'Accordion List', component: ServicesAccordionRows },
       { id: 'services-tiers', label: 'Tier Cards', component: ServicesAccordionTiers },
       { id: 'services-summary', label: 'Summary Grid', component: ServicesAccordionSummary },
     ],
   },
   {
-    title: 'Experiments',
-    description: 'Layout patterns and color explorations',
+    title: 'Explorations',
+    description: 'Layout patterns and experimental structures',
     variants: [
+      { id: 'section-spacing', label: 'Section Spacing / Dividers', component: SectionSeparation },
       { id: 'full-bleed', label: 'Full-Bleed Zones', component: FullBleedZone },
       { id: 'contact-convergence', label: 'Contact Convergence', component: ContactConvergence },
-      { id: 'green-accent', label: 'Green Accent Patterns', component: GreenAccentHalftone },
+      { id: 'green-accent', label: 'Green Accent Test', component: GreenAccentHalftone },
       { id: 'bg-green-tint', label: 'Background Tints', component: BackgroundGreenTint },
+    ],
+  },
+  {
+    title: 'System',
+    description: 'Core design atoms',
+    variants: [
+      { id: 'halftone-library', label: 'Pattern Library', component: HalftoneLibrary },
+      { id: 'grain-comparison', label: 'Grain Overlay', component: GrainComparison },
     ],
   },
 ];
 
 const DesignPlayground = () => {
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const [selectedVariantId, setSelectedVariantId] = useState('animated-halftone');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
+  // Find the selected variant and its category
+  let activeVariant = null;
+  let activeCategory = null;
+
+  for (const cat of categories) {
+    const variant = cat.variants.find(v => v.id === selectedVariantId);
+    if (variant) {
+      activeVariant = variant;
+      activeCategory = cat;
+      break;
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-[#FAFAF8]">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-[#FAFAF8]/95 backdrop-blur-md border-b border-[#e5e5e5]">
-        <div className="max-w-[1200px] mx-auto px-6 py-4">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="font-serif text-xl text-[#1a1a1a]">Design Playground</h1>
-            <a
-              href="/"
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.hash = '';
-                window.location.reload();
-              }}
-              className="font-sans text-sm text-[#737373] hover:text-[#1a1a1a] transition-colors"
-            >
-              ← Back to site
-            </a>
+    <div className="flex h-screen w-full bg-[#FAFAF8] text-[#1a1a1a] font-sans overflow-hidden">
+      
+      {/* Global Grain Overlay (matches App.jsx) */}
+      <div className="fixed inset-0 pointer-events-none z-[50] opacity-[0.04]" 
+           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+
+      {/* Mobile Header / Toggle */}
+      <div className="md:hidden fixed top-0 left-0 right-0 h-14 bg-[#FAFAF8] border-b border-[#e5e5e5] z-40 flex items-center justify-between px-4">
+        <h1 className="font-serif text-lg text-[#1a1a1a]">Playground</h1>
+        <button 
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          className="text-sm font-medium text-[#737373] p-2"
+        >
+          {isSidebarOpen ? 'Close' : 'Menu'}
+        </button>
+      </div>
+
+      {/* Sidebar */}
+      <aside className={`
+        fixed inset-y-0 left-0 z-30 w-[280px] bg-[#FAFAF8] border-r border-[#e5e5e5] flex flex-col transition-transform duration-300 ease-in-out md:relative md:translate-x-0
+        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
+        {/* Sidebar Header */}
+        <div className="px-5 py-4 border-b border-[#e5e5e5] hidden md:block">
+          <div className="flex items-center justify-between mb-1">
+             <h1 className="font-serif text-lg text-[#1a1a1a]">Playground</h1>
+             <a 
+               href="/" 
+               className="text-[10px] font-bold text-[#737373] hover:text-[#1a1a1a] uppercase tracking-widest"
+               onClick={(e) => {
+                 e.preventDefault();
+                 window.location.hash = '';
+                 window.location.reload();
+               }}
+             >
+               Exit
+             </a>
           </div>
+          <p className="text-[11px] text-[#737373]">Design system & layout lab</p>
+        </div>
 
-          {/* Category navigation */}
-          <nav className="flex flex-wrap gap-x-6 gap-y-2">
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="text-xs font-sans font-medium text-[#737373] hover:text-[#1a1a1a] transition-colors"
-            >
-              Grain
-            </button>
-            {categories.map((cat) => (
-              <button
-                key={cat.title}
-                onClick={() => scrollToSection(`cat-${cat.title.toLowerCase()}`)}
-                className="text-xs font-sans font-medium text-[#737373] hover:text-[#1a1a1a] transition-colors"
-              >
+        {/* Sidebar Navigation */}
+        <div className="flex-1 overflow-y-auto py-6 md:py-4 mt-14 md:mt-0">
+          {categories.map((cat) => (
+            <div key={cat.title} className="mb-8 px-5">
+              <h3 className="text-[10px] font-bold text-[#1a1a1a] uppercase tracking-widest mb-3 opacity-40">
                 {cat.title}
-              </button>
-            ))}
-            <button
-              onClick={() => scrollToSection('halftone-library')}
-              className="text-xs font-sans font-medium text-[#737373] hover:text-[#1a1a1a] transition-colors"
-            >
-              Pattern Library
-            </button>
-          </nav>
-        </div>
-      </header>
-
-      {/* Content */}
-      <main className="max-w-[1200px] mx-auto px-6 py-12">
-        {/* Intro */}
-        <div className="mb-16">
-          <h2 className="font-serif text-2xl text-[#1a1a1a] mb-4">Design System Lab</h2>
-          <p className="font-sans text-[15px] text-[#525252] leading-relaxed max-w-[700px]">
-            A working lab for exploring layouts, patterns, and color. Variants marked with{' '}
-            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#1a1a1a] text-white">
-              SHIPPED
-            </span>{' '}
-            are live on the main site.
-          </p>
-        </div>
-
-        {/* Grain Comparison */}
-        <section className="mb-16 pb-12 border-b border-[#e5e5e5]">
-          <GrainComparison />
-        </section>
-
-        {/* Variant Categories */}
-        {categories.map((category) => (
-          <section
-            key={category.title}
-            id={`cat-${category.title.toLowerCase()}`}
-            className="mb-16 pb-12 border-b border-[#e5e5e5]"
-          >
-            {/* Category header */}
-            <div className="mb-8">
-              <h3 className="font-serif text-lg text-[#1a1a1a] mb-1">{category.title}</h3>
-              <p className="font-sans text-[13px] text-[#737373]">{category.description}</p>
-
-              {/* Quick jump nav */}
-              <div className="flex flex-wrap gap-2 mt-4">
-                {category.variants.map((v) => (
+              </h3>
+              <div className="space-y-0.5">
+                {cat.variants.map((v) => (
                   <button
                     key={v.id}
-                    onClick={() => scrollToSection(v.id)}
-                    className={`px-2.5 py-1 text-[11px] font-sans font-medium rounded transition-colors ${
-                      v.shipped
-                        ? 'bg-[#1a1a1a] text-white hover:bg-[#333]'
-                        : 'bg-[#1a1a1a]/5 text-[#525252] hover:bg-[#1a1a1a]/10'
+                    onClick={() => {
+                      setSelectedVariantId(v.id);
+                      setIsSidebarOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-2 rounded-md text-[13px] transition-all flex items-center justify-between group ${
+                      selectedVariantId === v.id
+                        ? 'bg-[#1a1a1a] text-white shadow-sm'
+                        : 'text-[#525252] hover:bg-[#e5e5e5]/60'
                     }`}
                   >
-                    {v.label}
-                    {v.shipped && ' ✓'}
+                    <span className="truncate mr-2">{v.label}</span>
+                    {v.version && (
+                      <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium shrink-0 ${
+                        selectedVariantId === v.id ? 'bg-white/10 text-white/70' : 'bg-transparent text-[#a3a3a3]'
+                      }`}>
+                        {v.version}
+                      </span>
+                    )}
+                    {v.shipped && (
+                      <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium shrink-0 ${
+                        selectedVariantId === v.id ? 'bg-white/20 text-white' : 'bg-[#e5e5e5] text-[#737373]'
+                      }`}>
+                        LIVE
+                      </span>
+                    )}
                   </button>
                 ))}
               </div>
             </div>
+          ))}
+        </div>
+      </aside>
 
-            {/* Variants in this category */}
-            {category.variants.map((variant, idx) => (
-              <div
-                key={variant.id}
-                id={variant.id}
-                className={`py-12 ${idx < category.variants.length - 1 ? 'border-b border-[#e5e5e5]/50' : ''}`}
-              >
-                <variant.component />
-              </div>
-            ))}
-          </section>
-        ))}
+      {/* Main Content Area */}
+      <main className="flex-1 h-full flex flex-col relative bg-[#FAFAF8] overflow-hidden pt-14 md:pt-0">
+        
+        {/* Desktop Toolbar */}
+        <div className="hidden md:flex h-14 border-b border-[#e5e5e5] items-center justify-between px-8 shrink-0 bg-[#FAFAF8] z-20">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-bold text-[#737373] uppercase tracking-wider">
+              {activeCategory?.title}
+            </span>
+            <span className="text-[#d4d4d4] mx-2">/</span>
+            <span className="font-serif text-[#1a1a1a] text-lg">
+              {activeVariant?.label}
+            </span>
+          </div>
+          
+          <div className="flex items-center gap-4">
+             {activeVariant?.shipped && (
+                <div className="flex items-center gap-2 px-2 py-1 bg-[#4ADE80]/10 rounded border border-[#4ADE80]/20">
+                   <div className="w-1.5 h-1.5 rounded-full bg-[#4ADE80] animate-pulse" />
+                   <span className="text-[10px] font-bold text-[#15803d] uppercase tracking-wide">Production</span>
+                </div>
+             )}
+          </div>
+        </div>
 
-        {/* Halftone Pattern Library */}
-        <section id="halftone-library" className="py-12">
-          <HalftoneLibrary />
-        </section>
-
-        {/* Footer */}
-        <div className="mt-12 pt-8 border-t border-[#e5e5e5]">
-          <p className="font-sans text-[13px] text-[#737373] italic">
-            This playground is a working lab. Tell me what's working and what isn't.
-          </p>
+        {/* Canvas */}
+        <div className="flex-1 overflow-y-auto relative bg-[#FAFAF8]">
+           <div className="w-full max-w-[1200px] mx-auto px-6 md:px-8 py-12 md:py-24">
+              {activeVariant?.component && <activeVariant.component />}
+           </div>
         </div>
       </main>
     </div>
