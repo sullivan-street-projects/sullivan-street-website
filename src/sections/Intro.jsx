@@ -5,7 +5,7 @@ import { VALUE_PROPS } from '../constants';
 
 // Animated Concentric Rings - gentle breathing effect
 const BreathingRings = () => (
-  <svg viewBox="0 0 240 200" className="w-[280px] h-[233px]" style={{ overflow: 'visible' }}>
+  <svg viewBox="0 0 240 200" className="w-full h-full max-w-[320px]" style={{ overflow: 'visible' }}>
     {[...Array(4)].map((_, ring) => {
       const baseRadius = 20 + ring * 18;
       const dotCount = 6 + ring * 4;
@@ -46,7 +46,7 @@ const BreathingRings = () => (
 
 // Animated Coordinated Streams - gentle wave motion (centered in 240x200)
 const FlowingStreams = () => (
-  <svg viewBox="0 0 240 200" className="w-[280px] h-[233px]" style={{ overflow: 'visible' }}>
+  <svg viewBox="0 0 240 200" className="w-full h-full max-w-[320px]" style={{ overflow: 'visible' }}>
     {[...Array(5)].map((_, row) => {
       const intensity = [2.0, 3.0, 4.0, 3.0, 2.0][row];
       return [...Array(10)].map((_, col) => {
@@ -80,49 +80,85 @@ const FlowingStreams = () => (
   </svg>
 );
 
-// Animated Nodes - continuous breathing with flow timing (corners → center → edges)
-const FlowingNodes = () => (
-  <svg viewBox="0 0 240 200" className="w-[280px] h-[233px]" style={{ overflow: 'visible' }}>
-    {/* Four corners - breathe first */}
-    {[[60, 50], [180, 50], [180, 150], [60, 150]].map(([cx, cy], i) => (
+// Animated Nodes - radial pulse (corners/edges move outward from center)
+const FlowingNodes = () => {
+  const centerX = 120;
+  const centerY = 100;
+
+  const corners = [
+    { x: 60, y: 50, r: 6 },
+    { x: 180, y: 50, r: 6 },
+    { x: 180, y: 150, r: 6 },
+    { x: 60, y: 150, r: 6 },
+  ];
+
+  const edges = [
+    { x: 120, y: 35, r: 5 },
+    { x: 120, y: 165, r: 5 },
+  ];
+
+  return (
+    <svg viewBox="0 0 240 200" className="w-full h-full max-w-[320px]" style={{ overflow: 'visible' }}>
+      {/* Corners pulse outward radially */}
+      {corners.map((pos, i) => {
+        const dx = pos.x - centerX;
+        const dy = pos.y - centerY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const unitX = dx / dist;
+        const unitY = dy / dist;
+        const pulseAmount = 10;
+
+        return (
+          <motion.circle
+            key={`corner-${i}`}
+            r={pos.r}
+            fill="#1a1a1a"
+            opacity={0.75}
+            animate={{
+              cx: [pos.x, pos.x + unitX * pulseAmount, pos.x],
+              cy: [pos.y, pos.y + unitY * pulseAmount, pos.y],
+              opacity: [0.5, 0.85, 0.5],
+            }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.2 }}
+          />
+        );
+      })}
+
+      {/* Center hub - anchored, only breathes */}
       <motion.circle
-        key={`corner-${i}`}
-        cx={cx}
-        cy={cy}
-        r="6"
+        cx={centerX}
+        cy={centerY}
+        r="10"
         fill="#1a1a1a"
         opacity={0.75}
-        animate={{ r: [6, 8, 6], opacity: [0.5, 0.85, 0.5] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.2 }}
+        animate={{ r: [10, 14, 10], opacity: [0.6, 0.95, 0.6] }}
+        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1.0 }}
       />
-    ))}
 
-    {/* Center hub - breathes after corners */}
-    <motion.circle
-      cx="120"
-      cy="100"
-      r="10"
-      fill="#1a1a1a"
-      opacity={0.75}
-      animate={{ r: [10, 14, 10], opacity: [0.6, 0.95, 0.6] }}
-      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1.0 }}
-    />
+      {/* Edge nodes pulse outward */}
+      {edges.map((pos, i) => {
+        const dy = pos.y - centerY;
+        const unitY = dy / Math.abs(dy);
+        const pulseAmount = 10;
 
-    {/* Edge nodes - breathe last */}
-    {[[120, 35], [120, 165]].map(([cx, cy], i) => (
-      <motion.circle
-        key={`edge-${i}`}
-        cx={cx}
-        cy={cy}
-        r="5"
-        fill="#1a1a1a"
-        opacity={0.75}
-        animate={{ r: [5, 7, 5], opacity: [0.4, 0.8, 0.4] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1.8 + i * 0.3 }}
-      />
-    ))}
-  </svg>
-);
+        return (
+          <motion.circle
+            key={`edge-${i}`}
+            cx={pos.x}
+            r={pos.r}
+            fill="#1a1a1a"
+            opacity={0.75}
+            animate={{
+              cy: [pos.y, pos.y + unitY * pulseAmount, pos.y],
+              opacity: [0.4, 0.8, 0.4],
+            }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1.8 + i * 0.3 }}
+          />
+        );
+      })}
+    </svg>
+  );
+};
 
 const animatedGraphics = [
   <BreathingRings key="breathing" />,
@@ -149,8 +185,8 @@ const Intro = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
         {VALUE_PROPS.map((prop, idx) => (
           <FocusText key={idx}>
-            {/* Animated graphic - fixed height, centered */}
-            <div className="h-[260px] flex items-center justify-center">
+            {/* Animated graphic - flexible height, centered */}
+            <div className="min-h-[280px] flex-1 flex items-center justify-center">
               {animatedGraphics[idx]}
             </div>
 

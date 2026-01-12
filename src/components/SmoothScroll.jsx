@@ -46,15 +46,15 @@ export const SmoothScroll = ({ children }) => {
         const sectionTop = rect.top + window.scrollY;
         const distance = Math.abs(sectionTop - scrollY);
 
-        // Only snap if we're within 40% of the viewport height of a section
-        if (distance < windowHeight * 0.4 && distance < closestDistance) {
+        // Only snap if we're within 15% of the viewport height of a section
+        if (distance < windowHeight * 0.15 && distance < closestDistance) {
           closestDistance = distance;
           closestSection = el;
         }
       }
 
       // Snap if we found a close section and we're not already at it
-      if (closestSection && closestDistance > 10) {
+      if (closestSection && closestDistance > 30) {
         isSnapping.current = true;
         lenisInstance.scrollTo(closestSection, {
           offset: -HEADER_OFFSET,
@@ -69,7 +69,7 @@ export const SmoothScroll = ({ children }) => {
     // Debounced scroll stop detection
     lenisInstance.on('scroll', () => {
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-      scrollTimeout.current = setTimeout(handleScrollStop, 150);
+      scrollTimeout.current = setTimeout(handleScrollStop, 500);
     });
 
     let rafId;
