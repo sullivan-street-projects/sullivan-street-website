@@ -46,36 +46,36 @@ const config = {
 
 async function takeScreenshot(url, config) {
   const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+  try {
+    const page = await browser.newPage();
 
-  await page.setViewport({
-    width: config.width,
-    height: config.height,
-    deviceScaleFactor: config.scale,
-  });
+    await page.setViewport({
+      width: config.width,
+      height: config.height,
+      deviceScaleFactor: config.scale,
+    });
 
-  await page.goto(url, { waitUntil: 'networkidle0' });
+    await page.goto(url, { waitUntil: 'networkidle0' });
 
-  if (config.delay > 0) {
-    await new Promise(r => setTimeout(r, config.delay));
-  }
-
-  const screenshotOptions = { path: config.output };
-
-  if (config.selector) {
-    const el = await page.$(config.selector);
-    if (!el) {
-      console.error(`Selector "${config.selector}" not found on page.`);
-      await browser.close();
-      process.exit(1);
+    if (config.delay > 0) {
+      await new Promise(r => setTimeout(r, config.delay));
     }
-    await el.screenshot(screenshotOptions);
-  } else {
-    screenshotOptions.fullPage = config.fullPage;
-    await page.screenshot(screenshotOptions);
-  }
 
-  await browser.close();
+    const screenshotOptions = { path: config.output };
+
+    if (config.selector) {
+      const el = await page.$(config.selector);
+      if (!el) {
+        throw new Error(`Selector "${config.selector}" not found on page.`);
+      }
+      await el.screenshot(screenshotOptions);
+    } else {
+      screenshotOptions.fullPage = config.fullPage;
+      await page.screenshot(screenshotOptions);
+    }
+  } finally {
+    await browser.close();
+  }
   console.log(`Screenshot saved to ${config.output}`);
 }
 
