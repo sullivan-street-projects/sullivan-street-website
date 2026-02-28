@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 import { parseArgs } from 'node:util';
+import { createConnection } from 'node:net';
+import { spawn } from 'node:child_process';
 import puppeteer from 'puppeteer';
 
 const { values, positionals } = parseArgs({
@@ -44,6 +46,47 @@ const config = {
   delay:    parseInt(values.delay, 10),
 };
 
+function isPortOpen(port, host = 'localhost') {
+  return new Promise((resolve) => {
+    const socket = createConnection({ port, host });
+    socket.once('connect', () => { socket.destroy(); resolve(true); });
+    socket.once('error', () => resolve(false));
+  });
+}
+
+async function ensureDevServer(url) {
+  const parsed = new URL(url);
+  const port = parsed.port || (parsed.protocol === 'https:' ? 443 : 80);
+
+  if (await isPortOpen(Number(port), parsed.hostname)) {
+    return null; // already running
+  }
+
+  console.log(`Starting Vite dev server on port ${port}...`);
+  const child = spawn('npx', ['vite', '--port', String(port)], {
+    cwd: process.cwd(),
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+
+  // Wait for server to be ready
+  await new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => reject(new Error('Dev server start timed out after 30s')), 30_000);
+    child.stdout.on('data', (data) => {
+      if (data.toString().includes('Local:')) {
+        clearTimeout(timeout);
+        resolve();
+      }
+    });
+    child.on('error', (err) => { clearTimeout(timeout); reject(err); });
+    child.on('exit', (code) => {
+      if (code) { clearTimeout(timeout); reject(new Error(`Dev server exited with code ${code}`)); }
+    });
+  });
+
+  console.log('Dev server ready.');
+  return child;
+}
+
 async function takeScreenshot(url, config) {
   const browser = await puppeteer.launch();
   try {
@@ -79,4 +122,16 @@ async function takeScreenshot(url, config) {
   console.log(`Screenshot saved to ${config.output}`);
 }
 
-await takeScreenshot(url, config);
+let devServer = null;
+try {
+  const parsed = new URL(url);
+  if (['localhost', '127.0.0.1', '0.0.0.0'].includes(parsed.hostname)) {
+    devServer = await ensureDevServer(url);
+  }
+  await takeScreenshot(url, config);
+} finally {
+  if (devServer) {
+    devServer.kill();
+    console.log('Dev server stopped.');
+  }
+}
