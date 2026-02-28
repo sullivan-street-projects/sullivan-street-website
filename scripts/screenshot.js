@@ -50,7 +50,7 @@ function isPortOpen(port, host = 'localhost') {
   return new Promise((resolve) => {
     const socket = createConnection({ port, host });
     socket.once('connect', () => { socket.destroy(); resolve(true); });
-    socket.once('error', () => resolve(false));
+    socket.once('error', () => { socket.destroy(); resolve(false); });
   });
 }
 
@@ -65,7 +65,7 @@ async function ensureDevServer(url) {
   console.log(`Starting Vite dev server on port ${port}...`);
   const child = spawn('npx', ['vite', '--port', String(port)], {
     cwd: process.cwd(),
-    stdio: ['ignore', 'pipe', 'pipe'],
+    stdio: ['ignore', 'pipe', 'inherit'],
   });
 
   // Wait for server to be ready
