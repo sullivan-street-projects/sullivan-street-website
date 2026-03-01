@@ -192,6 +192,7 @@ const Services = () => {
           {/* Expand/Collapse Button */}
           <button
             onClick={() => setIsDesktopExpanded(!isDesktopExpanded)}
+            aria-expanded={isDesktopExpanded}
             className="w-full py-4 flex items-center justify-center gap-2 bg-paper border-t border-b border-divider hover:bg-gray-100 transition-colors group"
           >
             <span className="font-sans text-caption font-medium text-muted group-hover:text-charcoal transition-colors">

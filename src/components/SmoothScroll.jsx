@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 import Lenis from 'lenis';
 import { NAV_ITEMS } from '../constants';
+import useReducedMotion from '../hooks/useReducedMotion';
 
 const LenisContext = createContext(null);
 
@@ -14,8 +15,11 @@ export const SmoothScroll = ({ children }) => {
   const [lenis, setLenis] = useState(null);
   const isSnapping = useRef(false);
   const scrollTimeout = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const lenisInstance = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential easing

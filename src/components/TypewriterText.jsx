@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import useReducedMotion from '../hooks/useReducedMotion';
 
 const TypewriterText = ({ text }) => {
   const [index, setIndex] = useState(0);
   const [active, setActive] = useState(false);
   const containerRef = useRef(null);
   const timerRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) {
         setIndex(0);
@@ -24,25 +28,27 @@ const TypewriterText = ({ text }) => {
       observer.disconnect();
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   useEffect(() => {
-    if (!active) return;
+    if (prefersReducedMotion || !active) return;
     if (index < text.length) {
       const timeout = setTimeout(() => setIndex(prev => prev + 1), 70);
       return () => clearTimeout(timeout);
     }
-  }, [index, active, text]);
+  }, [index, active, text, prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return <span className="italic">{text}</span>;
+  }
 
   return (
     <span ref={containerRef} className="italic inline-block relative">
-      {/* Phantom text to reserve full space immediately */}
       <span className="opacity-0 pointer-events-none select-none">
         {text}
         <span className="inline-block w-[2px] ml-1.5" />
       </span>
-      
-      {/* Absolute overlay for the typing effect */}
+
       <span className="absolute top-0 left-0 w-full h-full whitespace-pre-wrap">
         <span className="opacity-100">{text.slice(0, index)}</span>
         <motion.span
