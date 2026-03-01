@@ -5,7 +5,7 @@ import { VALUE_PROPS, HEADING_CLASSES, BODY_CLASSES } from '../constants';
 const Intro = () => {
   return (
     <Section id="intro" label="Opportunity">
-      <div className="mb-20 md:mb-28 lg:mb-36">
+      <div className="mb-16 md:mb-20">
         <FocusText>
           <h2 className={`${HEADING_CLASSES} leading-tight mb-8 md:mb-12`}>
             Make Marketing Work<br /><span className="italic">For Your Business.</span>
@@ -21,7 +21,7 @@ const Intro = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
         {VALUE_PROPS.map((prop, idx) => (
           <FocusText key={idx}>
-            <div className="px-4 pb-8 pt-2">
+            <div className="border-t border-charcoal/10 px-0 md:px-4 md:first:pl-0 md:last:pr-0 py-8 md:py-10">
               <h3 className="font-serif text-body-lg leading-tight text-charcoal mb-2">
                 {prop.title}
               </h3>
