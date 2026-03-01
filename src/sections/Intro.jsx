@@ -3,7 +3,7 @@ import FocusText from '../components/FocusText';
 import BreathingRings from '../components/svg/BreathingRings';
 import FlowingStreams from '../components/svg/FlowingStreams';
 import FlowingNodes from '../components/svg/FlowingNodes';
-import { VALUE_PROPS } from '../constants';
+import { VALUE_PROPS, HEADING_CLASSES, BODY_CLASSES } from '../constants';
 
 const animatedGraphics = [
   <BreathingRings key="breathing" />,
@@ -16,13 +16,13 @@ const Intro = () => {
     <Section id="intro" label="Opportunity">
       <div className="mb-20 md:mb-24">
         <FocusText>
-          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-tight text-charcoal mb-8 md:mb-12">
+          <h2 className={`${HEADING_CLASSES} leading-tight mb-8 md:mb-12`}>
             Make Marketing Work<br /><span className="italic">For Your Business.</span>
           </h2>
         </FocusText>
         <FocusText>
-          <p className="font-sans text-body md:text-body-md text-secondary leading-relaxed font-light max-w-narrow">
-            Everything in marketing is changing. What works today won't work tomorrow. The brands that master the shift grow faster, with more focus and higher profit. We're the partner helping them get there.
+          <p className={`${BODY_CLASSES} max-w-narrow`}>
+            Three ways we embed with your team to drive growth — from strategic guidance to full operational ownership.
           </p>
         </FocusText>
       </div>

@@ -12,10 +12,12 @@
   --color-faint: #999999;
   --color-green: #4ADE80;
   --color-green-dark: #22c55e;
+  --color-hover: #f7f7f5;
+  --color-hover-active: #f0f0ee;
 
   /* Font families (--font-* → font-*) */
   --font-serif: 'Libre Baskerville', Georgia, serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Instrument Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Type scale (--text-* → text-*) */

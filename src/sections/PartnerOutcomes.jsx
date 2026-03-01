@@ -68,7 +68,7 @@ const PartnerOutcomes = () => {
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className="group relative h-1 w-12 bg-divider overflow-hidden rounded-full transition-colors hover:bg-gray-300"
+                className="group relative h-1 w-12 bg-divider overflow-hidden rounded-full transition-colors hover:bg-divider"
                 aria-label={`Go to slide ${idx + 1}`}
               >
                 {idx === currentIndex && isInView && (

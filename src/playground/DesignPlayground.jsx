@@ -8,6 +8,7 @@ const categories = [
     description: 'Full page layout compositions',
     variants: [
       { id: 'main-page-static', label: 'Static (No Animation)', version: 'v1 · Jan 11', load: () => import('./variants/MainPageStatic') },
+      { id: 'main-page-centered', label: 'Centered + Statement', load: () => import('./variants/MainPageCentered') },
     ],
   },
   {
@@ -26,6 +27,8 @@ const categories = [
       { id: 'user-generated', label: 'User Generated', load: () => import('./variants/ValuePropsUserImages') },
       { id: 'editorial-text', label: 'Pure Text', load: () => import('./variants/ValuePropsEditorialText') },
       { id: 'full-halftone', label: 'Maximalist Halftone', load: () => import('./variants/ValuePropsHalftone') },
+      { id: 'conceptual-svgs', label: 'Conceptual SVGs', load: () => import('./variants/ValuePropsConceptual') },
+      { id: 'photo-halftone', label: 'Photo Halftone', load: () => import('./variants/ValuePropsPhotoHalftone') },
     ],
   },
   {
@@ -36,6 +39,13 @@ const categories = [
       { id: 'approach-dice', label: 'Dice Grid', load: () => import('./variants/ValuePropsApproachDice') },
       { id: 'approach-numbered', label: 'Numbered Steps', load: () => import('./variants/ValuePropsApproachNumbered') },
       { id: 'approach-narrative', label: 'Narrative Block', load: () => import('./variants/ApproachNarrative') },
+      { id: 'approach-diagram', label: 'Process Diagram', load: () => import('./variants/ApproachDiagram') },
+      { id: 'approach-accordion', label: 'Accordion Flow', load: () => import('./variants/ApproachAccordionFlow') },
+      { id: 'approach-cascade', label: 'Cascade Cards', load: () => import('./variants/ApproachCascade') },
+      { id: 'approach-swiss', label: 'Swiss Timeline', load: () => import('./variants/ApproachSwissTimeline') },
+      { id: 'approach-editorial', label: 'NYT Editorial', load: () => import('./variants/ApproachEditorial') },
+      { id: 'approach-stacking', label: 'Stacking Cards', load: () => import('./variants/ApproachStacking') },
+      { id: 'approach-focus', label: 'Scroll Focus', load: () => import('./variants/ApproachFocus') },
     ],
   },
   {
@@ -45,6 +55,15 @@ const categories = [
       { id: 'services-rows', label: 'Accordion List', load: () => import('./variants/ServicesAccordionRows') },
       { id: 'services-tiers', label: 'Tier Cards', load: () => import('./variants/ServicesAccordionTiers') },
       { id: 'services-summary', label: 'Summary Grid', load: () => import('./variants/ServicesAccordionSummary') },
+    ],
+  },
+  {
+    title: 'Page Rhythm',
+    description: 'Section flow and background treatments',
+    variants: [
+      { id: 'statement-dark', label: 'Statement (Dark)', load: () => import('./variants/StatementDark') },
+      { id: 'statement-valueprop', label: 'Editorial Spread', load: () => import('./variants/StatementValueProps') },
+      { id: 'statement-text', label: 'Text Only', load: () => import('./variants/StatementValuePropsText') },
     ],
   },
   {

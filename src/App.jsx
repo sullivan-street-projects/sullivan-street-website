@@ -7,6 +7,7 @@ import GrainOverlay from './components/GrainOverlay';
 import Footer from './components/Footer';
 import Hero from './sections/Hero';
 import Credentials from './sections/Credentials';
+import Statement from './sections/Statement';
 import Intro from './sections/Intro';
 import Approach from './sections/Approach';
 import Services from './sections/Services';
@@ -55,6 +56,7 @@ export default function App() {
         <div className="relative z-[2]">
           <Hero />
           <Credentials />
+          <Statement />
           <Intro />
           <Approach />
           <Services />

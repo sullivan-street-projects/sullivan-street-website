@@ -1,8 +1,7 @@
-import React from 'react';
 import Section from '../components/Section';
 import FocusText from '../components/FocusText';
-import TypewriterText from '../components/TypewriterText';
 import CTAButton from '../components/CTAButton';
+import { HEADING_CTA_CLASSES } from '../constants';
 
 const Contact = () => {
   return (
@@ -10,9 +9,9 @@ const Contact = () => {
       <Section id="contact" label="Call" divider={false}>
         <div className="max-w-content py-16 md:py-20">
           <FocusText className="space-y-16 md:space-y-20">
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-display-sm leading-[1.1] text-charcoal tracking-tight">
+            <h2 className={HEADING_CTA_CLASSES}>
               Ready to build <br />
-              <TypewriterText text="Tomorrow's Billion-Dollar Brand?" />
+              <span className="italic">tomorrow's billion-dollar brand?</span>
             </h2>
             <CTAButton href="mailto:hello@sullivanstreetprojects.co" variant="lg">
               Schedule a call

@@ -2,6 +2,15 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import useReducedMotion from '../hooks/useReducedMotion';
 
+/**
+ * Scroll-reveal wrapper: opacity 0.4→1, blur 3.5→0, Y 8→0.
+ *
+ * Convention:
+ * - Wrap content blocks, not individual paragraphs within a block.
+ * - Grid/list items each get their own FocusText for staggered reveal.
+ * - Hero is above the fold — no FocusText wrapping.
+ * - Each FocusText boundary = one scroll-reveal unit.
+ */
 const FocusText = ({ children, className = "", noBlur = false }) => {
   const ref = useRef(null);
   const prefersReducedMotion = useReducedMotion();

@@ -21,7 +21,7 @@ cta-button: Schedule a call
 ---
 
 ## Credentials
-intro-text: Our team has managed $2B+ for
+intro-text: Before SSP, our team managed $2B+ for
 brands:
   - Apple
   - Google
@@ -40,9 +40,15 @@ brands:
 
 ---
 
+## Statement
+hook: Most growth-stage companies have agencies, freelancers, and tools. What they don't have is someone owning the outcome.
+body: We're the AI-native growth partner that aligns brand, performance, systems, and talent under one team — and stays accountable to revenue, not a percentage of your ad spend.
+
+---
+
 ## Intro
 headline: Make Marketing Work. For Your Business.
-body: Everything in marketing is changing. What works today won't work tomorrow. The brands that master the shift grow faster, with more focus and higher profit. We're the partner helping them get there.
+body: Three ways we embed with your team to drive growth — from strategic guidance to full operational ownership.
 
 ### Value Props
 
@@ -149,9 +155,8 @@ outcomes:
 
 ## About
 headline: Yesterday's agencies aren't built for tomorrow's brands.
-paragraph-1: They were designed for a world where it took teams of people to do all the work. That world is changing—from media buying to creative to content, from analysis to optimization. AI now touches everything in marketing, so the work that matters has changed too.
-paragraph-2: Today's advantage is orchestration: managing systems, aligning teams, and making business decisions that connect to your bottom line—the kind of decisions AI can't make without a human in the loop.
-paragraph-3: Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We partner with you, look across your business, translate goals into a clear plan, and manage marketing like the investment it is.
+paragraph-1: They were built for a world where scale meant headcount. Today, the advantage belongs to teams that orchestrate — managing systems, aligning talent, and making the business decisions AI can't make without a human in the loop.
+paragraph-2: Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We partner with you, look across your business, translate goals into a clear plan, and manage marketing like the investment it is.
 
 ### Founder
 name: Brett Wohl

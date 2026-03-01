@@ -1,3 +1,5 @@
+export { HEADING_CLASSES, HEADING_DISPLAY_CLASSES, HEADING_CTA_CLASSES, BODY_CLASSES, LABEL_CLASSES } from './typography';
+
 // Animation constants
 export const ANIMATION = {
   SCROLL_OFFSET: -80,

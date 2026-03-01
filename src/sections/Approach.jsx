@@ -1,7 +1,7 @@
 import React from 'react';
 import Section from '../components/Section';
 import FocusText from '../components/FocusText';
-import { CAPABILITIES } from '../constants';
+import { CAPABILITIES, HEADING_CLASSES, BODY_CLASSES } from '../constants';
 
 // Progressive dot indicator for sequence
 const MinimalDot = ({ count = 1 }) => (
@@ -20,10 +20,10 @@ const Approach = () => {
     <Section id="approach" label="Approach">
       <div className="mb-20 md:mb-24">
         <FocusText>
-          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl mb-8 md:mb-12 text-charcoal">
+          <h2 className={`${HEADING_CLASSES} mb-8 md:mb-12`}>
             Tailor made<br /><span className="italic">growth marketing.</span>
           </h2>
-          <p className="font-sans text-body md:text-body-md leading-relaxed max-w-narrow text-secondary font-light">
+          <p className={`${BODY_CLASSES} max-w-narrow`}>
             You know what's working in your business and what isn't. What you need is a strategy to grow. We build that strategy, tailored to you.
           </p>
         </FocusText>

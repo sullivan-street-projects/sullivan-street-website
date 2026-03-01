@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Section from '../components/Section';
 import FocusText from '../components/FocusText';
 import CTAButton from '../components/CTAButton';
-import { ANIMATION, TIERS, FEATURES, MOBILE_TIERS } from '../constants';
+import { ANIMATION, TIERS, FEATURES, MOBILE_TIERS, HEADING_CLASSES, BODY_CLASSES } from '../constants';
 import { useLenis } from '../components/SmoothScroll';
 
 const renderCell = (value) => {
-  if (value === true) return <span className="text-charcoal text-lg">●</span>;
-  if (value === false) return <span className="text-faint text-lg">−</span>;
+  if (value === true) return <span className="text-charcoal text-body-lg">●</span>;
+  if (value === false) return <span className="text-faint text-body-lg">−</span>;
   return <span className="text-charcoal font-medium">{value}</span>;
 };
 
@@ -34,23 +34,20 @@ const Services = () => {
   }, []);
 
   const scrollToContact = () => {
-    const target = document.getElementById('contact');
-    if (target && lenis) {
-      lenis.scrollTo(target, {
-        offset: ANIMATION.SCROLL_OFFSET,
-        duration: ANIMATION.SCROLL_DURATION
-      });
-    }
+    lenis?.scrollTo('#contact', {
+      offset: ANIMATION.SCROLL_OFFSET,
+      duration: ANIMATION.SCROLL_DURATION
+    });
   };
 
   return (
     <Section id="services" label="Services" padding="py-16 md:py-24 lg:py-32">
       <div className="mb-12 md:mb-16">
         <FocusText>
-          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl mb-8 text-charcoal">
+          <h2 className={`${HEADING_CLASSES} mb-8`}>
             Your marketing investment,<br /><span className="italic">managed.</span>
           </h2>
-          <p className="font-sans text-body md:text-body-md leading-relaxed max-w-narrow text-secondary font-light">
+          <p className={`${BODY_CLASSES} max-w-narrow`}>
             Three ways to work together. One point of contact. The right team for the job.
           </p>
         </FocusText>
@@ -71,7 +68,7 @@ const Services = () => {
                   >
                     <div>
                       <h3 className="font-serif text-xl text-charcoal mb-1">{tier.title}</h3>
-                      <p className="font-sans text-xs uppercase tracking-widest font-bold text-label">{tier.subtitle}</p>
+                      <p className="font-sans text-micro uppercase tracking-widest font-bold text-label">{tier.subtitle}</p>
                     </div>
                     <motion.svg
                       width="20"
@@ -110,7 +107,7 @@ const Services = () => {
                           <ul className="space-y-3">
                             {tier.features.map((feature) => (
                               <li key={feature} className="font-sans text-body-sm text-muted font-light flex items-start">
-                                <span className="text-charcoal mr-3 text-sm">●</span>
+                                <span className="text-charcoal mr-3 text-ui">●</span>
                                 {feature}
                               </li>
                             ))}
@@ -127,21 +124,17 @@ const Services = () => {
 
         {/* CTA - matches Hero style */}
         <div className="mt-10">
-          <FocusText>
-            <CTAButton onClick={scrollToContact}>
-              Schedule a call
-            </CTAButton>
-          </FocusText>
+          <CTAButton onClick={scrollToContact}>
+            Schedule a call
+          </CTAButton>
         </div>
       </div>
 
       {/* Services Footnote - Mobile */}
       <div className="block md:hidden mt-8">
-        <FocusText>
-          <p className="font-sans text-caption italic text-label">
-            Diagnostic assessments available by request.
-          </p>
-        </FocusText>
+        <p className="font-sans text-caption italic text-label">
+          Diagnostic assessments available by request.
+        </p>
       </div>
 
       {/* Desktop Table - Hidden on mobile */}
@@ -164,16 +157,16 @@ const Services = () => {
           <div className="bg-paper border-b border-divider pr-8">
             <div className="services-grid py-4">
               <div className="sticky left-0 z-30 pr-6" style={{ background: 'linear-gradient(to right, var(--color-paper) 85%, transparent)' }}>
-                <span className="font-serif text-lg text-charcoal">Service</span>
+                <span className="font-serif text-body-lg text-charcoal">Service</span>
               </div>
               <div className="text-center services-snap-target">
-                <span className="font-serif text-lg text-charcoal">Management</span>
+                <span className="font-serif text-body-lg text-charcoal">Management</span>
               </div>
               <div className="text-center services-snap-target">
-                <span className="font-serif text-lg text-charcoal">Strategy</span>
+                <span className="font-serif text-body-lg text-charcoal">Strategy</span>
               </div>
               <div className="text-center services-snap-target">
-                <span className="font-serif text-lg text-charcoal">Advisory</span>
+                <span className="font-serif text-body-lg text-charcoal">Advisory</span>
               </div>
             </div>
           </div>
@@ -183,7 +176,7 @@ const Services = () => {
             <div className="sticky left-0 z-10 pr-6" style={{ background: 'linear-gradient(to right, var(--color-paper) 85%, transparent)' }}></div>
             {TIERS.map((tier) => (
               <div key={tier.id} className="text-center services-snap-target">
-                <p className="font-sans text-xs uppercase tracking-widest font-bold text-label mb-4">{tier.subtitle}</p>
+                <p className="font-sans text-micro uppercase tracking-widest font-bold text-label mb-4">{tier.subtitle}</p>
                 <p className="font-sans text-caption leading-relaxed text-secondary font-light">{tier.description}</p>
               </div>
             ))}
@@ -193,7 +186,7 @@ const Services = () => {
           <button
             onClick={() => setIsDesktopExpanded(!isDesktopExpanded)}
             aria-expanded={isDesktopExpanded}
-            className="w-full py-4 flex items-center justify-center gap-2 bg-paper border-t border-b border-divider hover:bg-gray-100 transition-colors group"
+            className="w-full py-4 flex items-center justify-center gap-2 bg-paper border-t border-b border-divider hover:bg-hover-active transition-colors group"
           >
             <span className="font-sans text-caption font-medium text-muted group-hover:text-charcoal transition-colors">
               {isDesktopExpanded ? 'Hide' : 'All services'}
@@ -226,7 +219,7 @@ const Services = () => {
                 {FEATURES.map((feature, index) => (
                   <div
                     key={feature.name}
-                    className={`services-grid py-6 items-start group hover:bg-gray-50 transition-colors duration-300 pr-8 ${
+                    className={`services-grid py-6 items-start group hover:bg-hover transition-colors duration-300 pr-8 ${
                       index < FEATURES.length - 1 ? 'border-b border-divider' : ''
                     }`}
                   >
@@ -253,11 +246,9 @@ const Services = () => {
 
         {/* Services Footnote - Desktop */}
         <div className="mt-8">
-          <FocusText>
-            <p className="font-sans text-caption italic text-label">
-              Diagnostic assessments available by request.
-            </p>
-          </FocusText>
+          <p className="font-sans text-caption italic text-label">
+            Diagnostic assessments available by request.
+          </p>
         </div>
       </div>
     </Section>
