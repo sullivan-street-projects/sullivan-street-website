@@ -17,7 +17,7 @@ const BreathingRings = () => (
             cx={120 + Math.cos(angle) * baseRadius}
             cy={100 + Math.sin(angle) * baseRadius}
             r={3.5 - ring * 0.5}
-            fill="#1a1a1a"
+            fill="currentColor"
             opacity={0.75}
             animate={{
               cx: [
@@ -58,7 +58,7 @@ const FlowingStreams = () => (
             cx={baseX}
             cy={baseY}
             r={intensity}
-            fill="#1a1a1a"
+            fill="currentColor"
             opacity={0.75}
             animate={{
               cy: [
@@ -112,7 +112,7 @@ const FlowingNodes = () => {
           <motion.circle
             key={`corner-${i}`}
             r={pos.r}
-            fill="#1a1a1a"
+            fill="currentColor"
             opacity={0.75}
             animate={{
               cx: [pos.x, pos.x + unitX * pulseAmount, pos.x],
@@ -129,7 +129,7 @@ const FlowingNodes = () => {
         cx={centerX}
         cy={centerY}
         r="10"
-        fill="#1a1a1a"
+        fill="currentColor"
         opacity={0.75}
         animate={{ r: [10, 14, 10], opacity: [0.6, 0.95, 0.6] }}
         transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1.0 }}
@@ -146,7 +146,7 @@ const FlowingNodes = () => {
             key={`edge-${i}`}
             cx={pos.x}
             r={pos.r}
-            fill="#1a1a1a"
+            fill="currentColor"
             opacity={0.75}
             animate={{
               cy: [pos.y, pos.y + unitY * pulseAmount, pos.y],
@@ -171,12 +171,12 @@ const Intro = () => {
     <Section id="intro" label="Opportunity">
       <div className="mb-20 md:mb-24">
         <FocusText>
-          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-tight text-[#1a1a1a] mb-8 md:mb-12">
+          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-tight text-charcoal mb-8 md:mb-12">
             Make Marketing Work<br /><span className="italic">For Your Business.</span>
           </h2>
         </FocusText>
         <FocusText>
-          <p className="font-sans text-[17px] md:text-[19px] text-[#404040] leading-relaxed font-light tracking-wide max-w-[800px]">
+          <p className="font-sans text-body md:text-body-md text-secondary leading-relaxed font-light tracking-wide max-w-narrow">
             Everything in marketing is changing. What works today won't work tomorrow. The brands that master the shift grow faster, with more focus and higher profit. We're the partner helping them get there.
           </p>
         </FocusText>
@@ -192,10 +192,10 @@ const Intro = () => {
 
             {/* Text */}
             <div className="px-4 pb-8 pt-2">
-              <h3 className="font-serif text-[20px] leading-tight text-[#1a1a1a] mb-2">
+              <h3 className="font-serif text-body-lg leading-tight text-charcoal mb-2">
                 {prop.title}
               </h3>
-              <p className="font-sans text-[14px] text-[#737373] leading-relaxed">
+              <p className="font-sans text-ui text-label leading-relaxed">
                 {prop.description}
               </p>
             </div>

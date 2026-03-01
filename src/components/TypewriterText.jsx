@@ -48,7 +48,7 @@ const TypewriterText = ({ text }) => {
         <motion.span
           animate={{ opacity: [1, 0] }}
           transition={{ duration: 0.8, repeat: Infinity }}
-          className="inline-block w-[2px] h-[0.8em] bg-[#1a1a1a] ml-1.5 translate-y-[0.1em]"
+          className="inline-block w-[2px] h-[0.8em] bg-charcoal ml-1.5 translate-y-[0.1em]"
           style={{ visibility: active ? 'visible' : 'hidden' }}
         />
       </span>
