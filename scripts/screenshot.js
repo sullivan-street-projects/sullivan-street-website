@@ -13,6 +13,8 @@ const { values, positionals } = parseArgs({
     scale:     { type: 'string',  short: 's', default: '2' },
     'full-page': { type: 'boolean', default: false },
     selector:  { type: 'string',  default: '' },
+    'scroll-to': { type: 'string', default: '' },
+    settle:    { type: 'string',  default: '800' },
     delay:     { type: 'string',  default: '0' },
     help:      { type: 'boolean', default: false },
   },
@@ -29,6 +31,8 @@ Options:
   -s, --scale <n>         Device pixel ratio (default: 2)
       --full-page         Capture full scrollable page
       --selector <css>    Screenshot a specific element
+      --scroll-to <css>   Scroll element to viewport center before capture
+      --settle <ms>       Wait after scroll for animations (default: 800)
       --delay <ms>        Wait after load (default: 0)
       --help              Show this help
 `.trim());
@@ -43,6 +47,8 @@ const config = {
   scale:    parseFloat(values.scale),
   fullPage: values['full-page'],
   selector: values.selector,
+  scrollTo: values['scroll-to'],
+  settle:   parseInt(values.settle, 10),
   delay:    parseInt(values.delay, 10),
 };
 
@@ -102,6 +108,20 @@ async function takeScreenshot(url, config) {
 
     if (config.delay > 0) {
       await new Promise(r => setTimeout(r, config.delay));
+    }
+
+    // Scroll target into viewport center (triggers FocusText/scroll animations)
+    const scrollTarget = config.scrollTo || config.selector;
+    if (scrollTarget) {
+      const scrollEl = await page.$(scrollTarget);
+      if (!scrollEl) {
+        throw new Error(`Scroll target "${scrollTarget}" not found on page.`);
+      }
+      await scrollEl.evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+      // Wait for scroll-driven animations (FocusText opacity/blur) to settle
+      if (config.settle > 0) {
+        await new Promise(r => setTimeout(r, config.settle));
+      }
     }
 
     const screenshotOptions = { path: config.output };
