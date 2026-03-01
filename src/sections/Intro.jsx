@@ -1,20 +1,11 @@
 import Section from '../components/Section';
 import FocusText from '../components/FocusText';
-import BreathingRings from '../components/svg/BreathingRings';
-import FlowingStreams from '../components/svg/FlowingStreams';
-import FlowingNodes from '../components/svg/FlowingNodes';
 import { VALUE_PROPS, HEADING_CLASSES, BODY_CLASSES } from '../constants';
-
-const animatedGraphics = [
-  <BreathingRings key="breathing" />,
-  <FlowingStreams key="flowing" />,
-  <FlowingNodes key="nodes" />,
-];
 
 const Intro = () => {
   return (
     <Section id="intro" label="Opportunity">
-      <div className="mb-20 md:mb-24">
+      <div className="mb-20 md:mb-28 lg:mb-36">
         <FocusText>
           <h2 className={`${HEADING_CLASSES} leading-tight mb-8 md:mb-12`}>
             Make Marketing Work<br /><span className="italic">For Your Business.</span>
@@ -27,23 +18,22 @@ const Intro = () => {
         </FocusText>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
-        {VALUE_PROPS.map((prop, idx) => (
-          <FocusText key={idx}>
-            <div className="min-h-[280px] flex-1 flex items-center justify-center">
-              {animatedGraphics[idx]}
-            </div>
-            <div className="px-4 pb-8 pt-2">
-              <h3 className="font-serif text-body-lg leading-tight text-charcoal mb-2">
+      {VALUE_PROPS.map((prop, idx) => (
+        <div key={idx}>
+          <div className="h-px bg-charcoal/10" />
+          <FocusText>
+            <div className="py-10 md:py-14 lg:py-16 max-w-narrow">
+              <h3 className="font-serif text-xl md:text-2xl leading-snug text-charcoal mb-3 md:mb-4">
                 {prop.title}
               </h3>
-              <p className="font-sans text-ui text-label leading-relaxed">
+              <p className="font-sans text-body-sm md:text-body text-muted leading-relaxed font-light">
                 {prop.description}
               </p>
             </div>
           </FocusText>
-        ))}
-      </div>
+        </div>
+      ))}
+      <div className="h-px bg-charcoal/10" />
     </Section>
   );
 };
