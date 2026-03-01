@@ -6,7 +6,7 @@ const Credentials = () => {
   return (
     <div className="max-w-[1200px] w-full mx-auto px-6 lg:px-8 pb-16">
       <div className="border-t border-[#e5e5e5]" />
-      <section className="py-20 md:py-24">
+      <section id="credentials" className="py-20 md:py-24">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 items-baseline">
           <div className="lg:w-1/4 shrink-0">
             <FocusText>

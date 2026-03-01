@@ -9,7 +9,7 @@ const Hero = () => {
   const lenis = useLenis();
 
   return (
-    <header className="max-w-[1200px] w-full mx-auto px-6 lg:px-8 pt-40 pb-32 md:pt-48 lg:pt-64 lg:pb-48">
+    <header id="hero" className="max-w-[1200px] w-full mx-auto px-6 lg:px-8 pt-40 pb-32 md:pt-48 lg:pt-64 lg:pb-48">
       <div className="max-w-[1000px]">
         <FocusText noBlur={true}>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-[76px] leading-[1.26] tracking-tight mb-8 md:mb-12 text-[#1a1a1a]">

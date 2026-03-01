@@ -32,7 +32,7 @@ const PartnerOutcomes = () => {
 
   return (
     <div ref={containerRef}>
-      <Section label="Partner Outcomes" divider={true}>
+      <Section id="outcomes" label="Partner Outcomes" divider={true}>
         <div className="max-w-[800px] min-h-[300px] flex flex-col justify-between">
           <div className="relative cursor-grab active:cursor-grabbing">
             <FocusText>
