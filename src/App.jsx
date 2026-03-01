@@ -52,7 +52,7 @@ export default function App() {
         <Header />
         <Navigation />
 
-        <div className="relative z-content">
+        <div className="relative z-[2]">
           <Hero />
           <Credentials />
           <Intro />
