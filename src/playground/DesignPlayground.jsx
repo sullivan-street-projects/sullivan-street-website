@@ -1,115 +1,69 @@
-import React, { useState } from 'react';
-import GrainComparison from './GrainComparison';
+import React, { useState, useEffect } from 'react';
 import GrainOverlay from '../components/GrainOverlay';
-import HalftoneLibrary from './HalftoneLibrary';
 
-// --- SECTIONS: VALUE PROPS ---
-import ValuePropsAnimatedHalftone from './variants/ValuePropsAnimatedHalftone'; // Shipped
-import ValuePropsEditorialHalftone from './variants/ValuePropsEditorialHalftone';
-import ValuePropsMinimalHalftone from './variants/ValuePropsMinimalHalftone';
-import ValuePropsHalftoneIcons from './variants/ValuePropsHalftoneIcons';
-import ValuePropsAppleCards from './variants/ValuePropsAppleCards';
-import ValuePropsWhiteCards from './variants/ValuePropsWhiteCards';
-import ValuePropsSourced from './variants/ValuePropsSourced';
-import ValuePropsUserImages from './variants/ValuePropsUserImages';
-import ValuePropsInverted from './variants/ValuePropsInverted';
-import ValuePropsStructured from './variants/ValuePropsStructured';
-import ValuePropsEditorialText from './variants/ValuePropsEditorialText';
-import ValuePropsHalftone from './variants/ValuePropsHalftone';
-
-// --- SECTIONS: APPROACH ---
-import ValuePropsApproachDots from './variants/ValuePropsApproachDots'; // Shipped
-import ValuePropsApproachDice from './variants/ValuePropsApproachDice';
-import ValuePropsApproachNumbered from './variants/ValuePropsApproachNumbered';
-import ApproachNarrative from './variants/ApproachNarrative';
-
-// --- SECTIONS: SERVICES ---
-import ServicesAccordionRows from './variants/ServicesAccordionRows';
-import ServicesAccordionTiers from './variants/ServicesAccordionTiers';
-import ServicesAccordionSummary from './variants/ServicesAccordionSummary';
-
-// --- MAIN PAGE ---
-import MainPageStatic from './variants/MainPageStatic';
-
-// --- EXPLORATIONS ---
-import ContactConvergence from './variants/ContactConvergence';
-import FullBleedZone from './variants/FullBleedZone';
-import GreenAccentHalftone from './variants/GreenAccentHalftone';
-import BackgroundGreenTint from './variants/BackgroundGreenTint';
-import SectionSeparation from './variants/SectionSeparation';
-
-// Organized variant categories
+// Lazy-loaded variant registry — only the selected variant is imported
 const categories = [
   {
     title: 'Main Page',
     description: 'Full page layout compositions',
     variants: [
-      { id: 'main-page-static', label: 'Static (No Animation)', version: 'v1 · Jan 11', component: MainPageStatic },
+      { id: 'main-page-static', label: 'Static (No Animation)', version: 'v1 · Jan 11', load: () => import('./variants/MainPageStatic') },
     ],
   },
   {
     title: 'Value Props',
     description: 'Core messaging layout variations',
     variants: [
-      // LIVE
-      { id: 'animated-halftone', label: 'Animated Halftone', component: ValuePropsAnimatedHalftone, shipped: true },
-      
-      // High Fidelity / Strong Contenders
-      { id: 'editorial-halftone', label: 'Editorial Split', component: ValuePropsEditorialHalftone },
-      { id: 'bento-cards', label: 'Bento Cards', component: ValuePropsAppleCards },
-      { id: 'minimal-halftone', label: 'Minimalist Halftone', component: ValuePropsMinimalHalftone },
-      
-      // Layout Explorations
-      { id: 'icon-grid', label: 'Icon Grid', component: ValuePropsWhiteCards },
-      { id: 'halftone-icons', label: 'Halftone Icons', component: ValuePropsHalftoneIcons },
-      { id: 'structured-list', label: 'Structured List', component: ValuePropsStructured },
-      { id: 'inverted-dark', label: 'Inverted (Dark)', component: ValuePropsInverted },
-      
-      // Image Explorations
-      { id: 'sourced-photo', label: 'Sourced Photography', component: ValuePropsSourced },
-      { id: 'user-generated', label: 'User Generated', component: ValuePropsUserImages },
-      
-      // Deprecated / Early Concepts
-      { id: 'editorial-text', label: 'Pure Text', component: ValuePropsEditorialText },
-      { id: 'full-halftone', label: 'Maximalist Halftone', component: ValuePropsHalftone },
+      { id: 'animated-halftone', label: 'Animated Halftone', shipped: true, load: () => import('./variants/ValuePropsAnimatedHalftone') },
+      { id: 'editorial-halftone', label: 'Editorial Split', load: () => import('./variants/ValuePropsEditorialHalftone') },
+      { id: 'bento-cards', label: 'Bento Cards', load: () => import('./variants/ValuePropsAppleCards') },
+      { id: 'minimal-halftone', label: 'Minimalist Halftone', load: () => import('./variants/ValuePropsMinimalHalftone') },
+      { id: 'icon-grid', label: 'Icon Grid', load: () => import('./variants/ValuePropsWhiteCards') },
+      { id: 'halftone-icons', label: 'Halftone Icons', load: () => import('./variants/ValuePropsHalftoneIcons') },
+      { id: 'structured-list', label: 'Structured List', load: () => import('./variants/ValuePropsStructured') },
+      { id: 'inverted-dark', label: 'Inverted (Dark)', load: () => import('./variants/ValuePropsInverted') },
+      { id: 'sourced-photo', label: 'Sourced Photography', load: () => import('./variants/ValuePropsSourced') },
+      { id: 'user-generated', label: 'User Generated', load: () => import('./variants/ValuePropsUserImages') },
+      { id: 'editorial-text', label: 'Pure Text', load: () => import('./variants/ValuePropsEditorialText') },
+      { id: 'full-halftone', label: 'Maximalist Halftone', load: () => import('./variants/ValuePropsHalftone') },
     ],
   },
   {
     title: 'Approach',
     description: 'Process and methodology visualizations',
     variants: [
-      { id: 'approach-dots', label: 'Progressive Dots', component: ValuePropsApproachDots, shipped: true },
-      { id: 'approach-dice', label: 'Dice Grid', component: ValuePropsApproachDice },
-      { id: 'approach-numbered', label: 'Numbered Steps', component: ValuePropsApproachNumbered },
-      { id: 'approach-narrative', label: 'Narrative Block', component: ApproachNarrative },
+      { id: 'approach-dots', label: 'Progressive Dots', shipped: true, load: () => import('./variants/ValuePropsApproachDots') },
+      { id: 'approach-dice', label: 'Dice Grid', load: () => import('./variants/ValuePropsApproachDice') },
+      { id: 'approach-numbered', label: 'Numbered Steps', load: () => import('./variants/ValuePropsApproachNumbered') },
+      { id: 'approach-narrative', label: 'Narrative Block', load: () => import('./variants/ApproachNarrative') },
     ],
   },
   {
     title: 'Services',
     description: 'Pricing and tier presentation',
     variants: [
-      { id: 'services-rows', label: 'Accordion List', component: ServicesAccordionRows },
-      { id: 'services-tiers', label: 'Tier Cards', component: ServicesAccordionTiers },
-      { id: 'services-summary', label: 'Summary Grid', component: ServicesAccordionSummary },
+      { id: 'services-rows', label: 'Accordion List', load: () => import('./variants/ServicesAccordionRows') },
+      { id: 'services-tiers', label: 'Tier Cards', load: () => import('./variants/ServicesAccordionTiers') },
+      { id: 'services-summary', label: 'Summary Grid', load: () => import('./variants/ServicesAccordionSummary') },
     ],
   },
   {
     title: 'Explorations',
     description: 'Layout patterns and experimental structures',
     variants: [
-      { id: 'section-spacing', label: 'Section Spacing / Dividers', component: SectionSeparation },
-      { id: 'full-bleed', label: 'Full-Bleed Zones', component: FullBleedZone },
-      { id: 'contact-convergence', label: 'Contact Convergence', component: ContactConvergence },
-      { id: 'green-accent', label: 'Green Accent Test', component: GreenAccentHalftone },
-      { id: 'bg-green-tint', label: 'Background Tints', component: BackgroundGreenTint },
+      { id: 'section-spacing', label: 'Section Spacing / Dividers', load: () => import('./variants/SectionSeparation') },
+      { id: 'full-bleed', label: 'Full-Bleed Zones', load: () => import('./variants/FullBleedZone') },
+      { id: 'contact-convergence', label: 'Contact Convergence', load: () => import('./variants/ContactConvergence') },
+      { id: 'green-accent', label: 'Green Accent Test', load: () => import('./variants/GreenAccentHalftone') },
+      { id: 'bg-green-tint', label: 'Background Tints', load: () => import('./variants/BackgroundGreenTint') },
     ],
   },
   {
     title: 'System',
     description: 'Core design atoms',
     variants: [
-      { id: 'halftone-library', label: 'Pattern Library', component: HalftoneLibrary },
-      { id: 'grain-comparison', label: 'Grain Overlay', component: GrainComparison },
+      { id: 'halftone-library', label: 'Pattern Library', load: () => import('./HalftoneLibrary') },
+      { id: 'grain-comparison', label: 'Grain Overlay', load: () => import('./GrainComparison') },
     ],
   },
 ];
@@ -117,7 +71,8 @@ const categories = [
 const DesignPlayground = () => {
   const [selectedVariantId, setSelectedVariantId] = useState('animated-halftone');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
+  const [LoadedComponent, setLoadedComponent] = useState(null);
+
   // Find the selected variant and its category
   let activeVariant = null;
   let activeCategory = null;
@@ -131,15 +86,27 @@ const DesignPlayground = () => {
     }
   }
 
+  // Lazy-load the selected variant
+  useEffect(() => {
+    setLoadedComponent(null);
+    if (!activeVariant?.load) return;
+
+    let cancelled = false;
+    activeVariant.load().then(m => {
+      if (!cancelled) setLoadedComponent(() => m.default);
+    });
+    return () => { cancelled = true; };
+  }, [selectedVariantId]);
+
   return (
     <div className="flex h-screen w-full bg-[#FAFAF8] text-[#1a1a1a] font-sans overflow-hidden">
-      
+
       <GrainOverlay />
 
       {/* Mobile Header / Toggle */}
       <div className="md:hidden fixed top-0 left-0 right-0 h-14 bg-[#FAFAF8] border-b border-[#e5e5e5] z-40 flex items-center justify-between px-4">
         <h1 className="font-serif text-lg text-[#1a1a1a]">Playground</h1>
-        <button 
+        <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="text-sm font-medium text-[#737373] p-2"
         >
@@ -156,8 +123,8 @@ const DesignPlayground = () => {
         <div className="px-5 py-4 border-b border-[#e5e5e5] hidden md:block">
           <div className="flex items-center justify-between mb-1">
              <h1 className="font-serif text-lg text-[#1a1a1a]">Playground</h1>
-             <a 
-               href="/" 
+             <a
+               href="/"
                className="text-[10px] font-bold text-[#737373] hover:text-[#1a1a1a] uppercase tracking-widest"
                onClick={(e) => {
                  e.preventDefault();
@@ -217,7 +184,7 @@ const DesignPlayground = () => {
 
       {/* Main Content Area */}
       <main className="flex-1 h-full flex flex-col relative bg-[#FAFAF8] overflow-hidden pt-14 md:pt-0">
-        
+
         {/* Desktop Toolbar */}
         <div className="hidden md:flex h-14 border-b border-[#e5e5e5] items-center justify-between px-8 shrink-0 bg-[#FAFAF8] z-20">
           <div className="flex items-center gap-2">
@@ -229,7 +196,7 @@ const DesignPlayground = () => {
               {activeVariant?.label}
             </span>
           </div>
-          
+
           <div className="flex items-center gap-4">
              {activeVariant?.shipped && (
                 <div className="flex items-center gap-2 px-2 py-1 bg-[#4ADE80]/10 rounded border border-[#4ADE80]/20">
@@ -243,7 +210,9 @@ const DesignPlayground = () => {
         {/* Canvas */}
         <div className="flex-1 overflow-y-auto relative bg-[#FAFAF8]">
            <div className="w-full max-w-[1200px] mx-auto px-6 md:px-8 py-12 md:py-24">
-              {activeVariant?.component && <activeVariant.component />}
+              {LoadedComponent ? <LoadedComponent /> : (
+                <div className="text-center text-[#999] py-24">Loading...</div>
+              )}
            </div>
         </div>
       </main>
