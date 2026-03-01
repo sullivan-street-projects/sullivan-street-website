@@ -3,22 +3,10 @@ import Section from '../components/Section';
 import FocusText from '../components/FocusText';
 import { CAPABILITIES, HEADING_CLASSES, BODY_CLASSES } from '../constants';
 
-// Progressive dot indicator for sequence
-const MinimalDot = ({ count = 1 }) => (
-  <div className="flex gap-1.5">
-    {[...Array(count)].map((_, i) => (
-      <div
-        key={i}
-        className="w-1.5 h-1.5 rounded-full bg-charcoal/40"
-      />
-    ))}
-  </div>
-);
-
 const Approach = () => {
   return (
     <Section id="approach" label="Approach">
-      <div className="mb-20 md:mb-24">
+      <div className="mb-20 md:mb-28 lg:mb-36">
         <FocusText>
           <h2 className={`${HEADING_CLASSES} mb-8 md:mb-12`}>
             Tailor made<br /><span className="italic">growth marketing.</span>
@@ -29,29 +17,30 @@ const Approach = () => {
         </FocusText>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        {CAPABILITIES.map((capability, idx) => {
-          const mdBorder = idx % 2 === 0 ? 'md:border-r' : '';
-          const lgBorder = idx < 3 ? 'lg:border-r' : '';
-          return (
-            <div
-              key={capability.title}
-              className={`py-8 md:px-6 md:first:pl-0 md:last:pr-0 border-divider/60 ${mdBorder} ${lgBorder}`}
-            >
-              <FocusText>
-                <div className="mb-5">
-                  <MinimalDot count={idx + 1} />
-                </div>
-                <h3 className="font-serif text-xl leading-tight text-charcoal mb-3">{capability.title}</h3>
-                <div className="w-8 h-px bg-charcoal/20 mb-4" />
-                <p className="font-sans text-body-sm text-muted leading-relaxed font-light">
-                  {capability.description}
+      {/* Editorial steps — large serif numbers + asymmetric grid */}
+      {CAPABILITIES.map((cap, idx) => (
+        <div key={cap.title}>
+          <div className="h-px bg-charcoal/10" />
+          <FocusText>
+            <div className="grid grid-cols-12 py-10 md:py-14 lg:py-16">
+              <div className="col-span-3 md:col-span-2">
+                <span className="font-serif text-charcoal/10 text-[56px] md:text-[72px] lg:text-[88px] leading-none select-none">
+                  {idx + 1}
+                </span>
+              </div>
+              <div className="col-span-9 md:col-span-8 lg:col-span-6 pt-2 md:pt-3">
+                <h3 className="font-serif text-xl md:text-2xl lg:text-3xl leading-snug text-charcoal mb-4 md:mb-5">
+                  {cap.title}
+                </h3>
+                <p className="font-sans text-body-sm md:text-body text-muted leading-relaxed font-light">
+                  {cap.description}
                 </p>
-              </FocusText>
+              </div>
             </div>
-          );
-        })}
-      </div>
+          </FocusText>
+        </div>
+      ))}
+      <div className="h-px bg-charcoal/10" />
     </Section>
   );
 };
