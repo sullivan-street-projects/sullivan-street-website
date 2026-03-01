@@ -3,6 +3,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { SmoothScroll } from './components/SmoothScroll';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
+import GrainOverlay from './components/GrainOverlay';
 import Footer from './components/Footer';
 import Hero from './sections/Hero';
 import Credentials from './sections/Credentials';
@@ -39,9 +40,7 @@ export default function App() {
     <SmoothScroll>
       <div className="min-h-screen bg-paper text-charcoal selection:bg-charcoal selection:text-paper relative font-sans">
         
-        {/* Subtle Grain Overlay - Dialed back for "felt not seen" effect */}
-        <div className="fixed inset-0 pointer-events-none z-grain opacity-[0.04]" 
-             style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+        <GrainOverlay />
 
         <Header />
         <Navigation />

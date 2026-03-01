@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 import Lenis from 'lenis';
+import { NAV_ITEMS } from '../constants';
 
 const LenisContext = createContext(null);
 
 export const useLenis = () => useContext(LenisContext);
 
-// Section IDs to snap to (in order)
-const SNAP_SECTIONS = ['approach', 'services', 'about', 'contact'];
+// Derive snap sections from NAV_ITEMS (single source of truth)
+const SNAP_SECTIONS = NAV_ITEMS.map(item => item.id);
 const HEADER_OFFSET = 80;
 
 export const SmoothScroll = ({ children }) => {

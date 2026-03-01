@@ -2,7 +2,7 @@ import React from 'react';
 import Section from '../components/Section';
 import FocusText from '../components/FocusText';
 import TypewriterText from '../components/TypewriterText';
-import AnimatedArrow from '../components/AnimatedArrow';
+import CTAButton from '../components/CTAButton';
 
 const Contact = () => {
   return (
@@ -14,16 +14,9 @@ const Contact = () => {
               Ready to build <br />
               <TypewriterText text="Tomorrow's Billion-Dollar Brand?" />
             </h2>
-            <div className="group relative inline-block">
-              <a
-                href="mailto:hello@sullivanstreetprojects.co"
-                className="font-serif text-3xl md:text-4xl lg:text-5xl italic inline-flex items-center gap-6 md:gap-10 hover:opacity-70 transition-all text-charcoal"
-              >
-                Schedule a call
-                <AnimatedArrow size="lg" className="not-italic" />
-              </a>
-              <div className="absolute -bottom-4 left-0 w-full h-[1.5px] bg-charcoal scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
-            </div>
+            <CTAButton href="mailto:hello@sullivanstreetprojects.co" variant="lg">
+              Schedule a call
+            </CTAButton>
           </FocusText>
         </div>
       </Section>

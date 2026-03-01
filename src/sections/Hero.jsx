@@ -1,7 +1,7 @@
 import React from 'react';
 import TypewriterText from '../components/TypewriterText';
 import FocusText from '../components/FocusText';
-import AnimatedArrow from '../components/AnimatedArrow';
+import CTAButton from '../components/CTAButton';
 import { useLenis } from '../components/SmoothScroll';
 import { ANIMATION } from '../constants';
 
@@ -24,19 +24,12 @@ const Hero = () => {
           </p>
         </FocusText>
         <FocusText noBlur={true}>
-          <div className="group relative inline-block">
-            <button
-              onClick={() => lenis?.scrollTo('#contact', {
-                offset: ANIMATION.SCROLL_OFFSET,
-                duration: ANIMATION.SCROLL_DURATION
-              })}
-              className="font-sans text-micro font-bold uppercase tracking-wider inline-flex items-center gap-4 hover:opacity-70 transition-all text-charcoal"
-            >
-              Schedule a call
-              <AnimatedArrow size="sm" />
-            </button>
-            <div className="absolute -bottom-2 left-0 w-full h-[1.5px] bg-charcoal scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
-          </div>
+          <CTAButton onClick={() => lenis?.scrollTo('#contact', {
+            offset: ANIMATION.SCROLL_OFFSET,
+            duration: ANIMATION.SCROLL_DURATION
+          })}>
+            Schedule a call
+          </CTAButton>
         </FocusText>
       </div>
     </header>
