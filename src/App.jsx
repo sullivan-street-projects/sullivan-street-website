@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import ErrorBoundary from './components/ErrorBoundary';
 import { SmoothScroll } from './components/SmoothScroll';
 import Header from './components/Header';
@@ -13,7 +13,8 @@ import Services from './sections/Services';
 import PartnerOutcomes from './sections/PartnerOutcomes';
 import About from './sections/About';
 import Contact from './sections/Contact';
-import { DesignPlayground } from './playground';
+
+const DesignPlayground = React.lazy(() => import('./playground/DesignPlayground'));
 
 export default function App() {
   const [isPlayground, setIsPlayground] = useState(window.location.hash === '#playground');
@@ -30,7 +31,9 @@ export default function App() {
   if (isPlayground) {
     return (
       <ErrorBoundary>
-        <DesignPlayground />
+        <Suspense fallback={<div className="min-h-screen bg-paper" />}>
+          <DesignPlayground />
+        </Suspense>
       </ErrorBoundary>
     );
   }

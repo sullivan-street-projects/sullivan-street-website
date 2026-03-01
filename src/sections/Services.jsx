@@ -164,16 +164,16 @@ const Services = () => {
           <div className="bg-paper border-b border-divider pr-8">
             <div className="services-grid py-4">
               <div className="sticky left-0 z-30 pr-6" style={{ background: 'linear-gradient(to right, var(--color-paper) 85%, transparent)' }}>
-                <FocusText noBlur><span className="font-serif text-lg text-charcoal">Service</span></FocusText>
+                <span className="font-serif text-lg text-charcoal">Service</span>
               </div>
               <div className="text-center services-snap-target">
-                <FocusText noBlur><span className="font-serif text-lg text-charcoal">Management</span></FocusText>
+                <span className="font-serif text-lg text-charcoal">Management</span>
               </div>
               <div className="text-center services-snap-target">
-                <FocusText noBlur><span className="font-serif text-lg text-charcoal">Strategy</span></FocusText>
+                <span className="font-serif text-lg text-charcoal">Strategy</span>
               </div>
               <div className="text-center services-snap-target">
-                <FocusText noBlur><span className="font-serif text-lg text-charcoal">Advisory</span></FocusText>
+                <span className="font-serif text-lg text-charcoal">Advisory</span>
               </div>
             </div>
           </div>
@@ -183,10 +183,8 @@ const Services = () => {
             <div className="sticky left-0 z-10 pr-6" style={{ background: 'linear-gradient(to right, var(--color-paper) 85%, transparent)' }}></div>
             {TIERS.map((tier) => (
               <div key={tier.id} className="text-center services-snap-target">
-                <FocusText noBlur>
-                  <p className="font-sans text-xs uppercase tracking-widest font-bold text-label mb-4">{tier.subtitle}</p>
-                  <p className="font-sans text-caption leading-relaxed text-secondary font-light">{tier.description}</p>
-                </FocusText>
+                <p className="font-sans text-xs uppercase tracking-widest font-bold text-label mb-4">{tier.subtitle}</p>
+                <p className="font-sans text-caption leading-relaxed text-secondary font-light">{tier.description}</p>
               </div>
             ))}
           </div>
@@ -232,19 +230,17 @@ const Services = () => {
                     }`}
                   >
                     <div className="sticky left-0 pr-6 z-10" style={{ background: 'linear-gradient(to right, var(--color-paper) 85%, transparent)' }}>
-                      <FocusText noBlur>
-                        <p className="font-sans text-body-sm font-medium text-charcoal mb-1.5">{feature.name}</p>
-                        <p className="font-sans text-caption leading-relaxed text-muted font-light">{feature.description}</p>
-                      </FocusText>
+                      <p className="font-sans text-body-sm font-medium text-charcoal mb-1.5">{feature.name}</p>
+                      <p className="font-sans text-caption leading-relaxed text-muted font-light">{feature.description}</p>
                     </div>
                     <div className="pt-1 text-center font-sans text-caption text-label services-snap-target">
-                      <FocusText noBlur>{renderCell(feature.management)}</FocusText>
+                      {renderCell(feature.management)}
                     </div>
                     <div className="pt-1 text-center font-sans text-caption text-label services-snap-target">
-                      <FocusText noBlur>{renderCell(feature.strategy)}</FocusText>
+                      {renderCell(feature.strategy)}
                     </div>
                     <div className="pt-1 text-center font-sans text-caption text-label services-snap-target">
-                      <FocusText noBlur>{renderCell(feature.advisory)}</FocusText>
+                      {renderCell(feature.advisory)}
                     </div>
                   </div>
                 ))}
