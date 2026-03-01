@@ -5,7 +5,7 @@ import { VALUE_PROPS, HEADING_CLASSES, BODY_CLASSES } from '../constants';
 const Intro = () => {
   return (
     <Section id="intro" label="Opportunity">
-      <div className="mb-16 md:mb-20">
+      <div className="mb-20 md:mb-28 lg:mb-36">
         <FocusText>
           <h2 className={`${HEADING_CLASSES} leading-tight mb-8 md:mb-12`}>
             Make Marketing Work<br /><span className="italic">For Your Business.</span>
@@ -18,20 +18,24 @@ const Intro = () => {
         </FocusText>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
-        {VALUE_PROPS.map((prop, idx) => (
-          <FocusText key={idx}>
-            <div className="border-t border-charcoal/10 px-0 md:px-4 md:first:pl-0 md:last:pr-0 py-8 md:py-10">
-              <h3 className="font-serif text-body-lg leading-tight text-charcoal mb-2">
-                {prop.title}
-              </h3>
-              <p className="font-sans text-ui text-label leading-relaxed">
-                {prop.description}
-              </p>
+      {VALUE_PROPS.map((prop, idx) => (
+        <div key={idx}>
+          <div className="h-px bg-charcoal/10" />
+          <FocusText>
+            <div className="grid grid-cols-12 py-10 md:py-14 lg:py-16">
+              <div className="col-span-12 md:col-span-8 lg:col-span-6">
+                <h3 className="font-serif text-xl md:text-2xl lg:text-3xl leading-snug text-charcoal mb-4 md:mb-5">
+                  {prop.title}
+                </h3>
+                <p className="font-sans text-body-sm md:text-body text-muted leading-relaxed font-light">
+                  {prop.description}
+                </p>
+              </div>
             </div>
           </FocusText>
-        ))}
-      </div>
+        </div>
+      ))}
+      <div className="h-px bg-charcoal/10" />
     </Section>
   );
 };
