@@ -1,16 +1,70 @@
 @import "tailwindcss";
 
+@theme {
+  /* Colors (--color-* → bg-*, text-*, border-*) */
+  --color-charcoal: #1a1a1a;
+  --color-paper: #FAFAF8;
+  --color-paper-warm: #f0f0ee;
+  --color-divider: #e5e5e5;
+  --color-secondary: #404040;
+  --color-muted: #525252;
+  --color-label: #737373;
+  --color-faint: #999999;
+  --color-green: #4ADE80;
+  --color-green-dark: #22c55e;
+
+  /* Font families (--font-* → font-*) */
+  --font-serif: 'Libre Baskerville', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Type scale (--text-* → text-*) */
+  --text-display: 4.75rem;
+  --text-display--line-height: 1.26;
+  --text-display-sm: 4.375rem;
+  --text-display-sm--line-height: 1.1;
+  --text-hero-sub: 2.375rem;
+  --text-hero-sub--line-height: 1.4;
+  --text-body-lg: 1.25rem;
+  --text-body-lg--line-height: 1.625;
+  --text-body-md: 1.1875rem;
+  --text-body-md--line-height: 1.625;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.625;
+  --text-body-sm: 0.9375rem;
+  --text-body-sm--line-height: 1.625;
+  --text-ui: 0.875rem;
+  --text-ui--line-height: 1.5;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.5;
+  --text-micro: 0.75rem;
+  --text-micro--line-height: 1.5;
+  --text-tag: 0.6875rem;
+  --text-tag--line-height: 1.5;
+  --text-section-label: 0.625rem;
+  --text-section-label--line-height: 1.5;
+
+  /* Letter spacing (--tracking-* → tracking-*) */
+  --tracking-wide: 0.12em;
+  --tracking-wider: 0.25em;
+  --tracking-widest: 0.3em;
+
+  /* Layout (--max-width-* → max-w-*) */
+  --max-width-site: 75rem;
+  --max-width-content: 62.5rem;
+  --max-width-prose: 53.125rem;
+  --max-width-narrow: 50rem;
+
+  /* Z-index (--z-* → z-*) */
+  --z-content: 2;
+  --z-grain: 50;
+  --z-header: 80;
+  --z-nav: 100;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: clip; /* Prevents horizontal scroll without breaking CSS sticky */
-}
-
-.font-serif { 
-  font-family: 'Libre Baskerville', Georgia, serif; 
-}
-
-.font-sans {
-  font-family: 'Inter', system-ui, sans-serif;
 }
 
 /* Hide scrollbar but allow scrolling */

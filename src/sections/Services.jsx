@@ -41,10 +41,10 @@ const Services = () => {
     <Section id="services" label="Services" padding="py-16 md:py-24 lg:py-32">
       <div className="mb-12 md:mb-16">
         <FocusText>
-          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl mb-8 text-[#1a1a1a]">
+          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl mb-8 text-charcoal">
             Your marketing investment,<br /><span className="italic">managed.</span>
           </h2>
-          <p className="font-sans text-[17px] md:text-[19px] leading-relaxed max-w-[800px] text-[#404040] font-light">
+          <p className="font-sans text-body md:text-body-md leading-relaxed max-w-narrow text-secondary font-light">
             Three ways to work together. One point of contact. The right team for the job.
           </p>
         </FocusText>
@@ -57,22 +57,22 @@ const Services = () => {
             const isExpanded = expandedTier === tier.id;
             return (
               <FocusText key={tier.id}>
-                <div className="border-b border-[#e5e5e5]">
+                <div className="border-b border-divider">
                   {/* Accordion Header */}
                   <button
                     onClick={() => setExpandedTier(isExpanded ? null : tier.id)}
                     className="w-full py-6 flex items-start justify-between text-left"
                   >
                     <div>
-                      <h3 className="font-serif text-xl text-[#1a1a1a] mb-1">{tier.title}</h3>
-                      <p className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373]">{tier.subtitle}</p>
+                      <h3 className="font-serif text-xl text-charcoal mb-1">{tier.title}</h3>
+                      <p className="font-sans text-xs uppercase tracking-widest font-bold text-label">{tier.subtitle}</p>
                     </div>
                     <motion.svg
                       width="20"
                       height="20"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#737373"
+                      stroke="var(--color-label)"
                       strokeWidth="2"
                       className="mt-1 flex-shrink-0"
                       animate={{ rotate: isExpanded ? 90 : 0 }}
@@ -93,18 +93,18 @@ const Services = () => {
                         className="overflow-hidden"
                       >
                         <div className="pb-8">
-                          <p className="font-sans text-[15px] text-[#525252] leading-relaxed font-light mb-6">
+                          <p className="font-sans text-body-sm text-muted leading-relaxed font-light mb-6">
                             {tier.description}
                           </p>
 
-                          <p className="font-sans text-[13px] italic text-[#737373] mb-5">
+                          <p className="font-sans text-caption italic text-label mb-5">
                             {tier.includesText}
                           </p>
 
                           <ul className="space-y-3">
                             {tier.features.map((feature) => (
-                              <li key={feature} className="font-sans text-[15px] text-[#525252] font-light flex items-start">
-                                <span className="text-[#1a1a1a] mr-3 text-sm">●</span>
+                              <li key={feature} className="font-sans text-body-sm text-muted font-light flex items-start">
+                                <span className="text-charcoal mr-3 text-sm">●</span>
                                 {feature}
                               </li>
                             ))}
@@ -125,12 +125,12 @@ const Services = () => {
             <div className="group relative inline-block">
               <button
                 onClick={scrollToContact}
-                className="font-sans text-[12px] font-bold uppercase tracking-[0.25em] inline-flex items-center gap-4 hover:opacity-70 transition-all text-[#1a1a1a]"
+                className="font-sans text-micro font-bold uppercase tracking-wider inline-flex items-center gap-4 hover:opacity-70 transition-all text-charcoal"
               >
                 Schedule a call
                 <AnimatedArrow size="sm" />
               </button>
-              <div className="absolute -bottom-2 left-0 w-full h-[1.5px] bg-[#1a1a1a] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
+              <div className="absolute -bottom-2 left-0 w-full h-[1.5px] bg-charcoal scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
             </div>
           </FocusText>
         </div>
@@ -139,7 +139,7 @@ const Services = () => {
       {/* Services Footnote - Mobile */}
       <div className="block md:hidden mt-8">
         <FocusText>
-          <p className="font-sans text-[13px] italic text-[#737373]">
+          <p className="font-sans text-caption italic text-label">
             Diagnostic assessments available by request.
           </p>
         </FocusText>
@@ -150,10 +150,10 @@ const Services = () => {
         {/* Scroll hint - mobile only */}
         <div
           className={`absolute right-0 top-0 bottom-0 w-12 pointer-events-none z-20 lg:hidden transition-opacity duration-500 ${showScrollHint ? 'opacity-100' : 'opacity-0'}`}
-          style={{ background: 'linear-gradient(to right, transparent, #FAFAF8)' }}
+          style={{ background: 'linear-gradient(to right, transparent, var(--color-paper))' }}
         >
           <div className="absolute right-2 top-1/2 -translate-y-1/2 animate-pulse">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" strokeWidth="2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-label)" strokeWidth="2">
               <path d="M9 18l6-6-6-6" />
             </svg>
           </div>
@@ -162,31 +162,31 @@ const Services = () => {
         <div ref={scrollRef} className="overflow-x-auto scrollbar-hide services-scroll">
         <div className="min-w-[680px]">
           {/* Header Row - scrolls with content, no vertical sticky */}
-          <div className="bg-[#FAFAF8] border-b border-[#e5e5e5] pr-8">
+          <div className="bg-paper border-b border-divider pr-8">
             <div className="services-grid py-4">
-              <div className="sticky left-0 z-30 pr-6" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}>
-                <FocusText noBlur><span className="font-serif text-lg text-[#1a1a1a]">Service</span></FocusText>
+              <div className="sticky left-0 z-30 pr-6" style={{ background: 'linear-gradient(to right, var(--color-paper) 85%, transparent)' }}>
+                <FocusText noBlur><span className="font-serif text-lg text-charcoal">Service</span></FocusText>
               </div>
               <div className="text-center services-snap-target">
-                <FocusText noBlur><span className="font-serif text-lg text-[#1a1a1a]">Management</span></FocusText>
+                <FocusText noBlur><span className="font-serif text-lg text-charcoal">Management</span></FocusText>
               </div>
               <div className="text-center services-snap-target">
-                <FocusText noBlur><span className="font-serif text-lg text-[#1a1a1a]">Strategy</span></FocusText>
+                <FocusText noBlur><span className="font-serif text-lg text-charcoal">Strategy</span></FocusText>
               </div>
               <div className="text-center services-snap-target">
-                <FocusText noBlur><span className="font-serif text-lg text-[#1a1a1a]">Advisory</span></FocusText>
+                <FocusText noBlur><span className="font-serif text-lg text-charcoal">Advisory</span></FocusText>
               </div>
             </div>
           </div>
 
           {/* Row 2: Tier Descriptions */}
           <div className="services-grid py-8 pr-8">
-            <div className="sticky left-0 z-10 pr-6" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}></div>
+            <div className="sticky left-0 z-10 pr-6" style={{ background: 'linear-gradient(to right, var(--color-paper) 85%, transparent)' }}></div>
             {TIERS.map((tier) => (
               <div key={tier.id} className="text-center services-snap-target">
                 <FocusText noBlur>
-                  <p className="font-sans text-xs uppercase tracking-widest font-bold text-[#737373] mb-4">{tier.subtitle}</p>
-                  <p className="font-sans text-[13px] leading-relaxed text-[#404040] font-light">{tier.description}</p>
+                  <p className="font-sans text-xs uppercase tracking-widest font-bold text-label mb-4">{tier.subtitle}</p>
+                  <p className="font-sans text-caption leading-relaxed text-secondary font-light">{tier.description}</p>
                 </FocusText>
               </div>
             ))}
@@ -195,9 +195,9 @@ const Services = () => {
           {/* Expand/Collapse Button */}
           <button
             onClick={() => setIsDesktopExpanded(!isDesktopExpanded)}
-            className="w-full py-4 flex items-center justify-center gap-2 bg-[#FAFAF8] border-t border-b border-[#e5e5e5] hover:bg-[#f5f5f5] transition-colors group"
+            className="w-full py-4 flex items-center justify-center gap-2 bg-paper border-t border-b border-divider hover:bg-gray-100 transition-colors group"
           >
-            <span className="font-sans text-[13px] font-medium text-[#525252] group-hover:text-[#1a1a1a] transition-colors">
+            <span className="font-sans text-caption font-medium text-muted group-hover:text-charcoal transition-colors">
               {isDesktopExpanded ? 'Hide' : 'All services'}
             </span>
             <motion.svg
@@ -207,7 +207,7 @@ const Services = () => {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="text-[#737373] group-hover:text-[#1a1a1a] transition-colors"
+              className="text-label group-hover:text-charcoal transition-colors"
               animate={{ rotate: isDesktopExpanded ? 180 : 0 }}
               transition={{ duration: 0.2 }}
             >
@@ -228,23 +228,23 @@ const Services = () => {
                 {FEATURES.map((feature, index) => (
                   <div
                     key={feature.name}
-                    className={`services-grid py-6 items-start group hover:bg-[#fafafa] transition-colors duration-300 pr-8 ${
-                      index < FEATURES.length - 1 ? 'border-b border-[#e5e5e5]' : ''
+                    className={`services-grid py-6 items-start group hover:bg-gray-50 transition-colors duration-300 pr-8 ${
+                      index < FEATURES.length - 1 ? 'border-b border-divider' : ''
                     }`}
                   >
-                    <div className="sticky left-0 pr-6 z-10" style={{ background: 'linear-gradient(to right, #FAFAF8 85%, transparent)' }}>
+                    <div className="sticky left-0 pr-6 z-10" style={{ background: 'linear-gradient(to right, var(--color-paper) 85%, transparent)' }}>
                       <FocusText noBlur>
-                        <p className="font-sans text-[15px] font-medium text-[#1a1a1a] mb-1.5">{feature.name}</p>
-                        <p className="font-sans text-[13px] leading-relaxed text-[#525252] font-light">{feature.description}</p>
+                        <p className="font-sans text-body-sm font-medium text-charcoal mb-1.5">{feature.name}</p>
+                        <p className="font-sans text-caption leading-relaxed text-muted font-light">{feature.description}</p>
                       </FocusText>
                     </div>
-                    <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
+                    <div className="pt-1 text-center font-sans text-caption text-label services-snap-target">
                       <FocusText noBlur>{renderCell(feature.management)}</FocusText>
                     </div>
-                    <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
+                    <div className="pt-1 text-center font-sans text-caption text-label services-snap-target">
                       <FocusText noBlur>{renderCell(feature.strategy)}</FocusText>
                     </div>
-                    <div className="pt-1 text-center font-sans text-[13px] text-[#737373] services-snap-target">
+                    <div className="pt-1 text-center font-sans text-caption text-label services-snap-target">
                       <FocusText noBlur>{renderCell(feature.advisory)}</FocusText>
                     </div>
                   </div>
@@ -258,7 +258,7 @@ const Services = () => {
         {/* Services Footnote - Desktop */}
         <div className="mt-8">
           <FocusText>
-            <p className="font-sans text-[13px] italic text-[#737373]">
+            <p className="font-sans text-caption italic text-label">
               Diagnostic assessments available by request.
             </p>
           </FocusText>
@@ -269,9 +269,9 @@ const Services = () => {
 };
 
 const renderCell = (value) => {
-  if (value === true) return <span className="text-[#1a1a1a] text-lg">●</span>;
-  if (value === false) return <span className="text-[#a3a3a3] text-lg">−</span>;
-  return <span className="text-[#1a1a1a] font-medium">{value}</span>;
+  if (value === true) return <span className="text-charcoal text-lg">●</span>;
+  if (value === false) return <span className="text-faint text-lg">−</span>;
+  return <span className="text-charcoal font-medium">{value}</span>;
 };
 
 export default Services;

@@ -33,7 +33,7 @@ const PartnerOutcomes = () => {
   return (
     <div ref={containerRef}>
       <Section id="outcomes" label="Partner Outcomes" divider={true}>
-        <div className="max-w-[800px] min-h-[300px] flex flex-col justify-between">
+        <div className="max-w-narrow min-h-[300px] flex flex-col justify-between">
           <div className="relative cursor-grab active:cursor-grabbing">
             <FocusText>
               <AnimatePresence mode="wait">
@@ -49,11 +49,11 @@ const PartnerOutcomes = () => {
                   onDragEnd={handleDragEnd}
                 >
                   <div className="h-[200px] md:h-[180px] flex items-center pr-6 md:pr-0">
-                    <p className="font-serif text-2xl md:text-3xl lg:text-[38px] leading-[1.4] text-[#404040] font-light antialiased">
+                    <p className="font-serif text-2xl md:text-3xl lg:text-hero-sub leading-[1.4] text-secondary font-light antialiased">
                       {PARTNER_OUTCOMES[currentIndex].metric}
                     </p>
                   </div>
-                  <div className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-[#737373] mt-6 select-none">
+                  <div className="font-sans text-section-label font-bold uppercase tracking-widest text-label mt-6 select-none">
                     {PARTNER_OUTCOMES[currentIndex].client}
                   </div>
                 </motion.div>
@@ -66,20 +66,20 @@ const PartnerOutcomes = () => {
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className="group relative h-1 w-12 bg-[#e5e5e5] overflow-hidden rounded-full transition-colors hover:bg-[#d4d4d4]"
+                className="group relative h-1 w-12 bg-divider overflow-hidden rounded-full transition-colors hover:bg-gray-300"
                 aria-label={`Go to slide ${idx + 1}`}
               >
                 {idx === currentIndex && isInView && (
                   <motion.div
                     layoutId="active-progress"
-                    className="absolute top-0 left-0 h-full w-full bg-[#1a1a1a]"
+                    className="absolute top-0 left-0 h-full w-full bg-charcoal"
                     initial={{ width: "0%" }}
                     animate={{ width: "100%" }}
                     transition={{ duration: 8, ease: "linear" }}
                   />
                 )}
                 {idx === currentIndex && !isInView && (
-                   <div className="absolute top-0 left-0 h-full w-0 bg-[#1a1a1a]" />
+                   <div className="absolute top-0 left-0 h-full w-0 bg-charcoal" />
                 )}
               </button>
             ))}

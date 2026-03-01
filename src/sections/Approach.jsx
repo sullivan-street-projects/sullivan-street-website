@@ -9,7 +9,7 @@ const MinimalDot = ({ count = 1 }) => (
     {[...Array(count)].map((_, i) => (
       <div
         key={i}
-        className="w-1.5 h-1.5 rounded-full bg-[#1a1a1a]/40"
+        className="w-1.5 h-1.5 rounded-full bg-charcoal/40"
       />
     ))}
   </div>
@@ -20,10 +20,10 @@ const Approach = () => {
     <Section id="approach" label="Approach">
       <div className="mb-20 md:mb-24">
         <FocusText>
-          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl mb-8 md:mb-12 text-[#1a1a1a]">
+          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl mb-8 md:mb-12 text-charcoal">
             Tailor made<br /><span className="italic">growth marketing.</span>
           </h2>
-          <p className="font-sans text-[17px] md:text-[19px] leading-relaxed max-w-[800px] text-[#404040] font-light">
+          <p className="font-sans text-body md:text-body-md leading-relaxed max-w-narrow text-secondary font-light">
             You know what's working in your business and what isn't. What you need is a strategy to grow. We build that strategy, tailored to you.
           </p>
         </FocusText>
@@ -36,15 +36,15 @@ const Approach = () => {
           return (
             <div
               key={capability.title}
-              className={`py-8 md:px-6 md:first:pl-0 md:last:pr-0 border-[#e5e5e5]/60 ${mdBorder} ${lgBorder}`}
+              className={`py-8 md:px-6 md:first:pl-0 md:last:pr-0 border-divider/60 ${mdBorder} ${lgBorder}`}
             >
               <FocusText>
                 <div className="mb-5">
                   <MinimalDot count={idx + 1} />
                 </div>
-                <h3 className="font-serif text-xl leading-tight text-[#1a1a1a] mb-3">{capability.title}</h3>
-                <div className="w-8 h-px bg-[#1a1a1a]/20 mb-4" />
-                <p className="font-sans text-[15px] text-[#525252] leading-relaxed font-light">
+                <h3 className="font-serif text-xl leading-tight text-charcoal mb-3">{capability.title}</h3>
+                <div className="w-8 h-px bg-charcoal/20 mb-4" />
+                <p className="font-sans text-body-sm text-muted leading-relaxed font-light">
                   {capability.description}
                 </p>
               </FocusText>

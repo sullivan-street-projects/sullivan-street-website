@@ -5,12 +5,12 @@ import FocusText from '../components/FocusText';
 const About = () => {
   return (
     <Section id="about" label="About">
-      <div className="max-w-[850px] space-y-20 md:space-y-24">
+      <div className="max-w-prose space-y-20 md:space-y-24">
         <div className="space-y-10 md:space-y-12">
           <FocusText>
-            <h2 className="font-serif text-3xl md:text-5xl italic text-[#1a1a1a]">Yesterday's agencies aren't built for tomorrow's brands.</h2>
+            <h2 className="font-serif text-3xl md:text-5xl italic text-charcoal">Yesterday's agencies aren't built for tomorrow's brands.</h2>
           </FocusText>
-          <div className="font-sans text-[17px] text-[#404040] leading-relaxed space-y-8 font-light tracking-wide">
+          <div className="font-sans text-body text-secondary leading-relaxed space-y-8 font-light tracking-wide">
             <FocusText>
               <p>
                 They were designed for a world where it took teams of people to do all the work. That world is changing—from media buying to creative to content, from analysis to optimization. AI now touches everything in marketing, so the work that matters has changed too.
@@ -30,7 +30,7 @@ const About = () => {
         </div>
 
         {/* Founder Bio */}
-        <div className="pt-16 lg:pt-24 border-t border-[#e5e5e5]">
+        <div className="pt-16 lg:pt-24 border-t border-divider">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             <div className="lg:col-span-4">
               <FocusText className="flex flex-row items-center gap-6">
@@ -44,14 +44,14 @@ const About = () => {
                   />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-serif text-xl leading-none mb-2 text-[#1a1a1a]">Brett Wohl</h4>
-                  <p className="font-sans text-[10px] uppercase tracking-widest font-bold text-[#737373]">Founder, Managing Partner</p>
+                  <h4 className="font-serif text-xl leading-none mb-2 text-charcoal">Brett Wohl</h4>
+                  <p className="font-sans text-section-label uppercase tracking-widest font-bold text-label">Founder, Managing Partner</p>
                 </div>
               </FocusText>
             </div>
             <div className="lg:col-span-8">
               <FocusText>
-                <p className="font-sans text-[13px] text-[#525252] leading-relaxed font-light italic">
+                <p className="font-sans text-caption text-muted leading-relaxed font-light italic">
                   Brett is an executive growth strategist with 10+ years of experience across startups and global brands. He previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and others while at Google and Publicis Groupe.
                 </p>
               </FocusText>
