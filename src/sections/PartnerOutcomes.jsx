@@ -2,22 +2,24 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import Section from '../components/Section';
 import FocusText from '../components/FocusText';
+import useReducedMotion from '../hooks/useReducedMotion';
 import { PARTNER_OUTCOMES } from '../constants';
 
 const PartnerOutcomes = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { amount: 0.6, once: false });
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || prefersReducedMotion) return;
 
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % PARTNER_OUTCOMES.length);
     }, 8000);
 
     return () => clearInterval(timer);
-  }, [isInView]);
+  }, [isInView, prefersReducedMotion]);
 
   const handleDragEnd = (event, info) => {
     const swipeThreshold = 50;
@@ -31,7 +33,7 @@ const PartnerOutcomes = () => {
   };
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} aria-roledescription="carousel" aria-label="Partner outcomes">
       <Section id="outcomes" label="Partner Outcomes" divider={true}>
         <div className="max-w-narrow min-h-[300px] flex flex-col justify-between">
           <div className="relative cursor-grab active:cursor-grabbing">
