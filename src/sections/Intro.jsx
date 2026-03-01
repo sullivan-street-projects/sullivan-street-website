@@ -18,22 +18,20 @@ const Intro = () => {
         </FocusText>
       </div>
 
-      {VALUE_PROPS.map((prop, idx) => (
-        <div key={idx}>
-          <div className="h-px bg-charcoal/10" />
-          <FocusText>
-            <div className="py-10 md:py-14 lg:py-16 max-w-narrow">
-              <h3 className="font-serif text-xl md:text-2xl leading-snug text-charcoal mb-3 md:mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+        {VALUE_PROPS.map((prop, idx) => (
+          <FocusText key={idx}>
+            <div className="px-4 pb-8 pt-2">
+              <h3 className="font-serif text-body-lg leading-tight text-charcoal mb-2">
                 {prop.title}
               </h3>
-              <p className="font-sans text-body-sm md:text-body text-muted leading-relaxed font-light">
+              <p className="font-sans text-ui text-label leading-relaxed">
                 {prop.description}
               </p>
             </div>
           </FocusText>
-        </div>
-      ))}
-      <div className="h-px bg-charcoal/10" />
+        ))}
+      </div>
     </Section>
   );
 };
