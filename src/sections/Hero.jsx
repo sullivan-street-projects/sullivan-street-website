@@ -18,7 +18,7 @@ const Hero = () => {
           </h1>
         </FocusText>
         <FocusText noBlur={true}>
-          <p className="font-sans text-body md:text-body-lg leading-relaxed mb-10 text-secondary font-light">
+          <p className="font-sans text-body md:text-body-md leading-relaxed mb-10 text-secondary font-light">
             AI-powered strategy, media, and execution. <br className="hidden md:block" />
             Faster growth. Sharper focus. Higher profit.
           </p>

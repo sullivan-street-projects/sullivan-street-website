@@ -21,7 +21,7 @@ const Intro = () => {
           </h2>
         </FocusText>
         <FocusText>
-          <p className="font-sans text-body md:text-body-md text-secondary leading-relaxed font-light tracking-wide max-w-narrow">
+          <p className="font-sans text-body md:text-body-md text-secondary leading-relaxed font-light max-w-narrow">
             Everything in marketing is changing. What works today won't work tomorrow. The brands that master the shift grow faster, with more focus and higher profit. We're the partner helping them get there.
           </p>
         </FocusText>

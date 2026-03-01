@@ -10,7 +10,7 @@ const About = () => {
           <FocusText>
             <h2 className="font-serif text-3xl md:text-5xl italic text-charcoal">Yesterday's agencies aren't built for tomorrow's brands.</h2>
           </FocusText>
-          <div className="font-sans text-body text-secondary leading-relaxed space-y-8 font-light tracking-wide">
+          <div className="font-sans text-body md:text-body-md text-secondary leading-relaxed space-y-8 font-light">
             <FocusText>
               <p>
                 They were designed for a world where it took teams of people to do all the work. That world is changing—from media buying to creative to content, from analysis to optimization. AI now touches everything in marketing, so the work that matters has changed too.
