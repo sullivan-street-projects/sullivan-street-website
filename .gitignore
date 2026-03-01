@@ -34,3 +34,7 @@ npm-debug.log*
 # Screenshot utility output
 screenshot.png
 *.screenshot.png
+screenshots/
+
+# Worktrees
+.worktrees/
