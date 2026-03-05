@@ -300,26 +300,18 @@ git commit -m "feat: add Stop hook for build verification after every response"
 
 ### Task 5: Remove Unused Icon Libraries
 
-All three icon libraries (`@heroicons/react`, `@phosphor-icons/react`, `lucide-react`) are unused in production. `lucide-react` is only imported in `src/v2/` (archived). Remove all three — if v2 is ever revived, they can be reinstalled.
+All three icon libraries (`@heroicons/react`, `@phosphor-icons/react`, `lucide-react`) are unused in production. `src/v2/` (the only consumer of lucide) was deleted during working tree cleanup. Simply uninstall.
 
 **Files:**
 - Modify: `package.json` (remove 3 dependencies)
-- Modify: `src/v2/components/Hero.jsx` (remove import)
-- Modify: `src/v2/components/GetStarted.jsx` (remove import)
-- Modify: `src/v2/components/Features.jsx` (remove import)
-- Modify: `src/v2/components/Navbar.jsx` (remove import)
 
-**Step 1: Remove icon imports from v2 components**
-
-In each v2 file, remove the lucide-react import line and replace the icon component usage with a simple arrow character or remove it. Read each file first to understand the usage, then make minimal edits.
-
-**Step 2: Uninstall packages**
+**Step 1: Uninstall packages**
 
 ```bash
 npm uninstall @heroicons/react @phosphor-icons/react lucide-react
 ```
 
-**Step 3: Verify build**
+**Step 2: Verify build**
 
 ```bash
 npm run build
@@ -327,10 +319,10 @@ npm run build
 
 Expected: Clean build, no broken imports.
 
-**Step 4: Commit**
+**Step 3: Commit**
 
 ```bash
-git add -A
+git add package.json package-lock.json
 git commit -m "chore: remove 3 unused icon libraries (heroicons, phosphor, lucide)"
 ```
 
@@ -347,6 +339,18 @@ Tasks 1-4 are sequential (CLAUDE.md first, then hooks build on each other in set
 | 3. /screenshot command | None | Low |
 | 4. Build-verification hook | Task 2 (same file) | Low |
 | 5. Icon cleanup | None | Low |
+
+## Success Criteria
+
+| # | Criterion | How to Verify |
+|---|-----------|---------------|
+| 1 | `CLAUDE.md` exists at repo root with Brand, Architecture, and FocusText sections | `grep -c "## Brand" CLAUDE.md` returns 1 |
+| 2 | Prettier installed and `.prettierrc` exists | `npx prettier --version` succeeds and `.prettierrc` exists |
+| 3 | PostToolUse hook configured for Edit\|Write in settings | `grep "PostToolUse" .claude/settings.local.json` matches |
+| 4 | `/screenshot` slash command exists with section presets table | `.claude/commands/screenshot.md` exists and contains "Section Presets" |
+| 5 | Stop hook runs `vite build` on completion | `grep "Stop" .claude/settings.local.json` matches |
+| 6 | No icon libraries in package.json | `grep -c "heroicons\|phosphor\|lucide" package.json` returns 0 |
+| 7 | Build passes cleanly | `npm run build` exits 0 |
 
 ## Verification
 
