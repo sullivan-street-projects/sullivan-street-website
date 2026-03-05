@@ -67,6 +67,96 @@ const categories = [
     ],
   },
   {
+    title: 'Hero',
+    description: 'Hero section design directions',
+    variants: [
+      { id: 'hero-minimalist', label: 'Minimalist', load: () => import('./variants/HeroMinimalist') },
+      { id: 'hero-magazine', label: 'Magazine', load: () => import('./variants/HeroMagazine') },
+      { id: 'hero-immersive', label: 'Immersive', load: () => import('./variants/HeroImmersive') },
+    ],
+  },
+  {
+    title: 'Credentials',
+    description: 'Brand credibility presentations',
+    variants: [
+      { id: 'credentials-minimalist', label: 'Minimalist', load: () => import('./variants/CredentialsMinimalist') },
+      { id: 'credentials-magazine', label: 'Magazine', load: () => import('./variants/CredentialsMagazine') },
+      { id: 'credentials-immersive', label: 'Immersive', load: () => import('./variants/CredentialsImmersive') },
+    ],
+  },
+  {
+    title: 'Statement',
+    description: 'Pull-quote and thesis presentations',
+    variants: [
+      { id: 'statement-minimalist', label: 'Minimalist', load: () => import('./variants/StatementMinimalist') },
+      { id: 'statement-magazine', label: 'Magazine', load: () => import('./variants/StatementMagazine') },
+      { id: 'statement-immersive', label: 'Immersive', load: () => import('./variants/StatementImmersive') },
+    ],
+  },
+  {
+    title: 'Intro',
+    description: 'Value proposition layouts',
+    variants: [
+      { id: 'intro-minimalist', label: 'Minimalist', load: () => import('./variants/IntroMinimalist') },
+      { id: 'intro-magazine', label: 'Magazine', load: () => import('./variants/IntroMagazine') },
+      { id: 'intro-immersive', label: 'Immersive', load: () => import('./variants/IntroImmersive') },
+    ],
+  },
+  {
+    title: 'Approach (New)',
+    description: 'Process methodology — new design directions',
+    variants: [
+      { id: 'approach-minimalist', label: 'Minimalist', load: () => import('./variants/ApproachMinimalist') },
+      { id: 'approach-magazine', label: 'Magazine', load: () => import('./variants/ApproachMagazine') },
+      { id: 'approach-immersive', label: 'Immersive', load: () => import('./variants/ApproachImmersive') },
+    ],
+  },
+  {
+    title: 'Services (New)',
+    description: 'Pricing and tier — new design directions',
+    variants: [
+      { id: 'services-minimalist', label: 'Minimalist', load: () => import('./variants/ServicesMinimalist') },
+      { id: 'services-magazine', label: 'Magazine', load: () => import('./variants/ServicesMagazine') },
+      { id: 'services-immersive', label: 'Immersive', load: () => import('./variants/ServicesImmersive') },
+    ],
+  },
+  {
+    title: 'Outcomes',
+    description: 'Partner outcome presentations',
+    variants: [
+      { id: 'outcomes-minimalist', label: 'Minimalist', load: () => import('./variants/OutcomesMinimalist') },
+      { id: 'outcomes-magazine', label: 'Magazine', load: () => import('./variants/OutcomesMagazine') },
+      { id: 'outcomes-immersive', label: 'Immersive', load: () => import('./variants/OutcomesImmersive') },
+    ],
+  },
+  {
+    title: 'About',
+    description: 'Company and founder presentations',
+    variants: [
+      { id: 'about-minimalist', label: 'Minimalist', load: () => import('./variants/AboutMinimalist') },
+      { id: 'about-magazine', label: 'Magazine', load: () => import('./variants/AboutMagazine') },
+      { id: 'about-immersive', label: 'Immersive', load: () => import('./variants/AboutImmersive') },
+    ],
+  },
+  {
+    title: 'Contact',
+    description: 'CTA and contact presentations',
+    variants: [
+      { id: 'contact-minimalist', label: 'Minimalist', load: () => import('./variants/ContactMinimalist') },
+      { id: 'contact-magazine', label: 'Magazine', load: () => import('./variants/ContactMagazine') },
+      { id: 'contact-immersive', label: 'Immersive', load: () => import('./variants/ContactImmersive') },
+    ],
+  },
+  {
+    title: 'Footer',
+    description: 'Footer design directions',
+    variants: [
+      { id: 'footer-minimalist', label: 'Minimalist', load: () => import('./variants/FooterMinimalist') },
+      { id: 'footer-magazine', label: 'Magazine', load: () => import('./variants/FooterMagazine') },
+      { id: 'footer-immersive', label: 'Immersive', load: () => import('./variants/FooterImmersive') },
+    ],
+  },
+  {
     title: 'Explorations',
     description: 'Layout patterns and experimental structures',
     variants: [
