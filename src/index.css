@@ -60,8 +60,12 @@
 }
 
 html {
-  scroll-behavior: smooth;
   overflow-x: clip; /* Prevents horizontal scroll without breaking CSS sticky */
+}
+
+/* Lenis owns smooth scrolling — never set scroll-behavior: smooth on html */
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
 }
 
 /* Hide scrollbar but allow scrolling */
