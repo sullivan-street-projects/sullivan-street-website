@@ -16,7 +16,7 @@ const FocusText = ({ children, className = "", noBlur = false }) => {
   const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 90%", "center 50%"]
+    offset: ["start 90%", "center 55%"]
   });
 
   const blurValue = useTransform(scrollYProgress, [0, 1], [noBlur ? 0 : 3.5, 0]);

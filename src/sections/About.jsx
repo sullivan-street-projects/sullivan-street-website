@@ -6,21 +6,17 @@ const About = () => {
   return (
     <Section id="about" label="About">
       <div className="max-w-prose space-y-20 md:space-y-24">
-        <div className="space-y-10 md:space-y-12">
-          <FocusText>
-            <h2 className="font-serif text-3xl md:text-5xl italic text-charcoal">Yesterday's agencies aren't built for tomorrow's brands.</h2>
-          </FocusText>
-          <FocusText>
-            <div className={`${BODY_CLASSES} space-y-8`}>
-              <p>
-                They were built for a world where scale meant headcount. Today, the advantage belongs to teams that orchestrate — managing systems, aligning talent, and making the business decisions AI can't make without a human in the loop.
-              </p>
-              <p>
-                Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We partner with you, look across your business, translate goals into a clear plan, and manage marketing like the investment it is.
-              </p>
-            </div>
-          </FocusText>
-        </div>
+        <FocusText className="space-y-10 md:space-y-12">
+          <h2 className="font-serif text-3xl md:text-5xl italic text-charcoal">Yesterday's agencies aren't built for tomorrow's brands.</h2>
+          <div className={`${BODY_CLASSES} space-y-8`}>
+            <p>
+              They were built for a world where scale meant headcount. Today, the advantage belongs to teams that orchestrate — managing systems, aligning talent, and making the business decisions AI can't make without a human in the loop.
+            </p>
+            <p>
+              Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We partner with you, look across your business, translate goals into a clear plan, and manage marketing like the investment it is.
+            </p>
+          </div>
+        </FocusText>
 
         {/* Founder Bio */}
         <div className="pt-16 lg:pt-24 border-t border-divider">

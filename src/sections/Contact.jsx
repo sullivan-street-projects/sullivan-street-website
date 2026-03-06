@@ -8,15 +8,19 @@ const Contact = () => {
     <div className="bg-paper-warm">
       <Section id="contact" label="Call" divider={false}>
         <div className="max-w-content py-16 md:py-20">
-          <FocusText className="space-y-16 md:space-y-20">
-            <h2 className={HEADING_CTA_CLASSES}>
-              Ready to build <br />
-              <span className="italic">tomorrow's billion-dollar brand?</span>
-            </h2>
-            <CTAButton href="mailto:hello@sullivanstreetprojects.co" variant="lg">
-              Schedule a call
-            </CTAButton>
-          </FocusText>
+          <div className="space-y-16 md:space-y-20">
+            <FocusText>
+              <h2 className={HEADING_CTA_CLASSES}>
+                Ready to build <br />
+                <span className="italic">tomorrow's billion-dollar brand?</span>
+              </h2>
+            </FocusText>
+            <div>
+              <CTAButton href="mailto:hello@sullivanstreetprojects.co" variant="lg">
+                Schedule a call
+              </CTAButton>
+            </div>
+          </div>
         </div>
       </Section>
     </div>

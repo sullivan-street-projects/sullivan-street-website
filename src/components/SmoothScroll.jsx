@@ -1,81 +1,29 @@
-import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import Lenis from 'lenis';
-import { NAV_ITEMS } from '../constants';
 import useReducedMotion from '../hooks/useReducedMotion';
 
 const LenisContext = createContext(null);
 
 export const useLenis = () => useContext(LenisContext);
 
-// Derive snap sections from NAV_ITEMS (single source of truth)
-const SNAP_SECTIONS = NAV_ITEMS.map(item => item.id);
-const HEADER_OFFSET = 80;
-
 export const SmoothScroll = ({ children }) => {
   const [lenis, setLenis] = useState(null);
-  const isSnapping = useRef(false);
-  const scrollTimeout = useRef(null);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (prefersReducedMotion) return;
 
     const lenisInstance = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential easing
+      duration: 0.8,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 1.2,
       touchMultiplier: 2,
     });
 
     setLenis(lenisInstance);
-
-    // Snap to nearest section when scrolling stops
-    const handleScrollStop = () => {
-      if (isSnapping.current) return;
-
-      const scrollY = window.scrollY + HEADER_OFFSET;
-      const windowHeight = window.innerHeight;
-
-      // Find the section closest to the current viewport
-      let closestSection = null;
-      let closestDistance = Infinity;
-
-      for (const id of SNAP_SECTIONS) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-
-        const rect = el.getBoundingClientRect();
-        const sectionTop = rect.top + window.scrollY;
-        const distance = Math.abs(sectionTop - scrollY);
-
-        // Only snap if we're within 15% of the viewport height of a section
-        if (distance < windowHeight * 0.15 && distance < closestDistance) {
-          closestDistance = distance;
-          closestSection = el;
-        }
-      }
-
-      // Snap if we found a close section and we're not already at it
-      if (closestSection && closestDistance > 30) {
-        isSnapping.current = true;
-        lenisInstance.scrollTo(closestSection, {
-          offset: -HEADER_OFFSET,
-          duration: 0.8,
-          onComplete: () => {
-            isSnapping.current = false;
-          }
-        });
-      }
-    };
-
-    // Debounced scroll stop detection
-    lenisInstance.on('scroll', () => {
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-      scrollTimeout.current = setTimeout(handleScrollStop, 500);
-    });
 
     let rafId;
     function raf(time) {
@@ -86,7 +34,6 @@ export const SmoothScroll = ({ children }) => {
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
       lenisInstance.destroy();
     };
   }, []);

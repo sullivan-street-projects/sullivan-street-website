@@ -10,8 +10,6 @@ const Intro = () => {
           <h2 className={`${HEADING_CLASSES} leading-tight mb-8 md:mb-12`}>
             Make Marketing Work<br /><span className="italic">For Your Business.</span>
           </h2>
-        </FocusText>
-        <FocusText>
           <p className={`${BODY_CLASSES} max-w-narrow`}>
             Three ways we embed with your team to drive growth — from strategic guidance to full operational ownership.
           </p>
@@ -21,9 +19,8 @@ const Intro = () => {
       <div className="grid grid-cols-1 md:grid-cols-3">
         {VALUE_PROPS.map((prop, idx) => (
           <FocusText key={idx}>
-            <div className={`py-8 ${
-              idx === 0 ? 'md:pr-6' : idx === 2 ? 'md:pl-6' : 'md:px-6'
-            } ${idx < 2 ? 'md:border-r border-divider/60' : ''}`}>
+            <div className={`py-8 ${idx === 0 ? 'md:pr-6' : idx === 2 ? 'md:pl-6' : 'md:px-6'
+              } ${idx < 2 ? 'md:border-r border-divider/60' : ''}`}>
               <h3 className="font-serif text-body-lg leading-snug text-charcoal mb-3">
                 {prop.title}
               </h3>
