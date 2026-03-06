@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
 
+# Allow AI crawlers for AIEO/GEO visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 Sitemap: https://sullivanstreetprojects.com/sitemap.xml
