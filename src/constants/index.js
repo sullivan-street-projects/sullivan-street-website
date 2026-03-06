@@ -144,15 +144,15 @@ export const COMPARISON_DATA = [
     category: 'Playbooks',
     features: [
       {
-        name: 'Project Roadmap',
-        description: '30/60/90-day action plans with milestone tracking.',
+        name: 'Go-to-Market Plan',
+        description: 'Positioning, channel selection, and GTM audit to identify gaps and opportunities.',
         advisory: false,
         strategy: true,
         management: true
       },
       {
-        name: 'Go-to-Market Plan',
-        description: 'Positioning, channel selection, and GTM audit to identify gaps and opportunities.',
+        name: 'Project Roadmap',
+        description: '30/60/90-day action plans with milestone tracking.',
         advisory: false,
         strategy: true,
         management: true
@@ -177,22 +177,8 @@ export const COMPARISON_DATA = [
     category: 'Execution',
     features: [
       {
-        name: 'Vendor Oversight',
-        description: 'Managing vendor relationships, contracts, and deliverable quality.',
-        advisory: false,
-        strategy: false,
-        management: true
-      },
-      {
-        name: 'Talent Sourcing',
-        description: 'Recruiting and onboarding contractors, agencies, and freelancers.',
-        advisory: false,
-        strategy: false,
-        management: true
-      },
-      {
-        name: 'Team Orchestration',
-        description: 'Aligning internal and external teams on timelines and deliverables.',
+        name: 'Performance Monitoring',
+        description: 'KPI tracking, metrics review, and reporting.',
         advisory: false,
         strategy: false,
         management: true
@@ -205,8 +191,22 @@ export const COMPARISON_DATA = [
         management: true
       },
       {
-        name: 'Performance Monitoring',
-        description: 'KPI tracking, metrics review, and reporting.',
+        name: 'Team Orchestration',
+        description: 'Aligning internal and external teams on timelines and deliverables.',
+        advisory: false,
+        strategy: false,
+        management: true
+      },
+      {
+        name: 'Talent Sourcing',
+        description: 'Recruiting and onboarding contractors, agencies, and freelancers.',
+        advisory: false,
+        strategy: false,
+        management: true
+      },
+      {
+        name: 'Vendor Oversight',
+        description: 'Managing vendor relationships, contracts, and deliverable quality.',
         advisory: false,
         strategy: false,
         management: true

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 80">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&amp;display=swap');
+  </style>
+  <text x="300" y="50" text-anchor="middle"
+        font-family="'Libre Baskerville', Georgia, serif"
+        font-size="36" fill="#1a1a1a" letter-spacing="0.04em">
+    Sullivan Street Projects
+  </text>
+</svg>

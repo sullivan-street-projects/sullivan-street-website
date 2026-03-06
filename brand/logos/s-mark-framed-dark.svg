@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&amp;display=swap');
+  </style>
+  <rect x="20" y="20" width="160" height="160" fill="none" stroke="#FAFAF8" stroke-width="1.5"/>
+  <text x="100" y="122" text-anchor="middle"
+        font-family="'Libre Baskerville', Georgia, serif"
+        font-size="96" fill="#FAFAF8">S</text>
+</svg>
