@@ -4,7 +4,7 @@
   </style>
   <text x="140" y="55" text-anchor="middle"
         font-family="'Libre Baskerville', Georgia, serif"
-        font-size="48" fill="#1a1a1a" letter-spacing="0.5em">
+        font-size="48" fill="#1a1a1a" letter-spacing="0.15em">
     SSP
   </text>
 </svg>

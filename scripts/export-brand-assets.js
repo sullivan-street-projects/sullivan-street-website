@@ -54,12 +54,12 @@ function wordmarkWithTagline(fg) {
 }
 
 function monogram(fg) {
-  return `<span style="font-size: 48px; color: ${fg}; letter-spacing: 0.5em;">S S P</span>`;
+  return `<span style="font-size: 48px; color: ${fg}; letter-spacing: 0.15em;">SSP</span>`;
 }
 
 function monogramWithWordmark(fg) {
   return `<div style="text-align: center;">
-    <div style="font-size: 72px; color: ${fg}; letter-spacing: 0.5em; margin-bottom: 24px;">S S P</div>
+    <div style="font-size: 72px; color: ${fg}; letter-spacing: 0.15em; margin-bottom: 24px;">SSP</div>
     <div style="font-size: 24px; color: ${fg}; letter-spacing: 0.04em; opacity: 0.8;">Sullivan Street Projects</div>
   </div>`;
 }
@@ -88,8 +88,8 @@ function sMarkBareScaled(fg, size) {
 // Asset definitions
 const assets = [
   // LinkedIn
-  { path: 'linkedin/company-logo-light.png', w: 300, h: 300, bg: PAPER, content: () => sMarkFramedScaled(CHARCOAL, 300) },
-  { path: 'linkedin/company-logo-dark.png', w: 300, h: 300, bg: CHARCOAL, content: () => sMarkFramedScaled(PAPER, 300) },
+  { path: 'linkedin/company-logo-light.png', w: 300, h: 300, bg: PAPER, content: () => sMarkBareScaled(CHARCOAL, 300) },
+  { path: 'linkedin/company-logo-dark.png', w: 300, h: 300, bg: CHARCOAL, content: () => sMarkBareScaled(PAPER, 300) },
   { path: 'linkedin/company-banner-light.png', w: 1128, h: 191, bg: PAPER, content: () => wordmark(CHARCOAL) },
   { path: 'linkedin/company-banner-dark.png', w: 1128, h: 191, bg: CHARCOAL, content: () => wordmark(PAPER) },
   { path: 'linkedin/profile-banner-light.png', w: 1584, h: 396, bg: PAPER, content: () => wordmarkWithTagline(CHARCOAL) },
@@ -97,8 +97,8 @@ const assets = [
 
   // Favicon / App Icon
   { path: 'favicon/favicon-32.png', w: 32, h: 32, bg: CHARCOAL, content: () => sMarkBareScaled(PAPER, 32) },
-  { path: 'favicon/apple-touch-icon-180.png', w: 180, h: 180, bg: PAPER, content: () => sMarkFramedScaled(CHARCOAL, 180) },
-  { path: 'favicon/android-icon-512.png', w: 512, h: 512, bg: PAPER, content: () => sMarkFramedScaled(CHARCOAL, 512) },
+  { path: 'favicon/apple-touch-icon-180.png', w: 180, h: 180, bg: PAPER, content: () => sMarkBareScaled(CHARCOAL, 180) },
+  { path: 'favicon/android-icon-512.png', w: 512, h: 512, bg: PAPER, content: () => sMarkBareScaled(CHARCOAL, 512) },
 
   // Social / OG
   { path: 'social/og-image-light.png', w: 1200, h: 630, bg: PAPER, content: () => monogramWithWordmark(CHARCOAL) },

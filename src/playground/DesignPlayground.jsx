@@ -12,85 +12,12 @@ const categories = [
     ],
   },
   {
-    title: 'Value Props',
-    description: 'Core messaging layout variations',
-    variants: [
-      { id: 'animated-halftone', label: 'Animated Halftone', shipped: true, load: () => import('./variants/ValuePropsAnimatedHalftone') },
-      { id: 'editorial-halftone', label: 'Editorial Split', load: () => import('./variants/ValuePropsEditorialHalftone') },
-      { id: 'bento-cards', label: 'Bento Cards', load: () => import('./variants/ValuePropsAppleCards') },
-      { id: 'minimal-halftone', label: 'Minimalist Halftone', load: () => import('./variants/ValuePropsMinimalHalftone') },
-      { id: 'icon-grid', label: 'Icon Grid', load: () => import('./variants/ValuePropsWhiteCards') },
-      { id: 'halftone-icons', label: 'Halftone Icons', load: () => import('./variants/ValuePropsHalftoneIcons') },
-      { id: 'structured-list', label: 'Structured List', load: () => import('./variants/ValuePropsStructured') },
-      { id: 'inverted-dark', label: 'Inverted (Dark)', load: () => import('./variants/ValuePropsInverted') },
-      { id: 'sourced-photo', label: 'Sourced Photography', load: () => import('./variants/ValuePropsSourced') },
-      { id: 'user-generated', label: 'User Generated', load: () => import('./variants/ValuePropsUserImages') },
-      { id: 'editorial-text', label: 'Pure Text', load: () => import('./variants/ValuePropsEditorialText') },
-      { id: 'full-halftone', label: 'Maximalist Halftone', load: () => import('./variants/ValuePropsHalftone') },
-      { id: 'conceptual-svgs', label: 'Conceptual SVGs', load: () => import('./variants/ValuePropsConceptual') },
-      { id: 'photo-halftone', label: 'Photo Halftone', load: () => import('./variants/ValuePropsPhotoHalftone') },
-    ],
-  },
-  {
-    title: 'Approach',
-    description: 'Process and methodology visualizations',
-    variants: [
-      { id: 'approach-dots', label: 'Progressive Dots', shipped: true, load: () => import('./variants/ValuePropsApproachDots') },
-      { id: 'approach-dice', label: 'Dice Grid', load: () => import('./variants/ValuePropsApproachDice') },
-      { id: 'approach-numbered', label: 'Numbered Steps', load: () => import('./variants/ValuePropsApproachNumbered') },
-      { id: 'approach-narrative', label: 'Narrative Block', load: () => import('./variants/ApproachNarrative') },
-      { id: 'approach-diagram', label: 'Process Diagram', load: () => import('./variants/ApproachDiagram') },
-      { id: 'approach-accordion', label: 'Accordion Flow', load: () => import('./variants/ApproachAccordionFlow') },
-      { id: 'approach-cascade', label: 'Cascade Cards', load: () => import('./variants/ApproachCascade') },
-      { id: 'approach-swiss', label: 'Swiss Timeline', load: () => import('./variants/ApproachSwissTimeline') },
-      { id: 'approach-editorial', label: 'NYT Editorial', load: () => import('./variants/ApproachEditorial') },
-      { id: 'approach-stacking', label: 'Stacking Cards', load: () => import('./variants/ApproachStacking') },
-      { id: 'approach-focus', label: 'Scroll Focus', load: () => import('./variants/ApproachFocus') },
-    ],
-  },
-  {
-    title: 'Services',
-    description: 'Pricing and tier presentation',
-    variants: [
-      { id: 'services-rows', label: 'Accordion List', load: () => import('./variants/ServicesAccordionRows') },
-      { id: 'services-tiers', label: 'Tier Cards', load: () => import('./variants/ServicesAccordionTiers') },
-      { id: 'services-summary', label: 'Summary Grid', load: () => import('./variants/ServicesAccordionSummary') },
-    ],
-  },
-  {
-    title: 'Page Rhythm',
-    description: 'Section flow and background treatments',
-    variants: [
-      { id: 'statement-dark', label: 'Statement (Dark)', load: () => import('./variants/StatementDark') },
-      { id: 'statement-valueprop', label: 'Editorial Spread', load: () => import('./variants/StatementValueProps') },
-      { id: 'statement-text', label: 'Text Only', load: () => import('./variants/StatementValuePropsText') },
-    ],
-  },
-  {
     title: 'Hero',
     description: 'Hero section design directions',
     variants: [
       { id: 'hero-minimalist', label: 'Minimalist', load: () => import('./variants/HeroMinimalist') },
       { id: 'hero-magazine', label: 'Magazine', load: () => import('./variants/HeroMagazine') },
       { id: 'hero-immersive', label: 'Immersive', load: () => import('./variants/HeroImmersive') },
-    ],
-  },
-  {
-    title: 'Credentials',
-    description: 'Brand credibility presentations',
-    variants: [
-      { id: 'credentials-minimalist', label: 'Minimalist', load: () => import('./variants/CredentialsMinimalist') },
-      { id: 'credentials-magazine', label: 'Magazine', load: () => import('./variants/CredentialsMagazine') },
-      { id: 'credentials-immersive', label: 'Immersive', load: () => import('./variants/CredentialsImmersive') },
-    ],
-  },
-  {
-    title: 'Statement',
-    description: 'Pull-quote and thesis presentations',
-    variants: [
-      { id: 'statement-minimalist', label: 'Minimalist', load: () => import('./variants/StatementMinimalist') },
-      { id: 'statement-magazine', label: 'Magazine', load: () => import('./variants/StatementMagazine') },
-      { id: 'statement-immersive', label: 'Immersive', load: () => import('./variants/StatementImmersive') },
     ],
   },
   {
@@ -103,21 +30,64 @@ const categories = [
     ],
   },
   {
-    title: 'Approach (New)',
-    description: 'Process methodology — new design directions',
+    title: 'Value Props',
+    description: 'Core messaging layout variations',
     variants: [
-      { id: 'approach-minimalist', label: 'Minimalist', load: () => import('./variants/ApproachMinimalist') },
-      { id: 'approach-magazine', label: 'Magazine', load: () => import('./variants/ApproachMagazine') },
-      { id: 'approach-immersive', label: 'Immersive', load: () => import('./variants/ApproachImmersive') },
+      { id: 'animated-halftone', label: 'Animated Halftone', shipped: true, load: () => import('./variants/ValuePropsAnimatedHalftone') },
+      { id: 'editorial-halftone', label: 'Editorial Split', load: () => import('./variants/ValuePropsEditorialHalftone') },
+      { id: 'bento-cards', label: 'Bento Cards', load: () => import('./variants/ValuePropsAppleCards') },
+      { id: 'icon-grid', label: 'Icon Grid', load: () => import('./variants/ValuePropsWhiteCards') },
+      { id: 'structured-list', label: 'Structured List', load: () => import('./variants/ValuePropsStructured') },
+      { id: 'inverted-dark', label: 'Inverted (Dark)', load: () => import('./variants/ValuePropsInverted') },
+      { id: 'sourced-photo', label: 'Sourced Photography', load: () => import('./variants/ValuePropsSourced') },
+      { id: 'editorial-text', label: 'Pure Text', load: () => import('./variants/ValuePropsEditorialText') },
+      { id: 'conceptual-svgs', label: 'Conceptual SVGs', load: () => import('./variants/ValuePropsConceptual') },
     ],
   },
   {
-    title: 'Services (New)',
-    description: 'Pricing and tier — new design directions',
+    title: 'Approach',
+    description: 'Process and methodology visualizations',
+    variants: [
+      { id: 'approach-dots', label: 'Progressive Dots', shipped: true, load: () => import('./variants/ValuePropsApproachDots') },
+      { id: 'approach-minimalist', label: 'Minimalist', load: () => import('./variants/ApproachMinimalist') },
+      { id: 'approach-magazine', label: 'Magazine', load: () => import('./variants/ApproachMagazine') },
+      { id: 'approach-immersive', label: 'Immersive', load: () => import('./variants/ApproachImmersive') },
+      { id: 'approach-narrative', label: 'Narrative Block', load: () => import('./variants/ApproachNarrative') },
+      { id: 'approach-accordion', label: 'Accordion Flow', load: () => import('./variants/ApproachAccordionFlow') },
+      { id: 'approach-swiss', label: 'Swiss Timeline', load: () => import('./variants/ApproachSwissTimeline') },
+      { id: 'approach-stacking', label: 'Stacking Cards', load: () => import('./variants/ApproachStacking') },
+    ],
+  },
+  {
+    title: 'Statement',
+    description: 'Pull-quote, thesis, and section rhythm',
+    variants: [
+      { id: 'statement-minimalist', label: 'Minimalist', load: () => import('./variants/StatementMinimalist') },
+      { id: 'statement-magazine', label: 'Magazine', load: () => import('./variants/StatementMagazine') },
+      { id: 'statement-immersive', label: 'Immersive', load: () => import('./variants/StatementImmersive') },
+      { id: 'statement-dark', label: 'Dark', load: () => import('./variants/StatementDark') },
+      { id: 'statement-valueprop', label: 'Editorial Spread', load: () => import('./variants/StatementValueProps') },
+    ],
+  },
+  {
+    title: 'Services',
+    description: 'Pricing and tier presentation',
     variants: [
       { id: 'services-minimalist', label: 'Minimalist', load: () => import('./variants/ServicesMinimalist') },
       { id: 'services-magazine', label: 'Magazine', load: () => import('./variants/ServicesMagazine') },
       { id: 'services-immersive', label: 'Immersive', load: () => import('./variants/ServicesImmersive') },
+      { id: 'services-rows', label: 'Accordion List', load: () => import('./variants/ServicesAccordionRows') },
+      { id: 'services-tiers', label: 'Tier Cards', load: () => import('./variants/ServicesAccordionTiers') },
+      { id: 'services-summary', label: 'Summary Grid', load: () => import('./variants/ServicesAccordionSummary') },
+    ],
+  },
+  {
+    title: 'Credentials',
+    description: 'Brand credibility presentations',
+    variants: [
+      { id: 'credentials-minimalist', label: 'Minimalist', load: () => import('./variants/CredentialsMinimalist') },
+      { id: 'credentials-magazine', label: 'Magazine', load: () => import('./variants/CredentialsMagazine') },
+      { id: 'credentials-immersive', label: 'Immersive', load: () => import('./variants/CredentialsImmersive') },
     ],
   },
   {
@@ -145,6 +115,7 @@ const categories = [
       { id: 'contact-minimalist', label: 'Minimalist', load: () => import('./variants/ContactMinimalist') },
       { id: 'contact-magazine', label: 'Magazine', load: () => import('./variants/ContactMagazine') },
       { id: 'contact-immersive', label: 'Immersive', load: () => import('./variants/ContactImmersive') },
+      { id: 'contact-convergence', label: 'Convergence', load: () => import('./variants/ContactConvergence') },
     ],
   },
   {
@@ -158,11 +129,10 @@ const categories = [
   },
   {
     title: 'Explorations',
-    description: 'Layout patterns and experimental structures',
+    description: 'Experimental layouts and patterns',
     variants: [
       { id: 'section-spacing', label: 'Section Spacing / Dividers', load: () => import('./variants/SectionSeparation') },
       { id: 'full-bleed', label: 'Full-Bleed Zones', load: () => import('./variants/FullBleedZone') },
-      { id: 'contact-convergence', label: 'Contact Convergence', load: () => import('./variants/ContactConvergence') },
       { id: 'green-accent', label: 'Green Accent Test', load: () => import('./variants/GreenAccentHalftone') },
       { id: 'bg-green-tint', label: 'Background Tints', load: () => import('./variants/BackgroundGreenTint') },
     ],
@@ -231,18 +201,18 @@ const DesignPlayground = () => {
         {/* Sidebar Header */}
         <div className="px-5 py-4 border-b border-[#e5e5e5] hidden md:block">
           <div className="flex items-center justify-between mb-1">
-             <h1 className="font-serif text-lg text-[#1a1a1a]">Playground</h1>
-             <a
-               href="/"
-               className="text-[10px] font-bold text-[#737373] hover:text-[#1a1a1a] uppercase tracking-widest"
-               onClick={(e) => {
-                 e.preventDefault();
-                 window.location.hash = '';
-                 window.location.reload();
-               }}
-             >
-               Exit
-             </a>
+            <h1 className="font-serif text-lg text-[#1a1a1a]">Playground</h1>
+            <a
+              href="/"
+              className="text-[10px] font-bold text-[#737373] hover:text-[#1a1a1a] uppercase tracking-widest"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.hash = '';
+                window.location.reload();
+              }}
+            >
+              Exit
+            </a>
           </div>
           <p className="text-[11px] text-[#737373]">Design system & layout lab</p>
         </div>
@@ -262,24 +232,21 @@ const DesignPlayground = () => {
                       setSelectedVariantId(v.id);
                       setIsSidebarOpen(false);
                     }}
-                    className={`w-full text-left px-3 py-2 rounded-md text-[13px] transition-all flex items-center justify-between group ${
-                      selectedVariantId === v.id
+                    className={`w-full text-left px-3 py-2 rounded-md text-[13px] transition-all flex items-center justify-between group ${selectedVariantId === v.id
                         ? 'bg-[#1a1a1a] text-white shadow-sm'
                         : 'text-[#525252] hover:bg-[#e5e5e5]/60'
-                    }`}
+                      }`}
                   >
                     <span className="truncate mr-2">{v.label}</span>
                     {v.version && (
-                      <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium shrink-0 ${
-                        selectedVariantId === v.id ? 'bg-white/10 text-white/70' : 'bg-transparent text-[#a3a3a3]'
-                      }`}>
+                      <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium shrink-0 ${selectedVariantId === v.id ? 'bg-white/10 text-white/70' : 'bg-transparent text-[#a3a3a3]'
+                        }`}>
                         {v.version}
                       </span>
                     )}
                     {v.shipped && (
-                      <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium shrink-0 ${
-                        selectedVariantId === v.id ? 'bg-white/20 text-white' : 'bg-[#e5e5e5] text-[#737373]'
-                      }`}>
+                      <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium shrink-0 ${selectedVariantId === v.id ? 'bg-white/20 text-white' : 'bg-[#e5e5e5] text-[#737373]'
+                        }`}>
                         LIVE
                       </span>
                     )}
@@ -307,22 +274,22 @@ const DesignPlayground = () => {
           </div>
 
           <div className="flex items-center gap-4">
-             {activeVariant?.shipped && (
-                <div className="flex items-center gap-2 px-2 py-1 bg-[#4ADE80]/10 rounded border border-[#4ADE80]/20">
-                   <div className="w-1.5 h-1.5 rounded-full bg-[#4ADE80] animate-pulse" />
-                   <span className="text-[10px] font-bold text-[#15803d] uppercase tracking-wide">Production</span>
-                </div>
-             )}
+            {activeVariant?.shipped && (
+              <div className="flex items-center gap-2 px-2 py-1 bg-[#4ADE80]/10 rounded border border-[#4ADE80]/20">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#4ADE80] animate-pulse" />
+                <span className="text-[10px] font-bold text-[#15803d] uppercase tracking-wide">Production</span>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Canvas */}
         <div className="flex-1 overflow-y-auto relative bg-[#FAFAF8]">
-           <div className="w-full max-w-[1200px] mx-auto px-6 md:px-8 py-12 md:py-24">
-              {LoadedComponent ? <LoadedComponent /> : (
-                <div className="text-center text-[#999] py-24">Loading...</div>
-              )}
-           </div>
+          <div className="w-full max-w-[1200px] mx-auto px-6 md:px-8 py-12 md:py-24">
+            {LoadedComponent ? <LoadedComponent /> : (
+              <div className="text-center text-[#999] py-24">Loading...</div>
+            )}
+          </div>
         </div>
       </main>
     </div>
