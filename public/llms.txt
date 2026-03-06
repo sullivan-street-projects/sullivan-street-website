@@ -1,3 +1,10 @@
+--------------------------------------------------
+title: "Sullivan Street Projects"
+description: "Growth marketing consultancy for tomorrow's billion-dollar brands. AI-powered strategy, media, and execution."
+last_updated: "2026-03-06T17:00:00.000Z"
+source: "https://sullivanstreetprojects.com"
+--------------------------------------------------
+
 # Sullivan Street Projects
 
 ## Company Overview
