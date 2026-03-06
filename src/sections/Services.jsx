@@ -48,7 +48,7 @@ const Services = () => {
             Your marketing investment,<br /><span className="italic">managed.</span>
           </h2>
           <p className={`${BODY_CLASSES} max-w-narrow`}>
-            Three ways to work together. One point of contact. The right team for the job.
+            One point of contact. The right team for the job.
           </p>
         </FocusText>
       </div>
@@ -122,8 +122,11 @@ const Services = () => {
           })}
         </div>
 
-        {/* CTA - matches Hero style */}
+        {/* CTA */}
         <div className="mt-10">
+          <p className="font-sans text-body-sm text-muted mb-4">
+            Not sure which level of support you need?
+          </p>
           <CTAButton onClick={scrollToContact}>
             Schedule a call
           </CTAButton>
@@ -249,6 +252,16 @@ const Services = () => {
           <p className="font-sans text-caption italic text-label">
             Diagnostic assessments available by request.
           </p>
+        </div>
+
+        {/* Mid-page CTA - Desktop */}
+        <div className="mt-10">
+          <p className="font-sans text-body-sm text-muted mb-4">
+            Not sure which level of support you need?
+          </p>
+          <CTAButton onClick={scrollToContact}>
+            Schedule a call
+          </CTAButton>
         </div>
       </div>
     </Section>

@@ -83,7 +83,7 @@ export const TIERS = [
     id: 'management',
     title: 'Management',
     subtitle: 'Growth Leadership',
-    description: 'For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
+    description: 'For leaders who need full operational ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
   },
   {
     id: 'strategy',
@@ -224,7 +224,7 @@ export const MOBILE_TIERS = [
     id: 'management',
     title: 'Management',
     subtitle: 'Growth Leadership',
-    description: 'For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
+    description: 'For leaders who need full operational ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
     includesText: 'Everything in Strategy, plus:',
     features: [
       'Creative & Campaign Briefs',

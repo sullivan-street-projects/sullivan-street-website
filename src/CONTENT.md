@@ -85,12 +85,12 @@ Creative and content that convert attention into revenue while reinforcing brand
 
 ## Services
 headline: Your marketing investment, managed.
-subheadline: Three ways to work together. One point of contact. The right team for the job.
+subheadline: One point of contact. The right team for the job.
 
 ### Tiers
 #### Management
 subtitle: Growth Leadership
-description: For leaders who need ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.
+description: For leaders who need full operational ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.
 
 #### Strategy
 subtitle: Go-to-Market Design
