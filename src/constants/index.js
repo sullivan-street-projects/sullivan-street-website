@@ -103,26 +103,26 @@ export const COMPARISON_DATA = [
   {
     category: 'Guidance',
     features: [
-      { 
-        name: 'Strategic Coaching', 
+      {
+        name: 'Strategic Coaching',
         description: 'Strategy calls to review progress, troubleshoot issues, and align on priorities.',
-        advisory: 'Bi-weekly', 
-        strategy: 'Weekly', 
-        management: 'Daily' 
+        advisory: true,
+        strategy: true,
+        management: true
       },
-      { 
-        name: 'Vendor Guidance', 
+      {
+        name: 'Vendor Guidance',
         description: 'Recommendations on vendor selection, negotiation, and management.',
-        advisory: true, 
-        strategy: true, 
-        management: true 
+        advisory: true,
+        strategy: true,
+        management: true
       },
-      { 
-        name: 'Tool Recommendations', 
+      {
+        name: 'Tool Recommendations',
         description: 'Guidance on martech stack, analytics tools, and operational software.',
-        advisory: true, 
-        strategy: true, 
-        management: true 
+        advisory: true,
+        strategy: true,
+        management: true
       },
       {
         name: 'Growth Modeling',
@@ -131,24 +131,24 @@ export const COMPARISON_DATA = [
         strategy: true,
         management: true
       },
-      { 
-        name: 'Quarterly Business Reviews', 
+      {
+        name: 'Quarterly Business Reviews',
         description: 'Data-driven analysis with strategic recommendations.',
-        advisory: false, 
-        strategy: true, 
-        management: true 
+        advisory: false,
+        strategy: true,
+        management: true
       },
     ]
   },
   {
     category: 'Playbooks',
     features: [
-      { 
-        name: 'Project Roadmap', 
+      {
+        name: 'Project Roadmap',
         description: '30/60/90-day action plans with milestone tracking.',
-        advisory: false, 
-        strategy: true, 
-        management: true 
+        advisory: false,
+        strategy: true,
+        management: true
       },
       {
         name: 'Go-to-Market Plan',
@@ -157,19 +157,19 @@ export const COMPARISON_DATA = [
         strategy: true,
         management: true
       },
-      { 
-        name: 'Marketing SOPs', 
+      {
+        name: 'Marketing SOPs',
         description: 'Repeatable processes for marketing ops and campaigns.',
-        advisory: false, 
-        strategy: true, 
-        management: true 
+        advisory: false,
+        strategy: true,
+        management: true
       },
-      { 
-        name: 'Creative & Campaign Briefs', 
+      {
+        name: 'Creative & Campaign Briefs',
         description: 'Strategic direction and success metrics for designers and copywriters.',
-        advisory: false, 
-        strategy: false, 
-        management: true 
+        advisory: false,
+        strategy: false,
+        management: true
       },
     ]
   },
@@ -183,12 +183,12 @@ export const COMPARISON_DATA = [
         strategy: false,
         management: true
       },
-      { 
-        name: 'Talent Sourcing', 
+      {
+        name: 'Talent Sourcing',
         description: 'Recruiting and onboarding contractors, agencies, and freelancers.',
-        advisory: false, 
-        strategy: false, 
-        management: true 
+        advisory: false,
+        strategy: false,
+        management: true
       },
       {
         name: 'Team Orchestration',
@@ -227,12 +227,12 @@ export const MOBILE_TIERS = [
     description: 'For leaders who need full operational ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
     includesText: 'Everything in Strategy, plus:',
     features: [
-      'Creative & Campaign Briefs',
-      'Vendor Oversight',
-      'Talent Sourcing',
-      'Team Orchestration',
-      'Execution Oversight',
       'Performance Monitoring',
+      'Execution Oversight',
+      'Team Orchestration',
+      'Talent Sourcing',
+      'Vendor Oversight',
+      'Creative & Campaign Briefs',
     ],
   },
   {
@@ -242,11 +242,11 @@ export const MOBILE_TIERS = [
     description: 'For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence.',
     includesText: 'Everything in Advisory, plus:',
     features: [
-      'Growth Modeling',
-      'Quarterly Business Reviews',
-      'Project Roadmap',
       'Go-to-Market Plan',
+      'Growth Modeling',
+      'Project Roadmap',
       'Marketing SOPs',
+      'Quarterly Business Reviews',
     ],
   },
   {

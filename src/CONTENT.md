@@ -103,26 +103,24 @@ description: For founders who need an executive thought partner. We help you mak
 ### Services by Package
 
 **Advisory:**
-- Strategic Coaching (Bi-weekly)
+- Strategic Coaching
 - Vendor Guidance
 - Tool Recommendations
 
 **Strategy** (includes everything in Advisory, plus):
-- Strategic Coaching (Weekly)
-- Growth Modeling
-- Quarterly Business Reviews
-- Project Roadmap
 - Go-to-Market Plan
+- Growth Modeling
+- Project Roadmap
 - Marketing SOPs
+- Quarterly Business Reviews
 
 **Management** (includes everything in Strategy, plus):
-- Strategic Coaching (Daily)
-- Creative & Campaign Briefs
-- Vendor Oversight
-- Talent Sourcing
-- Team Orchestration
-- Execution Oversight
 - Performance Monitoring
+- Execution Oversight
+- Team Orchestration
+- Talent Sourcing
+- Vendor Oversight
+- Creative & Campaign Briefs
 
 ### Service Descriptions
 - Strategic Coaching: Strategy calls to review progress, troubleshoot issues, and align on priorities.
