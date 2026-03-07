@@ -145,13 +145,13 @@ export default function CookieConsent() {
                   onClick={() => setShowPrefs(!showPrefs)}
                   className="text-ui font-sans text-paper/50 underline underline-offset-2 hover:text-paper/70 transition-colors cursor-pointer"
                 >
-                  Manage preferences
+                  Privacy Preferences
                 </button>
                 <button
                   onClick={showPrefs ? handleSavePrefs : handleGotIt}
                   className="px-4 py-2 text-ui font-sans font-medium text-charcoal bg-paper rounded hover:bg-paper/90 transition-colors cursor-pointer"
                 >
-                  {showPrefs ? 'Save' : 'Got it'}
+                  {showPrefs ? 'Save' : 'OK'}
                 </button>
               </div>
             </div>
