@@ -116,6 +116,7 @@ const categories = [
       { id: 'contact-magazine', label: 'Magazine', load: () => import('./variants/ContactMagazine') },
       { id: 'contact-immersive', label: 'Immersive', load: () => import('./variants/ContactImmersive') },
       { id: 'contact-convergence', label: 'Convergence', load: () => import('./variants/ContactConvergence') },
+      { id: 'contact-spacing', label: 'Spacing Compare', load: () => import('./variants/ContactSpacing') },
     ],
   },
   {
