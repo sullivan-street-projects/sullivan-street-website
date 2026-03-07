@@ -1,5 +1,5 @@
 import React, { Suspense, useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 import { SmoothScroll } from './components/SmoothScroll';
 import Header from './components/Header';
@@ -19,6 +19,18 @@ import Contact from './sections/Contact';
 const DesignPlayground = React.lazy(() => import('./playground/DesignPlayground'));
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
 const TermsConditions = React.lazy(() => import('./pages/TermsConditions'));
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    // Force-clear any Lenis residual scroll state on <html>
+    document.documentElement.style.removeProperty('transform');
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [pathname]);
+  return null;
+}
 
 function HomePage() {
   const [isPlayground, setIsPlayground] = useState(window.location.hash === '#playground');
@@ -72,6 +84,7 @@ function HomePage() {
 export default function App() {
   return (
     <ErrorBoundary>
+      <ScrollToTop />
       <Suspense fallback={<div className="min-h-screen bg-paper" />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
