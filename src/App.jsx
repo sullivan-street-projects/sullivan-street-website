@@ -1,4 +1,5 @@
 import React, { Suspense, useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 import { SmoothScroll } from './components/SmoothScroll';
 import Header from './components/Header';
@@ -16,8 +17,10 @@ import About from './sections/About';
 import Contact from './sections/Contact';
 
 const DesignPlayground = React.lazy(() => import('./playground/DesignPlayground'));
+const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
+const TermsConditions = React.lazy(() => import('./pages/TermsConditions'));
 
-export default function App() {
+function HomePage() {
   const [isPlayground, setIsPlayground] = useState(window.location.hash === '#playground');
 
   useEffect(() => {
@@ -28,22 +31,18 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // Render playground if hash is #playground
   if (isPlayground) {
     return (
-      <ErrorBoundary>
-        <Suspense fallback={<div className="min-h-screen bg-paper" />}>
-          <DesignPlayground />
-        </Suspense>
-      </ErrorBoundary>
+      <Suspense fallback={<div className="min-h-screen bg-paper" />}>
+        <DesignPlayground />
+      </Suspense>
     );
   }
 
   return (
-    <ErrorBoundary>
     <SmoothScroll>
       <div className="min-h-screen bg-paper text-charcoal selection:bg-charcoal selection:text-paper relative font-sans">
-        
+
         <a href="#approach" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:bg-charcoal focus:text-paper focus:px-4 focus:py-2 focus:rounded">
           Skip to content
         </a>
@@ -67,6 +66,19 @@ export default function App() {
         </div>
       </div>
     </SmoothScroll>
+  );
+}
+
+export default function App() {
+  return (
+    <ErrorBoundary>
+      <Suspense fallback={<div className="min-h-screen bg-paper" />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsConditions />} />
+        </Routes>
+      </Suspense>
     </ErrorBoundary>
   );
 }

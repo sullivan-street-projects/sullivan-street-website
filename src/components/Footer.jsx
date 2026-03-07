@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -24,8 +24,8 @@ const Footer = () => {
           <div className="lg:col-span-4">
             <p className="font-sans text-section-label font-bold uppercase tracking-wider mb-6 text-label">Legal</p>
             <div className="flex flex-col gap-4 font-sans text-caption text-secondary">
-              <span className="text-label">Privacy Policy</span>
-              <span className="text-label">Terms & Conditions</span>
+              <Link to="/privacy-policy" className="text-label hover:text-charcoal transition-colors">Privacy Policy</Link>
+              <Link to="/terms-and-conditions" className="text-label hover:text-charcoal transition-colors">Terms & Conditions</Link>
               <p className="mt-8 text-faint">© {new Date().getFullYear()} Sullivan Street Projects LLC. All Rights Reserved.</p>
             </div>
           </div>
