@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const LegalPage = ({ title, children }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-paper text-charcoal font-sans">
       <div className="max-w-prose mx-auto px-6 lg:px-8 py-16 md:py-24">
