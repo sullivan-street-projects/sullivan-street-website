@@ -16,7 +16,7 @@ const Contact = () => {
               </h2>
             </FocusText>
             <div>
-              <CTAButton href="mailto:hello@sullivanstreetprojects.co" variant="lg">
+              <CTAButton href="https://tidycal.com/sullivan-street-projects/growth-consultation" variant="lg">
                 Schedule a call
               </CTAButton>
             </div>
