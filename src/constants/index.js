@@ -101,7 +101,7 @@ export const TIERS = [
 
 export const COMPARISON_DATA = [
   {
-    category: 'Guidance',
+    category: 'Advisory',
     features: [
       {
         name: 'Strategic Coaching',
@@ -124,28 +124,21 @@ export const COMPARISON_DATA = [
         strategy: true,
         management: true
       },
-      {
-        name: 'Growth Modeling',
-        description: 'Forecasting, budget modeling, and unit economics review.',
-        advisory: false,
-        strategy: true,
-        management: true
-      },
-      {
-        name: 'Quarterly Business Reviews',
-        description: 'Data-driven analysis with strategic recommendations.',
-        advisory: false,
-        strategy: true,
-        management: true
-      },
     ]
   },
   {
-    category: 'Playbooks',
+    category: 'Strategy',
     features: [
       {
         name: 'Go-to-Market Plan',
         description: 'Positioning, channel selection, and GTM audit to identify gaps and opportunities.',
+        advisory: false,
+        strategy: true,
+        management: true
+      },
+      {
+        name: 'Growth Modeling',
+        description: 'Forecasting, budget modeling, and unit economics review.',
         advisory: false,
         strategy: true,
         management: true
@@ -165,10 +158,10 @@ export const COMPARISON_DATA = [
         management: true
       },
       {
-        name: 'Creative & Campaign Briefs',
-        description: 'Strategic direction and success metrics for designers and copywriters.',
+        name: 'Quarterly Business Reviews',
+        description: 'Data-driven analysis with strategic recommendations.',
         advisory: false,
-        strategy: false,
+        strategy: true,
         management: true
       },
     ]
@@ -207,6 +200,13 @@ export const COMPARISON_DATA = [
       {
         name: 'Vendor Oversight',
         description: 'Managing vendor relationships, contracts, and deliverable quality.',
+        advisory: false,
+        strategy: false,
+        management: true
+      },
+      {
+        name: 'Creative & Campaign Briefs',
+        description: 'Strategic direction and success metrics for designers and copywriters.',
         advisory: false,
         strategy: false,
         management: true
