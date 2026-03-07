@@ -15,6 +15,7 @@ import Services from './sections/Services';
 import PartnerOutcomes from './sections/PartnerOutcomes';
 import About from './sections/About';
 import Contact from './sections/Contact';
+import CookieConsent from './components/CookieConsent';
 
 const DesignPlayground = React.lazy(() => import('./playground/DesignPlayground'));
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
@@ -92,6 +93,7 @@ export default function App() {
           <Route path="/terms-and-conditions" element={<TermsConditions />} />
         </Routes>
       </Suspense>
+      <CookieConsent />
     </ErrorBoundary>
   );
 }

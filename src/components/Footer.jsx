@@ -26,6 +26,12 @@ const Footer = () => {
             <div className="flex flex-col gap-4 font-sans text-caption text-secondary">
               <Link to="/privacy-policy" className="text-label hover:text-charcoal transition-colors">Privacy Policy</Link>
               <Link to="/terms-and-conditions" className="text-label hover:text-charcoal transition-colors">Terms & Conditions</Link>
+              <button
+                onClick={() => window.dispatchEvent(new Event('open-cookie-consent'))}
+                className="text-label hover:text-charcoal transition-colors text-left cursor-pointer"
+              >
+                Privacy Preferences
+              </button>
               <p className="mt-8 text-faint">© {new Date().getFullYear()} Sullivan Street Projects LLC. All Rights Reserved.</p>
             </div>
           </div>
