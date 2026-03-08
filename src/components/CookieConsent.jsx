@@ -149,7 +149,7 @@ export default function CookieConsent() {
                 </button>
                 <button
                   onClick={() => setShowPrefs(!showPrefs)}
-                  className="text-ui font-sans text-paper/50 underline underline-offset-2 hover:text-paper/70 transition-colors cursor-pointer"
+                  className={`text-ui font-sans text-paper/50 underline underline-offset-2 hover:text-paper/70 transition-colors cursor-pointer ${showPrefs ? 'hidden sm:block' : ''}`}
                 >
                   Privacy Preferences
                 </button>
