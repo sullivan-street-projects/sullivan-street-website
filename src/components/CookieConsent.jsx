@@ -140,18 +140,18 @@ export default function CookieConsent() {
                 </Link>
               </p>
 
-              <div className="flex items-center gap-4 shrink-0">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4 shrink-0">
+                <button
+                  onClick={showPrefs ? handleSavePrefs : handleGotIt}
+                  className="w-full sm:w-auto order-first sm:order-last px-4 py-2 text-ui font-sans font-medium text-charcoal bg-paper rounded hover:bg-paper/90 transition-colors cursor-pointer"
+                >
+                  {showPrefs ? 'Save' : 'OK'}
+                </button>
                 <button
                   onClick={() => setShowPrefs(!showPrefs)}
                   className="text-ui font-sans text-paper/50 underline underline-offset-2 hover:text-paper/70 transition-colors cursor-pointer"
                 >
                   Privacy Preferences
-                </button>
-                <button
-                  onClick={showPrefs ? handleSavePrefs : handleGotIt}
-                  className="px-4 py-2 text-ui font-sans font-medium text-charcoal bg-paper rounded hover:bg-paper/90 transition-colors cursor-pointer"
-                >
-                  {showPrefs ? 'Save' : 'OK'}
                 </button>
               </div>
             </div>
