@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import useReducedMotion from '../hooks/useReducedMotion';
 import Section from '../components/Section';
 import FocusText from '../components/FocusText';
 import CTAButton from '../components/CTAButton';
@@ -18,6 +19,7 @@ const Services = () => {
   const [expandedTier, setExpandedTier] = useState('management');
   const [isDesktopExpanded, setIsDesktopExpanded] = useState(false);
   const lenis = useLenis();
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -64,6 +66,7 @@ const Services = () => {
                   {/* Accordion Header */}
                   <button
                     onClick={() => setExpandedTier(isExpanded ? null : tier.id)}
+                    aria-expanded={isExpanded}
                     className="w-full py-6 flex items-start justify-between text-left"
                   >
                     <div>
@@ -78,8 +81,8 @@ const Services = () => {
                       stroke="var(--color-label)"
                       strokeWidth="2"
                       className="mt-1 flex-shrink-0"
-                      animate={{ rotate: isExpanded ? 90 : 0 }}
-                      transition={{ duration: 0.2 }}
+                      animate={{ rotate: prefersReducedMotion ? 0 : (isExpanded ? 90 : 0) }}
+                      transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
                     >
                       <path d="M9 18l6-6-6-6" />
                     </motion.svg>
@@ -92,7 +95,7 @@ const Services = () => {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        transition={{ duration: prefersReducedMotion ? 0 : 0.3, ease: 'easeInOut' }}
                         className="overflow-hidden"
                       >
                         <div className="pb-8">
@@ -202,8 +205,8 @@ const Services = () => {
               stroke="currentColor"
               strokeWidth="2"
               className="text-label group-hover:text-charcoal transition-colors"
-              animate={{ rotate: isDesktopExpanded ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
+              animate={{ rotate: prefersReducedMotion ? 0 : (isDesktopExpanded ? 180 : 0) }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
             >
               <path d="M6 9l6 6 6-6" />
             </motion.svg>
@@ -216,7 +219,7 @@ const Services = () => {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                transition={{ duration: prefersReducedMotion ? 0 : 0.3, ease: 'easeInOut' }}
                 className="overflow-hidden"
               >
                 {FEATURES.map((feature, index) => (
