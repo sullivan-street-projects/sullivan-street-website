@@ -117,7 +117,7 @@ const ContactConvergence = () => {
           </h2>
 
           <motion.a
-            href="mailto:hello@sullivanstreetprojects.com"
+            href="mailto:hello@sullivanstreetprojects.co"
             className="inline-flex items-center gap-3 font-serif text-[24px] md:text-[32px] text-[#1a1a1a] group"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
