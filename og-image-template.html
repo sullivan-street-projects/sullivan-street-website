@@ -6,7 +6,7 @@
   <title>OG Image Template</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -14,7 +14,6 @@
       box-sizing: border-box;
     }
 
-    /* Set exact OG image dimensions */
     html, body {
       width: 1200px;
       height: 630px;
@@ -28,56 +27,59 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 80px 100px;
+      padding: 0 100px;
       position: relative;
     }
 
-    /* Subtle grain overlay */
+    /* Paper vignette */
     .container::before {
       content: '';
       position: absolute;
       inset: 0;
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      background: radial-gradient(ellipse 150% 150% at 50% 45%, transparent 25%, rgba(200, 184, 160, 0.10) 100%);
       pointer-events: none;
     }
 
-    h1 {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 72px;
-      line-height: 1.2;
-      color: #1a1a1a;
-      margin-bottom: 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    p {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 24px;
-      line-height: 1.6;
-      color: #404040;
-      font-weight: 300;
-      max-width: 700px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .logo {
+    /* Warm bottom wash */
+    .container::after {
+      content: '';
       position: absolute;
-      bottom: 60px;
-      left: 100px;
+      inset: 0;
+      background: linear-gradient(to top, rgba(212, 196, 176, 0.035) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .wordmark {
       font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 20px;
+      font-size: 64px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
       color: #1a1a1a;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 24px;
+    }
+
+    .tagline {
+      font-family: 'Instrument Sans', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      color: #737373;
+      position: relative;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Marketing for Tomorrow's<br>Billion-Dollar Brands</h1>
-    <p>AI-powered strategy, media, and execution. Faster growth, sharper focus, higher profit.</p>
-    <div class="logo">Sullivan Street Projects</div>
+    <div class="wordmark">
+      Sullivan<br>
+      Street<br>
+      Projects
+    </div>
+    <div class="tagline">GROWTH MARKETING PARTNERS</div>
   </div>
 </body>
 </html>
