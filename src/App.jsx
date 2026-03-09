@@ -20,6 +20,7 @@ import CookieConsent from './components/CookieConsent';
 const DesignPlayground = React.lazy(() => import('./playground/DesignPlayground'));
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
 const TermsConditions = React.lazy(() => import('./pages/TermsConditions'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -91,6 +92,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsConditions />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <CookieConsent />
