@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sullivan Street Projects — Brand Style Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --charcoal: #1a1a1a;
+      --paper: #FAFAF8;
+      --paper-warm: #f0f0ee;
+      --secondary: #404040;
+      --muted: #525252;
+      --label: #737373;
+      --faint: #999999;
+      --divider: #e5e5e5;
+      --green: #4ADE80;
+      --green-dark: #22c55e;
+      --font-serif: 'Libre Baskerville', Georgia, serif;
+      --font-sans: 'Instrument Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--paper);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    .guide {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    /* Header */
+    .guide-header {
+      text-align: center;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--divider);
+      margin-bottom: 64px;
+    }
+    .guide-header h1 {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .guide-header p {
+      font-size: 18px;
+      color: var(--faint);
+      letter-spacing: 2px;
+    }
+
+    /* Sections */
+    section { margin-bottom: 80px; }
+    .section-label {
+      font-size: 11px;
+      color: var(--faint);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--charcoal);
+      max-width: 800px;
+      margin-bottom: 24px;
+    }
+
+    /* Color Palette */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .color-swatch .box {
+      height: 80px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .color-swatch .name {
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .color-swatch .hex {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--faint);
+    }
+    .box-border { border: 1px solid var(--divider); }
+
+    /* Typography */
+    .type-section { margin-bottom: 32px; }
+    .type-display {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    .type-body {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 16px;
+    }
+    .type-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 16px;
+    }
+    .type-compare label {
+      font-size: 11px;
+      color: var(--faint);
+      letter-spacing: 2px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .type-compare .sample { font-size: 20px; }
+    .weight-ramp {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .weight-ramp label {
+      font-size: 11px;
+      color: var(--faint);
+      letter-spacing: 2px;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .weight-ramp .sample { font-family: var(--font-sans); font-size: 22px; }
+
+    /* Italic Headline Closers */
+    .closer-examples { margin-top: 16px; margin-bottom: 16px; }
+    .closer-example {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      line-height: 1.3;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--divider);
+    }
+    .closer-example:last-child { border-bottom: none; }
+    .closer-example em { font-style: italic; }
+    .closer-note {
+      font-size: 14px;
+      color: var(--label);
+      margin-top: 8px;
+    }
+
+    /* Logo Lockups */
+    .lockup-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .lockup-box {
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 32px;
+    }
+    .lockup-box.short { padding: 32px; }
+    .lockup-box.tall { padding: 56px 40px; }
+    .lockup-dark { background: var(--charcoal); }
+    .lockup-light { background: var(--paper); border: 1px solid var(--divider); }
+    .lockup-box img { max-height: 60%; max-width: 80%; }
+    /* Live-rendered lockup text */
+    .lockup-wordmark {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .lockup-stacked {
+      text-align: left;
+      line-height: 1.15;
+    }
+    .lockup-stacked .word {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      letter-spacing: 3px;
+    }
+    .lockup-stacked .tagline {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-top: 24px;
+      color: var(--label);
+    }
+    .lockup-monogram {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      letter-spacing: 0.15em;
+    }
+    .lockup-smark {
+      font-family: var(--font-serif);
+      font-size: 64px;
+      line-height: 1;
+    }
+    .fg-paper { color: var(--paper); }
+    .fg-charcoal { color: var(--charcoal); }
+
+    /* Texture */
+    .texture-swatches {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .texture-box {
+      height: 200px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .texture-box::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    .texture-box span {
+      font-style: italic;
+      font-size: 14px;
+      z-index: 1;
+    }
+    .texture-label {
+      font-size: 13px;
+      color: var(--faint);
+      margin-top: 12px;
+    }
+    .spec-box {
+      background: var(--paper-warm);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .spec-box h4 { font-size: 13px; margin-bottom: 8px; }
+    .spec-box pre {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--label);
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+
+    /* Usage Rules */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .rules-grid h3 { font-size: 18px; margin-bottom: 12px; }
+    .rules-grid .do h3 { color: var(--green-dark); }
+    .rules-grid .dont h3 { color: #ef4444; }
+    .rules-grid ul {
+      list-style: none;
+      padding: 0;
+    }
+    .rules-grid li {
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 4px 0;
+    }
+    .rules-grid li::before { content: '• '; }
+
+    /* Asset Previews */
+    .asset-group { margin-bottom: 32px; }
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .asset-card {
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+    }
+    .asset-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .asset-card .meta {
+      padding: 12px 16px;
+      border-top: 1px solid var(--divider);
+    }
+    .asset-card .meta .filename {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--label);
+    }
+    .asset-card .meta .dims {
+      font-size: 11px;
+      color: var(--faint);
+    }
+
+    /* SVG logos */
+    .svg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .svg-card {
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .svg-card .preview {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .svg-card .preview img { max-height: 100%; max-width: 100%; }
+    .svg-card .preview-dark { background: var(--charcoal); }
+    .svg-card .preview-light { background: var(--paper); }
+    .svg-card .meta {
+      padding: 12px 16px;
+      border-top: 1px solid var(--divider);
+      background: white;
+    }
+    .svg-card .meta .filename {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--label);
+    }
+
+    /* Favicon row */
+    .favicon-row {
+      display: flex;
+      gap: 32px;
+      align-items: flex-end;
+    }
+    .favicon-item { text-align: center; }
+    .favicon-item img {
+      display: block;
+      margin: 0 auto 8px;
+      border-radius: 6px;
+    }
+    .favicon-item span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--faint);
+    }
+
+    @media (max-width: 768px) {
+      .guide { padding: 40px 20px; }
+      .color-grid { grid-template-columns: repeat(2, 1fr); }
+      .type-compare, .lockup-pair, .texture-swatches, .rules-grid, .svg-grid { grid-template-columns: 1fr; }
+      .weight-ramp { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="guide">
+
+    <!-- Header -->
+    <header class="guide-header">
+      <h1>Sullivan Street Projects</h1>
+      <p>Brand Style Guide</p>
+    </header>
+
+    <!-- Voice & Tone -->
+    <section>
+      <div class="section-label">Voice & Tone</div>
+      <p class="section-desc">Our voice is that of a seasoned executive: confident, concise, and focused on the bottom line.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 8px;">
+        <div>
+          <div class="section-title">Direct & Action-Oriented</div>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 12px;">We don't use fluff. We focus on verbs: <em>build, execute, scale, convert.</em></p>
+          <div style="font-size: 13px; border-left: 2px solid var(--green); padding-left: 12px; margin-bottom: 8px;">
+            <span style="color: var(--green-dark); font-weight: 500;">Yes:</span>
+            <span style="color: var(--muted);"> "We cut through the chaos and focus on the only metric that matters—growth."</span>
+          </div>
+          <div style="font-size: 13px; border-left: 2px solid #ef4444; padding-left: 12px;">
+            <span style="color: #ef4444; font-weight: 500;">No:</span>
+            <span style="color: var(--muted);"> "We help brands navigate the complex marketing landscape to find synergy."</span>
+          </div>
+        </div>
+        <div>
+          <div class="section-title">Business-First</div>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 12px;">We speak the language of the C-Suite (P&L, unit economics, ROI), not just marketing jargon.</p>
+          <div style="font-size: 13px; border-left: 2px solid var(--green); padding-left: 12px;">
+            <span style="color: var(--green-dark); font-weight: 500;">Key phrase:</span>
+            <span style="color: var(--muted);"> "We keep marketing in lockstep with your P&L."</span>
+          </div>
+        </div>
+        <div>
+          <div class="section-title">Forward-Looking</div>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6;">We embrace the future (AI, automation) but ground it in timeless business principles. Technology is a tool, not the pitch.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Color Palette -->
+    <section>
+      <div class="section-label">Color Palette</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="box" style="background: var(--charcoal)"></div>
+          <div class="name">Charcoal</div>
+          <div class="hex">#1a1a1a</div>
+        </div>
+        <div class="color-swatch">
+          <div class="box box-border" style="background: var(--paper)"></div>
+          <div class="name">Paper</div>
+          <div class="hex">#FAFAF8</div>
+        </div>
+        <div class="color-swatch">
+          <div class="box box-border" style="background: var(--paper-warm)"></div>
+          <div class="name">Paper Warm</div>
+          <div class="hex">#f0f0ee</div>
+        </div>
+        <div class="color-swatch">
+          <div class="box" style="background: var(--secondary)"></div>
+          <div class="name">Secondary</div>
+          <div class="hex">#404040</div>
+        </div>
+        <div class="color-swatch">
+          <div class="box" style="background: var(--muted)"></div>
+          <div class="name">Muted</div>
+          <div class="hex">#525252</div>
+        </div>
+      </div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="box" style="background: var(--label)"></div>
+          <div class="name">Label</div>
+          <div class="hex">#737373</div>
+        </div>
+        <div class="color-swatch">
+          <div class="box" style="background: var(--faint)"></div>
+          <div class="name">Faint</div>
+          <div class="hex">#999999</div>
+        </div>
+        <div class="color-swatch">
+          <div class="box box-border" style="background: var(--divider)"></div>
+          <div class="name">Divider</div>
+          <div class="hex">#e5e5e5</div>
+        </div>
+        <div class="color-swatch">
+          <div class="box" style="background: var(--green)"></div>
+          <div class="name">Green</div>
+          <div class="hex">#4ADE80</div>
+        </div>
+        <div class="color-swatch">
+          <div class="box" style="background: var(--green-dark)"></div>
+          <div class="name">Green Dark</div>
+          <div class="hex">#22c55e</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section>
+      <div class="section-label">Typography</div>
+
+      <div class="type-section">
+        <div class="section-title">Libre Baskerville — Serif (Drama)</div>
+        <div class="type-display">Growth demands clarity.</div>
+        <div class="type-body" style="font-family: var(--font-serif)">
+          Used for headlines, statements, and emotional content. The editorial serif anchors the brand's voice — authoritative but approachable.
+        </div>
+        <div class="type-compare">
+          <div>
+            <label>Regular</label>
+            <div class="sample" style="font-family: var(--font-serif)">The quick brown fox jumps over the lazy dog</div>
+          </div>
+          <div>
+            <label>Italic</label>
+            <div class="sample" style="font-family: var(--font-serif); font-style: italic">The quick brown fox jumps over the lazy dog</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="type-section">
+        <div class="section-title">Italic for Emphasis — Headline Closers</div>
+        <div class="type-body">
+          On the website, section headlines end with italic Libre Baskerville to land the key phrase. The regular-to-italic shift within a single heading creates emphasis without bold or color — the italic word is the one the reader remembers.
+        </div>
+        <div class="closer-examples">
+          <div class="closer-example">Marketing for Tomorrow's<br><em>Billion-Dollar Brands</em></div>
+          <div class="closer-example">Make Marketing Work<br><em>For Your Business</em></div>
+          <div class="closer-example">Tailor made<br><em>growth marketing.</em></div>
+        </div>
+        <p class="closer-note">* Regular + italic = italic exit clue. The font pairing carries the emphasis for a restrained design.</p>
+      </div>
+
+      <div class="type-section">
+        <div class="section-title">Instrument Sans — Sans (Body)</div>
+        <div class="type-body">
+          The workhorse typeface for body copy, UI elements, labels, and navigation. Clean geometry with humanist warmth.
+        </div>
+        <div class="type-compare">
+          <div>
+            <label>Regular</label>
+            <div class="sample">The quick brown fox jumps over the lazy dog</div>
+          </div>
+          <div>
+            <label>Italic</label>
+            <div class="sample" style="font-style: italic">The quick brown fox jumps over the lazy dog</div>
+          </div>
+        </div>
+        <div class="weight-ramp">
+          <div>
+            <label>300 Light</label>
+            <div class="sample" style="font-weight: 300">Sullivan Street</div>
+          </div>
+          <div>
+            <label>400 Regular</label>
+            <div class="sample" style="font-weight: 400">Sullivan Street</div>
+          </div>
+          <div>
+            <label>500 Medium</label>
+            <div class="sample" style="font-weight: 500">Sullivan Street</div>
+          </div>
+          <div>
+            <label>700 Bold</label>
+            <div class="sample" style="font-weight: 700">Sullivan Street</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logo Lockups -->
+    <section>
+      <div class="section-label">Logo Lockups</div>
+      <p class="section-desc">Four lockups, all based on Libre Baskerville. Each produced in charcoal-on-paper and paper-on-charcoal variants.</p>
+
+      <div class="section-title">A. Wordmark — Single Line</div>
+      <p class="section-desc" style="font-size: 14px; color: var(--label); margin-bottom: 16px;">Use for: LinkedIn banners, slide headers, email signatures, proposals</p>
+      <div class="lockup-pair">
+        <div class="lockup-box short lockup-dark">
+          <span class="lockup-wordmark fg-paper">Sullivan Street Projects</span>
+        </div>
+        <div class="lockup-box short lockup-light">
+          <span class="lockup-wordmark fg-charcoal">Sullivan Street Projects</span>
+        </div>
+      </div>
+
+      <div class="section-title">B. Wordmark — Stacked + Tagline</div>
+      <p class="section-desc" style="font-size: 14px; color: var(--label); margin-bottom: 16px;">Each word on its own line, left-aligned. Use for: title slides, hero moments, print</p>
+      <div class="lockup-pair">
+        <div class="lockup-box tall lockup-dark">
+          <div class="lockup-stacked fg-paper">
+            <div class="word">Sullivan</div>
+            <div class="word">Street</div>
+            <div class="word">Projects</div>
+            <div class="tagline">Growth Marketing Partners</div>
+          </div>
+        </div>
+        <div class="lockup-box tall lockup-light">
+          <div class="lockup-stacked fg-charcoal">
+            <div class="word">Sullivan</div>
+            <div class="word">Street</div>
+            <div class="word">Projects</div>
+            <div class="tagline">Growth Marketing Partners</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">C. Monogram — SSP</div>
+      <p class="section-desc" style="font-size: 14px; color: var(--label); margin-bottom: 16px;">Use for: OG images, social cards, document watermarks</p>
+      <div class="lockup-pair">
+        <div class="lockup-box short lockup-dark">
+          <span class="lockup-monogram fg-paper">SSP</span>
+        </div>
+        <div class="lockup-box short lockup-light">
+          <span class="lockup-monogram fg-charcoal">SSP</span>
+        </div>
+      </div>
+
+      <div class="section-title">D. S Mark</div>
+      <p class="section-desc" style="font-size: 14px; color: var(--label); margin-bottom: 16px;">Use for: Favicon, LinkedIn company logo, app icon, profile thumbnails</p>
+      <div class="lockup-pair">
+        <div class="lockup-box short lockup-dark">
+          <span class="lockup-smark fg-paper">S</span>
+        </div>
+        <div class="lockup-box short lockup-light">
+          <span class="lockup-smark fg-charcoal">S</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Texture — Grain Overlay -->
+    <section>
+      <div class="section-label">Texture — Grain Overlay</div>
+      <p class="section-desc">
+        A subtle fractal noise texture is applied as a fixed full-page overlay at 5% opacity. It adds analog warmth to flat digital surfaces without affecting readability.
+      </p>
+      <div class="texture-swatches">
+        <div>
+          <div class="texture-box" style="background: var(--paper); border: 1px solid var(--divider);">
+            <span style="color: var(--faint)">5% noise overlay — live</span>
+          </div>
+          <div class="texture-label">On Paper (#FAFAF8)</div>
+        </div>
+        <div>
+          <div class="texture-box" style="background: var(--charcoal);">
+            <span style="color: var(--label)">5% noise overlay — live</span>
+          </div>
+          <div class="texture-label">On Charcoal (#1a1a1a)</div>
+        </div>
+      </div>
+      <div class="spec-box">
+        <h4>Implementation</h4>
+        <pre>SVG feTurbulence · fractalNoise
+baseFrequency: 0.6 · numOctaves: 3
+position: fixed · inset: 0
+opacity: 0.05 (5%) · z-index: 50
+pointer-events: none</pre>
+      </div>
+    </section>
+
+    <!-- Usage Rules -->
+    <section>
+      <div class="section-label">Usage Rules</div>
+      <div class="rules-grid">
+        <div class="do">
+          <h3>Do</h3>
+          <ul>
+            <li>Use Libre Baskerville for headlines and the stacked wordmark</li>
+            <li>Use Instrument Sans for body copy, UI, labels, and navigation</li>
+            <li>Maintain charcoal-on-paper or paper-on-charcoal contrast</li>
+            <li>Apply grain overlay at exactly 5% opacity</li>
+            <li>Use generous whitespace — padding and margins should let content breathe</li>
+            <li>Treat the logo as a logotype in Libre Baskerville — no graphical mark</li>
+            <li>Always pair the stacked wordmark with the tagline: GROWTH MARKETING PARTNERS</li>
+            <li>Use design tokens from @theme — never hardcode hex</li>
+          </ul>
+        </div>
+        <div class="dont">
+          <h3>Don't</h3>
+          <ul>
+            <li>Mix serif and sans arbitrarily — italic Libre Baskerville closers are the exception, not a free pass</li>
+            <li>Use colors outside the defined palette</li>
+            <li>Alter letter-spacing on the stacked wordmark or tagline</li>
+            <li>Stretch, rotate, or skew any logo lockup</li>
+            <li>Separate the wordmark from its tagline in the stacked lockup</li>
+            <li>Use "Growth demands clarity" as brand copy — it is not an approved tagline</li>
+            <li>Use "SSP" in public-facing copy — it is for internal use only</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Asset Kit -->
+    <section>
+      <div class="section-label">Asset Kit</div>
+
+      <!-- SVG Logos -->
+      <div class="asset-group">
+        <div class="section-title">SVG Logos (8 files)</div>
+        <div class="svg-grid">
+          <div class="svg-card">
+            <div class="preview preview-dark"><img src="logos/wordmark-dark.svg" alt=""></div>
+            <div class="meta"><div class="filename">wordmark-dark.svg</div></div>
+          </div>
+          <div class="svg-card">
+            <div class="preview preview-light"><img src="logos/wordmark-light.svg" alt=""></div>
+            <div class="meta"><div class="filename">wordmark-light.svg</div></div>
+          </div>
+          <div class="svg-card">
+            <div class="preview preview-dark" style="height: 180px;"><img src="logos/wordmark-stacked-dark.svg" alt=""></div>
+            <div class="meta"><div class="filename">wordmark-stacked-dark.svg</div></div>
+          </div>
+          <div class="svg-card">
+            <div class="preview preview-light" style="height: 180px;"><img src="logos/wordmark-stacked-light.svg" alt=""></div>
+            <div class="meta"><div class="filename">wordmark-stacked-light.svg</div></div>
+          </div>
+          <div class="svg-card">
+            <div class="preview preview-dark"><img src="logos/monogram-dark.svg" alt=""></div>
+            <div class="meta"><div class="filename">monogram-dark.svg</div></div>
+          </div>
+          <div class="svg-card">
+            <div class="preview preview-light"><img src="logos/monogram-light.svg" alt=""></div>
+            <div class="meta"><div class="filename">monogram-light.svg</div></div>
+          </div>
+          <div class="svg-card">
+            <div class="preview preview-dark"><img src="logos/s-mark-bare-dark.svg" alt=""></div>
+            <div class="meta"><div class="filename">s-mark-bare-dark.svg</div></div>
+          </div>
+          <div class="svg-card">
+            <div class="preview preview-light"><img src="logos/s-mark-bare-light.svg" alt=""></div>
+            <div class="meta"><div class="filename">s-mark-bare-light.svg</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LinkedIn -->
+      <div class="asset-group">
+        <div class="section-title">LinkedIn (6 PNGs)</div>
+        <div class="asset-grid">
+          <div class="asset-card">
+            <img src="linkedin/company-logo-dark.png" alt="">
+            <div class="meta">
+              <div class="filename">company-logo-dark.png</div>
+              <div class="dims">300 × 300</div>
+            </div>
+          </div>
+          <div class="asset-card">
+            <img src="linkedin/company-logo-light.png" alt="">
+            <div class="meta">
+              <div class="filename">company-logo-light.png</div>
+              <div class="dims">300 × 300</div>
+            </div>
+          </div>
+          <div class="asset-card">
+            <img src="linkedin/company-banner-dark.png" alt="">
+            <div class="meta">
+              <div class="filename">company-banner-dark.png</div>
+              <div class="dims">1128 × 191</div>
+            </div>
+          </div>
+          <div class="asset-card">
+            <img src="linkedin/company-banner-light.png" alt="">
+            <div class="meta">
+              <div class="filename">company-banner-light.png</div>
+              <div class="dims">1128 × 191</div>
+            </div>
+          </div>
+          <div class="asset-card">
+            <img src="linkedin/profile-banner-dark.png" alt="">
+            <div class="meta">
+              <div class="filename">profile-banner-dark.png</div>
+              <div class="dims">1584 × 396</div>
+            </div>
+          </div>
+          <div class="asset-card">
+            <img src="linkedin/profile-banner-light.png" alt="">
+            <div class="meta">
+              <div class="filename">profile-banner-light.png</div>
+              <div class="dims">1584 × 396</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social / OG -->
+      <div class="asset-group">
+        <div class="section-title">Social / OG Images (2 PNGs)</div>
+        <div class="asset-grid">
+          <div class="asset-card">
+            <img src="social/og-image-dark.png" alt="">
+            <div class="meta">
+              <div class="filename">og-image-dark.png</div>
+              <div class="dims">1200 × 630</div>
+            </div>
+          </div>
+          <div class="asset-card">
+            <img src="social/og-image-light.png" alt="">
+            <div class="meta">
+              <div class="filename">og-image-light.png</div>
+              <div class="dims">1200 × 630</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Favicon -->
+      <div class="asset-group">
+        <div class="section-title">Favicon / App Icons (3 PNGs)</div>
+        <div class="favicon-row">
+          <div class="favicon-item">
+            <img src="favicon/favicon-32.png" alt="" width="32" height="32">
+            <span>32px</span>
+          </div>
+          <div class="favicon-item">
+            <img src="favicon/apple-touch-icon-180.png" alt="" width="60" height="60">
+            <span>180px</span>
+          </div>
+          <div class="favicon-item">
+            <img src="favicon/android-icon-512.png" alt="" width="96" height="96">
+            <span>512px</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email Signatures -->
+      <div class="asset-group">
+        <div class="section-title">Email Signatures (2 PNGs)</div>
+        <div class="asset-grid">
+          <div class="asset-card">
+            <div style="padding: 24px; background: white; text-align: center;">
+              <img src="email/signature-dark.png" alt="" style="width: auto; height: 40px;">
+            </div>
+            <div class="meta">
+              <div class="filename">signature-dark.png</div>
+              <div class="dims">280 × 36</div>
+            </div>
+          </div>
+          <div class="asset-card">
+            <div style="padding: 24px; background: var(--charcoal); text-align: center;">
+              <img src="email/signature-light.png" alt="" style="width: auto; height: 40px;">
+            </div>
+            <div class="meta">
+              <div class="filename">signature-light.png</div>
+              <div class="dims">280 × 36</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deck Assets -->
+      <div class="asset-group">
+        <div class="section-title">Slide Deck Assets (4 PNGs)</div>
+        <div class="asset-grid">
+          <div class="asset-card">
+            <img src="decks/header-dark.png" alt="">
+            <div class="meta">
+              <div class="filename">header-dark.png</div>
+              <div class="dims">600 × 80</div>
+            </div>
+          </div>
+          <div class="asset-card">
+            <img src="decks/header-light.png" alt="">
+            <div class="meta">
+              <div class="filename">header-light.png</div>
+              <div class="dims">600 × 80</div>
+            </div>
+          </div>
+          <div class="asset-card">
+            <img src="decks/title-slide-dark.png" alt="">
+            <div class="meta">
+              <div class="filename">title-slide-dark.png</div>
+              <div class="dims">1920 × 1080</div>
+            </div>
+          </div>
+          <div class="asset-card">
+            <img src="decks/title-slide-light.png" alt="">
+            <div class="meta">
+              <div class="filename">title-slide-light.png</div>
+              <div class="dims">1920 × 1080</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</body>
+</html>

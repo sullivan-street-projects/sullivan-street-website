@@ -15,14 +15,15 @@ const BRAND_DIR = path.join(__dirname, '..', 'brand');
 const CHARCOAL = '#1a1a1a';
 const PAPER = '#FAFAF8';
 
-// Shared HTML template — renders centered content on a solid background with Libre Baskerville loaded
+// Shared HTML template — renders centered content on a solid background with brand fonts loaded
 function buildHTML({ bg, width, height, content }) {
   return `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -42,10 +43,28 @@ function buildHTML({ bg, width, height, content }) {
 }
 
 // Content builders for each lockup type
-function wordmark(fg) {
-  return `<span style="font-size: 36px; color: ${fg}; letter-spacing: 0.04em; white-space: nowrap;">Sullivan Street Projects</span>`;
+
+// Single-line wordmark — "Sullivan Street Projects" in one clean line
+function wordmark(fg, fontSize = 36) {
+  return `<span style="font-size: ${fontSize}px; color: ${fg}; letter-spacing: 0.04em; white-space: nowrap;">Sullivan Street Projects</span>`;
 }
 
+// Stacked wordmark — each word on its own line, left-aligned, group centered + tagline underneath
+// Reference: brand/og-image.pen — 80px at 1200x630, scaled proportionally per asset
+function wordmarkStacked(fg, fontSize = 80) {
+  const tagSize = Math.round(fontSize * 0.225);
+  const tagSpacing = Math.round(fontSize * 0.0625);
+  const spacer = Math.round(fontSize * 0.35);
+  const letterSp = Math.round(fontSize * 0.0375);
+  return `<div style="text-align: left; line-height: 1.15;">
+    <div style="font-size: ${fontSize}px; color: ${fg}; letter-spacing: ${letterSp}px;">Sullivan</div>
+    <div style="font-size: ${fontSize}px; color: ${fg}; letter-spacing: ${letterSp}px;">Street</div>
+    <div style="font-size: ${fontSize}px; color: ${fg}; letter-spacing: ${letterSp}px;">Projects</div>
+    <div style="font-size: ${tagSize}px; color: #737373; letter-spacing: ${tagSpacing}px; text-transform: uppercase; margin-top: ${spacer}px; font-family: 'Instrument Sans', system-ui, sans-serif;">Growth Marketing Partners</div>
+  </div>`;
+}
+
+// Single-line wordmark + tagline (for wide banners like LinkedIn profile)
 function wordmarkWithTagline(fg) {
   return `<div style="text-align: center;">
     <div style="font-size: 36px; color: ${fg}; letter-spacing: 0.04em; white-space: nowrap;">Sullivan Street Projects</div>
@@ -53,10 +72,12 @@ function wordmarkWithTagline(fg) {
   </div>`;
 }
 
+// SSP monogram
 function monogram(fg) {
   return `<span style="font-size: 48px; color: ${fg}; letter-spacing: 0.15em;">SSP</span>`;
 }
 
+// SSP monogram + wordmark underneath (for OG images, title slides)
 function monogramWithWordmark(fg) {
   return `<div style="text-align: center;">
     <div style="font-size: 72px; color: ${fg}; letter-spacing: 0.15em; margin-bottom: 24px;">SSP</div>
@@ -64,22 +85,7 @@ function monogramWithWordmark(fg) {
   </div>`;
 }
 
-function sMarkFramed(fg) {
-  return `<div style="width: 65%; height: 65%; border: 1.5px solid ${fg}; display: flex; align-items: center; justify-content: center;">
-    <span style="font-size: 50%; color: ${fg}; line-height: 1;">S</span>
-  </div>`;
-}
-
-// For the framed S mark, use viewport-relative sizing so it scales correctly at any dimension
-function sMarkFramedScaled(fg, size) {
-  const borderW = Math.max(1, Math.round(size * 0.01));
-  const boxSize = Math.round(size * 0.65);
-  const fontSize = Math.round(size * 0.45);
-  return `<div style="width: ${boxSize}px; height: ${boxSize}px; border: ${borderW}px solid ${fg}; display: flex; align-items: center; justify-content: center;">
-    <span style="font-size: ${fontSize}px; color: ${fg}; line-height: 1;">S</span>
-  </div>`;
-}
-
+// Bare S mark — scales font size relative to container
 function sMarkBareScaled(fg, size) {
   const fontSize = Math.round(size * 0.55);
   return `<span style="font-size: ${fontSize}px; color: ${fg}; line-height: 1;">S</span>`;
@@ -104,15 +110,15 @@ const assets = [
   { path: 'social/og-image-light.png', w: 1200, h: 630, bg: PAPER, content: () => monogramWithWordmark(CHARCOAL) },
   { path: 'social/og-image-dark.png', w: 1200, h: 630, bg: CHARCOAL, content: () => monogramWithWordmark(PAPER) },
 
-  // Email
-  { path: 'email/signature-light.png', w: 200, h: 40, bg: PAPER, content: () => `<span style="font-size: 16px; color: ${CHARCOAL}; letter-spacing: 0.04em; white-space: nowrap;">Sullivan Street Projects</span>` },
-  { path: 'email/signature-dark.png', w: 200, h: 40, bg: CHARCOAL, content: () => `<span style="font-size: 16px; color: ${PAPER}; letter-spacing: 0.04em; white-space: nowrap;">Sullivan Street Projects</span>` },
+  // Email — wider canvas so wordmark has breathing room
+  { path: 'email/signature-light.png', w: 280, h: 36, bg: PAPER, content: () => wordmark(CHARCOAL, 14) },
+  { path: 'email/signature-dark.png', w: 280, h: 36, bg: CHARCOAL, content: () => wordmark(PAPER, 14) },
 
-  // Decks
-  { path: 'decks/header-light.png', w: 400, h: 80, bg: PAPER, content: () => wordmark(CHARCOAL) },
-  { path: 'decks/header-dark.png', w: 400, h: 80, bg: CHARCOAL, content: () => wordmark(PAPER) },
-  { path: 'decks/title-slide-light.png', w: 1920, h: 1080, bg: PAPER, content: () => monogramWithWordmark(CHARCOAL) },
-  { path: 'decks/title-slide-dark.png', w: 1920, h: 1080, bg: CHARCOAL, content: () => monogramWithWordmark(PAPER) },
+  // Decks — header uses scaled-down wordmark to fit 600x80
+  { path: 'decks/header-light.png', w: 600, h: 80, bg: PAPER, content: () => wordmark(CHARCOAL, 24) },
+  { path: 'decks/header-dark.png', w: 600, h: 80, bg: CHARCOAL, content: () => wordmark(PAPER, 24) },
+  { path: 'decks/title-slide-light.png', w: 1920, h: 1080, bg: PAPER, content: () => wordmarkStacked(CHARCOAL) },
+  { path: 'decks/title-slide-dark.png', w: 1920, h: 1080, bg: CHARCOAL, content: () => wordmarkStacked(PAPER) },
 ];
 
 async function main() {

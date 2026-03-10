@@ -11,12 +11,12 @@ const GrainComparison = () => {
         {/* Current Grain */}
         <div>
           <p className="font-sans text-sm font-medium text-[#737373] mb-3">
-            CURRENT — opacity: 0.04, frequency: 0.6
+            CURRENT — opacity: 0.05, frequency: 0.6
           </p>
           <div className="relative h-64 rounded-lg overflow-hidden border border-[#e5e5e5]">
             <div className="absolute inset-0 bg-[#FAFAF8]" />
             <div
-              className="absolute inset-0 opacity-[0.04]"
+              className="absolute inset-0 opacity-[0.05]"
               style={{ backgroundImage: currentGrain }}
             />
             <div className="absolute inset-0 flex items-center justify-center">

@@ -22,6 +22,13 @@
 - **Key evidence:** Owner has 22 Approach playground variants (heavy prototyping investment); digital-instrument-elevation plan was heavily pruned in practice (behavioral restraint pattern); skip-to-content link already exists in App.jsx
 - **Override:** None (pending user response)
 
+### 2026-03-10 — Gate: Brand Reference File Alignment
+- **Depth:** Gate
+- **Evaluated:** Align BRAND_GUIDE.md, brand/index.html, and Pencil style guide (5 sub-items: fix font name, expand palette, add lockups, normalize grain to 5%, add Voice & Tone to HTML/Pencil)
+- **Classification:** Go
+- **Evidence:** BRAND_GUIDE.md lists "Inter" (swapped to Instrument Sans Mar 1); says grain 0.04 (production is 0.05); documents 5 of 10 colors and 3 of 4 lockups; Voice & Tone missing from HTML guide. Single-source-of-truth is a core value. Brand guide design doc (2026-03-06) explicitly aimed to "codify existing brand identity."
+- **Override:** Pending
+
 ## Extracted Values (SSP Website)
 - Editorial, typography-first: type IS the design
 - Restrained animation: owner pattern is removing animation, not adding

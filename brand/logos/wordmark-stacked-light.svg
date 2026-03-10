@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&amp;family=Instrument+Sans:wght@400&amp;display=swap');
+  </style>
+  <g transform="translate(90, 0)">
+    <text x="0" y="48"
+          font-family="'Libre Baskerville', Georgia, serif"
+          font-size="42" fill="#1a1a1a" letter-spacing="3">Sullivan</text>
+    <text x="0" y="98"
+          font-family="'Libre Baskerville', Georgia, serif"
+          font-size="42" fill="#1a1a1a" letter-spacing="3">Street</text>
+    <text x="0" y="148"
+          font-family="'Libre Baskerville', Georgia, serif"
+          font-size="42" fill="#1a1a1a" letter-spacing="3">Projects</text>
+    <text x="0" y="190"
+          font-family="'Instrument Sans', system-ui, sans-serif"
+          font-size="14" fill="#737373" letter-spacing="5">GROWTH MARKETING PARTNERS</text>
+  </g>
+</svg>
