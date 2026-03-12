@@ -76,10 +76,10 @@ Every engagement starts with your commercial objectives, market realities, and u
 We distill brand, audience, and lifecycle into a clear roadmap: who to reach, what to say, and why it converts.
 
 #### Media Activation
-We activate the channels that drive your growth—Meta, Google, Microsoft, email, and beyond.
+We activate the channels that drive your growth—Meta, Google, Microsoft, email, and beyond—with measurement design built in from day one.
 
 #### Campaign Execution
-Creative and content that convert attention into revenue while reinforcing brand equity.
+Creative and content that convert attention into revenue while reinforcing brand equity. Continuous performance monitoring and optimization keep every dollar working.
 
 ---
 

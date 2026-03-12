@@ -57,11 +57,11 @@ export const CAPABILITIES = [
   },
   {
     title: 'Media Activation',
-    description: 'We activate the channels that drive your growth—Meta, Google, Microsoft, email, and beyond.',
+    description: 'We activate the channels that drive your growth—Meta, Google, Microsoft, email, and beyond—with measurement design built in from day one.',
   },
   {
     title: 'Campaign Execution',
-    description: 'Creative and content that convert attention into revenue while reinforcing brand equity.',
+    description: 'Creative and content that convert attention into revenue while reinforcing brand equity. Continuous performance monitoring and optimization keep every dollar working.',
   },
 ];
 
