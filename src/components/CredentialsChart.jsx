@@ -12,36 +12,54 @@ const DATA = [
   { year: 2026, value: 2150 },
 ];
 
-const MILESTONES = [
-  { year: 2018, value: 650, label: '$0.5B' },
-  { year: 2020, value: 1100, label: '$1B' },
-  { year: 2022, value: 1600, label: '$1.5B' },
-  { year: 2026, value: 2150, label: '$2.1B' },
-];
-
-const MARGIN = { top: 24, right: 48, bottom: 36, left: 44 };
-const SVG_W = 960;
-const SVG_H = 320;
-const PLOT_W = SVG_W - MARGIN.left - MARGIN.right;
-const PLOT_H = SVG_H - MARGIN.top - MARGIN.bottom;
-
 const Y_MAX = 2400;
 const YEAR_MIN = 2014;
 const YEAR_MAX = 2026;
 
 const Y_TICKS = [
   { value: 0, label: '$0' },
-  { value: 1000, label: '$1' },
-  { value: 2000, label: '$2' },
+  { value: 1000, label: '$1B' },
+  { value: 2000, label: '$2B' },
 ];
-const X_TICKS = [2014, 2016, 2018, 2020, 2022, 2024, 2026];
 
-function xPos(year) {
-  return MARGIN.left + ((year - YEAR_MIN) / (YEAR_MAX - YEAR_MIN)) * PLOT_W;
-}
+// Desktop config
+const DESKTOP = {
+  w: 960, h: 320,
+  margin: { top: 24, right: 48, bottom: 36, left: 44 },
+  xTicks: [2014, 2016, 2018, 2020, 2022, 2024, 2026],
+  milestones: [
+    { year: 2018, value: 650, label: '$0.5B' },
+    { year: 2020, value: 1100, label: '$1B' },
+    { year: 2022, value: 1600, label: '$1.5B' },
+    { year: 2026, value: 2150, label: '$2.1B' },
+  ],
+  fontSize: { axis: 11, milestone: 12 },
+  stroke: 2.5,
+  dot: { r: 4, ring: 7 },
+  gridStroke: 0.5,
+};
 
-function yPos(value) {
-  return MARGIN.top + PLOT_H - (value / Y_MAX) * PLOT_H;
+// Mobile config — fewer labels, larger text, taller aspect
+const MOBILE = {
+  w: 480, h: 300,
+  margin: { top: 32, right: 20, bottom: 44, left: 52 },
+  xTicks: [2014, 2020, 2026],
+  milestones: [
+    { year: 2018, value: 650, label: '$0.5B' },
+    { year: 2026, value: 2150, label: '$2.1B' },
+  ],
+  fontSize: { axis: 18, milestone: 20 },
+  stroke: 3.5,
+  dot: { r: 6, ring: 10 },
+  gridStroke: 0.8,
+};
+
+function makeHelpers(cfg) {
+  const plotW = cfg.w - cfg.margin.left - cfg.margin.right;
+  const plotH = cfg.h - cfg.margin.top - cfg.margin.bottom;
+  const xPos = (year) => cfg.margin.left + ((year - YEAR_MIN) / (YEAR_MAX - YEAR_MIN)) * plotW;
+  const yPos = (value) => cfg.margin.top + plotH - (value / Y_MAX) * plotH;
+  return { plotW, plotH, xPos, yPos };
 }
 
 // Fritsch-Carlson monotone cubic interpolation
@@ -76,27 +94,47 @@ function monotoneCubicPath(pts) {
   return d;
 }
 
-const chartPoints = DATA.map((d) => ({ x: xPos(d.year), y: yPos(d.value) }));
-const linePath = monotoneCubicPath(chartPoints);
+function buildChart(cfg) {
+  const { xPos, yPos } = makeHelpers(cfg);
+  const points = DATA.map((d) => ({ x: xPos(d.year), y: yPos(d.value) }));
+  return { path: monotoneCubicPath(points), xPos, yPos };
+}
+
+const desktopChart = buildChart(DESKTOP);
+const mobileChart = buildChart(MOBILE);
 
 const LINE_DURATION = 2.8;
 const TYPEWRITER_TEXT = '$2B+ in media managed across Fortune 500 brands and venture-backed startups.';
+const START_DELAY = 600;
 
 function milestoneDelay(year) {
   const progress = (year - YEAR_MIN) / (YEAR_MAX - YEAR_MIN);
   return progress * LINE_DURATION;
 }
 
-const START_DELAY = 600; // ms to let user register the chart before animation
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    setIsMobile(mql.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, [breakpoint]);
+  return isMobile;
+}
 
 export default function CredentialsChart() {
   const containerRef = useRef(null);
-  const inView = useInView(containerRef, { once: true, amount: 0.3 });
+  const inView = useInView(containerRef, { once: true, amount: 0.4 });
   const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   const [ready, setReady] = useState(false);
   const shouldAnimate = ready && !reducedMotion;
 
-  // Delay animation start so chart is visible before it begins drawing
+  const cfg = isMobile ? MOBILE : DESKTOP;
+  const chart = isMobile ? mobileChart : desktopChart;
+
   useEffect(() => {
     if (reducedMotion) { setReady(true); return; }
     if (!inView) return;
@@ -126,21 +164,21 @@ export default function CredentialsChart() {
     <div ref={containerRef} className="w-full max-w-site mx-auto px-6 lg:px-8 mt-8 md:mt-10 border-t border-divider pt-8 md:pt-10">
       <div className="relative">
         <svg
-          viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+          viewBox={`0 0 ${cfg.w} ${cfg.h}`}
           className="w-full"
           role="img"
           aria-label="Line chart showing cumulative media spend growing from $0 to over $2.1 billion between 2014 and 2026"
         >
-          {/* Horizontal gridlines only */}
+          {/* Horizontal gridlines */}
           {Y_TICKS.map(({ value }, i) => (
             <line
               key={`grid-${i}`}
-              x1={MARGIN.left}
-              x2={SVG_W - MARGIN.right}
-              y1={yPos(value)}
-              y2={yPos(value)}
+              x1={cfg.margin.left}
+              x2={cfg.w - cfg.margin.right}
+              y1={chart.yPos(value)}
+              y2={chart.yPos(value)}
               stroke="#e5e5e5"
-              strokeWidth={0.5}
+              strokeWidth={cfg.gridStroke}
             />
           ))}
 
@@ -148,11 +186,11 @@ export default function CredentialsChart() {
           {Y_TICKS.map(({ value, label }, i) => (
             <text
               key={`yl-${i}`}
-              x={MARGIN.left - 10}
-              y={yPos(value) + 4}
+              x={cfg.margin.left - 10}
+              y={chart.yPos(value) + (isMobile ? 6 : 4)}
               textAnchor="end"
               className="font-sans"
-              fontSize={11}
+              fontSize={cfg.fontSize.axis}
               fill="#999999"
             >
               {label}
@@ -160,14 +198,14 @@ export default function CredentialsChart() {
           ))}
 
           {/* X-axis labels */}
-          {X_TICKS.map((year) => (
+          {cfg.xTicks.map((year) => (
             <text
               key={`xl-${year}`}
-              x={xPos(year)}
-              y={SVG_H - 6}
+              x={chart.xPos(year)}
+              y={cfg.h - (isMobile ? 10 : 6)}
               textAnchor="middle"
               className="font-sans"
-              fontSize={11}
+              fontSize={cfg.fontSize.axis}
               fill="#999999"
             >
               {year}
@@ -176,10 +214,10 @@ export default function CredentialsChart() {
 
           {/* Data line */}
           <motion.path
-            d={linePath}
+            d={chart.path}
             fill="none"
             stroke="#1a1a1a"
-            strokeWidth={2.5}
+            strokeWidth={cfg.stroke}
             strokeLinecap="round"
             strokeLinejoin="round"
             initial={reducedMotion ? false : { pathLength: 0 }}
@@ -187,10 +225,10 @@ export default function CredentialsChart() {
             transition={{ duration: LINE_DURATION, ease: [0.32, 0, 0.67, 1] }}
           />
 
-          {/* Milestone dots + direct labels */}
-          {MILESTONES.map((m) => {
-            const cx = xPos(m.year);
-            const cy = yPos(m.value);
+          {/* Milestone dots + labels */}
+          {cfg.milestones.map((m) => {
+            const cx = chart.xPos(m.year);
+            const cy = chart.yPos(m.value);
             const delay = reducedMotion ? 0 : milestoneDelay(m.year);
 
             return (
@@ -200,15 +238,15 @@ export default function CredentialsChart() {
                 animate={shouldAnimate ? { opacity: 1 } : reducedMotion ? { opacity: 1 } : undefined}
                 transition={{ duration: 0.35, delay }}
               >
-                <circle cx={cx} cy={cy} r={4} fill="#1a1a1a" />
-                <circle cx={cx} cy={cy} r={7} fill="none" stroke="#1a1a1a" strokeWidth={1} opacity={0.25} />
+                <circle cx={cx} cy={cy} r={cfg.dot.r} fill="#1a1a1a" />
+                <circle cx={cx} cy={cy} r={cfg.dot.ring} fill="none" stroke="#1a1a1a" strokeWidth={1} opacity={0.25} />
                 <text
                   x={cx}
-                  y={cy - 14}
+                  y={cy - (isMobile ? 18 : 14)}
                   textAnchor="middle"
                   className="font-sans"
                   fontWeight={600}
-                  fontSize={12}
+                  fontSize={cfg.fontSize.milestone}
                   fill="#1a1a1a"
                 >
                   {m.label}

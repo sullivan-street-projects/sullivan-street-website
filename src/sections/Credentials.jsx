@@ -2,12 +2,12 @@ import useReducedMotion from '../hooks/useReducedMotion';
 import CredentialsChart from '../components/CredentialsChart';
 import { LABEL_CLASSES } from '../constants';
 
-// Ordered so heavy hitters appear mid-screen as marquee scrolls —
-// viewer's eye catches Apple/Google/JPMorgan in the natural reading zone
+// Lead with heavy hitters so mobile viewers see them immediately;
+// marquee scroll ensures full rotation on all viewports
 const BRANDS = [
-  'Peloton', 'Wayfair', 'Expedia', 'Hertz', 'Navan',
-  'Apple', 'Google', 'JPMorgan Chase', 'Samsung',
-  'American Express', 'Citigroup', 'Comcast', 'Rocket Mortgage', 'Publicis',
+  'Apple', 'Google', 'JPMorgan Chase', 'Samsung', 'American Express',
+  'Citigroup', 'Comcast', 'Rocket Mortgage', 'Publicis',
+  'Expedia', 'Wayfair', 'Navan', 'Peloton', 'Hertz',
 ];
 
 const Credentials = () => {
