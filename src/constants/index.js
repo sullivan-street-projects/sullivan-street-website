@@ -33,16 +33,16 @@ export const NAV_ITEMS = [
 
 export const VALUE_PROPS = [
   {
-    title: 'Fractional Growth Executive',
-    description: 'CMO, VP, or Director-level leadership, embedded with your team—from strategy to execution. Enterprise experience. Startup speed.'
+    title: 'Execution, Not Just Advice',
+    description: 'A growth leader in the trenches with your team — not a consultant who disappears after a deck. We own the outcome, set clear KPIs upfront, and keep things moving.'
   },
   {
-    title: 'Marketing General Contractor',
-    description: 'Best-in-class specialists across media, creative, analytics, and operations. We manage the work. You get the results.'
+    title: 'One Team, Full Ownership',
+    description: 'Every specialist your business needs — media, creative, analytics, operations — managed under one roof. We manage the work. You get the results.'
   },
   {
-    title: 'Outcome Obsessed, AI Enabled',
-    description: 'AI powers our research, strategy, and reporting. Sharper insights. Faster delivery. Better ROI.'
+    title: 'Built on AI, Driven by Results',
+    description: 'AI powers our research, strategy, and reporting — but only where it delivers real decisions. We test fast, scale what works, and make sure each dollar brings something back.'
   }
 ];
 
@@ -68,12 +68,14 @@ export const CAPABILITIES = [
 export const PARTNER_OUTCOMES = [
   {
     id: 1,
-    metric: "From flat to +30% in 90 days. Luxury beauty retailer breaks growth plateau after strategy, media, and operations transformation.",
+    metric: "+30% revenue in 90 days.",
+    detail: "Luxury beauty retailer breaks growth plateau after strategy, media, and operations transformation.",
     client: "Exclusive Beauty Club"
   },
   {
     id: 2,
-    metric: "Zero to market in eight weeks. Introducing the first AI-powered marketplace for Salesforce talent.",
+    metric: "Zero to market in eight weeks.",
+    detail: "The first AI-powered marketplace for Salesforce talent.",
     client: "Cloud Club"
   }
 ];

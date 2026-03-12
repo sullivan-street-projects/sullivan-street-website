@@ -41,31 +41,31 @@ brands:
 ---
 
 ## Statement
-hook: Most growth-stage companies have agencies, freelancers, and tools. What they don't have is someone owning the outcome.
-body: We're the AI-native growth partner that aligns brand, performance, systems, and talent under one team — and stays accountable to revenue, not a percentage of your ad spend.
+headline: Yesterday's agencies aren't built to drive revenue. We are.
+body: Most growth-stage companies have agencies, freelancers, and tools. What they don't have is someone owning the outcome. We're the AI-native growth partner that aligns brand, performance, systems, and talent under one team — and stays accountable to revenue, not a percentage of your ad spend.
 
 ---
 
 ## Intro
-headline: Make Marketing Work. For Your Business.
-body: Three ways we embed with your team to drive growth — from strategic guidance to full operational ownership.
+headline: Make Marketing Work. For Your Bottom Line.
+body: The people, the systems, the technology — three ways we embed with your team to drive growth.
 
 ### Value Props
 
-#### Fractional Growth Executive
-CMO, VP, or Director-level leadership, embedded with your team—from strategy to execution. Enterprise experience. Startup speed.
+#### Execution, Not Just Advice
+A growth leader in the trenches with your team — not a consultant who disappears after a deck. We own the outcome, set clear KPIs upfront, and keep things moving.
 
-#### Marketing General Contractor
-Best-in-class specialists across media, creative, analytics, and operations. We manage the work. You get the results.
+#### One Team, Full Ownership
+Every specialist your business needs — media, creative, analytics, operations — managed under one roof. We manage the work. You get the results.
 
-#### Outcome Obsessed, AI Enabled
-AI powers our research, strategy, and reporting. Sharper insights. Faster delivery. Better ROI.
+#### Built on AI, Driven by Results
+AI powers our research, strategy, and reporting — but only where it delivers real decisions. We test fast, scale what works, and make sure each dollar brings something back.
 
 ---
 
 ## Approach
-headline: Tailor made growth marketing.
-body: You know what's working in your business and what isn't. What you need is a strategy to grow. We build that strategy, tailored to you.
+headline: Growth Marketing Made to Measure.
+body: We use best-in-class AI to build a strategy tailored to you — then measure what matters: your data, your returns, your growth.
 
 ### Capabilities
 
@@ -144,17 +144,17 @@ footnote: Diagnostic assessments available by request.
 
 ## Partner Outcomes
 outcomes:
-  - metric: From flat to +30% in 90 days. Luxury beauty retailer breaks growth plateau after strategy, media, and operations transformation.
+  - metric: +30% revenue in 90 days. Luxury beauty retailer breaks growth plateau after strategy, media, and operations transformation.
     client: Exclusive Beauty Club
-  - metric: Zero to market in eight weeks. Introducing the first AI-powered marketplace for Salesforce talent.
+  - metric: Zero to market in eight weeks. The first AI-powered marketplace for Salesforce talent.
     client: Cloud Club
 
 ---
 
 ## About
-headline: Yesterday's agencies aren't built for tomorrow's brands.
-paragraph-1: They were built for a world where scale meant headcount. Today, the advantage belongs to teams that orchestrate — managing systems, aligning talent, and making the business decisions AI can't make without a human in the loop.
-paragraph-2: Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We partner with you, look across your business, translate goals into a clear plan, and manage marketing like the investment it is.
+headline: Tomorrow's billion-dollar brands.
+paragraph-1: Yesterday's agencies were built for a world where scale meant headcount. Today, the advantage belongs to teams that orchestrate — managing systems, aligning talent, and making the business decisions AI can't make without a human in the loop.
+paragraph-2: Sullivan Street Projects is the growth partner for businesses that need more than point solutions and disconnected vendors. We look across your business, translate goals into a clear plan, and manage marketing like the investment it is.
 
 ### Founder
 name: Brett Wohl

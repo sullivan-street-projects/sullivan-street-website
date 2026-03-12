@@ -8,10 +8,10 @@ const Intro = () => {
       <div className="mb-16 md:mb-20">
         <FocusText>
           <h2 className={`${HEADING_CLASSES} leading-tight mb-8 md:mb-12`}>
-            Make Marketing Work<br /><span className="italic">For Your Business.</span>
+            Make Marketing Work<br /><span className="italic">For Your Bottom Line.</span>
           </h2>
           <p className={`${BODY_CLASSES} max-w-narrow`}>
-            Three ways we embed with your team to drive growth — from strategic guidance to full operational ownership.
+            The people, the systems, the technology — three ways we embed with your team to drive growth.
           </p>
         </FocusText>
       </div>

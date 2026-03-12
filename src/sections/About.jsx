@@ -7,13 +7,13 @@ const About = () => {
     <Section id="about" label="About">
       <div className="max-w-prose space-y-20 md:space-y-24">
         <FocusText className="space-y-10 md:space-y-12">
-          <h2 className="font-serif text-3xl md:text-5xl italic text-charcoal">Yesterday's agencies aren't built for tomorrow's brands.</h2>
+          <h2 className="font-serif text-3xl md:text-5xl italic text-charcoal">Tomorrow's billion-dollar brands.</h2>
           <div className={`${BODY_CLASSES} space-y-8`}>
             <p>
-              They were built for a world where scale meant headcount. Today, the advantage belongs to teams that orchestrate — managing systems, aligning talent, and making the business decisions AI can't make without a human in the loop.
+              Yesterday's agencies were built for a world where scale meant headcount. Today, the advantage belongs to teams that orchestrate — managing systems, aligning talent, and making the business decisions AI can't make without a human in the loop.
             </p>
             <p>
-              Sullivan Street Projects is the growth partner for tomorrow's billion-dollar brands. We're who businesses call when they need more than point solutions and disconnected vendors. We partner with you, look across your business, translate goals into a clear plan, and manage marketing like the investment it is.
+              Sullivan Street Projects is the growth partner for businesses that need more than point solutions and disconnected vendors. We look across your business, translate goals into a clear plan, and manage marketing like the investment it is.
             </p>
           </div>
         </FocusText>

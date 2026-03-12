@@ -9,10 +9,10 @@ const Approach = () => {
       <div className="mb-20 md:mb-28 lg:mb-36">
         <FocusText>
           <h2 className={`${HEADING_CLASSES} mb-8 md:mb-12`}>
-            Tailor made<br /><span className="italic">growth marketing.</span>
+            Growth Marketing<br /><span className="italic">Made to Measure.</span>
           </h2>
           <p className={`${BODY_CLASSES} max-w-narrow`}>
-            You know what's working in your business and what isn't. What you need is a strategy to grow. We build that strategy, tailored to you.
+            We use best-in-class AI to build a strategy tailored to you — then measure what matters: your data, your returns, your growth.
           </p>
         </FocusText>
       </div>

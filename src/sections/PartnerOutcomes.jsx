@@ -51,8 +51,9 @@ const PartnerOutcomes = () => {
                   onDragEnd={handleDragEnd}
                 >
                   <div className="h-[200px] md:h-[180px] flex items-center pr-6 md:pr-0">
-                    <p className="font-serif text-2xl md:text-3xl lg:text-hero-sub leading-[1.4] text-secondary font-light antialiased">
-                      {PARTNER_OUTCOMES[currentIndex].metric}
+                    <p className="font-serif text-2xl md:text-3xl lg:text-hero-sub leading-[1.4] text-secondary antialiased">
+                      <span className="font-bold">{PARTNER_OUTCOMES[currentIndex].metric}</span>{' '}
+                      <span className="font-normal">{PARTNER_OUTCOMES[currentIndex].detail}</span>
                     </p>
                   </div>
                   <div className="font-sans text-section-label font-bold uppercase tracking-widest text-label mt-6 select-none">
