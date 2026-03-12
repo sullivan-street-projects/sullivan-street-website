@@ -42,7 +42,7 @@ const DESKTOP = {
 // Mobile config — fewer labels, larger text, taller aspect
 const MOBILE = {
   w: 480, h: 300,
-  margin: { top: 32, right: 20, bottom: 44, left: 52 },
+  margin: { top: 32, right: 40, bottom: 44, left: 52 },
   xTicks: [2014, 2020, 2026],
   milestones: [
     { year: 2018, value: 650, label: '$0.5B' },
