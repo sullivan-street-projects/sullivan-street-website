@@ -68,11 +68,11 @@ function HomePage() {
 
         <div className="relative z-[2]">
           <Hero />
+          <Credentials />
           <Statement />
           <Intro />
           <Approach />
           <Services />
-          <Credentials />
           <PartnerOutcomes />
           <About />
           <Contact />
