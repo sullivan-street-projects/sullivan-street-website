@@ -59,7 +59,7 @@ A growth leader in the trenches with your team — not a consultant who disappea
 Every specialist your business needs — media, creative, analytics, operations — managed under one roof. We manage the work. You get the results.
 
 #### Built on AI, Driven by Results
-AI powers our research, strategy, and reporting — but only where it delivers real decisions. We test fast, scale what works, and make sure each dollar brings something back.
+AI powers our research, strategy, and reporting. We test fast, scale what works, and make sure each dollar brings something back.
 
 ---
 

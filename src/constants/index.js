@@ -42,7 +42,7 @@ export const VALUE_PROPS = [
   },
   {
     title: 'Built on AI, Driven by Results',
-    description: 'AI powers our research, strategy, and reporting — but only where it delivers real decisions. We test fast, scale what works, and make sure each dollar brings something back.'
+    description: 'AI powers our research, strategy, and reporting. We test fast, scale what works, and make sure each dollar brings something back.'
   }
 ];
 
