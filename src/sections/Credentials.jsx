@@ -27,8 +27,8 @@ const Credentials = () => {
 
         {/* Full-width marquee */}
         <div className="overflow-hidden relative">
-          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-paper to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-paper to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-32 md:w-64 bg-gradient-to-r from-paper to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 md:w-64 bg-gradient-to-l from-paper to-transparent z-10 pointer-events-none" />
 
           <div
             className={`flex whitespace-nowrap ${prefersReducedMotion ? '' : 'animate-marquee-horizontal'}`}
