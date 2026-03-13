@@ -25,10 +25,11 @@ const Credentials = () => {
           </span>
         </div>
 
-        {/* Full-width marquee */}
-        <div className="overflow-hidden relative">
-          <div className="absolute inset-y-0 left-0 w-32 md:w-64 bg-gradient-to-r from-paper to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-32 md:w-64 bg-gradient-to-l from-paper to-transparent z-10 pointer-events-none" />
+        {/* Full-width marquee (moved outside max-w wrapper) */}
+        <div className="overflow-hidden relative w-full">
+          {/* Expanded edge blurs covering more negative space */}
+          <div className="absolute inset-y-0 left-0 w-32 md:w-64 bg-gradient-to-r from-paper via-paper/90 to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 md:w-64 bg-gradient-to-l from-paper via-paper/90 to-transparent z-10 pointer-events-none" />
 
           <div
             className={`flex whitespace-nowrap ${prefersReducedMotion ? '' : 'animate-marquee-horizontal'}`}
@@ -38,7 +39,7 @@ const Credentials = () => {
                 {BRANDS.map((brand) => (
                   <span
                     key={`${copy}-${brand}`}
-                    className="font-sans text-caption font-medium text-label uppercase tracking-widest cursor-default shrink-0 mx-6 md:mx-8"
+                    className="font-sans text-caption font-medium text-label uppercase tracking-widest cursor-default shrink-0 mx-6 md:mx-10"
                   >
                     {brand}
                   </span>
