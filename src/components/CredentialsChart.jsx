@@ -24,8 +24,8 @@ const Y_TICKS = [
 
 // Desktop config
 const DESKTOP = {
-  w: 960, h: 320,
-  margin: { top: 24, right: 48, bottom: 36, left: 44 },
+  w: 1000, h: 360,
+  margin: { top: 40, right: 60, bottom: 44, left: 50 },
   xTicks: [2014, 2016, 2018, 2020, 2022, 2024, 2026],
   milestones: [
     { year: 2018, value: 650, label: '$0.5B' },
@@ -33,25 +33,25 @@ const DESKTOP = {
     { year: 2022, value: 1600, label: '$1.5B' },
     { year: 2026, value: 2150, label: '$2.1B' },
   ],
-  fontSize: { axis: 11, milestone: 12 },
+  fontSize: { axis: 13, milestone: 15 },
   stroke: 2.5,
-  dot: { r: 4, ring: 7 },
-  gridStroke: 0.5,
+  dot: { r: 5, ring: 9 },
+  gridStroke: 1,
 };
 
 // Mobile config — fewer labels, larger text, taller aspect
 const MOBILE = {
-  w: 480, h: 300,
-  margin: { top: 32, right: 40, bottom: 44, left: 52 },
+  w: 600, h: 400,
+  margin: { top: 40, right: 40, bottom: 50, left: 60 },
   xTicks: [2014, 2020, 2026],
   milestones: [
     { year: 2018, value: 650, label: '$0.5B' },
     { year: 2026, value: 2150, label: '$2.1B' },
   ],
-  fontSize: { axis: 18, milestone: 20 },
+  fontSize: { axis: 18, milestone: 22 },
   stroke: 3.5,
-  dot: { r: 6, ring: 10 },
-  gridStroke: 0.8,
+  dot: { r: 7, ring: 12 },
+  gridStroke: 1,
 };
 
 function makeHelpers(cfg) {
@@ -161,7 +161,7 @@ export default function CredentialsChart() {
   }, [typeIndex, typeActive, reducedMotion]);
 
   return (
-    <div ref={containerRef} className="w-full max-w-site mx-auto px-6 lg:px-8 mt-8 md:mt-10 border-t border-divider pt-8 md:pt-10">
+    <div ref={containerRef} className="w-full max-w-5xl mx-auto px-6 lg:px-8 mt-8 md:mt-10 border-t border-divider pt-8 md:pt-12">
       <div className="relative">
         <svg
           viewBox={`0 0 ${cfg.w} ${cfg.h}`}
@@ -186,9 +186,10 @@ export default function CredentialsChart() {
           {Y_TICKS.map(({ value, label }, i) => (
             <text
               key={`yl-${i}`}
-              x={cfg.margin.left - 10}
-              y={chart.yPos(value) + (isMobile ? 6 : 4)}
+              x={cfg.margin.left - 12}
+              y={chart.yPos(value)}
               textAnchor="end"
+              dominantBaseline="middle"
               className="font-sans"
               fontSize={cfg.fontSize.axis}
               fill="var(--color-faint)"
@@ -202,7 +203,7 @@ export default function CredentialsChart() {
             <text
               key={`xl-${year}`}
               x={chart.xPos(year)}
-              y={cfg.h - (isMobile ? 10 : 6)}
+              y={cfg.h - 12}
               textAnchor="middle"
               className="font-sans"
               fontSize={cfg.fontSize.axis}
