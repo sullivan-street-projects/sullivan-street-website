@@ -6,8 +6,8 @@ import { LABEL_CLASSES } from '../constants';
 // marquee scroll ensures full rotation on all viewports
 const BRANDS = [
   'Apple', 'Google', 'JPMorgan Chase', 'Samsung', 'American Express',
-  'Citigroup', 'Comcast', 'Rocket Mortgage', 'Publicis',
-  'Expedia', 'Wayfair', 'Navan', 'Peloton', 'Hertz',
+  'Citigroup', 'Comcast', 'Rocket Mortgage', 'Expedia',
+  'Publicis', 'Wayfair', 'Navan', 'Peloton', 'Hertz',
 ];
 
 const Credentials = () => {

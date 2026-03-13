@@ -3,12 +3,12 @@ import { motion, useInView } from 'framer-motion';
 import useReducedMotion from '../hooks/useReducedMotion';
 
 const DATA = [
-  { year: 2014, value: 0 },   { year: 2015, value: 80 },
+  { year: 2014, value: 0 }, { year: 2015, value: 80 },
   { year: 2016, value: 200 }, { year: 2017, value: 400 },
   { year: 2018, value: 650 }, { year: 2019, value: 900 },
-  { year: 2020, value: 1100 },{ year: 2021, value: 1350 },
-  { year: 2022, value: 1600 },{ year: 2023, value: 1800 },
-  { year: 2024, value: 1950 },{ year: 2025, value: 2050 },
+  { year: 2020, value: 1100 }, { year: 2021, value: 1350 },
+  { year: 2022, value: 1600 }, { year: 2023, value: 1800 },
+  { year: 2024, value: 1950 }, { year: 2025, value: 2050 },
   { year: 2026, value: 2150 },
 ];
 
@@ -177,7 +177,7 @@ export default function CredentialsChart() {
               x2={cfg.w - cfg.margin.right}
               y1={chart.yPos(value)}
               y2={chart.yPos(value)}
-              stroke="#e5e5e5"
+              stroke="var(--color-divider)"
               strokeWidth={cfg.gridStroke}
             />
           ))}
@@ -191,7 +191,7 @@ export default function CredentialsChart() {
               textAnchor="end"
               className="font-sans"
               fontSize={cfg.fontSize.axis}
-              fill="#999999"
+              fill="var(--color-faint)"
             >
               {label}
             </text>
@@ -206,7 +206,7 @@ export default function CredentialsChart() {
               textAnchor="middle"
               className="font-sans"
               fontSize={cfg.fontSize.axis}
-              fill="#999999"
+              fill="var(--color-faint)"
             >
               {year}
             </text>
@@ -216,7 +216,7 @@ export default function CredentialsChart() {
           <motion.path
             d={chart.path}
             fill="none"
-            stroke="#1a1a1a"
+            stroke="var(--color-charcoal)"
             strokeWidth={cfg.stroke}
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -238,8 +238,8 @@ export default function CredentialsChart() {
                 animate={shouldAnimate ? { opacity: 1 } : reducedMotion ? { opacity: 1 } : undefined}
                 transition={{ duration: 0.35, delay }}
               >
-                <circle cx={cx} cy={cy} r={cfg.dot.r} fill="#1a1a1a" />
-                <circle cx={cx} cy={cy} r={cfg.dot.ring} fill="none" stroke="#1a1a1a" strokeWidth={1} opacity={0.25} />
+                <circle cx={cx} cy={cy} r={cfg.dot.r} fill="var(--color-charcoal)" />
+                <circle cx={cx} cy={cy} r={cfg.dot.ring} fill="none" stroke="var(--color-charcoal)" strokeWidth={1} opacity={0.25} />
                 <text
                   x={cx}
                   y={cy - (isMobile ? 18 : 14)}
@@ -247,7 +247,7 @@ export default function CredentialsChart() {
                   className="font-sans"
                   fontWeight={600}
                   fontSize={cfg.fontSize.milestone}
-                  fill="#1a1a1a"
+                  fill="var(--color-charcoal)"
                 >
                   {m.label}
                 </text>

@@ -19,11 +19,11 @@ const Footer = () => {
           <div className="lg:col-span-4">
             <p className="font-sans text-section-label font-bold uppercase tracking-wider mb-6 text-label">Legal</p>
             <div className="flex flex-col gap-4 font-sans text-caption text-secondary">
-              <Link to="/privacy-policy" className="text-label hover:text-charcoal transition-colors">Privacy Policy</Link>
-              <Link to="/terms-and-conditions" className="text-label hover:text-charcoal transition-colors">Terms & Conditions</Link>
+              <Link to="/privacy-policy" className="text-label hover:text-charcoal transition-all duration-300 transform hover:-translate-y-px w-fit">Privacy Policy</Link>
+              <Link to="/terms-and-conditions" className="text-label hover:text-charcoal transition-all duration-300 transform hover:-translate-y-px w-fit">Terms & Conditions</Link>
               <button
                 onClick={() => window.dispatchEvent(new Event('open-cookie-consent'))}
-                className="text-label hover:text-charcoal transition-colors text-left cursor-pointer"
+                className="text-label hover:text-charcoal transition-all duration-300 transform hover:-translate-y-px text-left cursor-pointer w-fit"
               >
                 Privacy Preferences
               </button>

@@ -5,8 +5,8 @@ const CTAButton = ({ href, onClick, children, variant = 'sm' }) => {
   const isLarge = variant === 'lg';
 
   const textClass = isLarge
-    ? 'font-serif text-3xl md:text-4xl lg:text-5xl italic transition-colors duration-300 text-charcoal group-hover:text-[#737373]'
-    : 'font-sans text-micro font-bold uppercase tracking-wider transition-colors duration-300 text-charcoal group-hover:text-[#737373]';
+    ? 'font-serif text-3xl md:text-4xl lg:text-5xl italic transition-colors duration-300 text-charcoal group-hover:text-charcoal/70'
+    : 'font-sans text-micro font-bold uppercase tracking-wider transition-colors duration-300 text-charcoal group-hover:text-charcoal/70';
 
   const wrapperClass = isLarge
     ? 'inline-flex items-center gap-6 md:gap-10'
