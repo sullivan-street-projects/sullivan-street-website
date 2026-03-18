@@ -40,7 +40,6 @@ const Approach = () => {
           </FocusText>
         </div>
       ))}
-      <div className="h-px bg-charcoal/10" />
     </Section>
   );
 };
