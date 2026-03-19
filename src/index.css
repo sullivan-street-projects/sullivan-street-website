@@ -9,7 +9,7 @@
   --color-secondary: #404040;
   --color-muted: #525252;
   --color-label: #737373;
-  --color-faint: #999999;
+  --color-faint: #6b6b6b;
   --color-green: #4ADE80;
   --color-green-dark: #22c55e;
   --color-hover: #f7f7f5;
@@ -118,6 +118,12 @@ html {
 
 .legal-content li {
   margin-bottom: 0.375rem;
+}
+
+/* Focus indicators for keyboard navigation (WCAG 2.4.7) */
+:focus-visible {
+  outline: 2px solid var(--color-charcoal);
+  outline-offset: 2px;
 }
 
 /* Reduced motion: disable CSS animations for users who prefer it */
