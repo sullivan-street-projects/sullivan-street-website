@@ -5,7 +5,7 @@ import App from './App.jsx'
 import { initAnalytics } from './utils/analytics'
 import './index.css'
 
-initAnalytics()
+try { initAnalytics() } catch (e) { console.error('Analytics init failed:', e) }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -18,9 +18,7 @@ const Section = ({
           </span>
         </div>
       )}
-      <div>
-        {children}
-      </div>
+      {children}
     </section>
   </div>
 );

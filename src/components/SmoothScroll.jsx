@@ -35,8 +35,9 @@ export const SmoothScroll = ({ children }) => {
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
       lenisInstance.destroy();
+      setLenis(null);
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <LenisContext.Provider value={lenis}>

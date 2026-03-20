@@ -18,10 +18,16 @@ const Hero = () => {
           AI-powered strategy, media, and execution. <br className="hidden md:block" />
           Faster growth. Sharper focus. Higher profit.
         </p>
-        <CTAButton onClick={() => lenis?.scrollTo('#contact', {
-          offset: ANIMATION.SCROLL_OFFSET,
-          duration: ANIMATION.SCROLL_DURATION
-        })}>
+        <CTAButton onClick={() => {
+          if (lenis) {
+            lenis.scrollTo('#contact', {
+              offset: ANIMATION.SCROLL_OFFSET,
+              duration: ANIMATION.SCROLL_DURATION
+            });
+          } else {
+            document.getElementById('contact')?.scrollIntoView({ behavior: 'auto' });
+          }
+        }}>
           Schedule a call
         </CTAButton>
       </div>

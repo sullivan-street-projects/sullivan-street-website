@@ -11,6 +11,8 @@ const Navigation = () => {
         offset: ANIMATION.SCROLL_OFFSET,
         duration: ANIMATION.SCROLL_DURATION
       });
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'auto' });
     }
   };
 

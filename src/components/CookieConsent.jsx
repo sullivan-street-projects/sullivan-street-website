@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import useReducedMotion from '../hooks/useReducedMotion';
 import { Link } from 'react-router-dom';
 import { disableGA4, loadGA4 } from '../utils/analytics';
 
@@ -11,7 +12,7 @@ function getConsent() {
 }
 
 function setConsent(value) {
-  try { localStorage.setItem(CONSENT_KEY, value); } catch {}
+  try { localStorage.setItem(CONSENT_KEY, value); } catch (e) { console.warn('Could not save consent preference:', e); }
 }
 
 function getPrefs() {
@@ -22,7 +23,7 @@ function getPrefs() {
 }
 
 function setPrefs(prefs) {
-  try { localStorage.setItem(PREFS_KEY, JSON.stringify(prefs)); } catch {}
+  try { localStorage.setItem(PREFS_KEY, JSON.stringify(prefs)); } catch (e) { console.warn('Could not save cookie preferences:', e); }
 }
 
 const DEFAULT_PREFS = {
@@ -126,7 +127,7 @@ export default function CookieConsent() {
           transition={{ duration: 0.3, ease: 'easeOut' }}
           role="dialog"
           aria-label="Cookie consent"
-          className="fixed bottom-0 left-0 right-0 z-[100] bg-charcoal/95 backdrop-blur-sm px-6 py-4 md:px-10 md:py-5"
+          className="fixed bottom-0 left-0 right-0 z-[150] bg-charcoal/95 backdrop-blur-sm px-6 py-4 md:px-10 md:py-5"
         >
           <div className="max-w-site mx-auto">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

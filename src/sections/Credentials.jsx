@@ -1,14 +1,6 @@
 import useReducedMotion from '../hooks/useReducedMotion';
 import CredentialsChart from '../components/CredentialsChart';
-import { LABEL_CLASSES } from '../constants';
-
-// Lead with heavy hitters so mobile viewers see them immediately;
-// marquee scroll ensures full rotation on all viewports
-const BRANDS = [
-  'Apple', 'Google', 'JPMorgan Chase', 'Samsung', 'American Express',
-  'Citigroup', 'Comcast', 'Rocket Mortgage', 'Expedia',
-  'Publicis', 'Wayfair', 'Navan', 'Peloton', 'Hertz',
-];
+import { LABEL_CLASSES, BRANDS } from '../constants';
 
 const Credentials = () => {
   const prefersReducedMotion = useReducedMotion();
@@ -51,16 +43,6 @@ const Credentials = () => {
 
         <CredentialsChart />
       </section>
-
-      <style>{`
-        @keyframes marquee-horizontal {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee-horizontal {
-          animation: marquee-horizontal 30s linear infinite;
-        }
-      `}</style>
     </div>
   );
 };

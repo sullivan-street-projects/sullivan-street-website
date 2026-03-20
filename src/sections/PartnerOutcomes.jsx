@@ -19,7 +19,7 @@ const PartnerOutcomes = () => {
     }, 8000);
 
     return () => clearInterval(timer);
-  }, [isInView, prefersReducedMotion]);
+  }, [isInView, prefersReducedMotion, currentIndex]);
 
   const handleDragEnd = (event, info) => {
     const swipeThreshold = 50;

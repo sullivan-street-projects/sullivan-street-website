@@ -11,7 +11,7 @@ import useReducedMotion from '../hooks/useReducedMotion';
  * - Hero is above the fold — no FocusText wrapping.
  * - Each FocusText boundary = one scroll-reveal unit.
  */
-const FocusText = ({ children, className = "", noBlur = false }) => {
+const FocusText = ({ children, className = "" }) => {
   const ref = useRef(null);
   const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
@@ -19,9 +19,9 @@ const FocusText = ({ children, className = "", noBlur = false }) => {
     offset: ["start 90%", "center 55%"]
   });
 
-  const blurValue = useTransform(scrollYProgress, [0, 1], [noBlur ? 0 : 3.5, 0]);
-  const opacityValue = useTransform(scrollYProgress, [0, 0.6], [noBlur ? 1 : 0.4, 1]);
-  const yValue = useTransform(scrollYProgress, [0, 0.6], [noBlur ? 0 : 8, 0]);
+  const blurValue = useTransform(scrollYProgress, [0, 1], [3.5, 0]);
+  const opacityValue = useTransform(scrollYProgress, [0, 0.6], [0.4, 1]);
+  const yValue = useTransform(scrollYProgress, [0, 0.6], [8, 0]);
   const filterValue = useTransform(blurValue, (v) => `blur(${v}px)`);
 
   if (prefersReducedMotion) {

@@ -23,15 +23,15 @@ const CTAButton = ({ href, onClick, children, variant = 'sm' }) => {
     : { onClick };
 
   return (
-    <div className="group relative inline-block cursor-pointer">
+    <div className="group relative inline-block">
       <Tag
         {...props}
-        className={wrapperClass}
+        className={`${wrapperClass} cursor-pointer`}
       >
         <span className={`relative z-10 ${textClass}`}>{children}</span>
         <AnimatedArrow size={variant} className={isLarge ? 'not-italic relative z-10' : 'relative z-10'} />
+        <div className={underlineClass} />
       </Tag>
-      <div className={underlineClass} />
     </div>
   );
 };

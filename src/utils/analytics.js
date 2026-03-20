@@ -16,7 +16,7 @@ export function initAnalytics() {
 
   const isOptedOut = (() => {
     try { return localStorage.getItem(CONSENT_KEY) === 'opted-out'; }
-    catch { return false; }
+    catch { return true; }
   })();
 
   if (isOptedOut) {

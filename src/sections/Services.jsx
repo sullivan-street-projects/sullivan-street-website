@@ -36,10 +36,14 @@ const Services = () => {
   }, []);
 
   const scrollToContact = () => {
-    lenis?.scrollTo('#contact', {
-      offset: ANIMATION.SCROLL_OFFSET,
-      duration: ANIMATION.SCROLL_DURATION
-    });
+    if (lenis) {
+      lenis.scrollTo('#contact', {
+        offset: ANIMATION.SCROLL_OFFSET,
+        duration: ANIMATION.SCROLL_DURATION
+      });
+    } else {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'auto' });
+    }
   };
 
   return (

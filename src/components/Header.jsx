@@ -10,7 +10,11 @@ const Header = () => {
 
   const handleClick = () => {
     if (location.pathname === '/') {
-      lenis?.scrollTo(0, { duration: ANIMATION.SCROLL_DURATION });
+      if (lenis) {
+        lenis.scrollTo(0, { duration: ANIMATION.SCROLL_DURATION });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
     } else {
       navigate('/');
     }
