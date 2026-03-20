@@ -42,8 +42,8 @@ Baseline capture: `bash scripts/capture-baselines.sh` (9 sections x 3 viewports 
 
 ## Decisions & Constraints
 - No SVG animations in Intro section — removed intentionally to let text breathe
-- Footer Privacy/Terms links are `<span>` placeholders, not real `<a>` links (known, pending legal pages)
-- Contact CTA uses `mailto:` as placeholder — will be calendar booking link
+- Footer Privacy/Terms are live `<Link>` routes to full legal pages (`/privacy-policy`, `/terms-and-conditions`)
+- Contact CTA links to TidyCal booking (`tidycal.com/sullivan-street-projects/growth-consultation`)
 
 ## Commands
 - `npm run dev` — Vite dev server

@@ -32,8 +32,8 @@ npm-debug.log*
 .netlify/
 
 # Screenshot utility output
-screenshot.png
-*.screenshot.png
+screenshot*.png
+Screenshot*.png
 screenshots/
 
 # Worktrees
