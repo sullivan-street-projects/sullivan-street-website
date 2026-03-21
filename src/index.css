@@ -57,6 +57,14 @@
   --max-width-prose: 53.125rem;
   --max-width-narrow: 50rem;
 
+  /* Z-index (--z-* → z-*) */
+  --z-content: 2;
+  --z-grain: 50;
+  --z-header: 80;
+  --z-nav: 100;
+  --z-modal: 150;
+  --z-skip: 200;
+
 }
 
 html {

@@ -127,7 +127,7 @@ export default function CookieConsent() {
           transition={{ duration: 0.3, ease: 'easeOut' }}
           role="dialog"
           aria-label="Cookie consent"
-          className="fixed bottom-0 left-0 right-0 z-[150] bg-charcoal/95 backdrop-blur-sm px-6 py-4 md:px-10 md:py-5"
+          className="fixed bottom-0 left-0 right-0 z-modal bg-charcoal/95 backdrop-blur-sm px-6 py-4 md:px-10 md:py-5"
         >
           <div className="max-w-site mx-auto">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
