@@ -5,7 +5,8 @@ import { useLenis } from './SmoothScroll';
 const Navigation = () => {
   const lenis = useLenis();
 
-  const handleScroll = (id) => {
+  const handleScroll = (e, id) => {
+    e.preventDefault();
     if (lenis) {
       lenis.scrollTo(`#${id}`, {
         offset: ANIMATION.SCROLL_OFFSET,
@@ -24,10 +25,11 @@ const Navigation = () => {
       <div className="flex justify-center pointer-events-auto">
         <div className="bg-charcoal/5 backdrop-blur-xl border border-charcoal/10 rounded-full p-1 flex items-center gap-1 shadow-2xl overflow-hidden">
           {NAV_ITEMS.map((item) => (
-            <button
+            <a
               key={item.label}
-              onClick={() => handleScroll(item.id)}
-              className="px-3 py-3 md:px-5 md:py-2 rounded-full font-sans text-section-label uppercase tracking-wide text-charcoal/70 hover:text-charcoal hover:bg-white/60 transition-all font-bold whitespace-nowrap active:scale-95 flex items-center gap-2"
+              href={`#${item.id}`}
+              onClick={(e) => handleScroll(e, item.id)}
+              className="px-3 py-3 md:px-5 md:py-2 rounded-full font-sans text-section-label uppercase tracking-wide text-charcoal/70 hover:text-charcoal hover:bg-white/60 transition-all font-bold whitespace-nowrap active:scale-95 flex items-center gap-2 no-underline"
               aria-label={`Navigate to ${item.label} section`}
             >
               {item.id === 'contact' && (
@@ -37,7 +39,7 @@ const Navigation = () => {
                 </span>
               )}
               {item.label}
-            </button>
+            </a>
           ))}
         </div>
       </div>
