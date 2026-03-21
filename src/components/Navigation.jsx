@@ -18,7 +18,7 @@ const Navigation = () => {
 
   return (
     <nav
-      className="fixed bottom-6 md:bottom-10 left-0 w-full z-nav pointer-events-none pb-[env(safe-area-inset-bottom)]"
+      className="fixed bottom-6 md:bottom-10 left-0 w-full z-[100] pointer-events-none pb-[env(safe-area-inset-bottom)]"
       aria-label="Main navigation"
     >
       <div className="flex justify-center pointer-events-auto">

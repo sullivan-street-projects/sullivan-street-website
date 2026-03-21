@@ -2,7 +2,7 @@ const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='h
 
 const GrainOverlay = () => (
   <div
-    className="fixed inset-0 pointer-events-none z-grain opacity-[0.05]"
+    className="fixed inset-0 pointer-events-none z-[50] opacity-[0.05]"
     style={{ backgroundImage: GRAIN_SVG }}
   />
 );
