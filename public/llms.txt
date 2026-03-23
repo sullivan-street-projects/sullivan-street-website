@@ -1,11 +1,6 @@
---------------------------------------------------
-title: "Sullivan Street Projects"
-description: "Growth marketing consultancy for tomorrow's billion-dollar brands. AI-powered strategy, media, and execution."
-last_updated: "2026-03-06T17:00:00.000Z"
-source: "https://sullivanstreetprojects.com"
---------------------------------------------------
-
 # Sullivan Street Projects
+
+> Fractional growth consultancy for tomorrow's billion-dollar brands. AI-powered strategy, media, and execution. Based in New York. [sullivanstreetprojects.com](https://sullivanstreetprojects.com)
 
 ## Company Overview
 Sullivan Street Projects is a fractional growth consultancy based in New York. We bridge the gap between high-level strategy and tactical execution for brands scaling to $1B+. We operate not as a traditional agency, but as a "General Contractor" for marketing—embedding executive leadership, managing specialists, and owning P&L outcomes.
