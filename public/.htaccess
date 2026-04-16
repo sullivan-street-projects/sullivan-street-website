@@ -15,7 +15,7 @@ RewriteRule ^ index.html [QSA,L]
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://tidycal.com; frame-src https://tidycal.com;"
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.clarity.ms; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://tidycal.com https://*.clarity.ms; frame-src https://tidycal.com;"
 </IfModule>
 
 # Cache static assets
