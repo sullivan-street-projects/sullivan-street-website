@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useReducedMotion from '../hooks/useReducedMotion';
 import { Link } from 'react-router-dom';
-import { disableGA4, loadGA4 } from '../utils/analytics';
+import { disableGA4, loadGA4, disableClarity, loadClarity } from '../utils/analytics';
 
 const CONSENT_KEY = 'cookie-consent';
 const PREFS_KEY = 'cookie-preferences';
@@ -108,9 +108,11 @@ export default function CookieConsent() {
     if (prefs.analytics) {
       setConsent('acknowledged');
       loadGA4();
+      loadClarity();
     } else {
       setConsent('opted-out');
       disableGA4();
+      disableClarity();
     }
     closeBanner();
   };
@@ -175,7 +177,7 @@ export default function CookieConsent() {
                     />
                     <Toggle
                       label="Analytics"
-                      description="Helps us understand how visitors use the site so we can improve it."
+                      description="Pageview metrics and session replays (with form fields masked) so we can understand and improve the site."
                       checked={prefs.analytics}
                       onChange={() => setPrefsState({ ...prefs, analytics: !prefs.analytics })}
                     />

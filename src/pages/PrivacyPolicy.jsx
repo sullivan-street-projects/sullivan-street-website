@@ -71,6 +71,14 @@ const PrivacyPolicy = () => {
           </a>
         </li>
         <li>
+          <strong>Microsoft Clarity</strong> &mdash; behavioral analytics, including session
+          replays, heatmaps, and aggregated interaction metrics. Form fields are masked by default.
+          By using the Site with analytics consent granted, we and Microsoft may collect this data.{' '}
+          <a href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank" rel="noopener noreferrer" className="underline hover:text-charcoal transition-colors">
+            Microsoft Privacy Statement
+          </a>
+        </li>
+        <li>
           <strong>TidyCal</strong> &mdash; consultation scheduling. When you book a call, TidyCal
           collects the information you provide in the booking form.{' '}
           <a href="https://tidycal.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-charcoal transition-colors">
@@ -91,7 +99,8 @@ const PrivacyPolicy = () => {
         </li>
         <li>
           <strong>Analytics cookies</strong> &mdash; help us understand how visitors interact with
-          the Site (e.g., Google Analytics).
+          the Site, including pageview analytics (Google Analytics) and session replay analytics
+          (Microsoft Clarity).
         </li>
         <li>
           <strong>Advertising cookies</strong> &mdash; used to measure the effectiveness of our

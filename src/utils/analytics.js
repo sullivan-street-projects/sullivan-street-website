@@ -1,4 +1,5 @@
 const GA4_ID = 'G-S025DFF5N0';
+const CLARITY_ID = 'r8b7ctb5d6';
 const CONSENT_KEY = 'cookie-consent';
 
 function gtag() {
@@ -8,8 +9,8 @@ function gtag() {
 
 /**
  * Initialize analytics on app boot. Checks localStorage for opt-out.
- * If not opted out, sets consent to granted and loads GA4 immediately.
- * If opted out, sets consent to denied and skips GA4.
+ * If not opted out, sets consent to granted and loads GA4 + Clarity.
+ * If opted out, sets consent to denied and skips both.
  */
 export function initAnalytics() {
   window.gtag = gtag;
@@ -34,6 +35,7 @@ export function initAnalytics() {
       ad_personalization: 'denied',
     });
     loadGA4();
+    loadClarity();
   }
 }
 
@@ -70,4 +72,37 @@ export function disableGA4() {
       document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=.${window.location.hostname}`;
     }
   });
+}
+
+/**
+ * Dynamically load the Microsoft Clarity tracking script.
+ * Safe to call multiple times — re-affirms consent if already loaded.
+ * Uses Clarity's Consent API v2 to signal analytics_Storage granted.
+ */
+export function loadClarity() {
+  if (window.clarity) {
+    window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'granted' });
+    return;
+  }
+
+  // Official Microsoft Clarity snippet — creates window.clarity command queue
+  // and async-loads the real tag. Commands pushed before load are buffered.
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, 'clarity', 'script', CLARITY_ID);
+
+  // SSP does not run ads — ad_Storage stays denied regardless of user choice.
+  window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'granted' });
+}
+
+/**
+ * Revoke Clarity consent for mid-session opt-out.
+ * Per Microsoft docs, clarity('consent', false) clears Clarity cookies
+ * and restarts tracking in no-consent mode (no cookies, no cross-page session).
+ */
+export function disableClarity() {
+  if (!window.clarity) return;
+  window.clarity('consent', false);
 }
