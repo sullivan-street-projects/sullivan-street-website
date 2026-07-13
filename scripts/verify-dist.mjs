@@ -51,6 +51,19 @@ check('services section id', () => html('index.html').includes('id="services"'))
 // --- Task 8: partner outcomes island ---
 check('outcomes section id', () => html('index.html').includes('id="outcomes"'));
 
+// --- Task 9: chrome ---
+check('footer AI summary links', () =>
+  ['claude.ai/new?q=', 'chat.openai.com/?q='].every((u) => html('index.html').includes(u)),
+);
+check('footer legal links', () =>
+  ['href="/privacy-policy"', 'href="/terms-and-conditions"'].every((u) =>
+    html('index.html').includes(u),
+  ),
+);
+check('nav items present', () =>
+  ['Approach', 'Services', 'About', 'Call'].every((l) => html('index.html').includes(l)),
+);
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;
