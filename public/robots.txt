@@ -23,4 +23,4 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
-Sitemap: https://sullivanstreetprojects.com/sitemap.xml
+Sitemap: https://sullivanstreetprojects.com/sitemap-index.xml

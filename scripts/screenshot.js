@@ -7,21 +7,22 @@ import puppeteer from 'puppeteer';
 const { values, positionals } = parseArgs({
   allowPositionals: true,
   options: {
-    output:    { type: 'string',  short: 'o', default: './screenshot.png' },
-    width:     { type: 'string',  short: 'w', default: '1280' },
-    height:    { type: 'string',  short: 'h', default: '720' },
-    scale:     { type: 'string',  short: 's', default: '2' },
+    output: { type: 'string', short: 'o', default: './screenshot.png' },
+    width: { type: 'string', short: 'w', default: '1280' },
+    height: { type: 'string', short: 'h', default: '720' },
+    scale: { type: 'string', short: 's', default: '2' },
     'full-page': { type: 'boolean', default: false },
-    selector:  { type: 'string',  default: '' },
+    selector: { type: 'string', default: '' },
     'scroll-to': { type: 'string', default: '' },
-    settle:    { type: 'string',  default: '800' },
-    delay:     { type: 'string',  default: '0' },
-    help:      { type: 'boolean', default: false },
+    settle: { type: 'string', default: '800' },
+    delay: { type: 'string', default: '0' },
+    help: { type: 'boolean', default: false },
   },
 });
 
 if (values.help || positionals.length === 0) {
-  console.log(`
+  console.log(
+    `
 Usage: node scripts/screenshot.js <url> [options]
 
 Options:
@@ -35,28 +36,35 @@ Options:
       --settle <ms>       Wait after scroll for animations (default: 800)
       --delay <ms>        Wait after load (default: 0)
       --help              Show this help
-`.trim());
+`.trim(),
+  );
   process.exit(0);
 }
 
 const url = positionals[0];
 const config = {
-  output:   values.output,
-  width:    parseInt(values.width, 10),
-  height:   parseInt(values.height, 10),
-  scale:    parseFloat(values.scale),
+  output: values.output,
+  width: parseInt(values.width, 10),
+  height: parseInt(values.height, 10),
+  scale: parseFloat(values.scale),
   fullPage: values['full-page'],
   selector: values.selector,
   scrollTo: values['scroll-to'],
-  settle:   parseInt(values.settle, 10),
-  delay:    parseInt(values.delay, 10),
+  settle: parseInt(values.settle, 10),
+  delay: parseInt(values.delay, 10),
 };
 
 function isPortOpen(port, host = 'localhost') {
   return new Promise((resolve) => {
     const socket = createConnection({ port, host });
-    socket.once('connect', () => { socket.destroy(); resolve(true); });
-    socket.once('error', () => { socket.destroy(); resolve(false); });
+    socket.once('connect', () => {
+      socket.destroy();
+      resolve(true);
+    });
+    socket.once('error', () => {
+      socket.destroy();
+      resolve(false);
+    });
   });
 }
 
@@ -69,23 +77,32 @@ async function ensureDevServer(url) {
   }
 
   console.log(`Starting Vite dev server on port ${port}...`);
-  const child = spawn('npx', ['vite', '--port', String(port)], {
+  const child = spawn('npx', ['astro', 'dev', '--port', String(port)], {
     cwd: process.cwd(),
     stdio: ['ignore', 'pipe', 'inherit'],
   });
 
   // Wait for server to be ready
   await new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => reject(new Error('Dev server start timed out after 30s')), 30_000);
+    const timeout = setTimeout(
+      () => reject(new Error('Dev server start timed out after 30s')),
+      30_000,
+    );
     child.stdout.on('data', (data) => {
       if (data.toString().includes('Local:')) {
         clearTimeout(timeout);
         resolve();
       }
     });
-    child.on('error', (err) => { clearTimeout(timeout); reject(err); });
+    child.on('error', (err) => {
+      clearTimeout(timeout);
+      reject(err);
+    });
     child.on('exit', (code) => {
-      if (code) { clearTimeout(timeout); reject(new Error(`Dev server exited with code ${code}`)); }
+      if (code) {
+        clearTimeout(timeout);
+        reject(new Error(`Dev server exited with code ${code}`));
+      }
     });
   });
 
@@ -107,7 +124,7 @@ async function takeScreenshot(url, config) {
     await page.goto(url, { waitUntil: 'networkidle0' });
 
     if (config.delay > 0) {
-      await new Promise(r => setTimeout(r, config.delay));
+      await new Promise((r) => setTimeout(r, config.delay));
     }
 
     // Scroll target into viewport center (triggers FocusText/scroll animations)
@@ -117,10 +134,10 @@ async function takeScreenshot(url, config) {
       if (!scrollEl) {
         throw new Error(`Scroll target "${scrollTarget}" not found on page.`);
       }
-      await scrollEl.evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+      await scrollEl.evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
       // Wait for scroll-driven animations (FocusText opacity/blur) to settle
       if (config.settle > 0) {
-        await new Promise(r => setTimeout(r, config.settle));
+        await new Promise((r) => setTimeout(r, config.settle));
       }
     }
 

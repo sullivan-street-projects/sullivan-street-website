@@ -85,6 +85,18 @@ check(
 );
 check('404 page built', () => existsSync(dist('404.html')) && html('404.html').includes('404'));
 
+// --- Task 12: deploy plumbing ---
+check('sitemap-index emitted', () => existsSync(dist('sitemap-index.xml')));
+check('robots points at new sitemap', () =>
+  readFileSync(dist('robots.txt'), 'utf-8').includes('sitemap-index.xml'),
+);
+check(
+  'htaccess has no SPA catch-all',
+  () => !readFileSync(dist('.htaccess'), 'utf-8').includes('RewriteRule ^ index.html'),
+);
+check('stale static sitemap removed', () => !existsSync(dist('sitemap.xml')));
+check('netlify redirects removed', () => !existsSync(dist('_redirects')));
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;
