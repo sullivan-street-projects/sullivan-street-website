@@ -64,6 +64,12 @@ check('nav items present', () =>
   ['Approach', 'Services', 'About', 'Call'].every((l) => html('index.html').includes(l)),
 );
 
+// --- Task 10: consent ---
+check(
+  'cookie consent island present',
+  () => html('index.html').includes('astro-island') && html('index.html').includes('CookieConsent'),
+);
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;

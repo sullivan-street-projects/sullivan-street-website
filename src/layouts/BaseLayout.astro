@@ -1,6 +1,7 @@
 ---
 import { Font } from 'astro:assets';
 import '../styles/global.css';
+import CookieConsent from '../components/CookieConsent.jsx';
 
 const {
   title = "Sullivan Street Projects | Marketing for Tomorrow's Billion-Dollar Brands",
@@ -125,6 +126,6 @@ const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
   </head>
   <body class="bg-paper text-charcoal font-sans">
     <slot />
-    {/* CookieConsent island wired in Task 10 */}
+    <CookieConsent client:idle />
   </body>
 </html>

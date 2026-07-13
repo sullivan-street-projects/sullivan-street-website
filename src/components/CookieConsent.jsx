@@ -1,29 +1,42 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useReducedMotion from '../hooks/useReducedMotion';
-import { Link } from 'react-router-dom';
 import { disableGA4, loadGA4, disableClarity, loadClarity } from '../utils/analytics';
 
 const CONSENT_KEY = 'cookie-consent';
 const PREFS_KEY = 'cookie-preferences';
 
 function getConsent() {
-  try { return localStorage.getItem(CONSENT_KEY); } catch { return null; }
+  try {
+    return localStorage.getItem(CONSENT_KEY);
+  } catch {
+    return null;
+  }
 }
 
 function setConsent(value) {
-  try { localStorage.setItem(CONSENT_KEY, value); } catch (e) { console.warn('Could not save consent preference:', e); }
+  try {
+    localStorage.setItem(CONSENT_KEY, value);
+  } catch (e) {
+    console.warn('Could not save consent preference:', e);
+  }
 }
 
 function getPrefs() {
   try {
     const stored = localStorage.getItem(PREFS_KEY);
     return stored ? JSON.parse(stored) : null;
-  } catch { return null; }
+  } catch {
+    return null;
+  }
 }
 
 function setPrefs(prefs) {
-  try { localStorage.setItem(PREFS_KEY, JSON.stringify(prefs)); } catch (e) { console.warn('Could not save cookie preferences:', e); }
+  try {
+    localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+  } catch (e) {
+    console.warn('Could not save cookie preferences:', e);
+  }
 }
 
 const DEFAULT_PREFS = {
@@ -119,7 +132,11 @@ export default function CookieConsent() {
 
   const animationProps = prefersReducedMotion
     ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
-    : { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: 20 } };
+    : {
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: 20 },
+      };
 
   return (
     <AnimatePresence>
@@ -135,12 +152,12 @@ export default function CookieConsent() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-paper/90 font-sans text-ui leading-relaxed max-w-prose">
                 We use cookies to understand how visitors engage with our site.{' '}
-                <Link
-                  to="/privacy-policy"
+                <a
+                  href="/privacy-policy"
                   className="underline underline-offset-2 text-paper hover:text-paper/70 transition-colors"
                 >
                   Privacy Policy
-                </Link>
+                </a>
               </p>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4 shrink-0">
