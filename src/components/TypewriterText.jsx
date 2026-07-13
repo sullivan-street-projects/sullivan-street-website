@@ -12,15 +12,18 @@ const TypewriterText = ({ text }) => {
   useEffect(() => {
     if (prefersReducedMotion) return;
 
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) {
-        setIndex(0);
-        setActive(false);
-        if (timerRef.current) clearTimeout(timerRef.current);
-      } else {
-        timerRef.current = setTimeout(() => setActive(true), 500);
-      }
-    }, { threshold: 0 });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          setIndex(0);
+          setActive(false);
+          if (timerRef.current) clearTimeout(timerRef.current);
+        } else {
+          timerRef.current = setTimeout(() => setActive(true), 500);
+        }
+      },
+      { threshold: 0 },
+    );
 
     if (containerRef.current) observer.observe(containerRef.current);
 
@@ -33,7 +36,7 @@ const TypewriterText = ({ text }) => {
   useEffect(() => {
     if (prefersReducedMotion || !active) return;
     if (index < text.length) {
-      const timeout = setTimeout(() => setIndex(prev => prev + 1), 70);
+      const timeout = setTimeout(() => setIndex((prev) => prev + 1), 70);
       return () => clearTimeout(timeout);
     }
   }, [index, active, text, prefersReducedMotion]);
@@ -49,7 +52,7 @@ const TypewriterText = ({ text }) => {
         <span className="inline-block w-[2px] ml-1.5" />
       </span>
 
-      <span className="absolute top-0 left-0 w-full h-full whitespace-pre-wrap">
+      <span aria-hidden="true" className="absolute top-0 left-0 w-full h-full whitespace-pre-wrap">
         <span className="opacity-100">{text.slice(0, index)}</span>
         <motion.span
           animate={{ opacity: [1, 0] }}

@@ -1,0 +1,34 @@
+---
+const { href, variant = 'sm' } = Astro.props;
+const isLarge = variant === 'lg';
+const isExternal = href.startsWith('http') || href.startsWith('//');
+
+const textClass = isLarge
+  ? 'font-serif text-3xl md:text-4xl lg:text-5xl italic transition-colors duration-300 text-charcoal group-hover:text-charcoal/70'
+  : 'font-sans text-micro font-bold uppercase tracking-wider transition-colors duration-300 text-charcoal group-hover:text-charcoal/70';
+
+const wrapperClass = isLarge
+  ? 'inline-flex items-center gap-6 md:gap-10'
+  : 'inline-flex items-center gap-4';
+
+const underlineClass = isLarge
+  ? 'absolute -bottom-4 left-0 w-full h-[1.5px] bg-charcoal scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 delay-100'
+  : 'absolute -bottom-2 left-0 w-full h-[1.5px] bg-charcoal scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 delay-100';
+
+const arrowClass = isLarge
+  ? 'text-4xl lg:text-6xl not-italic relative z-10 animate-arrow-nudge-lg'
+  : 'text-lg relative z-10 animate-arrow-nudge';
+---
+
+<div class="group relative inline-block">
+  <a
+    href={href}
+    target={isExternal ? '_blank' : undefined}
+    rel={isExternal ? 'noopener noreferrer' : undefined}
+    class={`${wrapperClass} cursor-pointer`}
+  >
+    <span class={`relative z-10 ${textClass}`}><slot /></span>
+    <span class={arrowClass} aria-hidden="true">→</span>
+    <div class={underlineClass}></div>
+  </a>
+</div>

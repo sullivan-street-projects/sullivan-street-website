@@ -1,0 +1,25 @@
+---
+import { LABEL_CLASSES } from '../constants';
+
+const {
+  id,
+  label,
+  class: className = '',
+  divider = true,
+  padding = 'py-24 md:py-32 lg:py-48',
+} = Astro.props;
+---
+
+<div class={`max-w-site w-full mx-auto px-6 lg:px-8 ${className}`}>
+  {divider && <div class="border-t border-divider" />}
+  <section id={id} class={padding}>
+    {
+      label && (
+        <div class="mb-12 md:mb-16">
+          <span class={LABEL_CLASSES}>{label}</span>
+        </div>
+      )
+    }
+    <slot />
+  </section>
+</div>
