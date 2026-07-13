@@ -1,0 +1,20 @@
+---
+import Section from '../components/Section.astro';
+import CTALink from '../components/CTALink.astro';
+import TypewriterText from '../components/TypewriterText.jsx';
+import { HEADING_DISPLAY_CLASSES, BODY_CLASSES } from '../constants';
+---
+
+<Section id="hero" divider={false} padding="pt-40 pb-32 md:pt-48 lg:pt-64 lg:pb-48">
+  <div class="max-w-content">
+    <h1 class={`${HEADING_DISPLAY_CLASSES} mb-8 md:mb-12`}>
+      Marketing for Tomorrow's <br />
+      <TypewriterText client:visible text="Billion-Dollar Brands" />
+    </h1>
+    <p class={`${BODY_CLASSES} mb-10`}>
+      AI-powered strategy, media, and execution. <br class="hidden md:block" />
+      Faster growth. Sharper focus. Higher profit.
+    </p>
+    <CTALink href="#contact">Schedule a call</CTALink>
+  </div>
+</Section>

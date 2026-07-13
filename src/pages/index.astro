@@ -1,7 +1,45 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../sections/Hero.astro';
+import Statement from '../sections/Statement.astro';
+import Intro from '../sections/Intro.astro';
+import Approach from '../sections/Approach.astro';
+import About from '../sections/About.astro';
+import Contact from '../sections/Contact.astro';
+
+// Inline SVG fractal noise — ported verbatim from GrainOverlay.jsx.
+const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
 ---
 
 <BaseLayout>
-  <h1>Marketing for Tomorrow's Billion-Dollar Brands</h1>
+  <div class="min-h-screen bg-paper text-charcoal selection:bg-charcoal selection:text-paper relative font-sans">
+    <a
+      href="#approach"
+      data-native-anchor
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:bg-charcoal focus:text-paper focus:px-4 focus:py-2 focus:rounded"
+    >
+      Skip to content
+    </a>
+
+    <div
+      class="fixed inset-0 pointer-events-none z-[50] opacity-[0.05]"
+      style={`background-image: ${GRAIN_SVG}`}
+    >
+    </div>
+
+    {/* Task 9: <Header /> and <Navigation /> mount here */}
+
+    <div class="relative z-[2]">
+      <Hero />
+      {/* Task 6: <Credentials client:visible /> mounts here */}
+      <Statement />
+      <Intro />
+      <Approach />
+      {/* Task 7: <Services client:visible /> mounts here */}
+      {/* Task 8: <PartnerOutcomes client:visible /> mounts here */}
+      <About />
+      <Contact />
+      {/* Task 9: <Footer /> mounts here */}
+    </div>
+  </div>
 </BaseLayout>

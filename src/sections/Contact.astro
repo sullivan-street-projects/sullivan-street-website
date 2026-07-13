@@ -1,0 +1,28 @@
+---
+import Section from '../components/Section.astro';
+import FocusText from '../components/FocusText.jsx';
+import TypewriterText from '../components/TypewriterText.jsx';
+import CTALink from '../components/CTALink.astro';
+import { HEADING_CTA_CLASSES } from '../constants';
+---
+
+<div class="bg-paper-warm">
+  <Section id="contact" label="Call" divider={false}>
+    <div class="max-w-content py-16 md:py-20">
+      <div class="space-y-10 md:space-y-12">
+        <FocusText client:visible>
+          <h2 class={HEADING_CTA_CLASSES}>
+            Ready to build tomorrow's
+            <br />
+            <TypewriterText client:visible text="billion-dollar brand?" />
+          </h2>
+        </FocusText>
+        <div>
+          <CTALink href="https://tidycal.com/sullivan-street-projects/growth-consultation" variant="lg">
+            Schedule a call
+          </CTALink>
+        </div>
+      </div>
+    </div>
+  </Section>
+</div>

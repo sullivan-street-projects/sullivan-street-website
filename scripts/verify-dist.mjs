@@ -21,6 +21,23 @@ check('canonical present', () =>
 check('llms.txt copied', () => existsSync(dist('llms.txt')));
 check('robots.txt copied', () => existsSync(dist('robots.txt')));
 
+// --- Task 5: static sections ---
+check('Hero payoff text SSRed (typewriter ghost)', () =>
+  html('index.html').includes('Billion-Dollar Brands'),
+);
+check('Statement copy present', () => html('index.html').includes('someone owning the outcome'));
+check('Intro heading present', () => html('index.html').includes('Make Marketing Work'));
+check('Approach heading present', () => html('index.html').includes('Growth Marketing'));
+check('About founder present', () => html('index.html').includes('Brett Wohl'));
+check('Contact CTA href present', () =>
+  html('index.html').includes('tidycal.com/sullivan-street-projects/growth-consultation'),
+);
+check('section ids present', () =>
+  ['hero', 'statement', 'intro', 'approach', 'about', 'contact'].every((id) =>
+    html('index.html').includes(`id="${id}"`),
+  ),
+);
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;
