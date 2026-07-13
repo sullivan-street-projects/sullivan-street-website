@@ -44,6 +44,10 @@ check('credentials brands SSRed', () =>
 );
 check('credentials section id', () => html('index.html').includes('id="credentials"'));
 
+// --- Task 7: services island ---
+check('services copy SSRed', () => html('index.html').includes('Your marketing investment'));
+check('services section id', () => html('index.html').includes('id="services"'));
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;
