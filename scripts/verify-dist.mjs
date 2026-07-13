@@ -70,6 +70,21 @@ check(
   () => html('index.html').includes('astro-island') && html('index.html').includes('CookieConsent'),
 );
 
+// --- Task 11: legal + 404 ---
+check(
+  'privacy policy page built',
+  () =>
+    existsSync(dist('privacy-policy.html')) &&
+    html('privacy-policy.html').includes('Privacy Policy'),
+);
+check(
+  'terms page built',
+  () =>
+    existsSync(dist('terms-and-conditions.html')) &&
+    html('terms-and-conditions.html').includes('Terms'),
+);
+check('404 page built', () => existsSync(dist('404.html')) && html('404.html').includes('404'));
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;
