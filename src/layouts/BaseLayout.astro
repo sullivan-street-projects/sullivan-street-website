@@ -1,0 +1,129 @@
+---
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+
+const {
+  title = "Sullivan Street Projects | Marketing for Tomorrow's Billion-Dollar Brands",
+  description = "AI-powered strategy, media, and execution. Faster growth. Sharper focus. Higher profit. Marketing for tomorrow's billion-dollar brands.",
+  ogTitle = 'Sullivan Street Projects | Growth Marketing Partners',
+  ogDescription = "Marketing for tomorrow's billion-dollar brands.",
+  canonicalPath = '/',
+} = Astro.props;
+
+const SITE = 'https://sullivanstreetprojects.com';
+const canonical = canonicalPath === '/' ? SITE : SITE + canonicalPath;
+const isHome = canonicalPath === '/';
+
+// Ported verbatim from the old index.html <head>.
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://sullivanstreetprojects.com/#organization',
+      name: 'Sullivan Street Projects',
+      url: 'https://sullivanstreetprojects.com',
+      logo: 'https://sullivanstreetprojects.com/og-image.png',
+      description:
+        'Fractional growth consultancy delivering AI-powered strategy, media, and execution.',
+      founder: {
+        '@type': 'Person',
+        name: 'Brett Wohl',
+        jobTitle: 'Founder, Managing Partner',
+        description:
+          'Executive growth strategist with 10+ years of experience across startups and global brands.',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '1178 Broadway',
+        addressLocality: 'New York',
+        addressRegion: 'NY',
+        postalCode: '10001',
+        addressCountry: 'US',
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        email: 'hello@sullivanstreetprojects.co',
+        contactType: 'customer service',
+      },
+    },
+    {
+      '@type': 'Service',
+      provider: { '@id': 'https://sullivanstreetprojects.com/#organization' },
+      name: 'Management (Growth Leadership)',
+      description:
+        'For leaders who need full operational ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
+    },
+    {
+      '@type': 'Service',
+      provider: { '@id': 'https://sullivanstreetprojects.com/#organization' },
+      name: 'Strategy (Go-to-Market Design)',
+      description:
+        'For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence.',
+    },
+    {
+      '@type': 'Service',
+      provider: { '@id': 'https://sullivanstreetprojects.com/#organization' },
+      name: 'Advisory (Strategic Guidance)',
+      description:
+        'For founders who need an executive thought partner. We help you make the right decisions on hiring, vendors, and positioning.',
+    },
+  ],
+};
+const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="marketing, growth, CMO, strategy, advisory, brands" />
+    <meta name="author" content="Sullivan Street Projects" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content={`${SITE}/og-image.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:site_name" content="Sullivan Street Projects" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={`${SITE}/og-image.png`} />
+
+    <Font cssVariable="--font-libre-baskerville" preload />
+    <Font cssVariable="--font-instrument-sans" preload />
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90' fill='%23222'>S</text></svg>"
+    />
+    <meta name="theme-color" content="#FAFAF8" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly content" />
+
+    <title>{title}</title>
+
+    {isHome && <script type="application/ld+json" is:inline set:html={jsonLd} />}
+
+    <script>
+      import { initAnalytics } from '../utils/analytics.js';
+      initAnalytics();
+    </script>
+  </head>
+  <body class="bg-paper text-charcoal font-sans">
+    <slot />
+    {/* CookieConsent island wired in Task 10 */}
+  </body>
+</html>
