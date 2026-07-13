@@ -2028,7 +2028,7 @@ node scripts/screenshot.js "http://localhost:5173/privacy-policy"
 node scripts/screenshot.js "http://localhost:5173/terms-and-conditions"
 ```
 
-Compare each capture against the corresponding baselines in `screenshots/` (from `scripts/capture-baselines.sh` runs on the old stack). Differences to accept: none in typography/spacing/color. Differences that need fixing: missing sections, unstyled flashes, wrong fonts (would indicate the Fonts API tokens aren't wired).
+Compare each capture against the corresponding React baseline in **`screenshots/baselines-pre-astro/`** (the 30-image set — 9 sections × 3 viewports + 3 full-page — captured from the React site immediately before Task 1; filenames like `hero-1440.png`, `fullpage-375.png`). Capture the Astro equivalents with the same `scripts/capture-baselines.sh` (writes to `screenshots/baselines/`) and diff `baselines/` vs. `baselines-pre-astro/` pairwise. The **live production site** `https://sullivanstreetprojects.com` is the secondary ground-truth reference (still the React design until cutover). Differences to accept: none in typography/spacing/color. Differences that need fixing: missing sections, unstyled flashes, wrong fonts (would indicate the Fonts API tokens aren't wired).
 
 - [ ] **Step 4: Behavior checklist (manual, npm run dev)**
 
@@ -2079,14 +2079,18 @@ git commit -m "fix(astro): parity fixes from QA sweep"
 // tokens in BaseLayout are '', enforce presence forever once they're set) ---
 const baseLayoutSrc = readFileSync(
   new URL('../src/layouts/BaseLayout.astro', import.meta.url),
-  'utf-8'
+  'utf-8',
 );
 const googleTokenSet = !/google:\s*''/.test(baseLayoutSrc);
 const bingTokenSet = !/bing:\s*''/.test(baseLayoutSrc);
-check('search-console verification present (when token set)', () =>
-  !googleTokenSet || html('index.html').includes('name="google-site-verification"'));
-check('bing verification present (when token set)', () =>
-  !bingTokenSet || html('index.html').includes('name="msvalidate.01"'));
+check(
+  'search-console verification present (when token set)',
+  () => !googleTokenSet || html('index.html').includes('name="google-site-verification"'),
+);
+check(
+  'bing verification present (when token set)',
+  () => !bingTokenSet || html('index.html').includes('name="msvalidate.01"'),
+);
 ```
 
 Run `npm run verify` — expected: both PASS **vacuously** until Step 3's `SITE_VERIFICATION` block exists with real tokens; from that moment they enforce the meta tags permanently. (This token-gating is what lets the loop proceed if the operator isn't available to hand over tokens — see the Execution Protocol.)
@@ -2151,6 +2155,7 @@ Add under a new `## Analytics & Observability` heading:
 
 ```markdown
 ## Analytics & Observability
+
 - Stack: GA4 + Microsoft Clarity + Google Search Console + Bing Webmaster (consent-gated; see `src/utils/analytics.js`). PostHog deferred; GTM intentionally not used.
 - Manageable through Claude Code: GA4 reports via the `analytics-mcp` MCP; Clarity heatmaps/session recordings via the `clarity` MCP; site verification + DNS via the Hostinger DNS MCP; deploys watched via the Hostinger hosting MCP.
 - Verification tokens live in `src/layouts/BaseLayout.astro` (`SITE_VERIFICATION`) and/or DNS TXT records.
@@ -2176,7 +2181,7 @@ After production cutover, in GSC and Bing: submit `https://sullivanstreetproject
 
 - Modify (post-verification): `src/components/Footer.astro` (uncomment Perplexity)
 
-**How deploy works here (verified 2026-07-13):** production auto-builds from a push to `main`. So the cutover *is* the merge to `main`. Staging is validated first on a Hostinger subdomain — either by pushing the branch to a subdomain app, or (simpler, no git wiring) by pushing the locally/CI-built `dist/` straight to the subdomain via `mcp__hostinger-hosting__hosting_deployStaticWebsite`. All deploys are watched via `hosting_listJsDeployments` + `hosting_showJsDeploymentLogs`.
+**How deploy works here (verified 2026-07-13):** production auto-builds from a push to `main`. So the cutover _is_ the merge to `main`. Staging is validated first on a Hostinger subdomain — either by pushing the branch to a subdomain app, or (simpler, no git wiring) by pushing the locally/CI-built `dist/` straight to the subdomain via `mcp__hostinger-hosting__hosting_deployStaticWebsite`. All deploys are watched via `hosting_listJsDeployments` + `hosting_showJsDeploymentLogs`.
 
 **Rollback:** production cutover is reversible in ~30s — `git revert` the merge on `main` (auto-redeploys the previous build) or redeploy from tag `pre-astro`. This is why the single human gate is a light one.
 
@@ -2224,7 +2229,7 @@ node scripts/screenshot.js "$STAGING/privacy-policy" --full-page
 node scripts/screenshot.js "$STAGING/terms-and-conditions" --full-page
 ```
 
-Diff the captures against the `pre-astro` baselines in `screenshots/`. **Any visual regression = hard stop** (Execution Protocol) — do not present a broken staging site as ready.
+Diff the captures against the preserved React baselines in **`screenshots/baselines-pre-astro/`** (30-image set captured before Task 1), and cross-check against the live production site `https://sullivanstreetprojects.com` (still the React design until cutover). **Any visual regression = hard stop** (Execution Protocol) — do not present a broken staging site as ready.
 
 - [ ] **Step 5: 🔴 HUMAN GATE — mandatory staging review + production go/no-go**
 
