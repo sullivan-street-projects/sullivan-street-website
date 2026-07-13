@@ -55,6 +55,13 @@ Baseline capture: `bash scripts/capture-baselines.sh` (9 sections x 3 viewports 
 - Footer Privacy/Terms are live `<Link>` routes to full legal pages (`/privacy-policy`, `/terms-and-conditions`)
 - Contact CTA links to TidyCal booking (`tidycal.com/sullivan-street-projects/growth-consultation`)
 
+## Analytics & Observability
+
+- Stack: GA4 + Microsoft Clarity + Google Search Console + Bing Webmaster (consent-gated; see `src/utils/analytics.js`). PostHog deferred; GTM intentionally not used.
+- Manageable through Claude Code: GA4 reports via the `analytics-mcp` MCP; Clarity heatmaps/session recordings via the `clarity` MCP; site verification + DNS via the Hostinger DNS MCP; deploys watched via the Hostinger hosting MCP.
+- Verification tokens live in `src/layouts/BaseLayout.astro` (`SITE_VERIFICATION`) and/or DNS TXT records.
+- Adding a new tag = edit `BaseLayout` + add its host to the CSP in `public/.htaccess`. No GTM indirection.
+
 ## Commands
 
 - `npm run dev` — Astro dev server on :5173

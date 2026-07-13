@@ -97,6 +97,23 @@ check(
 check('stale static sitemap removed', () => !existsSync(dist('sitemap.xml')));
 check('netlify redirects removed', () => !existsSync(dist('_redirects')));
 
+// --- Task 15: verification meta (token-gated: pass vacuously while the
+// tokens in BaseLayout are '', enforce presence forever once they're set) ---
+const baseLayoutSrc = readFileSync(
+  new URL('../src/layouts/BaseLayout.astro', import.meta.url),
+  'utf-8',
+);
+const googleTokenSet = !/google:\s*''/.test(baseLayoutSrc);
+const bingTokenSet = !/bing:\s*''/.test(baseLayoutSrc);
+check(
+  'search-console verification present (when token set)',
+  () => !googleTokenSet || html('index.html').includes('name="google-site-verification"'),
+);
+check(
+  'bing verification present (when token set)',
+  () => !bingTokenSet || html('index.html').includes('name="msvalidate.01"'),
+);
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;

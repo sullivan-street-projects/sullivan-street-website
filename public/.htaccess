@@ -21,6 +21,10 @@ ErrorDocument 404 /404.html
   Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   # Fonts are self-hosted by Astro's Fonts API now — fonts.googleapis.com /
   # fonts.gstatic.com removed from style-src / font-src.
+  # GA4 (googletagmanager.com / google-analytics.com) + Clarity (*.clarity.ms)
+  # are covered below. PostHog is deferred (Task 15 decision) — if/when it
+  # ships, add its host (https://*.posthog.com or the EU/self-host domain)
+  # to BOTH script-src and connect-src here.
   Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.clarity.ms; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://tidycal.com https://*.clarity.ms; frame-src https://tidycal.com;"
 </IfModule>
 

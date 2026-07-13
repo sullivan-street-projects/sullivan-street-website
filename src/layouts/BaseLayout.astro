@@ -15,6 +15,13 @@ const SITE = 'https://sullivanstreetprojects.com';
 const canonical = canonicalPath === '/' ? SITE : SITE + canonicalPath;
 const isHome = canonicalPath === '/';
 
+// Search-engine verification tokens (Google Search Console + Bing Webmaster).
+// '' = not yet collected; verify-dist.mjs enforces the meta tag once set.
+const SITE_VERIFICATION = {
+  google: '', // 🔑 GSC HTML-tag content token
+  bing: '', // 🔑 Bing meta content token
+};
+
 // Ported verbatim from the old index.html <head>.
 const structuredData = {
   '@context': 'https://schema.org',
@@ -83,6 +90,10 @@ const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
     <meta name="keywords" content="marketing, growth, CMO, strategy, advisory, brands" />
     <meta name="author" content="Sullivan Street Projects" />
     <meta name="robots" content="index, follow" />
+    {SITE_VERIFICATION.google && (
+      <meta name="google-site-verification" content={SITE_VERIFICATION.google} />
+    )}
+    {SITE_VERIFICATION.bing && <meta name="msvalidate.01" content={SITE_VERIFICATION.bing} />}
 
     <link rel="canonical" href={canonical} />
 
