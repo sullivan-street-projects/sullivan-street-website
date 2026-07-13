@@ -38,6 +38,12 @@ check('section ids present', () =>
   ),
 );
 
+// --- Task 6: credentials island ---
+check('credentials brands SSRed', () =>
+  ['Apple', 'JPMorgan Chase', 'Samsung'].every((b) => html('index.html').includes(b)),
+);
+check('credentials section id', () => html('index.html').includes('id="credentials"'));
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;

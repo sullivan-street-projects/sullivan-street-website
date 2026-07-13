@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../sections/Hero.astro';
+import Credentials from '../sections/Credentials.jsx';
 import Statement from '../sections/Statement.astro';
 import Intro from '../sections/Intro.astro';
 import Approach from '../sections/Approach.astro';
@@ -31,7 +32,7 @@ const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='h
 
     <div class="relative z-[2]">
       <Hero />
-      {/* Task 6: <Credentials client:visible /> mounts here */}
+      <Credentials client:visible />
       <Statement />
       <Intro />
       <Approach />
