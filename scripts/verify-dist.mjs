@@ -48,6 +48,9 @@ check('credentials section id', () => html('index.html').includes('id="credentia
 check('services copy SSRed', () => html('index.html').includes('Your marketing investment'));
 check('services section id', () => html('index.html').includes('id="services"'));
 
+// --- Task 8: partner outcomes island ---
+check('outcomes section id', () => html('index.html').includes('id="outcomes"'));
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;

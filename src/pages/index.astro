@@ -6,6 +6,7 @@ import Statement from '../sections/Statement.astro';
 import Intro from '../sections/Intro.astro';
 import Approach from '../sections/Approach.astro';
 import Services from '../sections/Services.jsx';
+import PartnerOutcomes from '../sections/PartnerOutcomes.jsx';
 import About from '../sections/About.astro';
 import Contact from '../sections/Contact.astro';
 
@@ -38,7 +39,7 @@ const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='h
       <Intro />
       <Approach />
       <Services client:visible />
-      {/* Task 8: <PartnerOutcomes client:visible /> mounts here */}
+      <PartnerOutcomes client:visible />
       <About />
       <Contact />
       {/* Task 9: <Footer /> mounts here */}
