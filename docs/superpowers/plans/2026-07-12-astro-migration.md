@@ -1,12 +1,14 @@
 # Astro Migration Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. This plan is designed to run **end-to-end as a hands-off loop** — see the **Execution Protocol (Loop)** section below for the per-task cycle, the objective verify gate, the stop conditions, and the single human approval gate (production cutover).
 
 **Goal:** Migrate the SSP marketing site from a React 18 + Vite SPA to a static Astro 6 MPA so every word of marketing copy ships as build-time HTML (closing the AEO gap permanently), while preserving pixel/behavior parity for the animation stack (Framer Motion, Lenis, FocusText/TypewriterText).
 
 **Architecture:** Hybrid islands. The six content-only sections (Hero, Statement, Intro, Approach, About, Contact) become `.astro` components with small React islands for scroll-linked animation (FocusText, TypewriterText). The three genuinely interactive sections (Credentials chart, Services accordion, PartnerOutcomes carousel) stay as React components mounted whole as `client:visible` islands — Astro server-renders their HTML at build time, so their copy is crawler-visible too. Lenis moves from React Context to a vanilla singleton (`window.__lenis`) with one global anchor-click interceptor. Conventions (config shape, fonts API, `.htaccess`, llms.txt link) mirror the proven sibling repo `../ssp-blog`.
 
-**Tech Stack:** Astro ^6.3 (static output), @astrojs/react, @astrojs/sitemap, Tailwind CSS v4 via `@tailwindcss/vite`, framer-motion 12, lenis 1.3, React 18 (islands only). Hosting unchanged: Hostinger Apache (`.htaccess`).
+**Tech Stack:** Astro ^6.3 (static output), @astrojs/react, @astrojs/sitemap, Tailwind CSS v4 via `@tailwindcss/vite`, framer-motion 12, lenis 1.3, React 18 (islands only). Hosting unchanged: Hostinger, serving the build's `dist/` (`.htaccess` honored).
+
+**Deploy mechanism (VERIFIED LIVE 2026-07-13 via Hostinger MCP):** `sullivanstreetprojects.com` auto-deploys from **GitHub push → Hostinger git build pipeline** (Node 22, `app_type:vite`, runs `npm run build`, serves `dist/`). Push to `main` = production build+deploy in ~20-30s, watchable via `mcp__hostinger-hosting__hosting_listJsDeployments` / `hosting_showJsDeploymentLogs`. **Astro slots straight in:** `astro build` → `dist/`, so the existing pipeline works with no reconfiguration (may need `app_type` vite→static — resolve on staging). This also permanently fixes AEO: `astro build` emits crawlable HTML with **no Puppeteer** (the React prerender stopgap was proven un-runnable in Hostinger's build container on 2026-07-13 — headless Chrome unavailable). Hostinger MCP servers connected for deploy/DNS ops: hosting, domains, dns, billing, wordpress, reach.
 
 **Feasibility basis:** `docs/astro-evaluation.md` (2026-05-18) — its "migrate later, when…" conditions have been met: the prerender alternative was never wired in (live site still serves empty `<div id="root">` as of 2026-07-12), the SSP ecosystem's content surface now lives on Astro (`../ssp-blog`), and that repo has already proven Astro 6 + Tailwind v4 + Hostinger end-to-end.
 
@@ -23,6 +25,35 @@
 - **Playground is dropped from the production site.** It is preserved on git tag `pre-astro` (checkout the tag to run it). Do not port it.
 - **Extension discipline:** `.astro` imports are always written WITH the `.astro` extension. Extensionless imports (e.g. `'../components/Section'`) resolve to `.jsx` — both `Section.astro` and `Section.jsx` exist during and after migration (the `.jsx` one serves React islands).
 - **Import churn minimized:** React island files stay at their current paths (`src/sections/*.jsx`, `src/components/*.jsx`) so their relative imports keep working.
+
+---
+
+## Execution Protocol (Loop)
+
+This plan is built to run **autonomously, task by task, with one human gate**. A runner (the loop) executes each task, proves it with an objective machine check, commits, and advances. Nothing is left to vibes: the `scripts/verify-dist.mjs` harness is the gate, and it grows one check-list per task, so "did it work" is always a command, not a judgment.
+
+**Runner:** Use `superpowers:subagent-driven-development` (fresh subagent per task, recommended) or `superpowers:executing-plans` (inline). To drive it as a self-paced loop, the operator can invoke `/loop` with "continue executing the Astro migration plan, one task per iteration."
+
+**Per-task cycle (the loop body):**
+
+1. Read the next unchecked `### Task N`. Create a todo per `- [ ]` step.
+2. Execute the steps in order (write failing verify checks → implement → run checks).
+3. **Gate:** run `npm run verify` (build + `verify-dist.mjs`). Green = task done.
+4. On green: check off the steps, `git commit` with the task's message, advance to Task N+1.
+5. On red: fix forward, re-run the gate. **Bounded to 3 fix attempts** — if still red, STOP and surface the failure (do not thrash).
+
+**Objective gate:** `npm run verify` = `astro build` succeeds AND every `verify-dist.mjs` check passes. Build failure or a red check is a hard stop for that task. (Astro compile errors surface here too.)
+
+**Autonomy boundary — the ONE human gate:** Tasks 1–15 and the **staging** deploy (Task 16, Steps 1–4) run fully autonomously — they never touch the production domain. Execution **pauses once**, at Task 16's production go/no-go (Step 5), presenting a staging URL + screenshot diff for approval. After approval, the finish (merge → prod auto-deploy → post-deploy verification → re-enable Perplexity) runs autonomously. The operator may **pre-authorize** full autonomy (skip the pause) — it's safe because `pre-astro` tag + git revert make production cutover reversible in ~30s.
+
+**Hard stop conditions (halt the loop, report, don't push past):**
+
+- Verify gate still red after 3 fix attempts on a task.
+- Task 14 screenshot diff shows a visual regression vs. `pre-astro` baselines (design parity is a release blocker).
+- Any Hostinger deploy enters `state:"failed"` (watch via `hosting_listJsDeployments`) — read `hosting_showJsDeploymentLogs`, report, do not retry blindly.
+- A step needs a credential/token that isn't present (e.g., a Search Console verification token) — collect it, don't fabricate.
+
+**Resumability:** every task ends in a commit, so the loop can stop and resume at any task boundary. The checked `- [ ]` boxes + `git log` are the source of truth for "where are we."
 
 ---
 
@@ -1367,7 +1398,7 @@ import { NAV_ITEMS } from '../constants';
 
 - [ ] **Step 4: Create `src/components/Footer.astro`**
 
-Port of `Footer.jsx`. SVG attribute names convert from JSX to HTML (`fillRule` → `fill-rule`, `clipRule` → `clip-rule`, `clipPath` → `clip-path`). The Perplexity block stays commented out — it is re-enabled in Task 15 after post-deploy crawler verification. Copyright year is set client-side so a stale build never shows an old year.
+Port of `Footer.jsx`. SVG attribute names convert from JSX to HTML (`fillRule` → `fill-rule`, `clipRule` → `clip-rule`, `clipPath` → `clip-path`). The Perplexity block stays commented out — it is re-enabled in Task 16 after staging/post-deploy crawler verification. Copyright year is set client-side so a stale build never shows an old year.
 
 ```astro
 ---
@@ -1437,7 +1468,7 @@ const AI_QUERY = encodeURIComponent(
         </a>
         <!--
           Perplexity — hidden until the live deploy is verified crawler-readable
-          (re-enable in Task 15 post-deploy validation):
+          (re-enable in Task 16 post-deploy validation):
           <a href={`https://www.perplexity.ai/search/new?q=${AI_QUERY}`} target="_blank" rel="noopener noreferrer" aria-label="Perplexity Summary" class="text-faint hover:text-charcoal transition-colors duration-300">
             <svg width="18" height="18" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M52.76 0V19.392H60V46.9867H52.1733V64L33.408 47.4827V63.8693H30.4987V47.464L11.712 64V46.76H4V19.168H11.6907V0L30.4987 17.3173V0.506667H33.4053V17.8133L52.76 0ZM33.408 24.1173V43.6347L49.264 57.592V38.5067L33.408 24.1173ZM30.4773 23.904L14.6213 38.2987V57.592L30.4773 43.6347V23.9067V23.904ZM52.1733 44.1173H57.0907V22.264H35.8933L52.1733 37.0373V44.1173ZM28.2213 22.0373H6.90667V43.8907H11.7067V37.0213L28.2187 22.0347L28.2213 22.0373ZM14.6 6.60267V19.1627H28.24L14.6 6.60267ZM49.8507 6.60267L36.2107 19.1627H49.8507V6.60267Z" />
@@ -2027,44 +2058,169 @@ git commit -m "fix(astro): parity fixes from QA sweep"
 
 ---
 
-### Task 15: Deploy + post-deploy AEO validation
+### Task 15: Analytics, verification & search-engine registration
+
+**Files:**
+
+- Modify: `src/layouts/BaseLayout.astro` (verification meta tags via consts)
+- Modify: `public/.htaccess` (CSP allowlist review)
+- Modify: `scripts/verify-dist.mjs` (checks)
+- Modify: `CLAUDE.md` (record the Claude-Code-managed observability workflow)
+- DNS: managed via Hostinger DNS MCP (no repo file)
+
+**Context:** GA4 (`G-S025DFF5N0`) and Microsoft Clarity (`r8b7ctb5d6`) are **already wired** — consent-gated in `src/utils/analytics.js`, booted from `BaseLayout` (Task 2), toggled by the CookieConsent island (Task 10). This task does NOT re-install them. It adds the remaining Claude-Code-managed observability surface: search-engine **verification** (Google Search Console + Bing Webmaster) and **registration** (sitemap discovery), plus the CSP review and a durable note of what's readable via MCP going forward.
+
+**Chosen stack (per 2026-07-13 decision):** GA4 + Clarity + Google Search Console + Bing Webmaster — all free, non-overlapping, install+verify+read all manageable through Claude Code. **PostHog deferred** (add later if product analytics is wanted on the tools/app surfaces — it has the richest Claude-manageable API). **GTM intentionally skipped** — Claude Code manages tags in code directly, so GTM's indirection works against the single-control-surface goal.
+
+**Interfaces:**
+
+- Consumes: `@astrojs/sitemap` output `sitemap-index.xml` (Task 12); `robots.txt` already advertises the sitemap (Task 12), so search engines auto-discover it — explicit submission is an enhancement, not a blocker.
+- Produces: `SITE_VERIFICATION` const block in `BaseLayout` and/or DNS TXT records; a documented observability workflow.
+
+**Autonomy markers:** ⚙️ = fully autonomous (code / DNS-via-MCP). 🔑 = needs a one-time token from a Google/Bing sign-in (collect, don't fabricate).
+
+- [ ] **Step 1: Add failing verify checks** (`scripts/verify-dist.mjs`)
+
+```js
+// --- Task 15: verification meta ---
+check('search-console verification present', () =>
+  html('index.html').includes('name="google-site-verification"'));
+check('bing verification present', () =>
+  html('index.html').includes('name="msvalidate.01"'));
+```
+
+Run `npm run verify` — expected: 2 new FAILs.
+
+- [ ] **Step 2: 🔑 Obtain verification tokens**
+
+Google Search Console (`search.google.com/search-console`) → add property `sullivanstreetprojects.com` → choose **HTML tag** method → copy the `content` token. Bing Webmaster (`www.bing.com/webmasters`) → add site → **Meta tag** → copy the `content` token. (Bing can also **import** the GSC property, which skips its own verification — prefer that if offered.) Record both tokens; they are the 🔑 inputs to Step 3.
+
+- [ ] **Step 3: ⚙️ Add verification meta tags to `src/layouts/BaseLayout.astro`**
+
+In the frontmatter, add (replace the placeholder tokens with the Step 2 values):
+
+```astro
+// Search-engine verification tokens (Google Search Console + Bing Webmaster).
+const SITE_VERIFICATION = {
+  google: 'REPLACE_WITH_GSC_TOKEN',
+  bing: 'REPLACE_WITH_BING_TOKEN',
+};
+```
+
+In the `<head>`, after the robots meta:
+
+```astro
+    {SITE_VERIFICATION.google && (
+      <meta name="google-site-verification" content={SITE_VERIFICATION.google} />
+    )}
+    {SITE_VERIFICATION.bing && <meta name="msvalidate.01" content={SITE_VERIFICATION.bing} />}
+```
+
+- [ ] **Step 4: ⚙️ (Alternative/belt-and-suspenders) DNS TXT verification via Hostinger MCP**
+
+Domain-level verification survives markup changes and verifies all subdomains at once. Once the TXT value is known (🔑 from Step 2, GSC also offers a DNS method), read then update records via MCP — read first so the update payload preserves existing records:
+
+```
+mcp__hostinger-dns__DNS_getDNSRecordsV1  { domain: "sullivanstreetprojects.com" }
+mcp__hostinger-dns__DNS_updateDNSRecordsV1 {
+  domain: "sullivanstreetprojects.com",
+  overwrite: false,
+  zone: [{ name: "@", type: "TXT", ttl: 3600, records: [{ content: "google-site-verification=..." }] }]
+}
+```
+
+Validate with `mcp__hostinger-dns__DNS_validateDNSRecordsV1` before applying. (Load exact schemas via ToolSearch `select:` before calling.)
+
+- [ ] **Step 5: ⚙️ CSP allowlist review** (`public/.htaccess`)
+
+Confirm the CSP `script-src`/`connect-src`/`img-src` already cover GA4 (`googletagmanager.com`, `google-analytics.com`) and Clarity (`*.clarity.ms`) — they do (carried from the current site, Task 12). No change needed for the chosen stack. **When PostHog is added later**, append its host (`https://*.posthog.com` or the EU/self-host domain) to `script-src` + `connect-src` here. Leave a comment marking that.
+
+- [ ] **Step 6: ⚙️ Verify + confirm sitemap discovery**
+
+```bash
+npm run verify                                              # verification meta checks pass
+grep -c "sitemap-index.xml" dist/robots.txt                # expect 1 (auto-discovery already wired, Task 12)
+```
+
+- [ ] **Step 7: ⚙️ Record the observability workflow in `CLAUDE.md`**
+
+Add under a new `## Analytics & Observability` heading:
+
+```markdown
+## Analytics & Observability
+- Stack: GA4 + Microsoft Clarity + Google Search Console + Bing Webmaster (consent-gated; see `src/utils/analytics.js`). PostHog deferred; GTM intentionally not used.
+- Manageable through Claude Code: GA4 reports via the `analytics-mcp` MCP; Clarity heatmaps/session recordings via the `clarity` MCP; site verification + DNS via the Hostinger DNS MCP; deploys watched via the Hostinger hosting MCP.
+- Verification tokens live in `src/layouts/BaseLayout.astro` (`SITE_VERIFICATION`) and/or DNS TXT records.
+- Adding a new tag = edit `BaseLayout` + add its host to the CSP in `public/.htaccess`. No GTM indirection.
+```
+
+- [ ] **Step 8: Commit**
+
+```bash
+git add src/layouts/BaseLayout.astro public/.htaccess scripts/verify-dist.mjs CLAUDE.md
+git commit -m "feat(astro): search-console + bing verification, observability workflow"
+```
+
+- [ ] **Step 9: 🔑 (Post-cutover, deferred to Task 16) submit sitemap + confirm indexing**
+
+After production cutover, in GSC and Bing: submit `https://sullivanstreetprojects.com/sitemap-index.xml` and request indexing of `/`. (Auto-discovery via robots.txt already works; this just accelerates it.) If a Search Console / Bing MCP is connected later, this becomes ⚙️. Noted here; executed in Task 16 Step 8.
+
+---
+
+### Task 16: Deploy, staging verification & production cutover
 
 **Files:**
 
 - Modify (post-verification): `src/components/Footer.astro` (uncomment Perplexity)
 
-**⚠️ Gate:** Deployment replaces the production site. Everything before "Upload" is reversible; the upload itself is the one action to double-check. The rollback is: re-upload the previous `dist` (build it from tag `pre-astro` with `npm install && npm run build` after checking out the tag).
+**How deploy works here (verified 2026-07-13):** production auto-builds from a push to `main`. So the cutover *is* the merge to `main`. Staging is validated first on a Hostinger subdomain — either by pushing the branch to a subdomain app, or (simpler, no git wiring) by pushing the locally/CI-built `dist/` straight to the subdomain via `mcp__hostinger-hosting__hosting_deployStaticWebsite`. All deploys are watched via `hosting_listJsDeployments` + `hosting_showJsDeploymentLogs`.
 
-- [ ] **Step 1: Final build**
+**Rollback:** production cutover is reversible in ~30s — `git revert` the merge on `main` (auto-redeploys the previous build) or redeploy from tag `pre-astro`. This is why the single human gate is a light one.
+
+- [ ] **Step 1: ⚙️ Final build + full verify**
 
 ```bash
 npm run verify
 ```
 
-Expected: all checks pass. `dist/` is the complete deployable artifact (includes `.htaccess`).
+Expected: all checks pass (every task's checks, cumulative). `dist/` is the complete artifact (includes `.htaccess`).
 
-- [ ] **Step 2: Upload to Hostinger**
+- [ ] **Step 2: ⚙️ Create a staging subdomain (Hostinger MCP)**
 
-Manual (hPanel → File Manager or FTP): replace the contents of the site's `public_html` with the contents of `dist/`, INCLUDING the hidden `.htaccess`. Confirm hidden-file visibility is on in the file manager before deleting/replacing.
-
-- [ ] **Step 3: Post-deploy verification**
-
-```bash
-curl -s https://sullivanstreetprojects.com/ | grep -c "Marketing for Tomorrow"        # expect >= 1
-curl -s https://sullivanstreetprojects.com/ | grep -c '<div id="root">'               # expect 0
-curl -s https://sullivanstreetprojects.com/privacy-policy | grep -c "Privacy Policy"  # expect >= 1
-curl -s -o /dev/null -w "%{http_code}\n" https://sullivanstreetprojects.com/nope      # expect 404
-curl -s https://sullivanstreetprojects.com/sitemap-index.xml | head -3                # expect XML
-curl -sI https://sullivanstreetprojects.com/ | grep -i content-security-policy        # expect updated CSP (no fonts.googleapis.com)
+```
+mcp__hostinger-hosting__hosting_generateAFreeSubdomainV1   // or hosting_createWebsiteSubdomainV1 under an existing domain
 ```
 
-- [ ] **Step 4: AI-reader validation**
+Capture the returned staging URL (e.g. `staging-xxxx.hostingersite.com`). Load the exact schema via ToolSearch `select:` first.
 
-Paste `https://sullivanstreetprojects.com` into Perplexity and Claude ("summarize this page") — both should now read real content (this was the original AIEO failure mode: SPA served an empty div to non-JS readers).
+- [ ] **Step 3: ⚙️ Deploy `dist/` to staging**
 
-- [ ] **Step 5: Re-enable the Perplexity footer link**
+```
+mcp__hostinger-hosting__hosting_deployStaticWebsite   { domain: "<staging-subdomain>", ... }   // uploads the built dist/
+```
 
-In `src/components/Footer.astro`, replace the entire `<!-- Perplexity … -->` comment block with its inner `<a …>…</a>` markup (it is written ready-to-paste inside the comment). Then:
+This bypasses git wiring for staging. **This step also de-risks the one open unknown:** if Hostinger's `app_type:vite` git pipeline mishandles Astro's output at cutover, this static-deploy path is the confirmed fallback for production too. Watch the deploy to `completed` via `hosting_listJsDeployments`.
+
+- [ ] **Step 4: ⚙️ Verify staging (curl + screenshot diff)**
+
+```bash
+STAGING="https://<staging-subdomain>"
+curl -s "$STAGING/" | grep -c "Marketing for Tomorrow"        # expect >= 1
+curl -s "$STAGING/" | grep -c '<div id="root">'              # expect 0 (no SPA shell)
+curl -s "$STAGING/privacy-policy" | grep -c "Privacy Policy" # expect >= 1
+curl -s -o /dev/null -w "%{http_code}\n" "$STAGING/nope"     # expect 404
+node scripts/screenshot.js "$STAGING" --full-page --settle 4000
+```
+
+Diff the captures against the `pre-astro` baselines in `screenshots/`. **Any visual regression = hard stop** (Execution Protocol).
+
+- [ ] **Step 5: 🔴 HUMAN GATE — production go/no-go**
+
+Present the staging URL + screenshot diff. **Await explicit approval** before touching production. (Operator may have pre-authorized full autonomy — if so, proceed.) This is the only gate in the plan.
+
+- [ ] **Step 6: ⚙️ Re-enable the Perplexity footer link**
+
+The AEO fix that made this safe is now live-on-staging-verified. In `src/components/Footer.astro`, replace the `<!-- Perplexity … -->` comment block with its inner `<a …>…</a>` markup (written ready-to-paste inside the comment). Then:
 
 ```bash
 npm run verify
@@ -2072,9 +2228,7 @@ git add src/components/Footer.astro
 git commit -m "feat(footer): re-enable perplexity ai-summary link post-verification"
 ```
 
-Rebuild and re-upload `dist/` (Step 2 procedure).
-
-- [ ] **Step 6: Merge**
+- [ ] **Step 7: ⚙️ Cutover — merge to main (auto-deploys production)**
 
 ```bash
 git checkout main
@@ -2082,16 +2236,32 @@ git merge astro-migration
 git push origin main --tags
 ```
 
-- [ ] **Step 7: Post-merge housekeeping**
+Watch the production build to `completed` via `hosting_listJsDeployments { domain: "sullivanstreetprojects.com" }`. **If it enters `failed`:** read `hosting_showJsDeploymentLogs`; the likely cause is `app_type:vite` vs. Astro — fall back to `hosting_deployStaticWebsite` of the CI-built `dist/` (proven on staging, Step 3), and report so the git-app `app_type` can be switched to static.
 
-- Update `public/llms.txt` if any copy drifted (it shouldn't have — copy parity was a constraint).
+- [ ] **Step 8: ⚙️ Post-deploy verification + sitemap submission**
+
+```bash
+curl -s https://sullivanstreetprojects.com/ | grep -c "Marketing for Tomorrow"   # expect >= 1
+curl -s https://sullivanstreetprojects.com/ | grep -c '<div id="root">'          # expect 0
+curl -sI https://sullivanstreetprojects.com/ | grep -i content-security-policy   # updated CSP, no fonts.googleapis.com
+curl -s https://sullivanstreetprojects.com/sitemap-index.xml | head -3           # expect XML
+```
+
+Then execute Task 15 Step 9 (🔑 submit the sitemap in GSC + Bing, request indexing of `/`). Paste the live URL into Perplexity + Claude to confirm AI readers now see real content (the original AEO failure mode).
+
+- [ ] **Step 9: ⚙️ Housekeeping + teardown staging**
+
 - Recapture screenshot baselines on the new stack: `bash scripts/capture-baselines.sh`.
-- Mark `docs/astro-evaluation.md` with a one-line postscript: migration executed 2026-07 per this plan.
+- One-line postscript in `docs/astro-evaluation.md`: migration executed 2026-07 per this plan.
+- Optionally remove the staging subdomain via the Hostinger MCP once cutover is confirmed stable.
+- Update `public/llms.txt` only if copy drifted (it shouldn't — copy parity was a constraint).
 
 ---
 
 ## Deferred (explicitly NOT in this migration — YAGNI)
 
+- **PostHog** — product analytics; add later if wanted on the tools/app surfaces. Slot: install snippet in `BaseLayout` (behind consent, alongside GA4/Clarity), add its host to the CSP in `public/.htaccess` (Task 15 Step 5 marks the spot), read via the PostHog MCP.
+- **Google Tag Manager** — intentionally NOT used; Claude Code manages tags in code directly (see Task 15 rationale).
 - **Content Collections for CONTENT.md** — the hand-sync pain is real but orthogonal; converting copy to a content layer belongs to a follow-up once the Astro shell is stable.
 - **Replacing FocusText/TypewriterText with vanilla scripts** (ssp-blog's zero-React model) — would shrink JS further but risks animation parity; revisit after launch.
 - **build-time llms.txt endpoint** (ssp-blog pattern) — the static `public/llms.txt` is fine for a 3-page site.
@@ -2099,6 +2269,7 @@ git push origin main --tags
 
 ## Self-Review Notes
 
-- Spec coverage: AEO fix (Tasks 2/5–9/15), all 9 sections (5–9), legal + 404 (11), consent/analytics (10), Lenis (3), hosting (12/15), teardown (13), QA (14). Playground exclusion is a documented decision, not a gap.
-- Type/name consistency: `window.__lenis` (Tasks 3, 7, 9); `data-native-anchor` (Tasks 3, 5); `ANIMATION.SCROLL_OFFSET/-DURATION` used everywhere scrolling is configured; `client:visible` for content islands, `client:idle` for consent.
-- Known judgment calls: Header button→anchor (semantics win, behavior preserved); copyright year via client script (avoids stale build-time year); About img `onerror` inline attribute (CSP already allows `'unsafe-inline'`).
+- Spec coverage: AEO fix (Tasks 2/5–9/16), all 9 sections (5–9), legal + 404 (11), consent/analytics (10), search-engine verification + observability (15), Lenis (3), hosting/deploy (12/16), teardown (13), QA (14). Playground exclusion is a documented decision, not a gap.
+- Loopability: every task ends with a `npm run verify` gate + commit; `verify-dist.mjs` grows one check-list per task; one human gate (Task 16 Step 5). Runnable end-to-end per the Execution Protocol.
+- Type/name consistency: `window.__lenis` (Tasks 3, 7, 9); `data-native-anchor` (Tasks 3, 5); `ANIMATION.SCROLL_OFFSET/-DURATION` used everywhere scrolling is configured; `client:visible` for content islands, `client:idle` for consent; `SITE_VERIFICATION` const (Task 15) read in `BaseLayout` head.
+- Known judgment calls: Header button→anchor (semantics win, behavior preserved); copyright year via client script (avoids stale build-time year); About img `onerror` inline attribute (CSP already allows `'unsafe-inline'`); staging via `hosting_deployStaticWebsite` doubles as the confirmed production fallback if `app_type:vite` mishandles Astro output.
