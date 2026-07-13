@@ -44,7 +44,7 @@ This plan is built to run **autonomously, task by task, with one human gate**. A
 
 **Objective gate:** `npm run verify` = `astro build` succeeds AND every `verify-dist.mjs` check passes. Build failure or a red check is a hard stop for that task. (Astro compile errors surface here too.)
 
-**Autonomy boundary — the ONE human gate:** Tasks 1–14 run fully autonomously. Task 15's two verification tokens (GSC/Bing) are a **deferrable ask** — request them, but if the operator is unavailable, leave them `''` and continue (the harness auto-enforces once they're set; see Task 15 Step 2). The **staging** deploy (Task 16, Steps 1–4) is autonomous — it never touches the production domain. Execution **pauses once**, at Task 16's production go/no-go (Step 5), presenting a staging URL + screenshot diff for approval. After approval, the finish (merge → prod auto-deploy → post-deploy verification → re-enable Perplexity) runs autonomously. The operator may **pre-authorize** full autonomy (skip the pause) — it's safe because `pre-astro` tag + git revert make production cutover reversible in ~30s.
+**Autonomy boundary — the ONE human gate:** Tasks 1–14 run fully autonomously. Task 15's two verification tokens (GSC/Bing) are a **deferrable ask** — request them, but if the operator is unavailable, leave them `''` and continue (the harness auto-enforces once they're set; see Task 15 Step 2). The **staging** deploy (Task 16, Steps 1–4) is autonomous — it builds a real, browsable staging site on a Hostinger subdomain and never touches the production domain. Execution then **stops and waits** at Task 16 Step 5 — the operator reviews the staging URL and must give explicit approval. **This staging gate is mandatory for this run and pre-authorization is OFF** (operator instruction, 2026-07-13): there is no autonomous path to production; the loop halts at Step 5 until a human replies "go." After approval, the finish (merge → prod auto-deploy → post-deploy verification → re-enable Perplexity) runs autonomously. Cutover stays cheap to reverse (`pre-astro` tag + git revert, ~30s).
 
 **Hard stop conditions (halt the loop, report, don't push past):**
 
@@ -2180,6 +2180,8 @@ After production cutover, in GSC and Bing: submit `https://sullivanstreetproject
 
 **Rollback:** production cutover is reversible in ~30s — `git revert` the merge on `main` (auto-redeploys the previous build) or redeploy from tag `pre-astro`. This is why the single human gate is a light one.
 
+**🔒 STAGING IS A HARD PREREQUISITE FOR PRODUCTION.** The operator has explicitly required a staging review before cutover (2026-07-13). Production (Steps 6–9) MUST NOT run until a working staging site exists AND the operator has given explicit approval at Step 5. If Steps 2–4 cannot complete (subdomain won't create, static deploy fails, staging URL doesn't serve, or the screenshot diff regresses) → **HALT at that step and report**; never skip staging or touch `main`. There is no autonomous path from here to production for this run — pre-authorization is OFF regardless of any general "full autonomy" option.
+
 - [ ] **Step 1: ⚙️ Final build + full verify**
 
 ```bash
@@ -2212,14 +2214,31 @@ curl -s "$STAGING/" | grep -c "Marketing for Tomorrow"        # expect >= 1
 curl -s "$STAGING/" | grep -c '<div id="root">'              # expect 0 (no SPA shell)
 curl -s "$STAGING/privacy-policy" | grep -c "Privacy Policy" # expect >= 1
 curl -s -o /dev/null -w "%{http_code}\n" "$STAGING/nope"     # expect 404
+# Capture every route + animation-dependent section so the operator's review is complete
 node scripts/screenshot.js "$STAGING" --full-page --settle 4000
+node scripts/screenshot.js "$STAGING" --scroll-to "#services" --settle 1500
+node scripts/screenshot.js "$STAGING" --scroll-to "#outcomes" --settle 1500
+node scripts/screenshot.js "$STAGING" --scroll-to "#about" --settle 1500
+node scripts/screenshot.js "$STAGING" --scroll-to "#contact" --settle 4000
+node scripts/screenshot.js "$STAGING/privacy-policy" --full-page
+node scripts/screenshot.js "$STAGING/terms-and-conditions" --full-page
 ```
 
-Diff the captures against the `pre-astro` baselines in `screenshots/`. **Any visual regression = hard stop** (Execution Protocol).
+Diff the captures against the `pre-astro` baselines in `screenshots/`. **Any visual regression = hard stop** (Execution Protocol) — do not present a broken staging site as ready.
 
-- [ ] **Step 5: 🔴 HUMAN GATE — production go/no-go**
+- [ ] **Step 5: 🔴 HUMAN GATE — mandatory staging review + production go/no-go**
 
-Present the staging URL + screenshot diff. **Await explicit approval** before touching production. (Operator may have pre-authorized full autonomy — if so, proceed.) This is the only gate in the plan.
+**STOP HERE AND WAIT FOR THE OPERATOR.** This gate is non-skippable for this run (see the 🔒 prerequisite note above). Do not merge, do not touch `main`, do not schedule further loop work past this point. Present to the operator:
+
+1. The live **staging URL** to click through themselves.
+2. A short summary: routes verified (/, /privacy-policy, /terms-and-conditions, 404), screenshot-diff result vs. baselines, and anything worth their eye.
+
+Then **wait for an explicit reply**:
+
+- Operator says **"go"** (or equivalent explicit approval) → proceed to Step 6.
+- Operator reports something to fix → return to the relevant task, fix, redeploy staging (Steps 3–4), present again. Never advance to production on ambiguity or silence.
+
+If running as a self-paced `/loop`, **end the loop here** (stop scheduling wakeups) — a human reply is the only thing that resumes it.
 
 - [ ] **Step 6: ⚙️ Re-enable the Perplexity footer link**
 
