@@ -19,7 +19,7 @@
 - **Reduced motion:** Every animated surface must honor `prefers-reduced-motion` exactly as today (React islands via `useReducedMotion`, CSS via the existing global `@media (prefers-reduced-motion: reduce)` block in the stylesheet).
 - **Design tokens unchanged:** The `@theme` block moves verbatim from `src/index.css` to `src/styles/global.css`; only the three `--font-*` lines change (self-hosted fonts).
 - **Analytics/consent identical:** GA4 `G-S025DFF5N0`, Clarity `r8b7ctb5d6`, localStorage keys `cookie-consent` / `cookie-preferences`, Consent Mode defaults, and the `open-cookie-consent` window event contract are all preserved. `src/utils/analytics.js` is used verbatim.
-- **Versions:** Node >=22.12 (local is v22.17.0 ✓), Astro ^6.3.5, Tailwind ^4.3, keep React ^18.2 / framer-motion ^12 / lenis ^1.3 as-is.
+- **Versions:** Node >=22.12 (local is v22.17.0 ✓), Astro ^6.3.5, Tailwind ^4.3, framer-motion ^12 / lenis ^1.3 as-is. **React is ^19** (updated from the original ^18.2 plan): `astro add react` on Astro 6 installs `@astrojs/react@6`, whose peer is React 19. Verified safe 2026-07-13 — no island component uses any React-19-removed API, and framer-motion 12.42 peer-supports `^18 || ^19`. Islands render identically; Task 14 visual parity is the backstop.
 - **Dev server port stays 5173** (`astro dev --port 5173`) so `scripts/screenshot.js` and `scripts/capture-baselines.sh` keep working with minimal edits.
 - **URL shape:** `trailingSlash: 'never'`, `build: { format: 'file' }` (matches ssp-blog; Apache rewrite serves `/privacy-policy` from `privacy-policy.html`).
 - **Playground is dropped from the production site.** It is preserved on git tag `pre-astro` (checkout the tag to run it). Do not port it.
