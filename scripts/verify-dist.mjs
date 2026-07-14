@@ -1,7 +1,7 @@
 // Asserts the built HTML in dist/ carries the site's actual content —
 // the AEO contract this migration exists to enforce. Extend the checks
 // list as sections land; run via `npm run verify`.
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const dist = (p) => fileURLToPath(new URL(`../dist/${p}`, import.meta.url));
@@ -43,6 +43,17 @@ check('credentials brands SSRed', () =>
   ['Apple', 'JPMorgan Chase', 'Samsung'].every((b) => html('index.html').includes(b)),
 );
 check('credentials section id', () => html('index.html').includes('id="credentials"'));
+check('credentials chart SVG SSRed', () => html('index.html').includes('chart-line'));
+
+// --- De-React Phase A: permanent guardrails ---
+check(
+  'island ceiling: only Services/Outcomes/CookieConsent hydrate',
+  () => (html('index.html').match(/<astro-island/g) || []).length <= 4,
+);
+check(
+  'focus-text applied across sections',
+  () => (html('index.html').match(/focus-text/g) || []).length >= 8,
+);
 
 // --- Task 7: services island ---
 check('services copy SSRed', () => html('index.html').includes('Your marketing investment'));
@@ -112,6 +123,31 @@ check(
 check(
   'bing verification present (when token set)',
   () => !bingTokenSet || html('index.html').includes('name="msvalidate.01"'),
+);
+
+// --- De-React Phase A: CSS scroll-driven FocusText ---
+check('focus-text scroll animation compiled into CSS', () => {
+  const cssFile = readdirSync(dist('_astro')).find((f) => f.endsWith('.css'));
+  const css = readFileSync(dist(`_astro/${cssFile}`), 'utf-8');
+  return css.includes('focus-reveal') && css.includes('animation-timeline');
+});
+
+// --- De-React Phase A: vanilla typewriter ---
+check('hero H1 is static text (no island, no ghost)', () => {
+  const h1 = html('index.html').match(/<h1[\s\S]*?<\/h1>/)?.[0] ?? '';
+  return (
+    h1.includes('Billion-Dollar Brands') &&
+    !h1.includes('astro-island') &&
+    !h1.includes('opacity-0')
+  );
+});
+
+check(
+  'no FocusText/TypewriterText chunks emitted',
+  () =>
+    !readdirSync(dist('_astro')).some(
+      (f) => f.startsWith('FocusText.') || f.startsWith('TypewriterText.'),
+    ),
 );
 
 let failed = 0;

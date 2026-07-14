@@ -1,12 +1,11 @@
 ---
 import Section from '../components/Section.astro';
-import FocusText from '../components/FocusText.jsx';
 import { BODY_CLASSES } from '../constants';
 ---
 
 <Section id="about" label="About">
   <div class="max-w-prose space-y-20 md:space-y-24">
-    <FocusText client:visible className="space-y-10 md:space-y-12">
+    <div class="focus-text -mx-1 px-1 space-y-10 md:space-y-12">
       <h2 class="font-serif text-3xl md:text-5xl italic text-charcoal">
         Tomorrow's billion-dollar brands.
       </h2>
@@ -22,7 +21,7 @@ import { BODY_CLASSES } from '../constants';
           clear plan, and manage marketing like the investment it is.
         </p>
       </div>
-    </FocusText>
+    </div>
 
     <div class="pt-16 lg:pt-24 border-t border-divider">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">

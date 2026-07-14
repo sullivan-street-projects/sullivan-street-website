@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useReducedMotion from '../hooks/useReducedMotion';
 import Section from '../components/Section';
-import FocusText from '../components/FocusText';
 import CTAButton from '../components/CTAButton';
 import {
   ANIMATION,
@@ -55,7 +54,7 @@ const Services = () => {
   return (
     <Section id="services" label="Services" padding="py-16 md:py-24 lg:py-32">
       <div className="mb-12 md:mb-16">
-        <FocusText>
+        <div className="focus-text -mx-1 px-1">
           <h2 className={`${HEADING_CLASSES} mb-8`}>
             Your marketing investment,
             <br />
@@ -64,7 +63,7 @@ const Services = () => {
           <p className={`${BODY_CLASSES} max-w-narrow`}>
             One point of contact. The right team for the job.
           </p>
-        </FocusText>
+        </div>
       </div>
 
       {/* Mobile View - Accordion */}
@@ -73,7 +72,7 @@ const Services = () => {
           {MOBILE_TIERS.map((tier) => {
             const isExpanded = expandedTier === tier.id;
             return (
-              <FocusText key={tier.id}>
+              <div key={tier.id} className="focus-text -mx-1 px-1">
                 <div className="border-b border-divider">
                   {/* Accordion Header */}
                   <button
@@ -137,7 +136,7 @@ const Services = () => {
                     )}
                   </AnimatePresence>
                 </div>
-              </FocusText>
+              </div>
             );
           })}
         </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import Section from '../components/Section';
-import FocusText from '../components/FocusText';
 import useReducedMotion from '../hooks/useReducedMotion';
 import { PARTNER_OUTCOMES } from '../constants';
 
@@ -37,14 +36,14 @@ const PartnerOutcomes = () => {
       <Section id="outcomes" label="Partner Outcomes" divider={true}>
         <div className="max-w-narrow min-h-[300px] flex flex-col justify-between">
           <div className="relative cursor-grab active:cursor-grabbing">
-            <FocusText>
+            <div className="focus-text -mx-1 px-1">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentIndex}
                   initial={{ opacity: 0, x: 10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
                   drag="x"
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={0.2}
@@ -61,7 +60,7 @@ const PartnerOutcomes = () => {
                   </div>
                 </motion.div>
               </AnimatePresence>
-            </FocusText>
+            </div>
           </div>
 
           <div className="flex gap-2 mt-12">
@@ -76,13 +75,13 @@ const PartnerOutcomes = () => {
                   <motion.div
                     layoutId="active-progress"
                     className="absolute top-0 left-0 h-full w-full bg-charcoal"
-                    initial={{ width: "0%" }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 8, ease: "linear" }}
+                    initial={{ width: '0%' }}
+                    animate={{ width: '100%' }}
+                    transition={{ duration: 8, ease: 'linear' }}
                   />
                 )}
                 {idx === currentIndex && !isInView && (
-                   <div className="absolute top-0 left-0 h-full w-0 bg-charcoal" />
+                  <div className="absolute top-0 left-0 h-full w-0 bg-charcoal" />
                 )}
               </button>
             ))}
