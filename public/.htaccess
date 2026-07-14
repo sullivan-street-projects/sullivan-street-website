@@ -28,10 +28,17 @@ ErrorDocument 404 /404.html
   Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.clarity.ms; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://tidycal.com https://*.clarity.ms; frame-src https://tidycal.com;"
 </IfModule>
 
-# Long-cache hashed build assets (Astro emits content-hashed filenames under /_astro/)
+# Long-cache ONLY content-hashed build assets (Astro emits `name.<hash>.ext`
+# under /_astro/ — the hash changes when content changes, so immutable is safe).
+# Non-hashed public assets (og-image.png, image.webp, favicon.ico) keep their
+# filenames when updated, so immutable would pin stale versions for a year —
+# they get a day instead (final-review finding, 2026-07-13).
 <IfModule mod_headers.c>
-  <FilesMatch "\.(js|css|woff2|webp|png|svg|ico)$">
+  <FilesMatch "\.[A-Za-z0-9_-]{8,}\.(js|css|woff2|webp|png|svg)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(webp|png|svg|ico|jpg|jpeg)$">
+    Header setifempty Cache-Control "public, max-age=86400"
   </FilesMatch>
   <FilesMatch "\.html$">
     Header set Cache-Control "public, max-age=0, must-revalidate"
