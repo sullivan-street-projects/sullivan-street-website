@@ -150,6 +150,19 @@ check(
     ),
 );
 
+// --- Prod hardening (2026-07-14): landmarks, entity graph, CLS/CSP hygiene ---
+check(
+  'main landmark on home + legal pages',
+  () =>
+    html('index.html').includes('<main id="main"') && html('privacy-policy.html').includes('<main'),
+);
+check('skip link targets #main', () => html('index.html').includes('href="#main"'));
+check('WebSite node in JSON-LD', () => html('index.html').includes('"@type":"WebSite"'));
+check('no inline onerror handlers', () => !html('index.html').includes('onerror='));
+check('sitemap entries carry lastmod', () =>
+  readFileSync(dist('sitemap-0.xml'), 'utf-8').includes('<lastmod>'),
+);
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;

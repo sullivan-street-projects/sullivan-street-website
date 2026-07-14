@@ -3,6 +3,16 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Canonical host: www -> apex (matches the canonical tag)
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# Strip trailing slashes: /privacy-policy/ -> /privacy-policy (Astro
+# trailingSlash 'never'). Without this the clean-URL rewrite below can't
+# match ("$1/.html" never exists) and the server 500s.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [L,R=301]
+
 # Clean URLs: /privacy-policy -> privacy-policy.html (Astro build.format 'file')
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -25,7 +35,7 @@ ErrorDocument 404 /404.html
   # are covered below. PostHog is deferred (Task 15 decision) — if/when it
   # ships, add its host (https://*.posthog.com or the EU/self-host domain)
   # to BOTH script-src and connect-src here.
-  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.clarity.ms; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://tidycal.com https://*.clarity.ms; frame-src https://tidycal.com;"
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.clarity.ms; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://tidycal.com https://*.clarity.ms; frame-src https://tidycal.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';"
 </IfModule>
 
 # Long-cache ONLY content-hashed build assets (Astro emits `name.<hash>.ext`
@@ -33,12 +43,16 @@ ErrorDocument 404 /404.html
 # Non-hashed public assets (og-image.png, image.webp, favicon.ico) keep their
 # filenames when updated, so immutable would pin stale versions for a year —
 # they get a day instead (final-review finding, 2026-07-13).
+# NOTE: LiteSpeed doesn't support `Header setifempty` (it emitted a literal
+# "setifempty:" response header in production). Ordering does the work
+# instead: the generic image rule runs first, then the hashed-asset rule
+# overrides it for hashed files — the last matching `Header set` wins.
 <IfModule mod_headers.c>
+  <FilesMatch "\.(webp|png|svg|ico|jpg|jpeg)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
   <FilesMatch "\.[A-Za-z0-9_-]{8,}\.(js|css|woff2|webp|png|svg)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
-  </FilesMatch>
-  <FilesMatch "\.(webp|png|svg|ico|jpg|jpeg)$">
-    Header setifempty Cache-Control "public, max-age=86400"
   </FilesMatch>
   <FilesMatch "\.html$">
     Header set Cache-Control "public, max-age=0, must-revalidate"
