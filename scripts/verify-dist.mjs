@@ -162,6 +162,9 @@ check('no inline onerror handlers', () => !html('index.html').includes('onerror=
 check('sitemap entries carry lastmod', () =>
   readFileSync(dist('sitemap-0.xml'), 'utf-8').includes('<lastmod>'),
 );
+check('Organization sameAs entity link', () =>
+  html('index.html').includes('linkedin.com/company/sullivan-street-projects'),
+);
 
 let failed = 0;
 for (const { name, fn } of checks) {
