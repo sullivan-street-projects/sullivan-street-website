@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../sections/Hero.astro';
-import Credentials from '../sections/Credentials.jsx';
+import Credentials from '../sections/Credentials.astro';
 import Statement from '../sections/Statement.astro';
 import Intro from '../sections/Intro.astro';
 import Approach from '../sections/Approach.astro';
@@ -38,7 +38,7 @@ const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='h
 
     <div class="relative z-[2]">
       <Hero />
-      <Credentials client:visible />
+      <Credentials />
       <Statement />
       <Intro />
       <Approach />

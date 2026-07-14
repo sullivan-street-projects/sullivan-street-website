@@ -43,6 +43,7 @@ check('credentials brands SSRed', () =>
   ['Apple', 'JPMorgan Chase', 'Samsung'].every((b) => html('index.html').includes(b)),
 );
 check('credentials section id', () => html('index.html').includes('id="credentials"'));
+check('credentials chart SVG SSRed', () => html('index.html').includes('chart-line'));
 
 // --- Task 7: services island ---
 check('services copy SSRed', () => html('index.html').includes('Your marketing investment'));
