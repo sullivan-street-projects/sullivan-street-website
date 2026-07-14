@@ -25,7 +25,7 @@ SECTIONS=(
   "footer:footer"
 )
 
-# Hero and Contact contain TypewriterText — need longer settle for full text.
+# Hero and Contact contain the vanilla typewriter (scripts/typewriter.js) — need longer settle for full text.
 SETTLE_DEFAULT=1500
 SETTLE_HERO=4000
 SETTLE_CONTACT=4000
