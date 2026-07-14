@@ -43,8 +43,10 @@ function setup(el) {
   // Types on entry, resets on exit — parity with the old IntersectionObserver.
   const io = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
-      cursor.classList.add('tw-cursor-on');
-      startTimer = setTimeout(tick, delay);
+      startTimer = setTimeout(() => {
+        cursor.classList.add('tw-cursor-on');
+        tick();
+      }, delay);
     } else {
       clearTimeout(tickTimer);
       clearTimeout(startTimer);
