@@ -45,6 +45,16 @@ check('credentials brands SSRed', () =>
 check('credentials section id', () => html('index.html').includes('id="credentials"'));
 check('credentials chart SVG SSRed', () => html('index.html').includes('chart-line'));
 
+// --- De-React Phase A: permanent guardrails ---
+check(
+  'island ceiling: only Services/Outcomes/CookieConsent hydrate',
+  () => (html('index.html').match(/<astro-island/g) || []).length <= 4,
+);
+check(
+  'focus-text applied across sections',
+  () => (html('index.html').match(/focus-text/g) || []).length >= 8,
+);
+
 // --- Task 7: services island ---
 check('services copy SSRed', () => html('index.html').includes('Your marketing investment'));
 check('services section id', () => html('index.html').includes('id="services"'));

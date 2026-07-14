@@ -11,7 +11,7 @@ Single-page marketing site for a growth marketing consultancy. Astro 6 (static M
 - **Content:** `src/CONTENT.md` is the single source of truth for all copy. After editing, update the corresponding JSX in `src/sections/`. Also check if `public/llms.txt` needs syncing.
 - **Design tokens:** All colors, fonts, type scale, spacing defined as Tailwind v4 `@theme` variables in `src/index.css`. No hardcoded hex values in components.
 - **Playground:** removed from the Astro site; preserved on git tag `pre-astro` (checkout the tag to run it).
-- **Islands rule:** `.astro` imports always carry the `.astro` extension; extensionless imports resolve to `.jsx`. Static sections are `.astro`; Credentials/Services/PartnerOutcomes/CookieConsent are React islands (`client:visible` / `client:idle`); Lenis lives at `window.__lenis` (`src/scripts/smooth-scroll.js`).
+- **Islands rule:** `.astro` imports always carry the `.astro` extension; extensionless imports resolve to `.jsx`. Static sections are `.astro`; Services/PartnerOutcomes are React islands (`client:visible`) and CookieConsent (`client:idle`) — the ONLY hydrated components (enforced by verify-dist's island ceiling). Lenis lives at `window.__lenis` (`src/scripts/smooth-scroll.js`).
 
 ## Brand & Typography
 
@@ -22,19 +22,20 @@ Single-page marketing site for a growth marketing consultancy. Astro 6 (static M
 
 ## FocusText Rules
 
-FocusText is a scroll-reveal wrapper (opacity 0.4>1, blur 3.5px>0, Y 8px>0). Usage conventions:
+FocusText is a scroll-reveal effect (opacity 0.4→1, blur 3.5px→0, Y 8px→0), implemented as the `.focus-text` CSS class in `src/styles/global.css` using CSS scroll-driven animations (`animation-timeline: view()`). Apply as `class="focus-text -mx-1 px-1"`. No React island required. Usage conventions:
 
 - Wrap content blocks, NOT individual paragraphs within a block
-- Grid/list items each get their own FocusText for staggered reveal
-- Hero is above the fold — NO FocusText wrapping
-- Each FocusText boundary = one scroll-reveal unit
-- Do NOT add FocusText to: section labels, brand name lists, footnotes, CTAs, founder bio
+- Grid/list items each get their own `.focus-text` for staggered reveal
+- Hero is above the fold — NO focus-text
+- Each `.focus-text` element = one scroll-reveal unit
+- Do NOT add to: section labels, brand name lists, footnotes, CTAs, founder bio
+- Non-supporting browsers and reduced-motion users get static, fully visible text
 
 ## Animation & Accessibility
 
 - Every animated component must call `useReducedMotion()` and skip animation when true
 - Global CSS rule in `index.css` disables all CSS animations for `prefers-reduced-motion`
-- TypewriterText triggers on scroll-into-view, takes ~4s to complete
+- Typewriter is a vanilla module (`src/scripts/typewriter.js`) driven by `[data-typewriter]` (`data-tw-speed`, `data-tw-delay`); triggers on scroll-into-view, ~4s to complete; SSR text stays visible without JS
 - FocusText renders at 40% opacity / 3.5px blur until scrolled into view
 
 ## Screenshot Verification

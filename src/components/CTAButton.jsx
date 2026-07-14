@@ -1,8 +1,10 @@
 import React from 'react';
-import AnimatedArrow from './AnimatedArrow';
 
 const CTAButton = ({ href, onClick, children, variant = 'sm' }) => {
   const isLarge = variant === 'lg';
+
+  const arrowSizeClass = isLarge ? 'text-4xl lg:text-6xl' : 'text-lg';
+  const arrowAnimClass = isLarge ? 'animate-arrow-nudge-lg' : 'animate-arrow-nudge';
 
   const textClass = isLarge
     ? 'font-serif text-3xl md:text-4xl lg:text-5xl italic transition-colors duration-300 text-charcoal group-hover:text-charcoal/70'
@@ -24,12 +26,14 @@ const CTAButton = ({ href, onClick, children, variant = 'sm' }) => {
 
   return (
     <div className="group relative inline-block">
-      <Tag
-        {...props}
-        className={`${wrapperClass} cursor-pointer`}
-      >
+      <Tag {...props} className={`${wrapperClass} cursor-pointer`}>
         <span className={`relative z-10 ${textClass}`}>{children}</span>
-        <AnimatedArrow size={variant} className={isLarge ? 'not-italic relative z-10' : 'relative z-10'} />
+        <span
+          aria-hidden="true"
+          className={`${arrowSizeClass} ${arrowAnimClass} ${isLarge ? 'not-italic relative z-10' : 'relative z-10'}`}
+        >
+          →
+        </span>
         <div className={underlineClass} />
       </Tag>
     </div>
