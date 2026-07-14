@@ -297,3 +297,9 @@ These are good prompts to bring back into a planning session, not blockers:
 ---
 
 *This doc captures the state of evaluation as of 2026-05-18. Conditions that would invalidate the recommendation: significant content growth, sustained pain with `CONTENT.md` sync, animation stack changes (dropping Lenis), or team composition changes.*
+
+---
+
+## Postscript — Migration Executed (2026-07-13)
+
+The "migrate later, when…" conditions were met and the migration ran per `docs/superpowers/plans/2026-07-12-astro-migration.md`. Shipped to production 2026-07-14 (deploy `019f5e54`). Live site now serves crawlable static HTML on Astro 6 — the empty-`<div id="root">` AEO failure this doc diagnosed is resolved at the architecture level. Rollback: `git revert` on `main` or redeploy from tag `pre-astro`.
