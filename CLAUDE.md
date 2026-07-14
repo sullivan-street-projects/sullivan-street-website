@@ -9,7 +9,7 @@ Single-page marketing site for a growth marketing consultancy. Astro 6 (static M
 - **Sections:** Hero > Credentials > Statement > Intro > Approach > Services > PartnerOutcomes > About > Contact > Footer
 - **Constants:** All structured data in `src/constants/index.js`, typography classes in `src/constants/typography.js`
 - **Content:** `src/CONTENT.md` is the single source of truth for all copy. After editing, update the corresponding JSX in `src/sections/`. Also check if `public/llms.txt` needs syncing.
-- **Design tokens:** All colors, fonts, type scale, spacing defined as Tailwind v4 `@theme` variables in `src/index.css`. No hardcoded hex values in components.
+- **Design tokens:** All colors, fonts, type scale, spacing defined as Tailwind v4 `@theme` variables in `src/styles/global.css`. No hardcoded hex values in components.
 - **Playground:** removed from the Astro site; preserved on git tag `pre-astro` (checkout the tag to run it).
 - **Islands rule:** `.astro` imports always carry the `.astro` extension; extensionless imports resolve to `.jsx`. Static sections are `.astro`; Services/PartnerOutcomes are React islands (`client:visible`) and CookieConsent (`client:idle`) — the ONLY hydrated components (enforced by verify-dist's island ceiling). Lenis lives at `window.__lenis` (`src/scripts/smooth-scroll.js`).
 
@@ -18,7 +18,7 @@ Single-page marketing site for a growth marketing consultancy. Astro 6 (static M
 - **Serif (Drama):** Libre Baskerville — headlines, statements, emotional content
 - **Sans (Body):** Instrument Sans — body copy, UI, labels (swapped from Inter, Mar 2026)
 - **Mono (Data):** JetBrains Mono — designed but not yet shipped to production
-- **Colors:** Charcoal `#1a1a1a` on paper `#FAFAF8`. See `src/index.css` @theme block for full palette.
+- **Colors:** Charcoal `#1a1a1a` on paper `#FAFAF8`. See `src/styles/global.css` @theme block for full palette.
 
 ## FocusText Rules
 
@@ -34,7 +34,7 @@ FocusText is a scroll-reveal effect (opacity 0.4→1, blur 3.5px→0, Y 8px→0)
 ## Animation & Accessibility
 
 - Every animated component must call `useReducedMotion()` and skip animation when true
-- Global CSS rule in `index.css` disables all CSS animations for `prefers-reduced-motion`
+- Global CSS rule in `src/styles/global.css` disables all CSS animations for `prefers-reduced-motion`
 - Typewriter is a vanilla module (`src/scripts/typewriter.js`) driven by `[data-typewriter]` (`data-tw-speed`, `data-tw-delay`); triggers on scroll-into-view, ~4s to complete; SSR text stays visible without JS
 - FocusText renders at 40% opacity / 3.5px blur until scrolled into view
 
