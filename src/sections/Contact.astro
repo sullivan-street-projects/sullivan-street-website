@@ -1,6 +1,5 @@
 ---
 import Section from '../components/Section.astro';
-import TypewriterText from '../components/TypewriterText.jsx';
 import CTALink from '../components/CTALink.astro';
 import { HEADING_CTA_CLASSES } from '../constants';
 ---
@@ -13,7 +12,7 @@ import { HEADING_CTA_CLASSES } from '../constants';
           <h2 class={HEADING_CTA_CLASSES}>
             Ready to build tomorrow's
             <br />
-            <TypewriterText client:visible text="billion-dollar brand?" />
+            <span class="italic" data-typewriter>billion-dollar brand?</span>
           </h2>
         </div>
         <div>

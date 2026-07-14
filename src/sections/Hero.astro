@@ -1,7 +1,6 @@
 ---
 import Section from '../components/Section.astro';
 import CTALink from '../components/CTALink.astro';
-import TypewriterText from '../components/TypewriterText.jsx';
 import { HEADING_DISPLAY_CLASSES, BODY_CLASSES } from '../constants';
 ---
 
@@ -9,7 +8,7 @@ import { HEADING_DISPLAY_CLASSES, BODY_CLASSES } from '../constants';
   <div class="max-w-content">
     <h1 class={`${HEADING_DISPLAY_CLASSES} mb-8 md:mb-12`}>
       Marketing for Tomorrow's <br />
-      <TypewriterText client:visible text="Billion-Dollar Brands" />
+      <span class="italic" data-typewriter>Billion-Dollar Brands</span>
     </h1>
     <p class={`${BODY_CLASSES} mb-10`}>
       AI-powered strategy, media, and execution. <br class="hidden md:block" />

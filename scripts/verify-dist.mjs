@@ -121,6 +121,16 @@ check('focus-text scroll animation compiled into CSS', () => {
   return css.includes('focus-reveal') && css.includes('animation-timeline');
 });
 
+// --- De-React Phase A: vanilla typewriter ---
+check('hero H1 is static text (no island, no ghost)', () => {
+  const h1 = html('index.html').match(/<h1[\s\S]*?<\/h1>/)?.[0] ?? '';
+  return (
+    h1.includes('Billion-Dollar Brands') &&
+    !h1.includes('astro-island') &&
+    !h1.includes('opacity-0')
+  );
+});
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;
