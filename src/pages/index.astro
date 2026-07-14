@@ -20,7 +20,7 @@ const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='h
 <BaseLayout>
   <div class="min-h-screen bg-paper text-charcoal selection:bg-charcoal selection:text-paper relative font-sans">
     <a
-      href="#approach"
+      href="#main"
       data-native-anchor
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:bg-charcoal focus:text-paper focus:px-4 focus:py-2 focus:rounded"
     >
@@ -37,15 +37,17 @@ const GRAIN_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='h
     <Navigation />
 
     <div class="relative z-[2]">
-      <Hero />
-      <Credentials />
-      <Statement />
-      <Intro />
-      <Approach />
-      <Services client:visible />
-      <PartnerOutcomes client:visible />
-      <About />
-      <Contact />
+      <main id="main">
+        <Hero />
+        <Credentials />
+        <Statement />
+        <Intro />
+        <Approach />
+        <Services client:visible />
+        <PartnerOutcomes client:visible />
+        <About />
+        <Contact />
+      </main>
       <Footer />
     </div>
   </div>

@@ -39,7 +39,16 @@ export default defineConfig({
       fallbacks: ['system-ui', 'sans-serif'],
     },
   ],
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    // lastmod = build time: static site, every deploy re-emits all pages.
+    sitemap({
+      serialize(item) {
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
