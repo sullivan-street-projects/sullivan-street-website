@@ -131,6 +131,14 @@ check('hero H1 is static text (no island, no ghost)', () => {
   );
 });
 
+check(
+  'no FocusText/TypewriterText chunks emitted',
+  () =>
+    !readdirSync(dist('_astro')).some(
+      (f) => f.startsWith('FocusText.') || f.startsWith('TypewriterText.'),
+    ),
+);
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;
