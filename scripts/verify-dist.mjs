@@ -1,7 +1,7 @@
 // Asserts the built HTML in dist/ carries the site's actual content —
 // the AEO contract this migration exists to enforce. Extend the checks
 // list as sections land; run via `npm run verify`.
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const dist = (p) => fileURLToPath(new URL(`../dist/${p}`, import.meta.url));
@@ -113,6 +113,13 @@ check(
   'bing verification present (when token set)',
   () => !bingTokenSet || html('index.html').includes('name="msvalidate.01"'),
 );
+
+// --- De-React Phase A: CSS scroll-driven FocusText ---
+check('focus-text scroll animation compiled into CSS', () => {
+  const cssFile = readdirSync(dist('_astro')).find((f) => f.endsWith('.css'));
+  const css = readFileSync(dist(`_astro/${cssFile}`), 'utf-8');
+  return css.includes('focus-reveal') && css.includes('animation-timeline');
+});
 
 let failed = 0;
 for (const { name, fn } of checks) {
