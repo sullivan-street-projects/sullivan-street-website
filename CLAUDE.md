@@ -70,6 +70,7 @@ Baseline capture: `bash scripts/capture-baselines.sh` (9 sections x 3 viewports 
 - Bing Webmaster: `node scripts/bing.mjs` (sites/perf/queries/sitemaps/sitemap-submit/quota) — API key at `~/.secrets/ssp-bing-key.txt`. Bing's AI Performance report (Copilot citations) is UI-only.
 - GA4: `node scripts/ga.mjs` (properties/report/pages/sources/realtime) — same service-account key as gsc.mjs.
 - Clarity (SSP): `node scripts/clarity.mjs insights [1-3] [dimension]` — token at `~/.secrets/ssp-clarity-token.txt`, **hard limit 10 API calls/day**. The `clarity` MCP connector is the Cloud Club project, NOT this site.
+- TidyCal: `node scripts/tidycal.mjs` (summary/bookings/types) — token at `~/.secrets/ssp-tidycal-token.txt`. Source of truth for ACTUAL bookings; GA4 only carries TidyCal's funnel events (fired from tidycal.com + call.sullivanstreetprojects.com via its GA integration). `book_call_click` + `select_time` are GA4 Key Events.
 - Server is **LiteSpeed**, not Apache: `Header setifempty` is unsupported (it emits a literal `setifempty:` response header). Use rule ordering instead — last matching `Header set` wins.
 - Hostinger's WAF 403s spoofed crawler user-agents from non-crawler IPs (anti-spoofing) — you cannot test real crawler access with `curl -A Googlebot`. Verify via an independent-infrastructure fetch or Search Console.
 
