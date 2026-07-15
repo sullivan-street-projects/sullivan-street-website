@@ -78,6 +78,14 @@ export function loadGA4() {
   document.head.appendChild(script);
 
   gtag('js', new Date());
+  // Cross-domain linking: decorate outbound links to the TidyCal booking
+  // surfaces with the _gl session parameter, so a visitor's original source
+  // survives the hop and bookings attribute to the real channel. The
+  // GA4-UI "Configure your domains" setting is the server-side complement
+  // (covers the accepting side) — this covers the sending side in code.
+  gtag('set', 'linker', {
+    domains: ['sullivanstreetprojects.com', 'tidycal.com', 'call.sullivanstreetprojects.com'],
+  });
   gtag('config', GA4_ID);
 }
 
