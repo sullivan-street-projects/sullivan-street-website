@@ -65,7 +65,8 @@ Baseline capture: `bash scripts/capture-baselines.sh` (9 sections x 3 viewports 
 
 ## Deployment (Hostinger)
 
-- Deploy = `npm run build`, zip the **contents** of `dist/` (must include `.htaccess` — use `zip -rq out.zip .` from inside dist/), then `hosting_deployStaticWebsite` (Hostinger MCP) with domain `sullivanstreetprojects.com`. Always live-verify after (routes, headers, key content markers).
+- Deploy = `npm run build` (regenerates `llms.txt` from constants), zip the **contents** of `dist/` (must include `.htaccess` — use `zip -rq out.zip .` from inside dist/), then `hosting_deployStaticWebsite` (Hostinger MCP) with domain `sullivanstreetprojects.com`. Always live-verify after (routes, headers, key content markers), then `node scripts/indexnow.mjs` to ping Bing/Copilot.
+- Search Console: `node scripts/gsc.mjs` (sites/perf/inspect/sitemaps/sitemap-submit) — service-account key at `~/.secrets/ssp-gsc-sa.json`, never in the repo.
 - Server is **LiteSpeed**, not Apache: `Header setifempty` is unsupported (it emits a literal `setifempty:` response header). Use rule ordering instead — last matching `Header set` wins.
 - Hostinger's WAF 403s spoofed crawler user-agents from non-crawler IPs (anti-spoofing) — you cannot test real crawler access with `curl -A Googlebot`. Verify via an independent-infrastructure fetch or Search Console.
 
