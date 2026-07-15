@@ -165,6 +165,9 @@ check('sitemap entries carry lastmod', () =>
 check('Organization sameAs entity link', () =>
   html('index.html').includes('linkedin.com/company/sullivan-street-projects'),
 );
+// AI citation surfaces (Google AI mode etc.) show <title> entities raw —
+// copy must use typographic ’ (U+2019), which needs no escaping.
+check('no HTML-entity apostrophes leak into markup', () => !html('index.html').includes('&#39;'));
 
 let failed = 0;
 for (const { name, fn } of checks) {
