@@ -54,7 +54,7 @@ const config = {
   delay: parseInt(values.delay, 10),
 };
 
-function isPortOpen(port, host = 'localhost') {
+function probeHost(port, host) {
   return new Promise((resolve) => {
     const socket = createConnection({ port, host });
     socket.once('connect', () => {
@@ -68,6 +68,14 @@ function isPortOpen(port, host = 'localhost') {
   });
 }
 
+// 'localhost' may resolve to IPv4 while the dev server binds IPv6-only (or
+// vice versa) — probe both families so a running server is never missed.
+async function isPortOpen(port, host = 'localhost') {
+  const hosts = host === 'localhost' ? ['127.0.0.1', '::1'] : [host];
+  const results = await Promise.all(hosts.map((h) => probeHost(port, h)));
+  return results.some(Boolean);
+}
+
 async function ensureDevServer(url) {
   const parsed = new URL(url);
   const port = parsed.port || (parsed.protocol === 'https:' ? 443 : 80);
@@ -76,34 +84,27 @@ async function ensureDevServer(url) {
     return null; // already running
   }
 
-  console.log(`Starting Vite dev server on port ${port}...`);
-  const child = spawn('npx', ['astro', 'dev', '--port', String(port)], {
+  console.log(`Starting Astro dev server on port ${port}...`);
+  const child = spawn('npx', ['astro', 'dev', '--host', '127.0.0.1', '--port', String(port)], {
     cwd: process.cwd(),
-    stdio: ['ignore', 'pipe', 'inherit'],
+    stdio: ['ignore', 'ignore', 'inherit'],
   });
 
-  // Wait for server to be ready
+  // Readiness = the port accepts connections. Polling the socket is immune
+  // to dev-server output-format changes (Astro 6 stopped printing 'Local:',
+  // which silently broke the old stdout-substring detection).
   await new Promise((resolve, reject) => {
-    const timeout = setTimeout(
-      () => reject(new Error('Dev server start timed out after 30s')),
-      30_000,
-    );
-    child.stdout.on('data', (data) => {
-      if (data.toString().includes('Local:')) {
-        clearTimeout(timeout);
-        resolve();
-      }
-    });
-    child.on('error', (err) => {
-      clearTimeout(timeout);
-      reject(err);
-    });
+    const deadline = Date.now() + 30_000;
+    child.on('error', reject);
     child.on('exit', (code) => {
-      if (code) {
-        clearTimeout(timeout);
-        reject(new Error(`Dev server exited with code ${code}`));
-      }
+      if (code) reject(new Error(`Dev server exited with code ${code}`));
     });
+    const poll = async () => {
+      if (await isPortOpen(Number(port), parsed.hostname)) return resolve();
+      if (Date.now() > deadline) return reject(new Error('Dev server start timed out after 30s'));
+      setTimeout(poll, 500);
+    };
+    poll();
   });
 
   console.log('Dev server ready.');
