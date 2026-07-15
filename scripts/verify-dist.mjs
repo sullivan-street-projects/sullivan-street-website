@@ -3,6 +3,7 @@
 // list as sections land; run via `npm run verify`.
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { TIERS, VALUE_PROPS } from '../src/constants/index.js';
 
 const dist = (p) => fileURLToPath(new URL(`../dist/${p}`, import.meta.url));
 const html = (p) => readFileSync(dist(p), 'utf-8');
@@ -165,6 +166,14 @@ check('sitemap entries carry lastmod', () =>
 check('Organization sameAs entity link', () =>
   html('index.html').includes('linkedin.com/company/sullivan-street-projects'),
 );
+// llms.txt is build-generated from the constants SSOT (scripts/generate-llms.mjs)
+check('llms.txt carries generated marker', () =>
+  readFileSync(dist('llms.txt'), 'utf-8').includes('generated from src/constants'),
+);
+check('llms.txt structured sections in sync with constants', () => {
+  const txt = readFileSync(dist('llms.txt'), 'utf-8');
+  return [...TIERS, ...VALUE_PROPS].every((x) => txt.includes(x.description));
+});
 // AI citation surfaces (Google AI mode etc.) show <title> entities raw —
 // copy must use typographic ’ (U+2019), which needs no escaping.
 check('no HTML-entity apostrophes leak into markup', () => !html('index.html').includes('&#39;'));

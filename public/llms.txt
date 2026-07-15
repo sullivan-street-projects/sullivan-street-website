@@ -1,3 +1,4 @@
+<!-- generated from src/constants/index.js by scripts/generate-llms.mjs — edit the generator, not this file -->
 # Sullivan Street Projects
 
 > Fractional growth consultancy for tomorrow's billion-dollar brands. AI-powered strategy, media, and execution. Based in New York. [sullivanstreetprojects.com](https://sullivanstreetprojects.com)
@@ -21,8 +22,8 @@ Sullivan Street Projects is a fractional growth consultancy based in New York. W
 Executive growth strategist with 10+ years of experience. Previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and Google.
 
 ## Key Outcomes
-- **Exclusive Beauty Club:** From flat to +30% in 90 days via strategy, media, and operations transformation.
-- **Cloud Club:** Zero to market in eight weeks. Introducing the first AI-powered marketplace for Salesforce talent.
+- **Exclusive Beauty Club:** +30% revenue in 90 days. Luxury beauty retailer breaks growth plateau after strategy, media, and operations transformation.
+- **Cloud Club:** Zero to market in eight weeks. The first AI-powered marketplace for Salesforce talent.
 
 ## Contact
 - **Email:** hello@sullivanstreetprojects.co
