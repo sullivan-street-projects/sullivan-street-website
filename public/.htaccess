@@ -13,6 +13,11 @@ RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1 [L,R=301]
 
+# Rescue booking-intent clicks: a malformed (relative) TidyCal link exists in
+# the wild — GA4 shows real users landing on this path and 404ing. 301 them
+# to the actual booking page. (Found via ga.mjs pages report, 2026-07-15.)
+RewriteRule ^sullivan-street-projects/growth-consultation/?$ https://tidycal.com/sullivan-street-projects/growth-consultation [L,R=301]
+
 # Clean URLs: /privacy-policy -> privacy-policy.html (Astro build.format 'file')
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
