@@ -13,11 +13,21 @@ function gtag() {
  * If opted out, sets consent to denied and skips both.
  */
 export function initAnalytics() {
+  // Local dev/preview sessions were polluting GA4 (localhost:4321 was the
+  // #2 traffic source, 2026-07-15). Analytics only runs on the real host.
+  if (['localhost', '127.0.0.1'].includes(window.location.hostname)) {
+    console.info('[analytics] skipped on local host');
+    return;
+  }
+
   window.gtag = gtag;
 
   const isOptedOut = (() => {
-    try { return localStorage.getItem(CONSENT_KEY) === 'opted-out'; }
-    catch { return true; }
+    try {
+      return localStorage.getItem(CONSENT_KEY) === 'opted-out';
+    } catch {
+      return true;
+    }
   })();
 
   if (isOptedOut) {
@@ -87,10 +97,17 @@ export function loadClarity() {
 
   // Official Microsoft Clarity snippet — creates window.clarity command queue
   // and async-loads the real tag. Commands pushed before load are buffered.
-  (function(c,l,a,r,i,t,y){
-    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  (function (c, l, a, r, i, t, y) {
+    c[a] =
+      c[a] ||
+      function () {
+        (c[a].q = c[a].q || []).push(arguments);
+      };
+    t = l.createElement(r);
+    t.async = 1;
+    t.src = 'https://www.clarity.ms/tag/' + i;
+    y = l.getElementsByTagName(r)[0];
+    y.parentNode.insertBefore(t, y);
   })(window, document, 'clarity', 'script', CLARITY_ID);
 
   // SSP does not run ads — ad_Storage stays denied regardless of user choice.
