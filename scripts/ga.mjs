@@ -147,6 +147,30 @@ if (cmd === 'properties') {
     limit: 15,
   });
   printRows(data, ['source', 'sessions', 'users']);
+} else if (cmd === 'events') {
+  const property = await resolveProperty();
+  const data = await runReport(property, {
+    dateRanges: [range],
+    dimensions: [{ name: 'eventName' }],
+    metrics: [{ name: 'eventCount' }, { name: 'totalUsers' }],
+    orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
+    limit: 20,
+  });
+  printRows(data, ['event', 'count', 'users']);
+} else if (cmd === 'clicks') {
+  // Outbound link clicks (GA4 enhanced measurement `click` event) by target URL.
+  const property = await resolveProperty();
+  const data = await runReport(property, {
+    dateRanges: [range],
+    dimensions: [{ name: 'linkUrl' }],
+    metrics: [{ name: 'eventCount' }],
+    dimensionFilter: {
+      filter: { fieldName: 'eventName', stringFilter: { value: 'click' } },
+    },
+    orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
+    limit: 15,
+  });
+  printRows(data, ['linkUrl', 'clicks']);
 } else if (cmd === 'realtime') {
   const property = await resolveProperty();
   const data = await api(

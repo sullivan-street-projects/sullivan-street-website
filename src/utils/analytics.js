@@ -46,7 +46,23 @@ export function initAnalytics() {
     });
     loadGA4();
     loadClarity();
+    trackBookingClicks();
   }
+}
+
+/**
+ * First-party conversion event for the TidyCal booking CTA.
+ * GA4's enhanced-measurement `click` lumps all outbound links together
+ * (AI-summary links included) — `book_call_click` isolates booking intent
+ * and is marked as a GA4 Key Event. Mirrored to Clarity for session filtering.
+ */
+function trackBookingClicks() {
+  document.addEventListener('click', (event) => {
+    const anchor = event.target.closest('a[href*="tidycal.com/sullivan-street-projects"]');
+    if (!anchor) return;
+    gtag('event', 'book_call_click', { link_url: anchor.href });
+    if (window.clarity) window.clarity('event', 'book_call_click');
+  });
 }
 
 /**
