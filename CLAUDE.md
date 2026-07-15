@@ -54,7 +54,7 @@ Baseline capture: `bash scripts/capture-baselines.sh` (9 sections x 3 viewports 
 
 - No SVG animations in Intro section — removed intentionally to let text breathe
 - Footer Privacy/Terms are live `<Link>` routes to full legal pages (`/privacy-policy`, `/terms-and-conditions`)
-- Contact CTA links to TidyCal booking (`tidycal.com/sullivan-street-projects/growth-consultation`)
+- Contact CTA links to TidyCal booking (`tidycal.com/sullivan-street-projects/growth-consultation`) — **deliberately NOT the branded `call.sullivanstreetprojects.com`**, which lands on the booking _directory_ (all types) instead of the specific consultation: worse UX. Do not "upgrade" the CTA to the branded domain.
 
 ## Analytics & Observability
 
