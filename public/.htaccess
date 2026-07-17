@@ -40,7 +40,13 @@ ErrorDocument 404 /404.html
   # are covered below. PostHog is deferred (Task 15 decision) — if/when it
   # ships, add its host (https://*.posthog.com or the EU/self-host domain)
   # to BOTH script-src and connect-src here.
-  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.clarity.ms; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://tidycal.com https://*.clarity.ms; frame-src https://tidycal.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';"
+  # RB2B (visitor identification, added 2026-07-16): hosts extracted from the
+  # deobfuscated tag itself (RB2B publishes no CSP list). Loader script on
+  # ddwl4m2hdecbv.cloudfront.net with S3 fallbacks; collector on a dynamic
+  # *.execute-api.us-west-2.amazonaws.com subdomain; identity partners
+  # LiveIntent (*.liadm.com) + usbrowserspeed; geo via pro.ip-api.com;
+  # config via alocdn.com. Re-extract if RB2B silently stops reporting.
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.clarity.ms https://ddwl4m2hdecbv.cloudfront.net https://b2bjsstore.s3.us-west-2.amazonaws.com https://s3-us-west-2.amazonaws.com https://*.liadm.com https://a.usbrowserspeed.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.clarity.ms https://*.liadm.com https://a.usbrowserspeed.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://tidycal.com https://*.clarity.ms https://app.rb2b.com https://*.execute-api.us-west-2.amazonaws.com https://pro.ip-api.com https://a.usbrowserspeed.com https://alocdn.com https://*.liadm.com https://ddwl4m2hdecbv.cloudfront.net https://b2bjsstore.s3.us-west-2.amazonaws.com https://s3-us-west-2.amazonaws.com; frame-src https://tidycal.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';"
 </IfModule>
 
 # Long-cache ONLY content-hashed build assets (Astro emits `name.<hash>.ext`

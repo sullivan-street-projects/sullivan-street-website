@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useReducedMotion from '../hooks/useReducedMotion';
-import { disableGA4, loadGA4, disableClarity, loadClarity } from '../utils/analytics';
+import { disableGA4, loadGA4, disableClarity, loadClarity, loadReb2b } from '../utils/analytics';
 
 const CONSENT_KEY = 'cookie-consent';
 const PREFS_KEY = 'cookie-preferences';
@@ -122,10 +122,12 @@ export default function CookieConsent() {
       setConsent('acknowledged');
       loadGA4();
       loadClarity();
+      loadReb2b();
     } else {
       setConsent('opted-out');
       disableGA4();
       disableClarity();
+      // RB2B has no revoke API — opt-out stops it on the next page load.
     }
     closeBanner();
   };
@@ -194,7 +196,7 @@ export default function CookieConsent() {
                     />
                     <Toggle
                       label="Analytics"
-                      description="Pageview metrics and session replays (with form fields masked) so we can understand and improve the site."
+                      description="Pageview metrics, session replays (with form fields masked), and business visitor identification so we can understand and improve the site."
                       checked={prefs.analytics}
                       onChange={() => setPrefsState({ ...prefs, analytics: !prefs.analytics })}
                     />

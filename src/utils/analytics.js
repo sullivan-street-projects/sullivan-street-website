@@ -1,5 +1,6 @@
 const GA4_ID = 'G-S025DFF5N0';
 const CLARITY_ID = 'r8b7ctb5d6';
+const REB2B_KEY = '4N210HX7X96Z';
 const CONSENT_KEY = 'cookie-consent';
 
 function gtag() {
@@ -22,13 +23,19 @@ export function initAnalytics() {
 
   window.gtag = gtag;
 
-  const isOptedOut = (() => {
-    try {
-      return localStorage.getItem(CONSENT_KEY) === 'opted-out';
-    } catch {
-      return true;
-    }
-  })();
+  // Global Privacy Control: the privacy policy commits to honoring GPC,
+  // so a browser-level signal counts as an opt-out for the whole stack.
+  const gpcSignal = navigator.globalPrivacyControl === true;
+
+  const isOptedOut =
+    gpcSignal ||
+    (() => {
+      try {
+        return localStorage.getItem(CONSENT_KEY) === 'opted-out';
+      } catch {
+        return true;
+      }
+    })();
 
   if (isOptedOut) {
     gtag('consent', 'default', {
@@ -46,6 +53,7 @@ export function initAnalytics() {
     });
     loadGA4();
     loadClarity();
+    loadReb2b();
     trackBookingClicks();
   }
 }
@@ -136,6 +144,23 @@ export function loadClarity() {
 
   // SSP does not run ads — ad_Storage stays denied regardless of user choice.
   window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'granted' });
+}
+
+/**
+ * RB2B visitor identification (person-level company/contact resolution).
+ * Identifies individual visitors, so it rides the same consent gate as
+ * GA4/Clarity — never load it without analytics consent. RB2B has no
+ * consent-revoke API: opt-out means we don't load it, and a mid-session
+ * opt-out takes effect on the next page load.
+ * Safe to call multiple times — the window.reb2b stub guards double-load.
+ */
+export function loadReb2b() {
+  if (window.reb2b) return;
+  window.reb2b = { loaded: true };
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://ddwl4m2hdecbv.cloudfront.net/b/${REB2B_KEY}/${REB2B_KEY}.js.gz`;
+  document.head.appendChild(script);
 }
 
 /**
