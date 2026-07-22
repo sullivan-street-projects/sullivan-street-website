@@ -73,16 +73,29 @@ html {
    own bottom-* utilities remain its resting position (and its no-JS
    fallback — the producer is a client:idle island).
 
-   Deliberately NOT transitioned: the height is republished as the consent
-   preferences panel animates open, so a CSS transition would chase a moving
-   target and lag behind the banner's true top edge. The nav instead tracks
-   Framer's animation directly. */
+   Motion is deliberately asymmetric, and gated on [data-rail-settling]:
+
+   - Opening / tracking (no transition). The height is republished as the
+     preferences panel animates, so a transition would chase a moving target
+     and lag behind the banner's true top edge. The nav tracks Framer's
+     animation directly instead, and gets clear of an appearing banner
+     immediately rather than sliding through it.
+   - Closing (transition). The banner has already finished exiting, so
+     there's nothing left to collide with and the drop is pure polish.
+     The settling flag is set only for that discrete 0-height write. */
 :root {
   --consent-bar-height: 0px;
 }
 
 .bottom-rail {
   transform: translateY(calc(-1 * var(--consent-bar-height)));
+}
+
+[data-rail-settling] .bottom-rail {
+  /* Decisive start, soft landing — reads as settling, not dropping.
+     prefers-reduced-motion is handled by the global reset further down,
+     which forces transition-duration to 0.01ms. */
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* The consent banner is the rail's only producer. Cap its height so the nav

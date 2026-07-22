@@ -44,9 +44,31 @@ const DEFAULT_PREFS = {
 };
 
 const RAIL_VAR = '--consent-bar-height';
+const RAIL_SETTLING = 'data-rail-settling';
+const RAIL_SETTLE_MS = 400; // keep in sync with the transition in global.css
 
 function setRail(value) {
   document.documentElement.style.setProperty(RAIL_VAR, value);
+}
+
+// The rail only animates for the discrete close. Any tracking write (the
+// ResizeObserver following the preferences panel) must clear the flag first,
+// or the nav would lag behind the banner it's supposed to stay clear of.
+let settleTimer = null;
+
+function stopSettling() {
+  clearTimeout(settleTimer);
+  document.documentElement.removeAttribute(RAIL_SETTLING);
+}
+
+function settleRailToRest() {
+  const root = document.documentElement;
+  clearTimeout(settleTimer);
+  root.setAttribute(RAIL_SETTLING, '');
+  setRail('0px');
+  // Self-healing: if the banner re-opens mid-settle, the layout effect clears
+  // the flag anyway, so a stale timer can never leave the rail animating.
+  settleTimer = setTimeout(() => root.removeAttribute(RAIL_SETTLING), RAIL_SETTLE_MS + 100);
 }
 
 // Astro server-renders islands, so useLayoutEffect must not run on the server.
@@ -129,6 +151,10 @@ export default function CookieConsent() {
     const el = barRef.current;
     if (!visible || !el) return;
 
+    // Opening (or re-opening mid-settle): never animate the lift, or the nav
+    // would slide up through the banner instead of being clear of it.
+    stopSettling();
+
     let last = null;
     const publish = (height) => {
       const next = `${Math.ceil(height)}px`;
@@ -168,8 +194,14 @@ export default function CookieConsent() {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [visible]);
 
-  // A view transition or HMR must never strand a lifted nav.
-  useEffect(() => () => setRail('0px'), []);
+  // A view transition or HMR must never strand a lifted nav (or a live timer).
+  useEffect(
+    () => () => {
+      stopSettling();
+      setRail('0px');
+    },
+    [],
+  );
 
   const closeBanner = () => {
     setVisible(false);
@@ -216,7 +248,8 @@ export default function CookieConsent() {
         // Only now is the banner actually gone. Resetting when `visible`
         // flips would drop the nav while a full-height, still-opaque banner
         // is exiting on top of it, so the nav would dive behind the bar.
-        setRail('0px');
+        // Nothing left to collide with, so this one write gets to animate.
+        settleRailToRest();
       }}
     >
       {visible && (
