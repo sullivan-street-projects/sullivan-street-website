@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useReducedMotion from '../hooks/useReducedMotion';
 import { disableGA4, loadGA4, disableClarity, loadClarity, loadReb2b } from '../utils/analytics';
@@ -43,6 +43,15 @@ const DEFAULT_PREFS = {
   analytics: true,
 };
 
+const RAIL_VAR = '--consent-bar-height';
+
+function setRail(value) {
+  document.documentElement.style.setProperty(RAIL_VAR, value);
+}
+
+// Astro server-renders islands, so useLayoutEffect must not run on the server.
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
 function Toggle({ checked, onChange, label, description, disabled }) {
   return (
     <label className="flex items-start justify-between gap-4 cursor-pointer">
@@ -78,11 +87,19 @@ export default function CookieConsent() {
   const [prefs, setPrefsState] = useState(DEFAULT_PREFS);
   const prefersReducedMotion = useReducedMotion();
 
+  const barRef = useRef(null);
+  // Focus is only moved for the user-initiated (footer) open, never for the
+  // passive scroll-triggered one — see the region semantics below.
+  const openerRef = useRef(null);
+  const manualRef = useRef(false);
+
   useEffect(() => {
     const consent = getConsent();
 
     // Listen for manual open (footer link)
     const handleOpen = () => {
+      openerRef.current = document.activeElement;
+      manualRef.current = true;
       const stored = getPrefs();
       if (stored) setPrefsState(stored);
       setShowPrefs(true);
@@ -105,9 +122,62 @@ export default function CookieConsent() {
     return () => window.removeEventListener('open-cookie-consent', handleOpen);
   }, []);
 
+  // Publish the height we occupy so .bottom-rail consumers (the nav pill)
+  // lift clear of us. A layout effect, not useEffect: useEffect runs after
+  // paint, which would show the banner over the nav for a frame.
+  useIsomorphicLayoutEffect(() => {
+    const el = barRef.current;
+    if (!visible || !el) return;
+
+    let last = null;
+    const publish = (height) => {
+      const next = `${Math.ceil(height)}px`;
+      if (next === last) return; // avoid redundant style invalidation
+      last = next;
+      setRail(next);
+    };
+
+    publish(el.getBoundingClientRect().height);
+
+    // Guard: a throw here would take down the whole consent island, which
+    // also gates analytics loading. Without ResizeObserver the nav lifts by
+    // the collapsed height and won't track the preferences panel.
+    if (!('ResizeObserver' in window)) return;
+
+    const ro = new ResizeObserver(([entry]) => {
+      const box = Array.isArray(entry.borderBoxSize) ? entry.borderBoxSize[0] : entry.borderBoxSize;
+      publish(box?.blockSize ?? el.getBoundingClientRect().height);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [visible]);
+
+  // Move focus in only when the user asked for the banner (footer button).
+  useEffect(() => {
+    if (visible && manualRef.current) barRef.current?.focus();
+  }, [visible]);
+
+  // Escape dismisses without recording consent — analytics stay unloaded,
+  // which is the privacy-safe default.
+  useEffect(() => {
+    if (!visible) return;
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') closeBanner();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [visible]);
+
+  // A view transition or HMR must never strand a lifted nav.
+  useEffect(() => () => setRail('0px'), []);
+
   const closeBanner = () => {
     setVisible(false);
     setShowPrefs(false);
+    if (manualRef.current) {
+      openerRef.current?.focus?.();
+      manualRef.current = false;
+    }
   };
 
   const handleGotIt = () => {
@@ -141,16 +211,29 @@ export default function CookieConsent() {
       };
 
   return (
-    <AnimatePresence>
+    <AnimatePresence
+      onExitComplete={() => {
+        // Only now is the banner actually gone. Resetting when `visible`
+        // flips would drop the nav while a full-height, still-opaque banner
+        // is exiting on top of it, so the nav would dive behind the bar.
+        setRail('0px');
+      }}
+    >
       {visible && (
         <motion.div
+          ref={barRef}
           {...animationProps}
           transition={{ duration: 0.3, ease: 'easeOut' }}
-          role="dialog"
-          aria-label="Cookie consent"
-          className="fixed bottom-0 left-0 right-0 z-[150] bg-charcoal/95 backdrop-blur-sm px-6 py-4 md:px-10 md:py-5"
+          role="region"
+          aria-labelledby="cookie-consent-heading"
+          tabIndex={-1}
+          data-lenis-prevent
+          className="consent-bar fixed bottom-0 left-0 right-0 z-[150] bg-charcoal/95 backdrop-blur-sm px-6 pt-4 md:px-10 md:pt-5"
         >
           <div className="max-w-site mx-auto">
+            <h2 id="cookie-consent-heading" className="sr-only">
+              Cookie consent
+            </h2>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-paper/90 font-sans text-ui leading-relaxed max-w-prose">
                 We use cookies to understand how visitors engage with our site.{' '}
