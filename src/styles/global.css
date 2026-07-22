@@ -67,6 +67,57 @@ html {
   scroll-behavior: auto;
 }
 
+/* --- Bottom rail -------------------------------------------------------
+   Bottom-docked UI publishes the height it occupies here; .bottom-rail
+   consumers lift clear of it. Default 0px = nothing docked, so a consumer's
+   own bottom-* utilities remain its resting position (and its no-JS
+   fallback — the producer is a client:idle island).
+
+   Deliberately NOT transitioned: the height is republished as the consent
+   preferences panel animates open, so a CSS transition would chase a moving
+   target and lag behind the banner's true top edge. The nav instead tracks
+   Framer's animation directly. */
+:root {
+  --consent-bar-height: 0px;
+}
+
+.bottom-rail {
+  transform: translateY(calc(-1 * var(--consent-bar-height)));
+}
+
+/* The consent banner is the rail's only producer. Cap its height so the nav
+   can ALWAYS clear it, and keep its controls out of the home-indicator zone
+   (the nav has safe-area padding; the banner never did).
+
+   Why 14rem of reserved space — the nav pill's top edge sits at
+   (reserve − nav base offset − safe-area − pill height) from the viewport
+   top, and must clear the 5rem fixed Header:
+     5rem header + 2.5rem md:bottom-10 + ~2.75rem pill + ~2rem safe-area
+     + 0.5rem breathing room ≈ 12.75rem, rounded up to 14rem.
+   All rem, so it scales with the user's text size. A 10rem reserve puts the
+   pill INSIDE the header, and nav z-[100] paints over header z-[80]. */
+.consent-bar {
+  max-height: calc(100dvh - 14rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* The fallback must live in an at-rule: as two same-property declarations
+   the minifier (Lightning CSS) dedupes them and drops the vh one, leaving
+   pre-dvh browsers with no cap at all. */
+@supports not (height: 100dvh) {
+  .consent-bar {
+    max-height: calc(100vh - 14rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .consent-bar {
+    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* Hide scrollbar but allow scrolling */
 .scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
