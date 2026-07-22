@@ -85,6 +85,14 @@ html {
      The settling flag is set only for that discrete 0-height write. */
 :root {
   --consent-bar-height: 0px;
+
+  /* Matched to Lenis so the nav settles with the same motion signature as
+     the page scroll: duration 0.8s, easing 1.001 - 2^(-10t) (expo-out) —
+     see src/scripts/smooth-scroll.js. cubic-bezier(0.16, 1, 0.3, 1) is the
+     standard CSS approximation of expo-out. The JS reads this duration
+     rather than hardcoding it, so the two can't drift apart. */
+  --rail-settle-duration: 800ms;
+  --rail-settle-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .bottom-rail {
@@ -92,10 +100,9 @@ html {
 }
 
 [data-rail-settling] .bottom-rail {
-  /* Decisive start, soft landing — reads as settling, not dropping.
-     prefers-reduced-motion is handled by the global reset further down,
+  /* prefers-reduced-motion is handled by the global reset further down,
      which forces transition-duration to 0.01ms. */
-  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--rail-settle-duration) var(--rail-settle-ease);
 }
 
 /* The consent banner is the rail's only producer. Cap its height so the nav
