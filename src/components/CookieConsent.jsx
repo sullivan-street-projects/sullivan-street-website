@@ -45,7 +45,17 @@ const DEFAULT_PREFS = {
 
 const RAIL_VAR = '--consent-bar-height';
 const RAIL_SETTLING = 'data-rail-settling';
-const RAIL_SETTLE_MS = 400; // keep in sync with the transition in global.css
+
+// Read the duration from CSS rather than hardcoding it, so tuning the motion
+// in global.css can never leave this timer out of sync.
+function settleDurationMs() {
+  const raw = getComputedStyle(document.documentElement)
+    .getPropertyValue('--rail-settle-duration')
+    .trim();
+  const value = parseFloat(raw);
+  if (!value) return 800;
+  return raw.endsWith('ms') ? value : value * 1000;
+}
 
 function setRail(value) {
   document.documentElement.style.setProperty(RAIL_VAR, value);
@@ -68,7 +78,7 @@ function settleRailToRest() {
   setRail('0px');
   // Self-healing: if the banner re-opens mid-settle, the layout effect clears
   // the flag anyway, so a stale timer can never leave the rail animating.
-  settleTimer = setTimeout(() => root.removeAttribute(RAIL_SETTLING), RAIL_SETTLE_MS + 100);
+  settleTimer = setTimeout(() => root.removeAttribute(RAIL_SETTLING), settleDurationMs() + 100);
 }
 
 // Astro server-renders islands, so useLayoutEffect must not run on the server.
