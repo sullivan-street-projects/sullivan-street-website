@@ -122,6 +122,20 @@ async function takeScreenshot(url, config) {
       deviceScaleFactor: config.scale,
     });
 
+    // Pre-consent so the cookie banner never appears in a capture. It is
+    // scroll-triggered, and --scroll-to / capture-baselines.sh scroll by
+    // definition — so without this every shot would include the banner AND a
+    // nav pill lifted by the bottom rail, making baselines both wrong and
+    // timing-dependent (the rail's settle is animated). Must run before
+    // navigation: the island reads consent once, on mount.
+    await page.evaluateOnNewDocument(() => {
+      try {
+        localStorage.setItem('cookie-consent', 'acknowledged');
+      } catch {
+        /* storage unavailable — banner will show; capture is still usable */
+      }
+    });
+
     await page.goto(url, { waitUntil: 'networkidle0' });
 
     if (config.delay > 0) {

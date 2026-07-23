@@ -8,6 +8,19 @@ import { TIERS, VALUE_PROPS } from '../src/constants/index.js';
 const dist = (p) => fileURLToPath(new URL(`../dist/${p}`, import.meta.url));
 const html = (p) => readFileSync(dist(p), 'utf-8');
 
+// Emitted bundles. Filenames are content-hashed and move for unrelated
+// reasons, so always resolve by extension/prefix — never a remembered name.
+const distCss = () =>
+  readdirSync(dist('_astro'))
+    .filter((f) => f.endsWith('.css'))
+    .map((f) => readFileSync(dist(`_astro/${f}`), 'utf-8'))
+    .join('\n');
+const distJs = (prefix) =>
+  readdirSync(dist('_astro'))
+    .filter((f) => f.startsWith(prefix) && f.endsWith('.js'))
+    .map((f) => readFileSync(dist(`_astro/${f}`), 'utf-8'))
+    .join('\n');
+
 const checks = [];
 const check = (name, fn) => checks.push({ name, fn });
 
@@ -165,10 +178,36 @@ check(
 );
 check('404 is noindex', () => html('404.html').includes('content="noindex, follow"'));
 check('404 claims no canonical', () => !html('404.html').includes('rel="canonical"'));
-check('indexable pages still canonical + index', () => {
-  const home = html('index.html');
-  return home.includes('content="index, follow"') && home.includes('rel="canonical"');
+// Legal pages route through LegalPage.astro, which destructures only
+// { title, canonicalPath } — so it cannot forward `noindex`. Assert on them
+// too: they are the pages most likely to lose indexability by accident.
+check('indexable pages still canonical + index', () =>
+  ['index.html', 'privacy-policy.html', 'terms-and-conditions.html'].every(
+    (page) =>
+      html(page).includes('content="index, follow"') && html(page).includes('rel="canonical"'),
+  ),
+);
+
+// Bottom rail contract (see CLAUDE.md → "Bottom Rail"). Without these the rail
+// can be silently severed — the nav simply stops lifting and the banner covers
+// it again, which no other check would notice.
+check('bottom rail: nav consumes the rail', () =>
+  html('index.html').includes('class="bottom-rail fixed bottom-6'),
+);
+check('bottom rail: CSS contract emitted', () => {
+  const css = distCss();
+  return (
+    css.includes('--consent-bar-height') &&
+    css.includes('.bottom-rail') &&
+    css.includes('.consent-bar') &&
+    css.includes('--rail-settle-duration')
+  );
 });
+// The banner renders nothing until it becomes visible, so this attribute is
+// never in the static HTML — assert against the island's compiled bundle.
+check('bottom rail: banner opts out of Lenis', () =>
+  distJs('CookieConsent').includes('data-lenis-prevent'),
+);
 check('skip link targets #main', () => html('index.html').includes('href="#main"'));
 check('WebSite node in JSON-LD', () => html('index.html').includes('"@type":"WebSite"'));
 check('no inline onerror handlers', () => !html('index.html').includes('onerror='));
