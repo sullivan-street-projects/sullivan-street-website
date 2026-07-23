@@ -9,6 +9,9 @@ const {
   ogTitle = 'Sullivan Street Projects | Growth Marketing Partners',
   ogDescription = "Marketing for tomorrow's billion-dollar brands.",
   canonicalPath = '/',
+  // Error pages serve a 4xx status AND should not invite indexing. `follow`
+  // is kept so crawlers still traverse the links back into the live site.
+  noindex = false,
 } = Astro.props;
 
 const SITE = 'https://sullivanstreetprojects.com';
@@ -97,13 +100,15 @@ const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
     <meta name="description" content={description} />
     <meta name="keywords" content="marketing, growth, CMO, strategy, advisory, brands" />
     <meta name="author" content="Sullivan Street Projects" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
     {SITE_VERIFICATION.google && (
       <meta name="google-site-verification" content={SITE_VERIFICATION.google} />
     )}
     {SITE_VERIFICATION.bing && <meta name="msvalidate.01" content={SITE_VERIFICATION.bing} />}
 
-    <link rel="canonical" href={canonical} />
+    {/* A noindex error page has no canonical URL to claim — it isn't a real
+        destination, and pointing one at itself only muddles the signal. */}
+    {!noindex && <link rel="canonical" href={canonical} />}
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
