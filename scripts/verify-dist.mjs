@@ -153,10 +153,22 @@ check(
 
 // --- Prod hardening (2026-07-14): landmarks, entity graph, CLS/CSP hygiene ---
 check(
-  'main landmark on home + legal pages',
+  'main landmark on home + legal + 404 pages',
   () =>
-    html('index.html').includes('<main id="main"') && html('privacy-policy.html').includes('<main'),
+    html('index.html').includes('<main id="main"') &&
+    html('privacy-policy.html').includes('<main') &&
+    html('404.html').includes('<main id="main"'),
 );
+check(
+  '404 keeps site chrome (header + footer)',
+  () => html('404.html').includes('<header') && html('404.html').includes('<footer'),
+);
+check('404 is noindex', () => html('404.html').includes('content="noindex, follow"'));
+check('404 claims no canonical', () => !html('404.html').includes('rel="canonical"'));
+check('indexable pages still canonical + index', () => {
+  const home = html('index.html');
+  return home.includes('content="index, follow"') && home.includes('rel="canonical"');
+});
 check('skip link targets #main', () => html('index.html').includes('href="#main"'));
 check('WebSite node in JSON-LD', () => html('index.html').includes('"@type":"WebSite"'));
 check('no inline onerror handlers', () => !html('index.html').includes('onerror='));
