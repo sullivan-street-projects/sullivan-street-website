@@ -1,0 +1,17 @@
+# gitleaks configuration — keeps the full default ruleset, allowlisting only
+# values that are public by design.
+[extend]
+useDefault = true
+
+[allowlist]
+description = """
+IndexNow key (scripts/indexnow.mjs + public/<key>.txt). The IndexNow protocol
+proves domain ownership by requiring this exact value to be SERVED PUBLICLY at
+https://sullivanstreetprojects.com/<key>.txt — it is a published identifier,
+not a credential, and it is meant to live in the repo. gitleaks flags it as a
+generic-api-key on entropy alone.
+
+Allowlisted by value rather than by path, so a genuine secret added to
+scripts/indexnow.mjs later would still be caught.
+"""
+regexes = ['''73074696d25c455da1f59ac514b6fa1b''']
