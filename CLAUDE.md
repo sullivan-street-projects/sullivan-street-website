@@ -12,6 +12,17 @@ Single-page marketing site for a growth marketing consultancy. Astro 6 (static M
 - **Design tokens:** All colors, fonts, type scale, spacing defined as Tailwind v4 `@theme` variables in `src/styles/global.css`. No hardcoded hex values in components.
 - **Playground:** removed from the Astro site; preserved on git tag `pre-astro` (checkout the tag to run it).
 - **Islands rule:** `.astro` imports always carry the `.astro` extension; extensionless imports resolve to `.jsx`. Static sections are `.astro`; Services/PartnerOutcomes are React islands (`client:visible`) and CookieConsent (`client:idle`) — the ONLY hydrated components (enforced by verify-dist's island ceiling). Lenis lives at `window.__lenis` (`src/scripts/smooth-scroll.js`).
+- **Page chrome is composed per-page, not by the layout.** `BaseLayout` owns `<head>` only; every page assembles its own `Header` / `<main id="main">` / `Footer`. New routes must include all three — this is how the 404 shipped without any of them. Pass `noindex` to `BaseLayout` for non-indexable routes (emits `noindex, follow` and drops the canonical). verify-dist enforces chrome + landmarks on home, legal and 404.
+
+## Bottom Rail (fixed bottom-docked UI)
+
+Only ONE element may own the bottom edge. Anything docked there publishes the height it occupies as `--consent-bar-height` on `<html>`; consumers add `.bottom-rail` and lift by that amount (`src/styles/global.css`). Currently: CookieConsent produces, Navigation consumes.
+
+- Lift is a `transform`, never a `bottom` override — that preserves the consumer's own `bottom-*` utilities as its resting position and no-JS fallback, and avoids a Tailwind cascade fight.
+- Motion is **asymmetric and deliberate**: instant on open and while tracking (the height is republished as the preferences panel animates, so a transition would chase a moving target and lag behind the banner's real edge), eased only on close via `[data-rail-settling]`, which is set for that one discrete write. Do not "simplify" this into a blanket transition.
+- The settle matches Lenis (0.8s expo-out) so the nav moves with the same signature as the page scroll. Duration/easing are `:root` tokens and the JS **reads** `--rail-settle-duration` rather than duplicating it.
+- The producer is capped (`.consent-bar`, 14rem reserve — derivation in the CSS comment) and scrolls internally, so the consumer can always clear it. Internally-scrolling fixed UI **must** carry `data-lenis-prevent` or Lenis swallows the wheel/touch events.
+- CSS fallbacks for the same property must live in `@supports` — Lightning CSS dedupes sibling declarations and drops the fallback (this bit the `100vh`/`100dvh` pair).
 
 ## Brand & Typography
 
@@ -73,6 +84,7 @@ Baseline capture: `bash scripts/capture-baselines.sh` (9 sections x 3 viewports 
 - TidyCal: `node scripts/tidycal.mjs` (summary/bookings/types) — token at `~/.secrets/ssp-tidycal-token.txt`. Source of truth for ACTUAL bookings; GA4 only carries TidyCal's funnel events (fired from tidycal.com + call.sullivanstreetprojects.com via its GA integration). `book_call_click` + `select_time` are GA4 Key Events.
 - Server is **LiteSpeed**, not Apache: `Header setifempty` is unsupported (it emits a literal `setifempty:` response header). Use rule ordering instead — last matching `Header set` wins.
 - Hostinger's WAF 403s spoofed crawler user-agents from non-crawler IPs (anti-spoofing) — you cannot test real crawler access with `curl -A Googlebot`. Verify via an independent-infrastructure fetch or Search Console.
+- **`hosting_deployStaticWebsite` can return HTTP 500 on a deploy that actually succeeded.** Never blind-retry — a retry over a partial deploy is how you get a half-updated site. Verify against the live site first: read the `<link rel="stylesheet">` out of the served HTML and diff that hash against `dist/index.html`. Don't grep for a remembered asset filename — content hashes move for unrelated reasons (adding a `Footer` import to 404.astro renamed the whole CSS bundle).
 
 ## Commands
 
