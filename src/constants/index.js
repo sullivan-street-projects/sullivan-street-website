@@ -41,7 +41,7 @@ export const VALUE_PROPS = [
   {
     title: 'Execution, Not Just Advice',
     description:
-      'A growth leader in the trenches with your team — not a consultant who disappears after a deck. We own the outcome, set clear KPIs upfront, and keep things moving.',
+      'A growth leader in the trenches with your team — not a consultant who disappears after a deck. We own the outcome, set clear KPIs upfront, and keep your growth on track.',
   },
   {
     title: 'One Team, Full Ownership',
@@ -51,7 +51,7 @@ export const VALUE_PROPS = [
   {
     title: 'Built on AI, Driven by Results',
     description:
-      'AI powers our research, strategy, and reporting. We test fast, scale what works, and make sure each dollar brings something in return.',
+      'AI powers our research, strategy, and reporting. We test fast, scale what works, and make sure every dollar brings more in return.',
   },
 ];
 
