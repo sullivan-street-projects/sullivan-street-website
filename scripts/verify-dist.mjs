@@ -44,7 +44,7 @@ check('Intro heading present', () => html('index.html').includes('Make Marketing
 check('Approach heading present', () => html('index.html').includes('Growth Marketing'));
 check('About founder present', () => html('index.html').includes('Brett Wohl'));
 check('Contact CTA href present', () =>
-  html('index.html').includes('tidycal.com/sullivan-street-projects/growth-consultation'),
+  html('index.html').includes('call.sullivanstreetprojects.com/growth-consultation'),
 );
 check('section ids present', () =>
   ['hero', 'statement', 'intro', 'approach', 'about', 'contact'].every((id) =>

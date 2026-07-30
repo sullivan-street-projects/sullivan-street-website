@@ -3,6 +3,15 @@ const CLARITY_ID = 'r8b7ctb5d6';
 const REB2B_KEY = '4N210HX7X96Z';
 const CONSENT_KEY = 'cookie-consent';
 
+// Booking links live on TWO hosts and both must fire `book_call_click`:
+// the branded `call.` domain (what the site CTA uses) and the raw tidycal.com
+// URL, which is still baked into decks, email signatures and old links in the
+// wild. Matching only the site's own href would undercount real booking intent.
+const BOOKING_LINK_SELECTOR = [
+  'a[href*="call.sullivanstreetprojects.com"]',
+  'a[href*="tidycal.com/sullivan-street-projects"]',
+].join(',');
+
 function gtag() {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(arguments);
@@ -63,10 +72,13 @@ export function initAnalytics() {
  * GA4's enhanced-measurement `click` lumps all outbound links together
  * (AI-summary links included) — `book_call_click` isolates booking intent
  * and is marked as a GA4 Key Event. Mirrored to Clarity for session filtering.
+ *
+ * Matches BOTH booking hosts (see BOOKING_LINK_SELECTOR): changing the CTA
+ * href without widening this selector silently kills the Key Event.
  */
 function trackBookingClicks() {
   document.addEventListener('click', (event) => {
-    const anchor = event.target.closest('a[href*="tidycal.com/sullivan-street-projects"]');
+    const anchor = event.target.closest(BOOKING_LINK_SELECTOR);
     if (!anchor) return;
     gtag('event', 'book_call_click', { link_url: anchor.href });
     if (window.clarity) window.clarity('event', 'book_call_click');

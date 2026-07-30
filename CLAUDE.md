@@ -66,7 +66,8 @@ Baseline capture: `bash scripts/capture-baselines.sh` (9 sections x 3 viewports 
 
 - No SVG animations in Intro section — removed intentionally to let text breathe
 - Footer Privacy/Terms are live `<Link>` routes to full legal pages (`/privacy-policy`, `/terms-and-conditions`)
-- Contact CTA links to TidyCal booking (`tidycal.com/sullivan-street-projects/growth-consultation`) — **deliberately NOT the branded `call.sullivanstreetprojects.com`**, which lands on the booking _directory_ (all types) instead of the specific consultation: worse UX. Do not "upgrade" the CTA to the branded domain.
+- Contact CTA links to the branded booking URL `call.sullivanstreetprojects.com/growth-consultation` (switched 2026-07-30). **Always include the `/growth-consultation` slug.** The BARE branded domain is a dead end: the booking type is `private: true` and the other three types are disabled, so the directory renders "No booking types currently available" — GA4 recorded 9 users hitting that wall over 90 days with zero reaching a booking type. The `/sullivan-street-projects/growth-consultation` vanity path 404s on the branded host; only the bare slug works.
+- **Booking-link changes are a five-file move**, not a one-liner: `Contact.astro` (href), `analytics.js` (`BOOKING_LINK_SELECTOR` — matches BOTH hosts, since legacy `tidycal.com` links live on in decks and signatures; miss this and `book_call_click` silently stops firing), `verify-dist.mjs` (copy assertion), `public/.htaccess` (the rescue 301), and this file.
 
 ## Analytics & Observability
 
