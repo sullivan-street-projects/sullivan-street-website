@@ -12,6 +12,12 @@ const BOOKING_LINK_SELECTOR = [
   'a[href*="tidycal.com/sullivan-street-projects"]',
 ].join(',');
 
+// On-page asks that only scroll to #contact (Hero button, nav-pill "Call").
+// Tagged with `data-cta="<location>"` at the source rather than matched by
+// href, so the location travels with the element and a future third ask is
+// one attribute away.
+const CTA_ANCHOR_SELECTOR = 'a[data-cta]';
+
 // The ONLY hosts analytics may run on. Deliberately an allowlist, not a
 // blocklist: the previous blocklist covered localhost/127.0.0.1 but missed
 // Hostinger preview domains, and `sienna-quetzal-509661.hostingersite.com`
@@ -72,7 +78,39 @@ export function initAnalytics() {
     loadClarity();
     loadReb2b();
     trackBookingClicks();
+    trackCtaClicks();
   }
+}
+
+/**
+ * Engagement event for the on-page asks that never leave the site.
+ * The Hero button and the nav pill both just scroll to #contact, so no
+ * outbound-link event ever fired for them — we could not tell whether the
+ * top-of-page asks were being used at all.
+ *
+ * Naming, per GA4's rules:
+ *  - `click` is RESERVED (enhanced measurement owns it), so this is `cta_click`
+ *  - snake_case, starts with a letter, letters/numbers/underscores only
+ *  - names are case-sensitive; `cta_click` is the only spelling
+ *  - deliberately NOT `book_call_click`: that stays a clean Key Event meaning
+ *    "left for the booking page". Merging the two would inflate conversions.
+ *
+ * `cta_location` must be registered in GA4 as a custom dimension before it
+ * appears in standard reports — the data is collected either way, but the
+ * hero-vs-nav split stays invisible until that's done.
+ */
+function trackCtaClicks() {
+  document.addEventListener('click', (event) => {
+    const anchor = event.target.closest(CTA_ANCHOR_SELECTOR);
+    if (!anchor) return;
+    const location = anchor.dataset.cta;
+    gtag('event', 'cta_click', {
+      cta_location: location,
+      link_url: anchor.getAttribute('href'),
+    });
+    // Clarity events carry no parameters, so the location goes in the name.
+    if (window.clarity) window.clarity('event', `cta_click_${location}`);
+  });
 }
 
 /**

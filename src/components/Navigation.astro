@@ -12,6 +12,7 @@ import { NAV_ITEMS } from '../constants';
         NAV_ITEMS.map((item) => (
           <a
             href={`#${item.id}`}
+            data-cta={item.id === 'contact' ? 'nav' : undefined}
             class="px-3 py-3 md:px-5 md:py-2 rounded-full font-sans text-section-label uppercase tracking-wide text-charcoal/70 hover:text-charcoal hover:bg-white/60 transition-all font-bold whitespace-nowrap active:scale-95 flex items-center gap-2 no-underline"
             aria-label={`Navigate to ${item.label} section`}
           >

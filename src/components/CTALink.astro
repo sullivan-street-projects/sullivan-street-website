@@ -1,5 +1,9 @@
 ---
-const { href, variant = 'sm' } = Astro.props;
+// `...rest` forwards attributes onto the anchor itself — notably `data-cta`,
+// which is how analytics.js tells the Hero ask apart from the nav-pill ask.
+// Without this the attribute would land on nothing and the event would be
+// silently unattributed.
+const { href, variant = 'sm', ...rest } = Astro.props;
 const isLarge = variant === 'lg';
 const isExternal = href.startsWith('http') || href.startsWith('//');
 
@@ -26,6 +30,7 @@ const arrowClass = isLarge
     target={isExternal ? '_blank' : undefined}
     rel={isExternal ? 'noopener noreferrer' : undefined}
     class={`${wrapperClass} cursor-pointer`}
+    {...rest}
   >
     <span class={`relative z-10 ${textClass}`}><slot /></span>
     <span class={arrowClass} aria-hidden="true">→</span>
