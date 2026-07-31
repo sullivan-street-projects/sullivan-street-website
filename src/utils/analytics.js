@@ -12,6 +12,14 @@ const BOOKING_LINK_SELECTOR = [
   'a[href*="tidycal.com/sullivan-street-projects"]',
 ].join(',');
 
+// The ONLY hosts analytics may run on. Deliberately an allowlist, not a
+// blocklist: the previous blocklist covered localhost/127.0.0.1 but missed
+// Hostinger preview domains, and `sienna-quetzal-509661.hostingersite.com`
+// logged 19 events including a phantom booking-CTA click (found 2026-07-30).
+// Preview hostnames are generated and unguessable, so they can never be
+// enumerated ahead of time — anything not on this list is not real traffic.
+const ANALYTICS_HOSTS = ['sullivanstreetprojects.com', 'www.sullivanstreetprojects.com'];
+
 function gtag() {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(arguments);
@@ -23,10 +31,10 @@ function gtag() {
  * If opted out, sets consent to denied and skips both.
  */
 export function initAnalytics() {
-  // Local dev/preview sessions were polluting GA4 (localhost:4321 was the
-  // #2 traffic source, 2026-07-15). Analytics only runs on the real host.
-  if (['localhost', '127.0.0.1'].includes(window.location.hostname)) {
-    console.info('[analytics] skipped on local host');
+  // Dev and preview sessions were polluting GA4 (localhost:4321 was the
+  // #2 traffic source, 2026-07-15). Analytics only runs on the real hosts.
+  if (!ANALYTICS_HOSTS.includes(window.location.hostname)) {
+    console.info(`[analytics] skipped on non-production host: ${window.location.hostname}`);
     return;
   }
 
