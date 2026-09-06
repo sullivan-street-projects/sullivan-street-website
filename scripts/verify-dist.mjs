@@ -229,6 +229,96 @@ check('llms.txt structured sections in sync with constants', () => {
 // copy must use typographic ’ (U+2019), which needs no escaping.
 check('no HTML-entity apostrophes leak into markup', () => !html('index.html').includes('&#39;'));
 
+// Lighthouse 2026-09-06: the founder card used <h4> directly under the
+// section's <h2>, skipping a level. Screen-reader outlines rely on levels.
+check('founder card heading is an h3 (no heading-level skip)', () => {
+  const page = html('index.html');
+  return (
+    page.includes(
+      '<h3 class="font-serif text-xl leading-none mb-2 text-charcoal">Brett Wohl</h3>',
+    ) && !page.includes('<h4')
+  );
+});
+
+// WCAG AA contrast guard for the section eyebrow label. Lighthouse 2026-09-06
+// measured #737373 on bg-paper-warm at 4.16:1. Computed from the source
+// tokens so a palette edit cannot silently drop below 4.5:1 again.
+check('label token clears 4.5:1 on paper and paper-warm', () => {
+  const css = readFileSync(
+    fileURLToPath(new URL('../src/styles/global.css', import.meta.url)),
+    'utf-8',
+  );
+  const token = (name) => css.match(new RegExp(`--color-${name}:\\s*(#[0-9a-fA-F]{6})`))[1];
+  const lum = (hex) => {
+    const c = [1, 3, 5]
+      .map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+      .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  };
+  const ratio = (a, b) => {
+    const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);
+    return (hi + 0.05) / (lo + 0.05);
+  };
+  const label = token('label');
+  return ratio(label, token('paper')) >= 4.5 && ratio(label, token('paper-warm')) >= 4.5;
+});
+
+// Hygiene (audit 2026-09-06). meta keywords has been ignored by every engine
+// since 2009 and only advertises targeting; HSTS preload is a free upgrade;
+// /contact was a real 404 for at least one visitor.
+check('no meta keywords tag', () => !html('index.html').includes('name="keywords"'));
+check('HSTS carries preload', () =>
+  readFileSync(dist('.htaccess'), 'utf-8').includes(
+    'Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"',
+  ),
+);
+check('/contact 301s to the contact section', () =>
+  readFileSync(dist('.htaccess'), 'utf-8').includes(
+    'RewriteRule ^contact/?$ /#contact [L,R=301,NE]',
+  ),
+);
+
+check('llms.txt links the founder LinkedIn profile', () =>
+  readFileSync(dist('llms.txt'), 'utf-8').includes(
+    '- **LinkedIn:** https://www.linkedin.com/in/brettwohl/',
+  ),
+);
+
+// Entity graph for AI answer engines (audit 2026-09-06): the founder is a
+// first-class Person linked both ways to the Organization, and Service nodes
+// are generated from TIERS so they cannot drift from the site copy again.
+const jsonLd = () => {
+  const m = html('index.html').match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  return m ? JSON.parse(m[1]) : null;
+};
+check('JSON-LD parses with 6 graph nodes (WebSite, Organization, Person, 3 Services)', () => {
+  const g = jsonLd()?.['@graph'] ?? [];
+  const types = g.map((n) => n['@type']);
+  return (
+    g.length === 6 &&
+    ['WebSite', 'Organization', 'Person'].every((t) => types.includes(t)) &&
+    types.filter((t) => t === 'Service').length === 3
+  );
+});
+check('Person node carries @id, LinkedIn sameAs and worksFor', () => {
+  const p = (jsonLd()?.['@graph'] ?? []).find((n) => n['@type'] === 'Person');
+  return (
+    p?.['@id'] === 'https://sullivanstreetprojects.com/#brett-wohl' &&
+    p.sameAs?.includes('https://www.linkedin.com/in/brettwohl/') &&
+    p.worksFor?.['@id'] === 'https://sullivanstreetprojects.com/#organization'
+  );
+});
+check('Organization founder references the Person @id', () => {
+  const o = (jsonLd()?.['@graph'] ?? []).find((n) => n['@type'] === 'Organization');
+  return o?.founder?.['@id'] === 'https://sullivanstreetprojects.com/#brett-wohl';
+});
+check('Service nodes mirror TIERS with serviceType', () => {
+  const s = (jsonLd()?.['@graph'] ?? []).filter((n) => n['@type'] === 'Service');
+  return TIERS.every((t) =>
+    s.some((n) => n.serviceType === t.subtitle && n.description === t.description),
+  );
+});
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;

@@ -94,6 +94,27 @@ export const PARTNER_OUTCOMES = [
   },
 ];
 
+// Founder entity — the single source for JSON-LD (Person node), llms.txt and
+// any future byline. No apostrophes: description is Astro-interpolated nowhere
+// today, but keep the constants rule anyway.
+export const FOUNDER = {
+  name: 'Brett Wohl',
+  jobTitle: 'Founder, Managing Partner',
+  id: 'https://sullivanstreetprojects.com/#brett-wohl',
+  url: 'https://sullivanstreetprojects.com/#about',
+  linkedin: 'https://www.linkedin.com/in/brettwohl/',
+  description:
+    'Executive growth strategist with 10+ years of experience. Previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and Google.',
+  knowsAbout: [
+    'Growth marketing',
+    'Demand generation',
+    'Paid media',
+    'Go-to-market strategy',
+    'AI-native marketing operations',
+    'Fractional marketing leadership',
+  ],
+};
+
 export const TIERS = [
   {
     id: 'management',

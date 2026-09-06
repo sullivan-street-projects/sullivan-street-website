@@ -18,6 +18,11 @@ RewriteRule ^(.+)/$ /$1 [L,R=301]
 # to the actual booking page. (Found via ga.mjs pages report, 2026-07-15.)
 RewriteRule ^sullivan-street-projects/growth-consultation/?$ https://call.sullivanstreetprojects.com/growth-consultation [L,R=301]
 
+# /contact is not a route — the contact section lives on the home page.
+# GA4 showed a real visitor 404ing here (audit 2026-09-06). NE keeps the
+# fragment unescaped in the Location header.
+RewriteRule ^contact/?$ /#contact [L,R=301,NE]
+
 # Clean URLs: /privacy-policy -> privacy-policy.html (Astro build.format 'file')
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -33,7 +38,7 @@ ErrorDocument 404 /404.html
   Header set X-Frame-Options "DENY"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
-  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   # Fonts are self-hosted by Astro's Fonts API now — fonts.googleapis.com /
   # fonts.gstatic.com removed from style-src / font-src.
   # GA4 (googletagmanager.com / google-analytics.com) + Clarity (*.clarity.ms)

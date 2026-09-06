@@ -4,18 +4,26 @@
 // gsc-agent@claude-workspace-mcp-483716.iam.gserviceaccount.com as Viewer.
 //
 // Usage:
+//   node scripts/ga.mjs [--account <name>] [--property <id>] <command>
 //   node scripts/ga.mjs properties                    list accessible GA4 properties
 //   node scripts/ga.mjs report [days]                 daily users/sessions/engagement
 //   node scripts/ga.mjs pages [days]                  top pages by views
 //   node scripts/ga.mjs sources [days]                top session sources
+//   node scripts/ga.mjs events [days] | clicks [days] events by name / outbound clicks
+//   node scripts/ga.mjs admin                         key events, custom dimensions, retention
 //   node scripts/ga.mjs realtime                      active users right now
 //
-// Env: GSC_SA_KEY (key path), GA_PROPERTY (numeric id or "properties/<id>").
+// Account: --account <name> (default ssp, env SSP_ACCOUNT) selects
+// ~/.secrets/<name>-gsc-sa.json and the property-name hint "ga" in
+// ~/.secrets/accounts.json. Env: GSC_SA_KEY (key path), GA_PROPERTY.
+// Note: GSC_SA_KEY, when set, overrides --account's key path — unset it when switching accounts.
 import { readFileSync, existsSync } from 'node:fs';
 import { createSign } from 'node:crypto';
+import { resolveAccountOrExit } from './lib/account.mjs';
 
-const KEY_PATH = process.env.GSC_SA_KEY || `${process.env.HOME}/.secrets/ssp-gsc-sa.json`;
-const [cmd = 'help', ...args] = process.argv.slice(2);
+const acct = resolveAccountOrExit();
+const KEY_PATH = process.env.GSC_SA_KEY || acct.secret('gsc-sa.json');
+const [cmd = 'help', ...args] = acct.rest;
 
 if (!existsSync(KEY_PATH)) {
   console.error(`No service-account key at ${KEY_PATH} — see scripts/gsc.mjs setup.`);
@@ -64,18 +72,21 @@ async function api(url, options = {}) {
 }
 
 async function resolveProperty() {
-  if (process.env.GA_PROPERTY) {
-    const p = String(process.env.GA_PROPERTY);
+  const explicit = acct.overrides.property || process.env.GA_PROPERTY;
+  if (explicit) {
+    const p = String(explicit);
     return p.startsWith('properties/') ? p : `properties/${p}`;
   }
   const { accountSummaries = [] } = await api(
     'https://analyticsadmin.googleapis.com/v1beta/accountSummaries',
   );
   const props = accountSummaries.flatMap((a) => a.propertySummaries || []);
+  const hint = acct.hint('ga', 'sullivan');
   const match =
-    props.find((p) => /sullivan/i.test(p.displayName)) || (props.length === 1 && props[0]);
+    props.find((p) => p.displayName.toLowerCase().includes(hint.toLowerCase())) ||
+    (props.length === 1 && props[0]);
   if (!match) {
-    console.error('No SSP-looking property visible to the service account. Visible:');
+    console.error(`No property matching "${hint}" visible to the service account. Visible:`);
     props.forEach((p) => console.error(`  ${p.property}  ${p.displayName}`));
     console.error('→ Add the SA as Viewer in GA4 Admin → Property access management.');
     process.exit(1);
@@ -171,6 +182,24 @@ if (cmd === 'properties') {
     limit: 15,
   });
   printRows(data, ['linkUrl', 'clicks']);
+} else if (cmd === 'admin') {
+  // Property configuration the audit found wrong (2026-09-06): 2-month
+  // retention, no custom dimensions, a dead "purchase" key event. Read-only.
+  const property = await resolveProperty();
+  const base = `https://analyticsadmin.googleapis.com/v1beta/${property}`;
+  const [{ keyEvents = [] }, { customDimensions = [] }, retention] = await Promise.all([
+    api(`${base}/keyEvents`),
+    api(`${base}/customDimensions`),
+    api(`${base}/dataRetentionSettings`),
+  ]);
+  console.log(`${property}`);
+  console.log(
+    `retention: events=${retention.eventDataRetention} users=${retention.userDataRetention}`,
+  );
+  console.log(`key events: ${keyEvents.map((k) => k.eventName).join(', ') || '(none)'}`);
+  console.log(
+    `custom dimensions: ${customDimensions.map((d) => `${d.parameterName} (${d.scope})`).join(', ') || '(none)'}`,
+  );
 } else if (cmd === 'realtime') {
   const property = await resolveProperty();
   const data = await api(
@@ -182,6 +211,8 @@ if (cmd === 'properties') {
   );
   console.log(`active users now: ${data.rows?.[0]?.metricValues?.[0]?.value ?? 0}`);
 } else {
-  console.error('Commands: properties | report [days] | pages [days] | sources [days] | realtime');
+  console.error(
+    'Commands: properties | report [days] | pages [days] | sources [days] | events [days] | clicks [days] | admin | realtime',
+  );
   process.exit(cmd === 'help' ? 0 : 1);
 }

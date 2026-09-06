@@ -21,23 +21,30 @@
 //
 // Env overrides: GSC_SA_KEY (key path), GSC_SITE (property, e.g.
 // "sc-domain:sullivanstreetprojects.com" or "https://sullivanstreetprojects.com/").
+//
+// Account: --account <name> (default ssp, env SSP_ACCOUNT) → ~/.secrets/<name>-gsc-sa.json
+// and hints "gsc" (site substring) / "sitemap" in ~/.secrets/accounts.json; --site <url>.
+// Note: GSC_SA_KEY, when set, overrides --account's key path — unset it when switching accounts.
 import { readFileSync, existsSync } from 'node:fs';
 import { createSign } from 'node:crypto';
+import { resolveAccountOrExit } from './lib/account.mjs';
 
-const KEY_PATH = process.env.GSC_SA_KEY || `${process.env.HOME}/.secrets/ssp-gsc-sa.json`;
-const SITE_HINT = 'sullivanstreetprojects';
-const DEFAULT_SITEMAP = 'https://sullivanstreetprojects.com/sitemap-index.xml';
+const acct = resolveAccountOrExit();
+const KEY_PATH = process.env.GSC_SA_KEY || acct.secret('gsc-sa.json');
 
-const [cmd = 'help', ...args] = process.argv.slice(2);
+const [cmd = 'help', ...args] = acct.rest;
 
 if (cmd === 'help' || cmd === '--help') {
-  console.log(
-    readFileSync(new URL(import.meta.url), 'utf-8')
-      .split('\n')
-      .slice(1, 27)
-      .map((l) => l.replace(/^\/\/ ?/, ''))
-      .join('\n'),
-  );
+  // Print the header comment by shape (skip the shebang, stop at the first
+  // non-"//" line) rather than a hardcoded line count, so it can't drift out
+  // of sync with edits to the comment block above.
+  const lines = readFileSync(new URL(import.meta.url), 'utf-8').split('\n');
+  const comment = [];
+  for (const line of lines.slice(1)) {
+    if (!line.startsWith('//')) break;
+    comment.push(line);
+  }
+  console.log(comment.map((l) => l.replace(/^\/\/ ?/, '')).join('\n'));
   process.exit(0);
 }
 
@@ -47,6 +54,14 @@ if (!existsSync(KEY_PATH)) {
   console.error('or point GSC_SA_KEY at the JSON key file.');
   process.exit(1);
 }
+
+// Resolved lazily (after the key-existence check above) so an unconfigured
+// --account fails on the missing key, not on a missing accounts.json hint.
+const SITE_HINT = acct.hint('gsc', 'sullivanstreetprojects');
+const DEFAULT_SITEMAP = acct.hint(
+  'sitemap',
+  'https://sullivanstreetprojects.com/sitemap-index.xml',
+);
 
 const key = JSON.parse(readFileSync(KEY_PATH, 'utf-8'));
 
@@ -99,7 +114,8 @@ async function api(url, options = {}) {
 }
 
 async function resolveSite() {
-  if (process.env.GSC_SITE) return process.env.GSC_SITE;
+  if (acct.overrides.site || process.env.GSC_SITE)
+    return acct.overrides.site || process.env.GSC_SITE;
   const { siteEntry = [] } = await api('https://www.googleapis.com/webmasters/v3/sites');
   const match = siteEntry.find((s) => s.siteUrl.includes(SITE_HINT));
   if (!match) {

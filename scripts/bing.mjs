@@ -13,22 +13,34 @@
 //
 // Note: for *telling* Bing about new/changed URLs, prefer scripts/indexnow.mjs
 // (runs on every deploy). This client is for reading Bing's data back.
+// Account: --account <name> → ~/.secrets/<name>-bing-key.txt; hints "bing_site", "sitemap".
 import { readFileSync, existsSync } from 'node:fs';
+import { resolveAccountOrExit } from './lib/account.mjs';
 
-const KEY_PATH = `${process.env.HOME}/.secrets/ssp-bing-key.txt`;
+const acct = resolveAccountOrExit();
+const KEY_PATH = acct.secret('bing-key.txt');
 const KEY =
   process.env.BING_WM_KEY || (existsSync(KEY_PATH) && readFileSync(KEY_PATH, 'utf-8').trim());
-const SITE = process.env.BING_SITE || 'https://sullivanstreetprojects.com/';
 const BASE = 'https://ssl.bing.com/webmaster/api.svc/json';
-const DEFAULT_SITEMAP = 'https://sullivanstreetprojects.com/sitemap-index.xml';
 
-const [cmd = 'help', ...args] = process.argv.slice(2);
+const [cmd = 'help', ...args] = acct.rest;
 
 if (!KEY) {
   console.error(`No Bing API key at ${KEY_PATH} (and BING_WM_KEY unset).`);
   console.error('Bing Webmaster Tools → gear icon → API access → copy key.');
   process.exit(1);
 }
+
+// Resolved lazily (after the key check above) so an unconfigured --account
+// fails on the missing key, not on a missing accounts.json hint.
+const SITE =
+  acct.overrides.site ||
+  process.env.BING_SITE ||
+  acct.hint('bing_site', 'https://sullivanstreetprojects.com/');
+const DEFAULT_SITEMAP = acct.hint(
+  'sitemap',
+  'https://sullivanstreetprojects.com/sitemap-index.xml',
+);
 
 async function get(method, params = {}) {
   const qs = new URLSearchParams({ apikey: KEY, ...params });

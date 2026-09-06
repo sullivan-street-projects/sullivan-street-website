@@ -5,7 +5,7 @@
 // Prose sections (overview, founder, contact) live in the template below;
 // edit them here, never in public/llms.txt directly.
 import { writeFileSync } from 'node:fs';
-import { VALUE_PROPS, TIERS, PARTNER_OUTCOMES } from '../src/constants/index.js';
+import { VALUE_PROPS, TIERS, PARTNER_OUTCOMES, FOUNDER } from '../src/constants/index.js';
 
 const valueProps = VALUE_PROPS.map((p) => `- **${p.title}:** ${p.description}`).join('\n');
 
@@ -33,8 +33,11 @@ ${valueProps}
 ${services}
 
 ## Founder
-**Brett Wohl** (Founder, Managing Partner)
-Executive growth strategist with 10+ years of experience. Previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and Google.
+**${FOUNDER.name}** (${FOUNDER.jobTitle})
+${FOUNDER.description}
+
+- **LinkedIn:** ${FOUNDER.linkedin}
+- **Expertise:** ${FOUNDER.knowsAbout.join(', ')}
 
 ## Key Outcomes
 ${outcomes}

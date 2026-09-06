@@ -14,16 +14,19 @@
 //          insights 1 Device     by device; also: Browser, OS, Country,
 //                                Source, Medium, Channel, PageTitle
 //   node scripts/clarity.mjs raw [days] [dim1] [dim2] [dim3]   full JSON
+// Account: --account <name> → ~/.secrets/<name>-clarity-token.txt (one token per Clarity project).
 import { readFileSync, existsSync } from 'node:fs';
+import { resolveAccountOrExit } from './lib/account.mjs';
 
-const TOKEN_PATH = `${process.env.HOME}/.secrets/ssp-clarity-token.txt`;
+const acct = resolveAccountOrExit();
+const TOKEN_PATH = acct.secret('clarity-token.txt');
 if (!existsSync(TOKEN_PATH)) {
   console.error(`No Clarity token at ${TOKEN_PATH} (Clarity → Settings → Data Export).`);
   process.exit(1);
 }
 const TOKEN = readFileSync(TOKEN_PATH, 'utf-8').trim();
 
-const [cmd = 'insights', ...args] = process.argv.slice(2);
+const [cmd = 'insights', ...args] = acct.rest;
 const days = Math.min(3, Math.max(1, Number(args.find((a) => /^\d+$/.test(a)) || 1)));
 const dims = args.filter((a) => !/^\d+$/.test(a));
 
@@ -43,7 +46,9 @@ const metrics = await res.json();
 if (cmd === 'raw') {
   console.log(JSON.stringify(metrics, null, 2));
 } else {
-  console.log(`SSP Clarity — last ${days} day(s)${dims.length ? ` by ${dims.join(', ')}` : ''}`);
+  console.log(
+    `${acct.name} Clarity — last ${days} day(s)${dims.length ? ` by ${dims.join(', ')}` : ''}`,
+  );
   for (const m of metrics) {
     const rows = m.information || [];
     if (!rows.length) continue;
