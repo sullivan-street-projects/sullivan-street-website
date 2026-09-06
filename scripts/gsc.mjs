@@ -21,20 +21,28 @@
 //
 // Env overrides: GSC_SA_KEY (key path), GSC_SITE (property, e.g.
 // "sc-domain:sullivanstreetprojects.com" or "https://sullivanstreetprojects.com/").
+//
+// Account: --account <name> (default ssp, env SSP_ACCOUNT) → ~/.secrets/<name>-gsc-sa.json
+// and hints "gsc" (site substring) / "sitemap" in ~/.secrets/accounts.json; --site <url>.
 import { readFileSync, existsSync } from 'node:fs';
 import { createSign } from 'node:crypto';
+import { resolveAccount } from './lib/account.mjs';
 
-const KEY_PATH = process.env.GSC_SA_KEY || `${process.env.HOME}/.secrets/ssp-gsc-sa.json`;
-const SITE_HINT = 'sullivanstreetprojects';
-const DEFAULT_SITEMAP = 'https://sullivanstreetprojects.com/sitemap-index.xml';
+const acct = resolveAccount();
+const KEY_PATH = process.env.GSC_SA_KEY || acct.secret('gsc-sa.json');
+const SITE_HINT = acct.hint('gsc', 'sullivanstreetprojects');
+const DEFAULT_SITEMAP = acct.hint(
+  'sitemap',
+  'https://sullivanstreetprojects.com/sitemap-index.xml',
+);
 
-const [cmd = 'help', ...args] = process.argv.slice(2);
+const [cmd = 'help', ...args] = acct.rest;
 
 if (cmd === 'help' || cmd === '--help') {
   console.log(
     readFileSync(new URL(import.meta.url), 'utf-8')
       .split('\n')
-      .slice(1, 27)
+      .slice(1, 29)
       .map((l) => l.replace(/^\/\/ ?/, ''))
       .join('\n'),
   );
@@ -99,7 +107,8 @@ async function api(url, options = {}) {
 }
 
 async function resolveSite() {
-  if (process.env.GSC_SITE) return process.env.GSC_SITE;
+  if (acct.overrides.site || process.env.GSC_SITE)
+    return acct.overrides.site || process.env.GSC_SITE;
   const { siteEntry = [] } = await api('https://www.googleapis.com/webmasters/v3/sites');
   const match = siteEntry.find((s) => s.siteUrl.includes(SITE_HINT));
   if (!match) {
