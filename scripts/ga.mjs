@@ -16,6 +16,7 @@
 // Account: --account <name> (default ssp, env SSP_ACCOUNT) selects
 // ~/.secrets/<name>-gsc-sa.json and the property-name hint "ga" in
 // ~/.secrets/accounts.json. Env: GSC_SA_KEY (key path), GA_PROPERTY.
+// Note: GSC_SA_KEY, when set, overrides --account's key path — unset it when switching accounts.
 import { readFileSync, existsSync } from 'node:fs';
 import { createSign } from 'node:crypto';
 import { resolveAccount } from './lib/account.mjs';

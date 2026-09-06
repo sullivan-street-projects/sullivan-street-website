@@ -44,7 +44,14 @@ export function secretPath(account, tool, home) {
 export function resolveAccount(argv = process.argv.slice(2), env = process.env, home = env.HOME) {
   const { account, overrides, rest } = parseAccountArgs(argv, env);
   const hintsFile = `${home}/.secrets/accounts.json`;
-  const hints = existsSync(hintsFile) ? JSON.parse(readFileSync(hintsFile, 'utf-8')) : {};
+  let hints = {};
+  if (existsSync(hintsFile)) {
+    try {
+      hints = JSON.parse(readFileSync(hintsFile, 'utf-8'));
+    } catch (e) {
+      throw new Error(`Malformed ${hintsFile}: ${e.message}`);
+    }
+  }
   return {
     name: account,
     rest,

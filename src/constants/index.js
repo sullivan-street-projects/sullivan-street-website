@@ -104,7 +104,7 @@ export const FOUNDER = {
   url: 'https://sullivanstreetprojects.com/#about',
   linkedin: 'https://www.linkedin.com/in/brettwohl/',
   description:
-    'Executive growth strategist with 10+ years of experience across startups and global brands. Previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and Google.',
+    'Executive growth strategist with 10+ years of experience across startups and global brands. Previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and others while at Google and Publicis Groupe.',
   knowsAbout: [
     'Growth marketing',
     'Demand generation',

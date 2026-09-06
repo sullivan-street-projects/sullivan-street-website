@@ -65,3 +65,10 @@ test('hint: ssp entries in accounts.json override the baked default', () => {
   );
   assert.equal(resolveAccount([], {}, home).hint('gsc', 'default'), 'ssp.test');
 });
+
+test('malformed accounts.json throws a clear error instead of a raw SyntaxError', () => {
+  const home = mkdtempSync(join(tmpdir(), 'acct-'));
+  mkdirSync(join(home, '.secrets'));
+  writeFileSync(join(home, '.secrets', 'accounts.json'), '{ not json');
+  assert.throws(() => resolveAccount([], {}, home), /Malformed .*accounts\.json/);
+});

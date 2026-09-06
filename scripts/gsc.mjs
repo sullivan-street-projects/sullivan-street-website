@@ -24,6 +24,7 @@
 //
 // Account: --account <name> (default ssp, env SSP_ACCOUNT) → ~/.secrets/<name>-gsc-sa.json
 // and hints "gsc" (site substring) / "sitemap" in ~/.secrets/accounts.json; --site <url>.
+// Note: GSC_SA_KEY, when set, overrides --account's key path — unset it when switching accounts.
 import { readFileSync, existsSync } from 'node:fs';
 import { createSign } from 'node:crypto';
 import { resolveAccount } from './lib/account.mjs';
