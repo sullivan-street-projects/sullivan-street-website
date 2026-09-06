@@ -229,6 +229,17 @@ check('llms.txt structured sections in sync with constants', () => {
 // copy must use typographic ’ (U+2019), which needs no escaping.
 check('no HTML-entity apostrophes leak into markup', () => !html('index.html').includes('&#39;'));
 
+// Lighthouse 2026-09-06: the founder card used <h4> directly under the
+// section's <h2>, skipping a level. Screen-reader outlines rely on levels.
+check('founder card heading is an h3 (no heading-level skip)', () => {
+  const page = html('index.html');
+  return (
+    page.includes(
+      '<h3 class="font-serif text-xl leading-none mb-2 text-charcoal">Brett Wohl</h3>',
+    ) && !page.includes('<h4')
+  );
+});
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;
