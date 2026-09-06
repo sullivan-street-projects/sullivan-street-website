@@ -34,13 +34,16 @@ const KEY_PATH = process.env.GSC_SA_KEY || acct.secret('gsc-sa.json');
 const [cmd = 'help', ...args] = acct.rest;
 
 if (cmd === 'help' || cmd === '--help') {
-  console.log(
-    readFileSync(new URL(import.meta.url), 'utf-8')
-      .split('\n')
-      .slice(1, 29)
-      .map((l) => l.replace(/^\/\/ ?/, ''))
-      .join('\n'),
-  );
+  // Print the header comment by shape (skip the shebang, stop at the first
+  // non-"//" line) rather than a hardcoded line count, so it can't drift out
+  // of sync with edits to the comment block above.
+  const lines = readFileSync(new URL(import.meta.url), 'utf-8').split('\n');
+  const comment = [];
+  for (const line of lines.slice(1)) {
+    if (!line.startsWith('//')) break;
+    comment.push(line);
+  }
+  console.log(comment.map((l) => l.replace(/^\/\/ ?/, '')).join('\n'));
   process.exit(0);
 }
 
