@@ -73,7 +73,8 @@ Baseline capture: `bash scripts/capture-baselines.sh` (9 sections x 3 viewports 
 ## Analytics & Observability
 
 - Stack: GA4 + Microsoft Clarity + Google Search Console + Bing Webmaster (consent-gated; see `src/utils/analytics.js`). PostHog deferred; GTM intentionally not used.
-- Manageable through Claude Code: GA4 reports via the `analytics-mcp` MCP; Clarity heatmaps/session recordings via the `clarity` MCP; site verification + DNS via the Hostinger DNS MCP; deploys watched via the Hostinger hosting MCP.
+- **Both MCP connectors are Cloud Club, not SSP** (`analytics-mcp` and `clarity` resolve to the Cloud Club account/project; confirmed 2026-09-06). SSP numbers come from the scripts below. All five accept `--account <name>` (default `ssp`, env `SSP_ACCOUNT`), which selects `~/.secrets/<name>-<tool>` and per-account hints in `~/.secrets/accounts.json` (see `scripts/lib/account.mjs`). `npm run tools:link` symlinks `~/.claude/tools` → this repo's `scripts/`, so any project can run `node ~/.claude/tools/ga.mjs --account cloudclub report 30`. This repo stays the single source of truth; `npm test` covers the resolver.
+- Site verification + DNS via the Hostinger DNS MCP; deploys watched via the Hostinger hosting MCP.
 - Verification tokens live in `src/layouts/BaseLayout.astro` (`SITE_VERIFICATION`) and/or DNS TXT records.
 - Adding a new tag = edit `BaseLayout` + add its host to the CSP in `public/.htaccess`. No GTM indirection.
 
@@ -82,7 +83,7 @@ Baseline capture: `bash scripts/capture-baselines.sh` (9 sections x 3 viewports 
 - Deploy = `npm run build` (regenerates `llms.txt` from constants), zip the **contents** of `dist/` (must include `.htaccess` — use `zip -rq out.zip .` from inside dist/), then `hosting_deployStaticWebsite` (Hostinger MCP) with domain `sullivanstreetprojects.com`. Always live-verify after (routes, headers, key content markers), then `node scripts/indexnow.mjs` to ping Bing/Copilot.
 - Search Console: `node scripts/gsc.mjs` (sites/perf/inspect/sitemaps/sitemap-submit) — service-account key at `~/.secrets/ssp-gsc-sa.json`, never in the repo.
 - Bing Webmaster: `node scripts/bing.mjs` (sites/perf/queries/sitemaps/sitemap-submit/quota) — API key at `~/.secrets/ssp-bing-key.txt`. Bing's AI Performance report (Copilot citations) is UI-only.
-- GA4: `node scripts/ga.mjs` (properties/report/pages/sources/realtime) — same service-account key as gsc.mjs.
+- GA4: `node scripts/ga.mjs` (properties/report/pages/sources/events/clicks/admin/realtime) — same service-account key as gsc.mjs. `admin` prints key events, custom dimensions and retention (must read `FOURTEEN_MONTHS`).
 - Clarity (SSP): `node scripts/clarity.mjs insights [1-3] [dimension]` — token at `~/.secrets/ssp-clarity-token.txt`, **hard limit 10 API calls/day**. The `clarity` MCP connector is the Cloud Club project, NOT this site.
 - TidyCal: `node scripts/tidycal.mjs` (summary/bookings/types) — token at `~/.secrets/ssp-tidycal-token.txt`. Source of truth for ACTUAL bookings; GA4 only carries TidyCal's funnel events (fired from tidycal.com + call.sullivanstreetprojects.com via its GA integration). `book_call_click` + `select_time` are GA4 Key Events.
 - Server is **LiteSpeed**, not Apache: `Header setifempty` is unsupported (it emits a literal `setifempty:` response header). Use rule ordering instead — last matching `Header set` wins.

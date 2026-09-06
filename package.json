@@ -12,7 +12,8 @@
     "preview": "astro preview --port 4173",
     "verify": "npm run build && node scripts/verify-dist.mjs",
     "screenshot": "node scripts/screenshot.js",
-    "test": "node --test scripts/lib/*.test.mjs"
+    "test": "node --test scripts/lib/*.test.mjs",
+    "tools:link": "ln -sfn \"$PWD/scripts\" \"$HOME/.claude/tools\" && echo \"~/.claude/tools -> $PWD/scripts\""
   },
   "dependencies": {
     "@astrojs/react": "^6.0.1",

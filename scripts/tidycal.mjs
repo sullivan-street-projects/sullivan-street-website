@@ -10,8 +10,10 @@
 //   node scripts/tidycal.mjs bookings [n]     latest n bookings (default 10)
 //   node scripts/tidycal.mjs types            booking types
 import { readFileSync, existsSync } from 'node:fs';
+import { resolveAccount } from './lib/account.mjs';
 
-const TOKEN_PATH = `${process.env.HOME}/.secrets/ssp-tidycal-token.txt`;
+const acct = resolveAccount();
+const TOKEN_PATH = acct.secret('tidycal-token.txt');
 if (!existsSync(TOKEN_PATH)) {
   console.error(`No TidyCal token at ${TOKEN_PATH} (tidycal.com → Account → API Access).`);
   process.exit(1);
@@ -45,13 +47,16 @@ const fmt = (b) => {
   return `${b.starts_at.slice(0, 16).replace('T', ' ')}Z  ${status.padEnd(9)}  type:${b.booking_type_id}  tz:${b.timezone}`;
 };
 
-const [cmd = 'summary', ...args] = process.argv.slice(2);
+const [cmd = 'summary', ...args] = acct.rest;
 
 if (cmd === 'types') {
   const { data = [] } = await api('/booking-types');
   data.forEach((t) =>
     console.log(
-      `${t.title} (/${t.url_slug}) — ${t.duration_minutes}min${t.disabled_at ? ' [DISABLED]' : ''}`,
+      // [PRIVATE] types are hidden from the directory — a private-only
+      // account renders "No booking types currently available" on the bare
+      // call. domain (audit 2026-09-06, item A4).
+      `${t.title} (/${t.url_slug}) — ${t.duration_minutes}min${t.disabled_at ? ' [DISABLED]' : ''}${t.private ? ' [PRIVATE]' : ''}`,
     ),
   );
 } else if (cmd === 'bookings') {
