@@ -8,7 +8,7 @@
   --color-divider: #e5e5e5;
   --color-secondary: #404040;
   --color-muted: #525252;
-  --color-label: #737373;
+  --color-label: #6b6b6b; /* 4.67:1 on paper-warm, 5.10:1 on paper (was #737373 = 4.16:1 on paper-warm) */
   --color-faint: #6b6b6b;
   --color-green: #4ade80;
   --color-green-dark: #22c55e;

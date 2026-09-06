@@ -240,6 +240,29 @@ check('founder card heading is an h3 (no heading-level skip)', () => {
   );
 });
 
+// WCAG AA contrast guard for the section eyebrow label. Lighthouse 2026-09-06
+// measured #737373 on bg-paper-warm at 4.16:1. Computed from the source
+// tokens so a palette edit cannot silently drop below 4.5:1 again.
+check('label token clears 4.5:1 on paper and paper-warm', () => {
+  const css = readFileSync(
+    fileURLToPath(new URL('../src/styles/global.css', import.meta.url)),
+    'utf-8',
+  );
+  const token = (name) => css.match(new RegExp(`--color-${name}:\\s*(#[0-9a-fA-F]{6})`))[1];
+  const lum = (hex) => {
+    const c = [1, 3, 5]
+      .map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+      .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  };
+  const ratio = (a, b) => {
+    const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);
+    return (hi + 0.05) / (lo + 0.05);
+  };
+  const label = token('label');
+  return ratio(label, token('paper')) >= 4.5 && ratio(label, token('paper-warm')) >= 4.5;
+});
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;
