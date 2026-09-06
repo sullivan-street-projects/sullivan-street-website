@@ -263,6 +263,21 @@ check('label token clears 4.5:1 on paper and paper-warm', () => {
   return ratio(label, token('paper')) >= 4.5 && ratio(label, token('paper-warm')) >= 4.5;
 });
 
+// Hygiene (audit 2026-09-06). meta keywords has been ignored by every engine
+// since 2009 and only advertises targeting; HSTS preload is a free upgrade;
+// /contact was a real 404 for at least one visitor.
+check('no meta keywords tag', () => !html('index.html').includes('name="keywords"'));
+check('HSTS carries preload', () =>
+  readFileSync(dist('.htaccess'), 'utf-8').includes(
+    'Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"',
+  ),
+);
+check('/contact 301s to the contact section', () =>
+  readFileSync(dist('.htaccess'), 'utf-8').includes(
+    'RewriteRule ^contact/?$ /#contact [L,R=301,NE]',
+  ),
+);
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;
