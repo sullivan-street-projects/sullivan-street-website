@@ -30,11 +30,6 @@ import { resolveAccount } from './lib/account.mjs';
 
 const acct = resolveAccount();
 const KEY_PATH = process.env.GSC_SA_KEY || acct.secret('gsc-sa.json');
-const SITE_HINT = acct.hint('gsc', 'sullivanstreetprojects');
-const DEFAULT_SITEMAP = acct.hint(
-  'sitemap',
-  'https://sullivanstreetprojects.com/sitemap-index.xml',
-);
 
 const [cmd = 'help', ...args] = acct.rest;
 
@@ -55,6 +50,14 @@ if (!existsSync(KEY_PATH)) {
   console.error('or point GSC_SA_KEY at the JSON key file.');
   process.exit(1);
 }
+
+// Resolved lazily (after the key-existence check above) so an unconfigured
+// --account fails on the missing key, not on a missing accounts.json hint.
+const SITE_HINT = acct.hint('gsc', 'sullivanstreetprojects');
+const DEFAULT_SITEMAP = acct.hint(
+  'sitemap',
+  'https://sullivanstreetprojects.com/sitemap-index.xml',
+);
 
 const key = JSON.parse(readFileSync(KEY_PATH, 'utf-8'));
 
