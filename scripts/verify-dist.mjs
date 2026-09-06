@@ -278,6 +278,12 @@ check('/contact 301s to the contact section', () =>
   ),
 );
 
+check('llms.txt links the founder LinkedIn profile', () =>
+  readFileSync(dist('llms.txt'), 'utf-8').includes(
+    '- **LinkedIn:** https://www.linkedin.com/in/brettwohl/',
+  ),
+);
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;
