@@ -67,3 +67,36 @@ export function resolveAccount(argv = process.argv.slice(2), env = process.env, 
     },
   };
 }
+
+// CLI entry point: same as resolveAccount, but account errors (malformed
+// hints file, missing hint for a non-ssp account) print one line and exit 1
+// instead of surfacing as an uncaught exception with a stack trace.
+export function resolveAccountOrExit(
+  argv = process.argv.slice(2),
+  env = process.env,
+  home = env.HOME,
+  io = { error: console.error, exit: process.exit },
+) {
+  const fail = (e) => {
+    io.error(e.message);
+    io.exit(1);
+  };
+  let acct;
+  try {
+    acct = resolveAccount(argv, env, home);
+  } catch (e) {
+    fail(e);
+    return undefined;
+  }
+  return {
+    ...acct,
+    hint(key, sspDefault) {
+      try {
+        return acct.hint(key, sspDefault);
+      } catch (e) {
+        fail(e);
+        return undefined;
+      }
+    },
+  };
+}

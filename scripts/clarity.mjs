@@ -16,9 +16,9 @@
 //   node scripts/clarity.mjs raw [days] [dim1] [dim2] [dim3]   full JSON
 // Account: --account <name> → ~/.secrets/<name>-clarity-token.txt (one token per Clarity project).
 import { readFileSync, existsSync } from 'node:fs';
-import { resolveAccount } from './lib/account.mjs';
+import { resolveAccountOrExit } from './lib/account.mjs';
 
-const acct = resolveAccount();
+const acct = resolveAccountOrExit();
 const TOKEN_PATH = acct.secret('clarity-token.txt');
 if (!existsSync(TOKEN_PATH)) {
   console.error(`No Clarity token at ${TOKEN_PATH} (Clarity → Settings → Data Export).`);

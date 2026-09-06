@@ -10,9 +10,9 @@
 //   node scripts/tidycal.mjs bookings [n]     latest n bookings (default 10)
 //   node scripts/tidycal.mjs types            booking types
 import { readFileSync, existsSync } from 'node:fs';
-import { resolveAccount } from './lib/account.mjs';
+import { resolveAccountOrExit } from './lib/account.mjs';
 
-const acct = resolveAccount();
+const acct = resolveAccountOrExit();
 const TOKEN_PATH = acct.secret('tidycal-token.txt');
 if (!existsSync(TOKEN_PATH)) {
   console.error(`No TidyCal token at ${TOKEN_PATH} (tidycal.com → Account → API Access).`);

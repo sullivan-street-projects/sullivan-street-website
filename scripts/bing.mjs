@@ -15,9 +15,9 @@
 // (runs on every deploy). This client is for reading Bing's data back.
 // Account: --account <name> → ~/.secrets/<name>-bing-key.txt; hints "bing_site", "sitemap".
 import { readFileSync, existsSync } from 'node:fs';
-import { resolveAccount } from './lib/account.mjs';
+import { resolveAccountOrExit } from './lib/account.mjs';
 
-const acct = resolveAccount();
+const acct = resolveAccountOrExit();
 const KEY_PATH = acct.secret('bing-key.txt');
 const KEY =
   process.env.BING_WM_KEY || (existsSync(KEY_PATH) && readFileSync(KEY_PATH, 'utf-8').trim());

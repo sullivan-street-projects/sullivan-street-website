@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { parseAccountArgs, secretPath, resolveAccount } from './account.mjs';
+import { parseAccountArgs, secretPath, resolveAccount, resolveAccountOrExit } from './account.mjs';
 
 test('defaults to ssp and leaves the command args intact', () => {
   const r = parseAccountArgs(['report', '30']);
@@ -71,4 +71,25 @@ test('malformed accounts.json throws a clear error instead of a raw SyntaxError'
   mkdirSync(join(home, '.secrets'));
   writeFileSync(join(home, '.secrets', 'accounts.json'), '{ not json');
   assert.throws(() => resolveAccount([], {}, home), /Malformed .*accounts\.json/);
+});
+
+test('resolveAccountOrExit: malformed accounts.json prints one line and exits 1', () => {
+  const home = mkdtempSync(join(tmpdir(), 'acct-'));
+  mkdirSync(join(home, '.secrets'));
+  writeFileSync(join(home, '.secrets', 'accounts.json'), '{ bad');
+  const calls = { error: [], exit: [] };
+  const io = { error: (m) => calls.error.push(m), exit: (c) => calls.exit.push(c) };
+  resolveAccountOrExit([], {}, home, io);
+  assert.match(calls.error[0], /^Malformed .*accounts\.json/);
+  assert.deepEqual(calls.exit, [1]);
+});
+
+test('resolveAccountOrExit: missing hint for a non-ssp account prints one line and exits 1', () => {
+  const home = mkdtempSync(join(tmpdir(), 'acct-'));
+  const calls = { error: [], exit: [] };
+  const io = { error: (m) => calls.error.push(m), exit: (c) => calls.exit.push(c) };
+  const acct = resolveAccountOrExit(['--account', 'cloudclub'], {}, home, io);
+  acct.hint('gsc', 'default');
+  assert.match(calls.error[0], /^No hint "gsc" for account "cloudclub"/);
+  assert.deepEqual(calls.exit, [1]);
 });
