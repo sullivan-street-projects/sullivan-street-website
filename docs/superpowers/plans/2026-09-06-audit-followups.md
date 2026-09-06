@@ -14,6 +14,8 @@
 
 > **Amendment 2026-09-06 (final review):** (a) `FOUNDER.description` originally said Google was a media _client_ (inherited from the old llms.txt template); `src/CONTENT.md`, the About bio and the company LinkedIn page all say Google was an _employer_. The constant now matches CONTENT.md. (b) Criterion 10's second grep expected the Advisory apostrophe sentence twice, but the Services island escapes apostrophes as `&#x27;`, so the literal appears once (JSON-LD only); the criterion now says `= 1`.
 
+> **Amendment 2026-09-06 (owner):** Brett confirmed copy changes are out of scope for this run. `FOUNDER.description` is reverted to the pre-existing llms.txt sentence verbatim ("…Samsung, and Google."), so llms.txt shows no wording change. The Google employer-vs-client discrepancy between llms.txt and CONTENT.md is an open item for Brett, not for this plan.
+
 ## Global Constraints
 
 - **Branch `audit-followups-2026-09`, one conventional commit per task** (Task 1 commits the plan + spec). All work on that branch; merge to `main` only in Task 11 after the human checkpoint.
