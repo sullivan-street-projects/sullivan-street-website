@@ -66,7 +66,7 @@ is kebab-case `<prospect-or-purpose>-<yyyy-mm>` (e.g. `acme-intro-2026-09`). No 
 - New `scripts/lib/account.mjs`: parses `--account <name>` (default `ssp`, env `SSP_ACCOUNT` as fallback), `--property`, `--site`; builds secret paths `~/.secrets/<account>-<tool>`; reads optional per-account hints from `~/.secrets/accounts.json`.
 - All five scripts (`ga`, `gsc`, `bing`, `clarity`, `tidycal`) consume it. Existing env overrides (`GSC_SA_KEY`, `GA_PROPERTY`, `GSC_SITE`, `BING_WM_KEY`, `BING_SITE`) keep working.
 - `ga.mjs` gains `admin` (key events, custom dimensions, retention) so A2/A3/A5 are checkable. `tidycal.mjs types` marks `[PRIVATE]` so A4 is checkable.
-- `npm run tools:link` symlinks `~/.claude/tools` → this repo's `scripts/` (decision: repo stays the single source of truth). `npm test` runs `node --test scripts/lib/`.
+- `npm run tools:link` symlinks `~/.claude/tools` → this repo's `scripts/` (decision: repo stays the single source of truth). `npm test` runs `node --test scripts/lib/*.test.mjs` (a bare directory path is MODULE_NOT_FOUND on Node 24).
 - `CLAUDE.md` Analytics section states that both MCP connectors are Cloud Club and documents `--account`.
 
 ## Out of scope

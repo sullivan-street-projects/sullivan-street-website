@@ -12,6 +12,8 @@
 
 > **Amendment 2026-09-06 (during execution, Task 8):** `node --test scripts/lib/` fails with MODULE_NOT_FOUND on Node 24 (a directory path is not scanned), so the `test` script is `node --test scripts/lib/*.test.mjs`. Node's default reporter prints the summary as `ℹ pass 7`, not `# pass 7`; criterion 3 and Task 8 Step 2/4 now say so.
 
+> **Amendment 2026-09-06 (final review):** (a) `FOUNDER.description` originally said Google was a media _client_ (inherited from the old llms.txt template); `src/CONTENT.md`, the About bio and the company LinkedIn page all say Google was an _employer_. The constant now matches CONTENT.md. (b) Criterion 10's second grep expected the Advisory apostrophe sentence twice, but the Services island escapes apostrophes as `&#x27;`, so the literal appears once (JSON-LD only); the criterion now says `= 1`.
+
 ## Global Constraints
 
 - **Branch `audit-followups-2026-09`, one conventional commit per task** (Task 1 commits the plan + spec). All work on that branch; merge to `main` only in Task 11 after the human checkpoint.
@@ -344,7 +346,7 @@ export const FOUNDER = {
   url: 'https://sullivanstreetprojects.com/#about',
   linkedin: 'https://www.linkedin.com/in/brettwohl/',
   description:
-    'Executive growth strategist with 10+ years of experience across startups and global brands. Previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and Google.',
+    'Executive growth strategist with 10+ years of experience across startups and global brands. Previously led demand generation at Navan and managed over $2 billion in media for Apple, JPMorgan Chase, Samsung, and others while at Google and Publicis Groupe.',
   knowsAbout: [
     'Growth marketing',
     'Demand generation',
@@ -1220,7 +1222,7 @@ Verified after all tasks complete. Criteria 1–14 gate the human checkpoint; 15
 | 7   | HSTS preload and /contact redirect are in the shipped .htaccess                                | `grep -cF 'includeSubDomains; preload' dist/.htaccess` = 1; `grep -cF 'RewriteRule ^contact/?$ /#contact [L,R=301,NE]' dist/.htaccess` = 1                                                                                                                          |
 | 8   | JSON-LD parses and has exactly WebSite, Organization, Person, 3 Services                       | `node -e 'const h=require("fs").readFileSync("dist/index.html","utf8");const g=JSON.parse(h.match(/ld\+json">([\s\S]*?)<\/script>/)[1])["@graph"];console.log(g.length, g.map(n=>n["@type"]).join(","))'` → `6 WebSite,Organization,Person,Service,Service,Service` |
 | 9   | Person node links LinkedIn and the Organization both ways                                      | `grep -oF '"@id":"https://sullivanstreetprojects.com/#brett-wohl"' dist/index.html \| wc -l` ≥ 2; `grep -oF 'linkedin.com/in/brettwohl' dist/index.html \| wc -l` = 1                                                                                               |
-| 10  | Service nodes carry serviceType from TIERS and the Advisory description is no longer truncated | `grep -o '"serviceType":"[^"]*"' dist/index.html \| sort -u \| wc -l` = 3; `grep -oF "what's working and what isn't" dist/index.html \| wc -l` ≥ 2 (Services island copy + JSON-LD)                                                                                 | sort -u \| wc -l`= 3;`grep -c "what's working and what isn't" dist/index.html` ≥ 2 (Services island copy + JSON-LD)              |
+| 10  | Service nodes carry serviceType from TIERS and the Advisory description is no longer truncated | `grep -o '"serviceType":"[^"]*"' dist/index.html \| sort -u \| wc -l` = 3; `grep -oF "what's working and what isn't" dist/index.html \| wc -l` = 1 (the JSON-LD copy; the Services island escapes its apostrophes as `&#x27;`, so the literal appears once)         | sort -u \| wc -l`= 3;`grep -oF "what's working and what isn't" dist/index.html \| wc -l` ≥ 2 (Services island copy + JSON-LD)    | sort -u \| wc -l`= 3;`grep -c "what's working and what isn't" dist/index.html` ≥ 2 (Services island copy + JSON-LD) |
 | 11  | llms.txt carries the LinkedIn and expertise lines                                              | `grep -c 'linkedin.com/in/brettwohl' dist/llms.txt` = 1; `grep -c '\*\*Expertise:\*\*' dist/llms.txt` = 1                                                                                                                                                           |
 | 12  | UTM convention and `--account` tooling are documented                                          | `grep -cF 'utm_source=<gamma\|email\|linkedin>' CLAUDE.md` = 1; `grep -cF 'Both MCP connectors are Cloud Club' CLAUDE.md` = 1; `grep -cF 'tools:link' CLAUDE.md` ≥ 1                                                                                                | email\|linkedin>' CLAUDE.md`= 1;`grep -c 'Both MCP connectors are Cloud Club' CLAUDE.md`= 1;`grep -c 'tools:link' CLAUDE.md` ≥ 1 |
 | 13  | Every script rejects an unknown account with the expected secret path and exit 1               | for each of `ga.mjs properties`, `gsc.mjs sites`, `bing.mjs quota`, `clarity.mjs insights 1`, `tidycal.mjs summary`: `node scripts/<s> --account nope …; echo $?` prints a `No … at …/.secrets/nope-…` line and `1`                                                 |
