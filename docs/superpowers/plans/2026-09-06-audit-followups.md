@@ -10,6 +10,8 @@
 
 **Spec:** `docs/superpowers/specs/2026-09-06-audit-followups-spec.md`
 
+> **Amendment 2026-09-06 (during execution, Task 8):** `node --test scripts/lib/` fails with MODULE_NOT_FOUND on Node 24 (a directory path is not scanned), so the `test` script is `node --test scripts/lib/*.test.mjs`. Node's default reporter prints the summary as `ℹ pass 7`, not `# pass 7`; criterion 3 and Task 8 Step 2/4 now say so.
+
 ## Global Constraints
 
 - **Branch `audit-followups-2026-09`, one conventional commit per task** (Task 1 commits the plan + spec). All work on that branch; merge to `main` only in Task 11 after the human checkpoint.
@@ -675,7 +677,7 @@ test('hint: ssp entries in accounts.json override the baked default', () => {
 In `package.json` `scripts`, add:
 
 ```json
-"test": "node --test scripts/lib/"
+"test": "node --test scripts/lib/*.test.mjs"
 ```
 
 Run: `npm test`
@@ -753,7 +755,7 @@ export function resolveAccount(argv = process.argv.slice(2), env = process.env, 
 - [ ] **Step 4: Run the tests to see them pass**
 
 Run: `npm test`
-Expected: `# pass 7`, `# fail 0`.
+Expected: `pass 7`, `fail 0` in the summary (printed as `ℹ pass 7` / `ℹ fail 0`).
 
 - [ ] **Step 5: Commit**
 
@@ -1211,7 +1213,7 @@ Verified after all tasks complete. Criteria 1–14 gate the human checkpoint; 15
 | --- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1   | Work is on branch `audit-followups-2026-09` with one commit per task (Tasks 1–10)              | `git rev-parse --abbrev-ref HEAD` = `audit-followups-2026-09`; `git log --oneline main..HEAD \| wc -l` ≥ 10                                                                                                                                                         |
 | 2   | Full content-assertion suite passes with the 10 new checks                                     | `npm run verify` → final line `All 65 checks passed`, exit 0                                                                                                                                                                                                        |
-| 3   | Account resolver unit tests pass                                                               | `npm test` → `# pass 7`, `# fail 0`, exit 0                                                                                                                                                                                                                         |
+| 3   | Account resolver unit tests pass                                                               | `npm test` → summary lines show `pass 7` and `fail 0` (Node's default reporter prints them as `ℹ pass 7`), exit 0                                                                                                                                                   |
 | 4   | Founder card heading is an h3 and the page has no h4                                           | `grep -c '<h3 class="font-serif text-xl leading-none mb-2 text-charcoal">Brett Wohl</h3>' dist/index.html` = 1; `grep -c '<h4' dist/index.html` = 0                                                                                                                 |
 | 5   | Label token clears WCAG AA on both grounds                                                     | `grep -c -- '--color-label: #6b6b6b' src/styles/global.css` = 1 (verify-dist computes the ratio: ≥ 4.5 on `#fafaf8` and `#f0f0ee`)                                                                                                                                  |
 | 6   | Meta keywords tag is gone                                                                      | `grep -c 'name="keywords"' dist/index.html` = 0                                                                                                                                                                                                                     |
