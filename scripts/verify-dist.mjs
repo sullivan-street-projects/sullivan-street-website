@@ -284,6 +284,41 @@ check('llms.txt links the founder LinkedIn profile', () =>
   ),
 );
 
+// Entity graph for AI answer engines (audit 2026-09-06): the founder is a
+// first-class Person linked both ways to the Organization, and Service nodes
+// are generated from TIERS so they cannot drift from the site copy again.
+const jsonLd = () => {
+  const m = html('index.html').match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  return m ? JSON.parse(m[1]) : null;
+};
+check('JSON-LD parses with 6 graph nodes (WebSite, Organization, Person, 3 Services)', () => {
+  const g = jsonLd()?.['@graph'] ?? [];
+  const types = g.map((n) => n['@type']);
+  return (
+    g.length === 6 &&
+    ['WebSite', 'Organization', 'Person'].every((t) => types.includes(t)) &&
+    types.filter((t) => t === 'Service').length === 3
+  );
+});
+check('Person node carries @id, LinkedIn sameAs and worksFor', () => {
+  const p = (jsonLd()?.['@graph'] ?? []).find((n) => n['@type'] === 'Person');
+  return (
+    p?.['@id'] === 'https://sullivanstreetprojects.com/#brett-wohl' &&
+    p.sameAs?.includes('https://www.linkedin.com/in/brettwohl/') &&
+    p.worksFor?.['@id'] === 'https://sullivanstreetprojects.com/#organization'
+  );
+});
+check('Organization founder references the Person @id', () => {
+  const o = (jsonLd()?.['@graph'] ?? []).find((n) => n['@type'] === 'Organization');
+  return o?.founder?.['@id'] === 'https://sullivanstreetprojects.com/#brett-wohl';
+});
+check('Service nodes mirror TIERS with serviceType', () => {
+  const s = (jsonLd()?.['@graph'] ?? []).filter((n) => n['@type'] === 'Service');
+  return TIERS.every((t) =>
+    s.some((n) => n.serviceType === t.subtitle && n.description === t.description),
+  );
+});
+
 let failed = 0;
 for (const { name, fn } of checks) {
   let ok = false;

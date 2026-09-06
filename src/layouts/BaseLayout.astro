@@ -2,6 +2,7 @@
 import { Font } from 'astro:assets';
 import '../styles/global.css';
 import CookieConsent from '../components/CookieConsent.jsx';
+import { TIERS, FOUNDER } from '../constants';
 
 const {
   title = 'Sullivan Street Projects | Marketing for Tomorrow’s Billion-Dollar Brands',
@@ -25,7 +26,10 @@ const SITE_VERIFICATION = {
   bing: '', // 🔑 Bing meta content token
 };
 
-// Ported verbatim from the old index.html <head>.
+// Entity graph. Person + Services are derived from src/constants so the
+// markup cannot drift from the copy (verify-dist asserts the mirror).
+const ORG_ID = 'https://sullivanstreetprojects.com/#organization';
+const AREA_SERVED = { '@type': 'Country', name: 'United States' };
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -34,24 +38,19 @@ const structuredData = {
       '@id': 'https://sullivanstreetprojects.com/#website',
       url: 'https://sullivanstreetprojects.com',
       name: 'Sullivan Street Projects',
-      publisher: { '@id': 'https://sullivanstreetprojects.com/#organization' },
+      publisher: { '@id': ORG_ID },
     },
     {
       '@type': 'Organization',
-      '@id': 'https://sullivanstreetprojects.com/#organization',
+      '@id': ORG_ID,
       name: 'Sullivan Street Projects',
       url: 'https://sullivanstreetprojects.com',
       sameAs: ['https://www.linkedin.com/company/sullivan-street-projects'],
       logo: 'https://sullivanstreetprojects.com/og-image.png',
       description:
         'Fractional growth consultancy delivering AI-powered strategy, media, and execution.',
-      founder: {
-        '@type': 'Person',
-        name: 'Brett Wohl',
-        jobTitle: 'Founder, Managing Partner',
-        description:
-          'Executive growth strategist with 10+ years of experience across startups and global brands.',
-      },
+      founder: { '@id': FOUNDER.id },
+      areaServed: AREA_SERVED,
       address: {
         '@type': 'PostalAddress',
         streetAddress: '1178 Broadway',
@@ -67,26 +66,24 @@ const structuredData = {
       },
     },
     {
-      '@type': 'Service',
-      provider: { '@id': 'https://sullivanstreetprojects.com/#organization' },
-      name: 'Management (Growth Leadership)',
-      description:
-        'For leaders who need full operational ownership. We become your growth department. We build and lead your marketing team, manage agencies and vendors, and own performance.',
+      '@type': 'Person',
+      '@id': FOUNDER.id,
+      name: FOUNDER.name,
+      jobTitle: FOUNDER.jobTitle,
+      url: FOUNDER.url,
+      sameAs: [FOUNDER.linkedin],
+      description: FOUNDER.description,
+      knowsAbout: FOUNDER.knowsAbout,
+      worksFor: { '@id': ORG_ID },
     },
-    {
+    ...TIERS.map((t) => ({
       '@type': 'Service',
-      provider: { '@id': 'https://sullivanstreetprojects.com/#organization' },
-      name: 'Strategy (Go-to-Market Design)',
-      description:
-        'For teams ready to build the playbook. We audit what you have, model your growth, and deliver a roadmap you can execute with confidence.',
-    },
-    {
-      '@type': 'Service',
-      provider: { '@id': 'https://sullivanstreetprojects.com/#organization' },
-      name: 'Advisory (Strategic Guidance)',
-      description:
-        'For founders who need an executive thought partner. We help you make the right decisions on hiring, vendors, and positioning.',
-    },
+      provider: { '@id': ORG_ID },
+      name: `${t.title} (${t.subtitle})`,
+      serviceType: t.subtitle,
+      description: t.description,
+      areaServed: AREA_SERVED,
+    })),
   ],
 };
 const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
