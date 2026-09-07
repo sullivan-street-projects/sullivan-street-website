@@ -27,7 +27,8 @@ export function parseAccountArgs(argv, env = {}) {
       continue;
     }
     const bare = a.match(/^--([a-z]+)$/);
-    if (bare && FLAGS.includes(bare[1]) && i + 1 < argv.length) {
+    if (bare && FLAGS.includes(bare[1])) {
+      if (i + 1 >= argv.length) throw new Error(`--${bare[1]} needs a value`);
       found[bare[1]] = argv[++i];
       continue;
     }

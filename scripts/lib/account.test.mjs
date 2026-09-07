@@ -1,9 +1,16 @@
-import { test } from 'node:test';
+import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { parseAccountArgs, secretPath, resolveAccount, resolveAccountOrExit } from './account.mjs';
+const tmpHomes = [];
+const tmpHome = () => {
+  const h = mkdtempSync(join(tmpdir(), 'acct-'));
+  tmpHomes.push(h);
+  return h;
+};
+after(() => tmpHomes.forEach((h) => rmSync(h, { recursive: true, force: true })));
 
 test('defaults to ssp and leaves the command args intact', () => {
   const r = parseAccountArgs(['report', '30']);
@@ -42,7 +49,7 @@ test('secretPath follows ~/.secrets/<account>-<tool>', () => {
 });
 
 test('hint: ssp uses the baked default, other accounts read accounts.json, missing throws', () => {
-  const home = mkdtempSync(join(tmpdir(), 'acct-'));
+  const home = tmpHome();
   mkdirSync(join(home, '.secrets'));
   writeFileSync(
     join(home, '.secrets', 'accounts.json'),
@@ -57,7 +64,7 @@ test('hint: ssp uses the baked default, other accounts read accounts.json, missi
 });
 
 test('hint: ssp entries in accounts.json override the baked default', () => {
-  const home = mkdtempSync(join(tmpdir(), 'acct-'));
+  const home = tmpHome();
   mkdirSync(join(home, '.secrets'));
   writeFileSync(
     join(home, '.secrets', 'accounts.json'),
@@ -67,14 +74,14 @@ test('hint: ssp entries in accounts.json override the baked default', () => {
 });
 
 test('malformed accounts.json throws a clear error instead of a raw SyntaxError', () => {
-  const home = mkdtempSync(join(tmpdir(), 'acct-'));
+  const home = tmpHome();
   mkdirSync(join(home, '.secrets'));
   writeFileSync(join(home, '.secrets', 'accounts.json'), '{ not json');
   assert.throws(() => resolveAccount([], {}, home), /Malformed .*accounts\.json/);
 });
 
 test('resolveAccountOrExit: malformed accounts.json prints one line and exits 1', () => {
-  const home = mkdtempSync(join(tmpdir(), 'acct-'));
+  const home = tmpHome();
   mkdirSync(join(home, '.secrets'));
   writeFileSync(join(home, '.secrets', 'accounts.json'), '{ bad');
   const calls = { error: [], exit: [] };
@@ -85,11 +92,16 @@ test('resolveAccountOrExit: malformed accounts.json prints one line and exits 1'
 });
 
 test('resolveAccountOrExit: missing hint for a non-ssp account prints one line and exits 1', () => {
-  const home = mkdtempSync(join(tmpdir(), 'acct-'));
+  const home = tmpHome();
   const calls = { error: [], exit: [] };
   const io = { error: (m) => calls.error.push(m), exit: (c) => calls.exit.push(c) };
   const acct = resolveAccountOrExit(['--account', 'cloudclub'], {}, home, io);
   acct.hint('gsc', 'default');
   assert.match(calls.error[0], /^No hint "gsc" for account "cloudclub"/);
   assert.deepEqual(calls.exit, [1]);
+});
+
+test('a recognized flag with no value fails loudly instead of leaking into the command args', () => {
+  assert.throws(() => parseAccountArgs(['report', '--property']), /--property needs a value/);
+  assert.throws(() => parseAccountArgs(['--account']), /--account needs a value/);
 });

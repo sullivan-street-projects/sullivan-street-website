@@ -18,6 +18,7 @@
 //   node scripts/gsc.mjs inspect <url>              index status of one URL
 //   node scripts/gsc.mjs sitemaps                   sitemap status
 //   node scripts/gsc.mjs sitemap-submit [url]       (re)submit the sitemap
+//   node scripts/gsc.mjs sitemap-delete <url>       remove a stale sitemap registration
 //
 // Env overrides: GSC_SA_KEY (key path), GSC_SITE (property, e.g.
 // "sc-domain:sullivanstreetprojects.com" or "https://sullivanstreetprojects.com/").
@@ -201,6 +202,20 @@ if (cmd === 'sites') {
     { method: 'PUT' },
   );
   console.log(`Submitted: ${feed} → ${site}`);
+} else if (cmd === 'sitemap-delete') {
+  // Remove a stale sitemap registration (e.g. the pre-Astro /sitemap.xml that
+  // now 404s and shows "errors: 1" forever). Does not touch the live site.
+  const site = await resolveSite();
+  const feed = args[0];
+  if (!feed) {
+    console.error('usage: gsc.mjs sitemap-delete <sitemap-url>');
+    process.exit(1);
+  }
+  await api(
+    `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(site)}/sitemaps/${encodeURIComponent(feed)}`,
+    { method: 'DELETE' },
+  );
+  console.log(`Deleted: ${feed} from ${site}`);
 } else {
   console.error(`Unknown command: ${cmd}. Run \`node scripts/gsc.mjs help\`.`);
   process.exit(1);
