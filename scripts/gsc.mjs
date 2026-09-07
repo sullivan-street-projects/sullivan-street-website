@@ -14,7 +14,7 @@
 //
 // Usage:
 //   node scripts/gsc.mjs sites                      list accessible properties
-//   node scripts/gsc.mjs perf [days] [--by query|page|date]   search analytics
+//   node scripts/gsc.mjs perf [days] [--by query|page|date] [--limit N]   search analytics (default 100 rows)
 //   node scripts/gsc.mjs inspect <url>              index status of one URL
 //   node scripts/gsc.mjs sitemaps                   sitemap status
 //   node scripts/gsc.mjs sitemap-submit [url]       (re)submit the sitemap
@@ -135,13 +135,18 @@ if (cmd === 'sites') {
   const site = await resolveSite();
   const days = Number(args.find((a) => /^\d+$/.test(a)) || 28);
   const by = args.includes('--by') ? args[args.indexOf('--by') + 1] : 'query';
+  // --limit N (default 100, API max 25000). The old hardcoded 20 silently
+  // truncated the by-date series to 20 days and hid every query past row 20.
+  const limit = args.includes('--limit')
+    ? Math.min(25000, Math.max(1, Number(args[args.indexOf('--limit') + 1]) || 100))
+    : 100;
   const end = new Date(Date.now() - 2 * 86400e3).toISOString().slice(0, 10); // GSC data lags ~2 days
   const start = new Date(Date.now() - (days + 2) * 86400e3).toISOString().slice(0, 10);
   const data = await api(
     `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(site)}/searchAnalytics/query`,
     {
       method: 'POST',
-      body: JSON.stringify({ startDate: start, endDate: end, dimensions: [by], rowLimit: 20 }),
+      body: JSON.stringify({ startDate: start, endDate: end, dimensions: [by], rowLimit: limit }),
     },
   );
   console.log(`${site} — last ${days}d by ${by} (${start} → ${end})`);
