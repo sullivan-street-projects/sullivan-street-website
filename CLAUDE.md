@@ -86,7 +86,7 @@ Baseline capture: `bash scripts/capture-baselines.sh` (9 sections x 3 viewports 
 ## Deployment (Hostinger)
 
 - Deploy = `npm run build` (regenerates `llms.txt` from constants), zip the **contents** of `dist/` (must include `.htaccess` — use `zip -rq out.zip .` from inside dist/), then `hosting_deployStaticWebsite` (Hostinger MCP) with domain `sullivanstreetprojects.com`. Always live-verify after (routes, headers, key content markers), then `node scripts/indexnow.mjs` to ping Bing/Copilot.
-- Search Console: `node scripts/gsc.mjs` (sites/perf/inspect/sitemaps/sitemap-submit) — service-account key at `~/.secrets/ssp-gsc-sa.json`, never in the repo.
+- Search Console: `node scripts/gsc.mjs` (sites / perf [days] [--by query|page|date] [--limit N, default 100] / inspect / sitemaps / sitemap-submit / sitemap-delete) — service-account key at `~/.secrets/ssp-gsc-sa.json`, never in the repo.
 - Bing Webmaster: `node scripts/bing.mjs` (sites/perf/queries/sitemaps/sitemap-submit/quota) — API key at `~/.secrets/ssp-bing-key.txt`. Bing's AI Performance report (Copilot citations) is UI-only.
 - GA4: `node scripts/ga.mjs` (properties/report/pages/sources/events/clicks/admin/realtime) — same service-account key as gsc.mjs. `admin` prints key events, custom dimensions and retention (must read `FOURTEEN_MONTHS`).
 - Clarity (SSP): `node scripts/clarity.mjs insights [1-3] [dimension]` — token at `~/.secrets/ssp-clarity-token.txt`, **hard limit 10 API calls/day**. The `clarity` MCP connector is the Cloud Club project, NOT this site.
